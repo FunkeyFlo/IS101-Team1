@@ -15,7 +15,9 @@ public class Corendon {
      */
     public static void main(String[] args) {
         
-        System.out.println("Mark is koppen.");
-        // TODO code application logic here
+
+        System.out.println("Mark is klappen.");
+
+        // BLABLABLA
     }
 }
