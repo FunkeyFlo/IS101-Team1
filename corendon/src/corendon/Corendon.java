@@ -6,14 +6,16 @@ package corendon;
 
 /**
  *
- * @author Mark
+ * @author Florentijn
  */
 public class Corendon {
 
     /**
-     * @param args the command line arguments Flo is gay 
+     * @param args the command line arguments
      */
     public static void main(String[] args) {
+        
+        System.out.println("Mark is koppen.");
         // TODO code application logic here
     }
 }
