@@ -16,7 +16,7 @@ public class Corendon {
     public static void main(String[] args) {
         
 
-        System.out.println("Mark is klappen.");
+        System.out.println("Mark is kldikappen.");
 
         // BLABLABLA
     }
