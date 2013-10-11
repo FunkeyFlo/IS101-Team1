@@ -27,15 +27,12 @@ public class User {
         this.setData(pUsername);
         if (this.username.equals(pUsername))
             if (this.password.equals(pPasswd)) {
-                //System.out.println("Yep!");
                 this.isLoggedIn = true;
                 return "Login succes";
             } else {
-                //System.out.println("Nope!");
                 return "Password is incorrect";
             }
         else {
-            //System.out.println("Username doesnt exist");
             return "Username doesn't exist";
         }
     }
