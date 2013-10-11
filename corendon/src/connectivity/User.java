@@ -36,6 +36,10 @@ public class User {
             return "Username doesn't exist";
         }
     }
+    
+    public int detectGroup(){
+        return this.groupId;
+    }
 
     public void setData(String tfUsername) {
         try {

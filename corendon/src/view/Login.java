@@ -35,8 +35,12 @@ public class Login extends javax.swing.JFrame {
         tfUsername = new javax.swing.JTextField();
         login = new javax.swing.JButton();
         tfPassword = new javax.swing.JPasswordField();
+        warningLabel = new javax.swing.JLabel();
 
         setTitle("Bagage Systeem");
+        setAlwaysOnTop(true);
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("Username");
@@ -70,17 +74,16 @@ public class Login extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tfUsername, javax.swing.GroupLayout.DEFAULT_SIZE, 306, Short.MAX_VALUE)
-                            .addComponent(tfPassword)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(login)))
+                        .addComponent(warningLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(login))
+                    .addComponent(tfUsername, javax.swing.GroupLayout.DEFAULT_SIZE, 306, Short.MAX_VALUE)
+                    .addComponent(tfPassword))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -95,11 +98,14 @@ public class Login extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(tfPassword))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(login)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(login)
+                    .addComponent(warningLabel))
                 .addContainerGap())
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void tfUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfUsernameActionPerformed
@@ -126,11 +132,19 @@ public class Login extends javax.swing.JFrame {
         String loginReturn = user.login(tfUsername.getText().trim(), tfPassword.getText().trim());
         if(loginReturn.equals("Login succes")) {
             dispose();
-            Main.displayGebruiker();
+            int groupId = user.detectGroup();
+                if(groupId == 1)
+                    Main.displayGebruiker();
+                else if(groupId == 2)
+                    Main.displayManager();
+                else
+                    Main.displayManager();
         } else if(loginReturn.equals("Password is incorrect")){
             System.out.println("Password is incorrect");
+            warningLabel.setText("Password is incorrect");
         } else {
             System.out.println("Username is incorrect");
+            warningLabel.setText("Username is incorrect");
         }
     }//GEN-LAST:event_loginActionPerformed
 
@@ -174,5 +188,6 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JButton login;
     private javax.swing.JPasswordField tfPassword;
     private javax.swing.JTextField tfUsername;
+    private javax.swing.JLabel warningLabel;
     // End of variables declaration//GEN-END:variables
 }

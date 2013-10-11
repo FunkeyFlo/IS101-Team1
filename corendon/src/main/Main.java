@@ -25,18 +25,18 @@ public class Main {
     }
     
     public static void displayGebruiker() { //groupId = 1
-        Gebruiker frameEmployee = new Gebruiker();
-        frameEmployee.setVisible(true);
+        Gebruiker frameGebruiker = new Gebruiker();
+        frameGebruiker.setVisible(true);
     }
     
     public static void displayManager() { //groupId = 2
-        Gebruiker frameEmployee = new Gebruiker();
-        frameEmployee.setVisible(true);
+        Manager frameManager = new Manager();
+        frameManager.setVisible(true);
     }
     
     public static void displayBeheerder() { //groupId = 3
-        Gebruiker frameEmployee = new Gebruiker();
-        frameEmployee.setVisible(true);
+        Beheerder frameBeheerder = new Beheerder();
+        frameBeheerder.setVisible(true);
     }
 
     public static void main(String args[]) {
