@@ -4,7 +4,7 @@ IS101-Team1
 FYS Project, IS101 Team 1
 
 	
-|=INHOUD=============================================================================|
+|=INHOUD===============================================================|
 
 	-	Vereisten
 	-	Werkprocedure
@@ -12,7 +12,7 @@ FYS Project, IS101 Team 1
 
 
 
-|=VEREISTEN==========================================================================|
+|=VEREISTEN============================================================|
 
 Als mensen aan het project werken moeten ze zorgen dat ze de volgende dingen geÃ¯nstalleerd en klaar hebben staan.
 
@@ -35,7 +35,7 @@ Als mensen aan het project werken moeten ze zorgen dat ze de volgende dingen geÃ
 
 
 
-|=WERKPROCEDURE======================================================================|
+|=WERKPROCEDURE========================================================|
 
 Wanneer men veranderingen in het project heeft aangebracht klikt men met de rechtermuisknop op de Class/Package/src en selecteert men de optie Git > Commit.
 Hier vult men relevante informatie in, denk hierbij aan aanpassingen die je gemaakt hebt, waarom en waar.
