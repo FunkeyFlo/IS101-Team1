@@ -67,6 +67,8 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
+        warningLabel.setForeground(new java.awt.Color(255, 0, 0));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -100,7 +102,7 @@ public class Login extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(login)
-                    .addComponent(warningLabel))
+                    .addComponent(warningLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -130,21 +132,32 @@ public class Login extends javax.swing.JFrame {
             System.out.println("nope");*/
         User user = new User();
         String loginReturn = user.login(tfUsername.getText().trim(), tfPassword.getText().trim());
-        if(loginReturn.equals("Login succes")) {
-            dispose();
-            int groupId = user.detectGroup();
+        boolean statusLocked = user.getLockState();
+        
+        if(statusLocked == false){
+            
+            if(loginReturn.equals("Login success")) {
+                dispose();
+                int groupId = user.detectGroup();
+                
                 if(groupId == 1)
-                    Main.displayGebruiker();
+                    Main.displayMedewerker();
+
                 else if(groupId == 2)
                     Main.displayManager();
+
                 else
                     Main.displayManager();
-        } else if(loginReturn.equals("Password is incorrect")){
-            System.out.println("Password is incorrect");
-            warningLabel.setText("Password is incorrect");
+                    
+            } else if(loginReturn.equals("Password is incorrect")){
+                warningLabel.setText("Password is incorrect");
+                
+            } else {
+                warningLabel.setText("Username is incorrect");
+            }
+            
         } else {
-            System.out.println("Username is incorrect");
-            warningLabel.setText("Username is incorrect");
+            warningLabel.setText("Your account has been locked");
         }
     }//GEN-LAST:event_loginActionPerformed
 

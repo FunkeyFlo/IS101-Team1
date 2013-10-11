@@ -24,9 +24,9 @@ public class Main {
         frameLogin.setVisible(true);
     }
     
-    public static void displayGebruiker() { //groupId = 1
-        Gebruiker frameGebruiker = new Gebruiker();
-        frameGebruiker.setVisible(true);
+    public static void displayMedewerker() { //groupId = 1
+        Medewerker frameMedewerker = new Medewerker();
+        frameMedewerker.setVisible(true);
     }
     
     public static void displayManager() { //groupId = 2

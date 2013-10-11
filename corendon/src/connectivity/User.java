@@ -16,7 +16,8 @@ public class User {
     private String firstName;
     private String lastName;
     private String password;
-    public boolean isLoggedIn = false;
+    private boolean locked;
+    private boolean isLoggedIn = false;
 
     public User() {
         db.openConnection();
@@ -28,13 +29,17 @@ public class User {
         if (this.username.equals(pUsername))
             if (this.password.equals(pPasswd)) {
                 this.isLoggedIn = true;
-                return "Login succes";
+                return "Login success";
             } else {
                 return "Password is incorrect";
             }
         else {
             return "Username doesn't exist";
         }
+    }
+    
+    public boolean getLockState(){
+        return this.locked;
     }
     
     public int detectGroup(){
@@ -53,6 +58,7 @@ public class User {
                     this.lastName = result.getString("last_name");
                     this.groupId = result.getInt("group_id");
                     this.password = result.getString("password");
+                    this.locked = result.getBoolean("locked");
                 }
                 else
                     this.username = "INVALID";
