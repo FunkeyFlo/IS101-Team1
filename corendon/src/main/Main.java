@@ -24,8 +24,18 @@ public class Main {
         frameLogin.setVisible(true);
     }
     
-    public static void displayEmployee() {
-        Employee frameEmployee = new Employee();
+    public static void displayGebruiker() { //groupId = 1
+        Gebruiker frameEmployee = new Gebruiker();
+        frameEmployee.setVisible(true);
+    }
+    
+    public static void displayManager() { //groupId = 2
+        Gebruiker frameEmployee = new Gebruiker();
+        frameEmployee.setVisible(true);
+    }
+    
+    public static void displayBeheerder() { //groupId = 3
+        Gebruiker frameEmployee = new Gebruiker();
         frameEmployee.setVisible(true);
     }
 

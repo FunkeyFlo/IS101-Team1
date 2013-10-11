@@ -126,7 +126,7 @@ public class Login extends javax.swing.JFrame {
         String loginReturn = user.login(tfUsername.getText().trim(), tfPassword.getText().trim());
         if(loginReturn.equals("Login succes")) {
             dispose();
-            Main.displayEmployee();
+            Main.displayGebruiker();
         } else if(loginReturn.equals("Password is incorrect")){
             System.out.println("Password is incorrect");
         } else {
