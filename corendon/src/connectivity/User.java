@@ -11,8 +11,8 @@ public class User {
 
     private DbManager db = new DbManager();
     private int userId;
-    private String username;
     private int groupId;
+    private String username;
     private String firstName;
     private String lastName;
     private String password;

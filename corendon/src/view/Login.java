@@ -119,17 +119,6 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_tfPasswordActionPerformed
 
     private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
-        // TODO add your handling code here:
-        /*if(ppassword.getText().trim().compareTo("123") == 0 && pusername.getText().trim().compareTo("Steff") == 0) {
-            dispose();
-            System.out.println("TEST!");
-            employee employeeForm = new employee();
-            
-            employeeForm.setVisible(true);
-            
-        }
-        else
-            System.out.println("nope");*/
         User user = new User();
         String loginReturn = user.login(tfUsername.getText().trim(), tfPassword.getText().trim());
         boolean statusLocked = user.getLockState();
@@ -147,7 +136,7 @@ public class Login extends javax.swing.JFrame {
                     Main.displayManager();
 
                 else
-                    Main.displayManager();
+                    Main.displayBeheerder();
                     
             } else if(loginReturn.equals("Password is incorrect")){
                 warningLabel.setText("Password is incorrect");
