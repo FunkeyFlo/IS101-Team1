@@ -23,16 +23,19 @@ public class User {
         db.openConnection();
     }
 
-    public String login(String pUsername, String pPasswd) {
+    public String login(String tfUsername, String tfPasswd) {
 
-        this.setData(pUsername);
-        if (this.username.equals(pUsername))
-            if (this.password.equals(pPasswd)) {
+        this.setData(tfUsername);
+        if (this.username.equals(tfUsername)){
+            
+            if (this.password.equals(tfPasswd)) {
                 this.isLoggedIn = true;
                 return "Login success";
+                
             } else {
                 return "Password is incorrect";
             }
+        }
         else {
             return "Username doesn't exist";
         }
