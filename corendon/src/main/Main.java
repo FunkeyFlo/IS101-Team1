@@ -15,7 +15,7 @@ import view.*;
 public class Main {
 
     private JFrame frameLogin;
-
+    
     private Main() {
     }
 
@@ -37,6 +37,11 @@ public class Main {
     public static void displayBeheerder() { //groupId = 3
         Beheerder frameBeheerder = new Beheerder();
         frameBeheerder.setVisible(true);
+    }
+    
+    public static void displayChangeMyPassword() {
+        ChangeMyPassword frameChangeMyPassword = new ChangeMyPassword();
+        frameChangeMyPassword.setVisible(true);
     }
 
     public static void main(String args[]) {

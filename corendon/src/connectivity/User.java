@@ -4,19 +4,20 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- *
  * @author Florentijn Cornet
  */
 public class User {
 
+    private final int MAX_INCORRECT_LOGINS = 3;
+    
     private DbManager db = new DbManager();
     private int userId;
     private int groupId;
+    private int incorrectLogins;
     private String username;
     private String firstName;
     private String lastName;
     private String password;
-    private boolean locked;
     private boolean isLoggedIn = false;
 
     public User() {
@@ -25,7 +26,7 @@ public class User {
 
     public String login(String tfUsername, String tfPasswd) {
 
-        this.setData(tfUsername);
+        this.getUserData(tfUsername);
         if (this.username.equals(tfUsername)){
             
             if (this.password.equals(tfPasswd)) {
@@ -41,15 +42,28 @@ public class User {
         }
     }
     
+    public boolean checkOldPassword(String oldPassword, String tfUsername) {
+
+        this.getUserData(tfUsername);
+        if(this.password.equals(oldPassword)){
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
     public boolean getLockState(){
-        return this.locked;
+        if(this.incorrectLogins >= MAX_INCORRECT_LOGINS)
+            return true;
+        else
+            return false;
     }
     
     public int detectGroup(){
         return this.groupId;
     }
 
-    public void setData(String tfUsername) {
+    public void getUserData(String tfUsername) {
         try {
             String sql = "SELECT *, COUNT(*) as `rows` FROM `user` WHERE `username`='" + tfUsername + "'";
             ResultSet result = db.doQuery(sql);
@@ -61,7 +75,7 @@ public class User {
                     this.lastName = result.getString("last_name");
                     this.groupId = result.getInt("group_id");
                     this.password = result.getString("password");
-                    this.locked = result.getBoolean("locked");
+                    this.incorrectLogins = result.getInt("incorrect_login");
                 }
                 else
                     this.username = "INVALID";
@@ -69,5 +83,15 @@ public class User {
         } catch (SQLException e) {
             System.out.println(db.SQL_EXCEPTION + e.getMessage());
         }
+    }
+    public void setIncorrectLogin() {
+        String sql = "UPDATE `user` SET `incorrect_login` = `incorrect_login` + 1 WHERE `userId` = '" + this.userId + "'";
+        db.insertQuery(sql);
+        System.out.println(incorrectLogins);
+        
+    }
+    public void updatePassword(String tfPassword, String tfUsername) {
+        String sql = "UPDATE `user` SET password = '" + tfPassword + "' WHERE `username`='" + tfUsername + "'";
+        db.insertQuery(sql);
     }
 }
