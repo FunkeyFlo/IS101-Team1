@@ -29,7 +29,8 @@ Als mensen aan het project werken moeten ze zorgen dat ze de volgende dingen ge√
         - varchar   first_name
         - varchar   last_name
         - varchar   password
-        - tinyint   locked            (tinyint is de MySql versie van een boolean; 0 = false en 1 = true)
+        - int				incorrect_login
+        //- tinyint   locked            (tinyint is de MySql versie van een boolean; 0 = false en 1 = true) (VELD IS VERWIJDERD)
   - Een clone van de laatste GitHub versie van het project
 
 
