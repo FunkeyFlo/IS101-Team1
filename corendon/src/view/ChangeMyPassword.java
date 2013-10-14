@@ -105,7 +105,7 @@ public class ChangeMyPassword extends javax.swing.JFrame {
             }
         });
 
-        warningLabel.setText("jLabel4");
+        warningLabel.setForeground(new java.awt.Color(255, 0, 0));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -117,7 +117,7 @@ public class ChangeMyPassword extends javax.swing.JFrame {
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(warningLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 185, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 219, Short.MAX_VALUE)
                         .addComponent(cancelButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(okButton)))
@@ -150,13 +150,14 @@ public class ChangeMyPassword extends javax.swing.JFrame {
         
         if(oldPasswordCorrect == true){
             if(newPassword.getText().trim().equals(newPasswordRepeat.getText().trim())){
-                System.out.println("cool man");user.updatePassword(newPassword.getText().trim(), username.getText().trim());
+                //System.out.println("cool man");
+                user.updatePassword(newPassword.getText().trim(), username.getText().trim());
             } else {
-                System.out.println("New password doesn't match");
+                warningLabel.setText("New password doesn't match");
             }
         }
         else
-            System.out.println("the current password is incorrect");
+            warningLabel.setText("the current password is incorrect");
     }//GEN-LAST:event_okButtonActionPerformed
 
     /**
