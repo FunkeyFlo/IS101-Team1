@@ -126,6 +126,7 @@ public class Login extends javax.swing.JFrame {
         if(statusLocked == false){
             switch (loginReturn) {
                 case "Login success":
+                    user.resetIncorrectLogin();
                     dispose();
                     int groupId = user.detectGroup();
                     if(groupId == 1)

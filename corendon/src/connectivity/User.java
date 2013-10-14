@@ -84,12 +84,19 @@ public class User {
             System.out.println(db.SQL_EXCEPTION + e.getMessage());
         }
     }
+    
     public void setIncorrectLogin() {
         String sql = "UPDATE `user` SET `incorrect_login` = `incorrect_login` + 1 WHERE `userId` = '" + this.userId + "'";
         db.insertQuery(sql);
         System.out.println(incorrectLogins);
-        
     }
+    
+    public void resetIncorrectLogin() {
+        String sql = "UPDATE `user` SET `incorrect_login` = 0 WHERE `userId` = '" + this.userId + "'";
+        db.insertQuery(sql);
+        System.out.println(incorrectLogins);
+    }
+    
     public void updatePassword(String tfPassword, String tfUsername) {
         String sql = "UPDATE `user` SET password = '" + tfPassword + "' WHERE `username`='" + tfUsername + "'";
         db.insertQuery(sql);
