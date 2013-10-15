@@ -144,6 +144,7 @@ public class ChangeMyPassword extends javax.swing.JFrame {
             if(newPassword.getText().trim().equals(newPasswordRepeat.getText().trim())){
                 //System.out.println("cool man");
                 user.updatePassword(newPassword.getText().trim(), session.storedUsername);
+                dispose();
             } else {
                 warningLabel.setText("New password doesn't match");
             }

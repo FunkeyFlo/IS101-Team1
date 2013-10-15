@@ -2,7 +2,6 @@ package connectivity;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import main.Session;
 
 /**
  * @author Florentijn Cornet
@@ -12,7 +11,6 @@ public class User {
     private final int MAX_INCORRECT_LOGINS = 3;
     
     private DbManager db = new DbManager();
-    Session session = new Session();
     
     private int userId;
     private int groupId;
