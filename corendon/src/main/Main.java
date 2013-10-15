@@ -18,6 +18,7 @@ import view.*;
 public class Main {
 
     private JFrame frameLogin;
+    public static Session session;
     
     private Main() {
     }
@@ -54,6 +55,7 @@ public class Main {
             public void run() {
                 
                 displayLogin();
+                Session session = new Session();
 
             }
         });

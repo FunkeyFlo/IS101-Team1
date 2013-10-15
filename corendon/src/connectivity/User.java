@@ -2,6 +2,7 @@ package connectivity;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import main.Session;
 
 /**
  * @author Florentijn Cornet
@@ -11,6 +12,8 @@ public class User {
     private final int MAX_INCORRECT_LOGINS = 3;
     
     private DbManager db = new DbManager();
+    Session session = new Session();
+    
     private int userId;
     private int groupId;
     private int incorrectLogins;
@@ -19,7 +22,7 @@ public class User {
     private String lastName;
     private String password;
     private boolean isLoggedIn = false;
-
+    
     public User() {
         db.openConnection();
     }
@@ -42,8 +45,8 @@ public class User {
         }
     }
     
-    public boolean checkOldPassword(String oldPassword, String tfUsername) {
-        this.getUserData(tfUsername);
+    public boolean checkOldPassword(String oldPassword, String storedUsername) {
+        this.getUserData(storedUsername);
         if(this.password.equals(oldPassword)){
             return true;
         } else {
@@ -61,7 +64,7 @@ public class User {
     public int detectGroup(){
         return this.groupId;
     }
-
+    
     public void getUserData(String tfUsername) {
         try {
             String sql = "SELECT *, COUNT(*) as `rows` FROM `user` WHERE `username`='" + tfUsername + "'";

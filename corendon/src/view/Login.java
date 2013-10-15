@@ -2,6 +2,7 @@ package view;
 
 import connectivity.User;
 import main.Main;
+import main.Session;
 
 /*
  * To change this template, choose Tools | Templates
@@ -120,10 +121,12 @@ public class Login extends javax.swing.JFrame {
 
     private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
         User user = new User();
+        Session session = new Session();
         String loginReturn = user.login(tfUsername.getText().trim(), tfPassword.getText().trim());
         boolean statusLocked = user.getLockState();
         
         if(statusLocked == false){
+            session.storeSession(tfUsername.getText().trim());
             switch (loginReturn) {
                 case "Login success":
                     user.resetIncorrectLogin();
