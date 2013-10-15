@@ -4,6 +4,9 @@
  */
 package main;
 
+import view.medewerker.Medewerker;
+import view.manager.Manager;
+import view.beheerder.Beheerder;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 import view.*;

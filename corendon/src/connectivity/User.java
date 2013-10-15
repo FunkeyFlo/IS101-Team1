@@ -43,7 +43,6 @@ public class User {
     }
     
     public boolean checkOldPassword(String oldPassword, String tfUsername) {
-
         this.getUserData(tfUsername);
         if(this.password.equals(oldPassword)){
             return true;
@@ -88,13 +87,12 @@ public class User {
     public void setIncorrectLogin() {
         String sql = "UPDATE `user` SET `incorrect_login` = `incorrect_login` + 1 WHERE `user_id` = '" + this.userId + "'";
         db.insertQuery(sql);
-        System.out.println(incorrectLogins);
+        System.out.println(incorrectLogins + 1);
     }
     
     public void resetIncorrectLogin() {
         String sql = "UPDATE `user` SET `incorrect_login` = 0 WHERE `user_id` = '" + this.userId + "'";
         db.insertQuery(sql);
-        System.out.println(incorrectLogins);
     }
     
     public void updatePassword(String tfPassword, String tfUsername) {
