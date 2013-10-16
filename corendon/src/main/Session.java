@@ -23,8 +23,5 @@ public class Session {
         user.getUserData(inputUsername);
         storedFirstName = user.getFirstName();
         storedLastName = user.getLastName();
-        
-        System.out.println(storedLastName);
-        System.out.println(storedFirstName);
     }
 }
