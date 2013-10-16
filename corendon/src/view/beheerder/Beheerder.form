@@ -2,6 +2,29 @@
 
 <Form version="1.5" maxVersion="1.8" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <NonVisualComponents>
+    <Component class="javax.persistence.EntityManager" name="entityManager">
+      <Properties>
+        <Property name="persistenceUnit" type="java.lang.String" value="fys?zeroDateTimeBehavior=convertToNullPU"/>
+      </Properties>
+    </Component>
+    <Component class="javax.persistence.Query" name="userQuery">
+      <Properties>
+        <Property name="query" type="java.lang.String" value="SELECT u FROM User u"/>
+        <Property name="entityManager" type="java.lang.Object" editor="org.netbeans.modules.form.j2ee.J2EEPropertyModifier$EMProperty$EntityManagerEditor">
+          <ComponentRef name="entityManager"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="java.util.List" name="userList">
+      <Properties>
+        <Property name="query" type="java.lang.Object" editor="org.netbeans.modules.form.j2ee.J2EEPropertyModifier$QueryBeanProperty$QueryEditor">
+          <ComponentRef name="userQuery"/>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;view.beheerder.User&gt;"/>
+      </AuxValues>
+    </Component>
     <Menu class="javax.swing.JMenuBar" name="jMenuBar2">
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="jMenu2">
@@ -259,7 +282,10 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jScrollPane1" min="-2" pref="637" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="jButton5" min="-2" max="-2" attributes="0"/>
+                      <Component id="jScrollPane1" min="-2" pref="637" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jScrollBar1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
@@ -271,9 +297,11 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jScrollPane1" pref="471" max="32767" attributes="0"/>
                       <Component id="jScrollBar1" max="32767" attributes="0"/>
+                      <Component id="jScrollPane1" max="32767" attributes="0"/>
                   </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jButton5" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -290,18 +318,99 @@
             <Component class="javax.swing.JTable" name="jTable1">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="4" rowCount="4">
-                    <Column editable="true" title="Title 1" type="java.lang.Object"/>
-                    <Column editable="true" title="Title 2" type="java.lang.Object"/>
-                    <Column editable="true" title="Title 3" type="java.lang.Object"/>
-                    <Column editable="true" title="Title 4" type="java.lang.Object"/>
+                  <Table columnCount="6" rowCount="0">
+                    <Column editable="false" title="First Name" type="java.lang.String"/>
+                    <Column editable="false" title="Last Name" type="java.lang.String"/>
+                    <Column editable="false" title="Username" type="java.lang.String"/>
+                    <Column editable="false" title="User Id" type="java.lang.Integer"/>
+                    <Column editable="false" title="Group Id" type="java.lang.Integer"/>
+                    <Column editable="false" title="Incorrect Login" type="java.lang.Integer"/>
                   </Table>
                 </Property>
+                <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                  <TableColumnModel selectionModel="0">
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                  </TableColumnModel>
+                </Property>
+                <Property name="showHorizontalLines" type="boolean" value="false"/>
+                <Property name="showVerticalLines" type="boolean" value="false"/>
+                <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                  <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+                </Property>
+                <Property name="updateSelectionOnSort" type="boolean" value="false"/>
               </Properties>
+              <BindingProperties>
+                <BindingProperty name="elements" source="userList" target="jTable1" targetPath="elements" updateStrategy="0" immediately="true">
+                  <Subbinding sourcePath="${userId}">
+                    <BindingParameter name="NAME" value="User Id"/>
+                    <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN_CLASS" value="Integer.class"/>
+                  </Subbinding>
+                  <Subbinding sourcePath="${username}">
+                    <BindingParameter name="NAME" value="Username"/>
+                    <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN_CLASS" value="String.class"/>
+                  </Subbinding>
+                  <Subbinding sourcePath="${firstName}">
+                    <BindingParameter name="NAME" value="First Name"/>
+                    <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN_CLASS" value="String.class"/>
+                  </Subbinding>
+                  <Subbinding sourcePath="${lastName}">
+                    <BindingParameter name="NAME" value="Last Name"/>
+                    <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN_CLASS" value="String.class"/>
+                  </Subbinding>
+                  <Subbinding sourcePath="${groupId}">
+                    <BindingParameter name="NAME" value="Group Id"/>
+                    <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN_CLASS" value="Integer.class"/>
+                  </Subbinding>
+                  <Subbinding sourcePath="${incorrectLogin}">
+                    <BindingParameter name="NAME" value="Incorrect Login"/>
+                    <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN_CLASS" value="Integer.class"/>
+                  </Subbinding>
+                </BindingProperty>
+              </BindingProperties>
             </Component>
           </SubComponents>
         </Container>
         <Component class="javax.swing.JScrollBar" name="jScrollBar1">
+          <Properties>
+            <Property name="toolTipText" type="java.lang.String" value=""/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="jButton5">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Verversen"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton5ActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

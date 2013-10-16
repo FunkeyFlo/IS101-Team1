@@ -100,4 +100,11 @@ public class User {
         String sql = "UPDATE `user` SET password = '" + tfPassword + "' WHERE `username`='" + tfUsername + "'";
         db.insertQuery(sql);
     }
+    
+    public String getNames(String inputUsername, String name_type) {
+        //System.out.println(inputUsername + name_type);
+        String sql = "SELECT `" + name_type + "` FROM `user` WHERE `username`='" + inputUsername + "'";
+        db.doQuery(sql);
+        return sql;
+    }
 }
