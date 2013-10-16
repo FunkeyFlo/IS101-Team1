@@ -56,6 +56,7 @@ public class Beheerder extends javax.swing.JFrame {
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         changePassword = new javax.swing.JMenuItem();
+        logout = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Beheerder - " + Session.storedFirstName + " " + Session.storedLastName);
@@ -251,6 +252,14 @@ public class Beheerder extends javax.swing.JFrame {
         });
         jMenu2.add(changePassword);
 
+        logout.setText("Uitloggen");
+        logout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutActionPerformed(evt);
+            }
+        });
+        jMenu2.add(logout);
+
         jMenuBar2.add(jMenu2);
 
         setJMenuBar(jMenuBar2);
@@ -312,6 +321,11 @@ public class Beheerder extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton5ActionPerformed
 
+    private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
+        dispose();
+        Main.displayLogin();
+    }//GEN-LAST:event_logoutActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -371,6 +385,7 @@ public class Beheerder extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
+    private javax.swing.JMenuItem logout;
     private java.util.List<view.beheerder.User> userList;
     private javax.persistence.Query userQuery;
     private org.jdesktop.beansbinding.BindingGroup bindingGroup;
