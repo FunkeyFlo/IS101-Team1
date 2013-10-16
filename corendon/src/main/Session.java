@@ -20,8 +20,9 @@ public class Session {
     public static void storeNames(String inputUsername) {
         User user = new User();
        
-        storedFirstName = user.getNames(inputUsername, "first_name");
-        storedLastName = user.getNames(inputUsername, "last_name");
+        user.getUserData(inputUsername);
+        storedFirstName = user.getFirstName();
+        storedLastName = user.getLastName();
         
         System.out.println(storedLastName);
         System.out.println(storedFirstName);

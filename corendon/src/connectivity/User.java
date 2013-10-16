@@ -101,10 +101,11 @@ public class User {
         db.insertQuery(sql);
     }
     
-    public String getNames(String inputUsername, String name_type) {
-        //System.out.println(inputUsername + name_type);
-        String sql = "SELECT `" + name_type + "` FROM `user` WHERE `username`='" + inputUsername + "'";
-        db.doQuery(sql);
-        return sql;
+    public String getFirstName() {
+        return this.firstName;
+    }
+    
+    public String getLastName() {
+        return this.lastName;
     }
 }
