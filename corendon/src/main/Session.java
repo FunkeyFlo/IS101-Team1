@@ -12,11 +12,6 @@ public class Session {
     public static String storedFirstName;
     public static String storedLastName;
     
-    public static void storeSession(String inputUsername) {
-        storedUsername = inputUsername;
-        //System.out.println(storedUsername);
-    }
-    
     public static void storeNames(String inputUsername) {
         User user = new User();
        

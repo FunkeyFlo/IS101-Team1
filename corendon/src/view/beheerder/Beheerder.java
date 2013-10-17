@@ -5,6 +5,8 @@
 package view.beheerder;
 
 import connectivity.User;
+import view.beheerder.Users;
+import javax.swing.table.AbstractTableModel;
 import main.Session;
 import main.Main;
 
@@ -54,9 +56,9 @@ public class Beheerder extends javax.swing.JFrame {
         clearFields = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        userTable = new javax.swing.JTable();
         jScrollBar1 = new javax.swing.JScrollBar();
-        jButton5 = new javax.swing.JButton();
+        refreshButton = new javax.swing.JButton();
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         changePassword = new javax.swing.JMenuItem();
@@ -139,7 +141,7 @@ public class Beheerder extends javax.swing.JFrame {
             }
         });
 
-        groupSelector.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Medewerker", "Manager", "Gebruiker" }));
+        groupSelector.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Medewerker", "Manager", "Beheerder" }));
         groupSelector.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 groupSelectorActionPerformed(evt);
@@ -217,11 +219,34 @@ public class Beheerder extends javax.swing.JFrame {
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Gebruikersoverzicht"));
 
-        jTable1.setShowHorizontalLines(false);
-        jTable1.setShowVerticalLines(false);
-        jTable1.setUpdateSelectionOnSort(false);
+        userTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
 
-        org.jdesktop.swingbinding.JTableBinding jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, userList, jTable1);
+            },
+            new String [] {
+                "User Id", "Username", "First Name", "Last Name", "Group Id", "Incorrect Login"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        userTable.setShowHorizontalLines(false);
+        userTable.setShowVerticalLines(false);
+        userTable.setUpdateSelectionOnSort(false);
+
+        org.jdesktop.swingbinding.JTableBinding jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, userList, userTable);
         org.jdesktop.swingbinding.JTableBinding.ColumnBinding columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${userId}"));
         columnBinding.setColumnName("User Id");
         columnBinding.setColumnClass(Integer.class);
@@ -242,14 +267,14 @@ public class Beheerder extends javax.swing.JFrame {
         columnBinding.setColumnClass(Integer.class);
         bindingGroup.addBinding(jTableBinding);
         jTableBinding.bind();
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(userTable);
 
         jScrollBar1.setToolTipText("");
 
-        jButton5.setText("Verversen");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        refreshButton.setText("Verversen");
+        refreshButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                refreshButtonActionPerformed(evt);
             }
         });
 
@@ -260,7 +285,7 @@ public class Beheerder extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton5)
+                    .addComponent(refreshButton)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 637, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -274,7 +299,7 @@ public class Beheerder extends javax.swing.JFrame {
                     .addComponent(jScrollBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton5)
+                .addComponent(refreshButton)
                 .addContainerGap())
         );
 
@@ -349,9 +374,9 @@ public class Beheerder extends javax.swing.JFrame {
         Main.displayChangeMyPassword();
     }//GEN-LAST:event_changePasswordActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+    private void refreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButtonActionPerformed
+        // TODO add refresh method here
+    }//GEN-LAST:event_refreshButtonActionPerformed
 
     private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
         dispose();
@@ -359,7 +384,7 @@ public class Beheerder extends javax.swing.JFrame {
     }//GEN-LAST:event_logoutActionPerformed
 
     private void tfPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfPasswordActionPerformed
-        // TODO add your handling code here:
+        // TODO hier moet een refresh methode komen
     }//GEN-LAST:event_tfPasswordActionPerformed
 
     private void createUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createUserActionPerformed
@@ -438,7 +463,6 @@ public class Beheerder extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -451,14 +475,15 @@ public class Beheerder extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollBar jScrollBar1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JMenuItem logout;
+    private javax.swing.JButton refreshButton;
     private javax.swing.JTextField tfFirstName;
     private javax.swing.JTextField tfLastName;
     private javax.swing.JPasswordField tfPassword;
     private javax.swing.JTextField tfUsername;
-    private java.util.List<view.beheerder.User> userList;
+    private java.util.List<view.beheerder.Users> userList;
     private javax.persistence.Query userQuery;
+    private javax.swing.JTable userTable;
     private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 }

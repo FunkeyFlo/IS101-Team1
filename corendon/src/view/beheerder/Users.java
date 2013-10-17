@@ -31,7 +31,7 @@ import javax.persistence.Transient;
     @NamedQuery(name = "User.findByPassword", query = "SELECT u FROM User u WHERE u.password = :password"),
     @NamedQuery(name = "User.findByGroupId", query = "SELECT u FROM User u WHERE u.groupId = :groupId"),
     @NamedQuery(name = "User.findByIncorrectLogin", query = "SELECT u FROM User u WHERE u.incorrectLogin = :incorrectLogin")})
-public class User implements Serializable {
+    public class Users implements Serializable {
     @Transient
     private PropertyChangeSupport changeSupport = new PropertyChangeSupport(this);
     private static final long serialVersionUID = 1L;
@@ -58,14 +58,14 @@ public class User implements Serializable {
     @Column(name = "incorrect_login")
     private int incorrectLogin;
 
-    public User() {
+    public Users() {
     }
 
-    public User(Integer userId) {
+    public Users(Integer userId) {
         this.userId = userId;
     }
 
-    public User(Integer userId, String username, String firstName, String lastName, String password, int groupId, int incorrectLogin) {
+    public Users(Integer userId, String username, String firstName, String lastName, String password, int groupId, int incorrectLogin) {
         this.userId = userId;
         this.username = username;
         this.firstName = firstName;
@@ -155,10 +155,10 @@ public class User implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof User)) {
+        if (!(object instanceof Users)) {
             return false;
         }
-        User other = (User) object;
+        Users other = (Users) object;
         if ((this.userId == null && other.userId != null) || (this.userId != null && !this.userId.equals(other.userId))) {
             return false;
         }
@@ -177,5 +177,4 @@ public class User implements Serializable {
     public void removePropertyChangeListener(PropertyChangeListener listener) {
         changeSupport.removePropertyChangeListener(listener);
     }
-    
 }

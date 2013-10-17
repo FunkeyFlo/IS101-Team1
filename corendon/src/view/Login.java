@@ -162,7 +162,8 @@ public class Login extends javax.swing.JFrame {
         boolean statusLocked = user.getLockState();
         
         if(statusLocked == false){
-            session.storeSession(tfUsername.getText().trim());
+            //session.storeSession(tfUsername.getText().trim());
+            Session.storedUsername = tfUsername.getText().trim();
             session.storeNames(tfUsername.getText().trim());
             switch (loginReturn) {
                 case "Login success":
