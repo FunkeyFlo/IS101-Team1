@@ -10,6 +10,7 @@ import view.beheerder.Beheerder;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 import view.*;
+import view.medewerker.*;
 
 /**
  *
@@ -41,6 +42,11 @@ public class Main {
     public static void displayBeheerder() { //groupId = 3
         Beheerder frameBeheerder = new Beheerder();
         frameBeheerder.setVisible(true);
+    }
+    
+    public static void displayRegisterCustomer() {
+        RegisterCustomer frameRegisterCustomer = new RegisterCustomer();
+        frameRegisterCustomer.setVisible(true);
     }
     
     public static void displayChangeMyPassword() {
