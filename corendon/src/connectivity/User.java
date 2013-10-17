@@ -2,6 +2,8 @@ package connectivity;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Florentijn Cornet
@@ -24,6 +26,17 @@ public class User {
     public User() {
         db.openConnection();
     }
+    
+    public User(int userId, String firstName, String lastName, String username,
+            int groupId) {
+        this.userId = userId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.username = username;
+        this.groupId = groupId;
+        
+        System.out.println(userId + " " + lastName + " " + username);
+    }
 
     public String login(String tfUsername, String tfPasswd) {
 
@@ -41,6 +54,26 @@ public class User {
         else {
             return "Username doesn't exist";
         }
+    }
+    
+    public String getFirstName() {
+        return this.firstName;
+    }
+    
+    public String getLastName() {
+        return this.lastName;
+    }
+    
+    public String getUsername() {
+        return this.username;
+    }
+    
+    public int getUserId() {
+        return this.userId;
+    }
+    
+    public int getGroupId() {
+        return this.groupId;
     }
     
     public boolean checkOldPassword(String oldPassword, String storedUsername) {
@@ -85,6 +118,24 @@ public class User {
         }
     }
     
+    public List<User> getUserList() {
+        List<User> users = new ArrayList<>();
+        try {
+            String sql = "SELECT * FROM user";
+            ResultSet result = db.doQuery(sql);
+            while (result.next()) {
+                users.add(new User(result.getInt("user_id"),
+                        result.getString("first_name"),
+                        result.getString("last_name"),
+                        result.getString("username"),
+                        result.getInt("group_id")));
+            }
+        } catch (SQLException e) {
+            System.out.println(db.SQL_EXCEPTION + e.getMessage());
+        }
+        return users;
+    }
+    
     public void setNewUser(String tfUsername, String tfFirstName, String tfLastName, String tfPassword, int inputGroupId) {
         String sql = "INSERT INTO fys.`user` (username, first_name, last_name, password, group_id, incorrect_login) VALUES ('" 
                 + tfUsername + "', '" + tfFirstName + "', '" + tfLastName 
@@ -106,13 +157,5 @@ public class User {
     public void updatePassword(String tfPassword, String tfUsername) {
         String sql = "UPDATE `user` SET password = '" + tfPassword + "' WHERE `username`='" + tfUsername + "'";
         db.insertQuery(sql);
-    }
-    
-    public String getFirstName() {
-        return this.firstName;
-    }
-    
-    public String getLastName() {
-        return this.lastName;
     }
 }
