@@ -73,6 +73,7 @@ public class Beheerder extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Beheerder - " + Session.storedFirstName + " " + Session.storedLastName);
+        setMinimumSize(new java.awt.Dimension(720, 534));
 
         jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder("Gebruiker Wijzigen"));
 
