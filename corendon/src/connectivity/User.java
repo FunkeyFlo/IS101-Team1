@@ -16,7 +16,7 @@ public class User {
     
     private int userId;
     private int groupId;
-    private int incorrectLogins;
+    private int incorrectLogin;
     private String username;
     private String firstName;
     private String lastName;
@@ -28,12 +28,13 @@ public class User {
     }
     
     public User(int userId, String firstName, String lastName, String username,
-            int groupId) {
+            int groupId, int incorrectLogin) {
         this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
         this.groupId = groupId;
+        this.incorrectLogin = incorrectLogin;
         
         System.out.println(userId + " " + lastName + " " + username);
     }
@@ -76,6 +77,10 @@ public class User {
         return this.groupId;
     }
     
+    public int getIncorrectLogin() {
+        return this.incorrectLogin;
+    }
+    
     public boolean checkOldPassword(String oldPassword, String storedUsername) {
         this.getUserData(storedUsername);
         if(this.password.equals(oldPassword)){
@@ -86,7 +91,7 @@ public class User {
     }
     
     public boolean getLockState(){
-        if(this.incorrectLogins >= MAX_INCORRECT_LOGINS)
+        if(this.incorrectLogin >= MAX_INCORRECT_LOGINS)
             return true;
         else
             return false;
@@ -108,7 +113,7 @@ public class User {
                     this.lastName = result.getString("last_name");
                     this.groupId = result.getInt("group_id");
                     this.password = result.getString("password");
-                    this.incorrectLogins = result.getInt("incorrect_login");
+                    this.incorrectLogin = result.getInt("incorrect_login");
                 }
                 else
                     this.username = "INVALID";
@@ -128,7 +133,8 @@ public class User {
                         result.getString("first_name"),
                         result.getString("last_name"),
                         result.getString("username"),
-                        result.getInt("group_id")));
+                        result.getInt("group_id"),
+                        result.getInt("incorrect_login")));
             }
         } catch (SQLException e) {
             System.out.println(db.SQL_EXCEPTION + e.getMessage());
@@ -146,7 +152,7 @@ public class User {
     public void setIncorrectLogin() {
         String sql = "UPDATE `user` SET `incorrect_login` = `incorrect_login` + 1 WHERE `user_id` = '" + this.userId + "'";
         db.insertQuery(sql);
-        System.out.println(incorrectLogins + 1);
+        System.out.println(incorrectLogin + 1);
     }
     
     public void resetIncorrectLogin() {

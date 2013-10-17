@@ -27,7 +27,8 @@ public class Beheerder extends javax.swing.JFrame {
                 user.getFirstName(),
                 user.getLastName(),
                 user.getUsername(),
-                user.getGroupId()});
+                user.getGroupId(),
+                user.getIncorrectLogin()});
             
             System.out.println(user.getFirstName());
         }
@@ -237,14 +238,14 @@ public class Beheerder extends javax.swing.JFrame {
 
             },
             new String [] {
-                "User ID", "First Name", "Last Name", "Username", "Group ID"
+                "User ID", "First Name", "Last Name", "Username", "Group ID", "Incorrect Logins"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -276,7 +277,7 @@ public class Beheerder extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollBar2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(refreshButton1)
                 .addContainerGap())
