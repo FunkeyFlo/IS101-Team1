@@ -8,6 +8,7 @@ import connectivity.User;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import main.Main;
+import main.Session;
 /**
  *
  * @author Flo
@@ -30,7 +31,7 @@ public class Beheerder extends javax.swing.JFrame {
                 user.getGroupId(),
                 user.getIncorrectLogin()});
             
-            System.out.println(user.getFirstName());
+            //System.out.println(user.getFirstName());
         }
     }
 
@@ -62,7 +63,6 @@ public class Beheerder extends javax.swing.JFrame {
         createUser = new javax.swing.JButton();
         clearFields = new javax.swing.JButton();
         jPanel8 = new javax.swing.JPanel();
-        jScrollBar2 = new javax.swing.JScrollBar();
         refreshButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         userTable = new javax.swing.JTable();
@@ -72,6 +72,7 @@ public class Beheerder extends javax.swing.JFrame {
         logout = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Beheerder - " + Session.storedFirstName + " " + Session.storedLastName);
 
         jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder("Gebruiker Wijzigen"));
 
@@ -224,8 +225,6 @@ public class Beheerder extends javax.swing.JFrame {
 
         jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder("Gebruikersoverzicht"));
 
-        jScrollBar2.setToolTipText("");
-
         refreshButton1.setText("Verversen");
         refreshButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -264,20 +263,18 @@ public class Beheerder extends javax.swing.JFrame {
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(refreshButton1)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 637, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollBar2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 660, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(refreshButton1)))
                 .addContainerGap())
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollBar2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(refreshButton1)
                 .addContainerGap())
@@ -333,6 +330,7 @@ public class Beheerder extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void tfFirstNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfFirstNameActionPerformed
@@ -373,6 +371,9 @@ public class Beheerder extends javax.swing.JFrame {
         tfFirstName.setText("");
         tfLastName.setText("");
         tfPassword.setText("");
+        
+        dispose();
+        Main.displayBeheerder();
     }//GEN-LAST:event_createUserActionPerformed
 
     private void clearFieldsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearFieldsActionPerformed
@@ -381,10 +382,12 @@ public class Beheerder extends javax.swing.JFrame {
         tfFirstName.setText("");
         tfLastName.setText("");
         tfPassword.setText("");
+        
     }//GEN-LAST:event_clearFieldsActionPerformed
 
     private void refreshButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButton1ActionPerformed
-        //userTable.setModel(userModel);
+        dispose();
+        Main.displayBeheerder();
     }//GEN-LAST:event_refreshButton1ActionPerformed
 
     private void changePasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changePasswordActionPerformed
@@ -449,7 +452,6 @@ public class Beheerder extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JScrollBar jScrollBar2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JMenuItem logout;
     private javax.swing.JButton refreshButton1;

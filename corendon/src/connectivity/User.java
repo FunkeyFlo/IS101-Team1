@@ -36,7 +36,7 @@ public class User {
         this.groupId = groupId;
         this.incorrectLogin = incorrectLogin;
         
-        System.out.println(userId + " " + lastName + " " + username);
+        //System.out.println(userId + " " + lastName + " " + username);
     }
 
     public String login(String tfUsername, String tfPasswd) {
