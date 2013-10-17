@@ -154,6 +154,11 @@ public class Beheerder extends javax.swing.JFrame {
         });
 
         clearFields.setText("Reset");
+        clearFields.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clearFieldsActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -369,11 +374,25 @@ public class Beheerder extends javax.swing.JFrame {
         //System.out.println(newGroup);
         
         user.setNewUser(newUsername, newFirstName, newLastName, newPassword, newGroup);
+        
+        // maakt alle textakken leeg
+        tfUsername.setText("");
+        tfFirstName.setText("");
+        tfLastName.setText("");
+        tfPassword.setText("");
     }//GEN-LAST:event_createUserActionPerformed
 
     private void groupSelectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_groupSelectorActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_groupSelectorActionPerformed
+
+    private void clearFieldsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearFieldsActionPerformed
+        // maakt alle textakken leeg
+        tfUsername.setText("");
+        tfFirstName.setText("");
+        tfLastName.setText("");
+        tfPassword.setText("");
+    }//GEN-LAST:event_clearFieldsActionPerformed
 
     /**
      * @param args the command line arguments
