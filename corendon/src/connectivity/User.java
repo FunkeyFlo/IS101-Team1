@@ -85,6 +85,13 @@ public class User {
         }
     }
     
+    public void setNewUser(String tfUsername, String tfFirstName, String tfLastName, String tfPassword, int inputGroupId) {
+        String sql = "INSERT INTO fys.`user` (username, first_name, last_name, password, group_id, incorrect_login) VALUES ('" 
+                + tfUsername + "', '" + tfFirstName + "', '" + tfLastName 
+                + "', '" + tfPassword + "', " + inputGroupId + ", 0)";
+        db.insertQuery(sql);
+    }
+    
     public void setIncorrectLogin() {
         String sql = "UPDATE `user` SET `incorrect_login` = `incorrect_login` + 1 WHERE `user_id` = '" + this.userId + "'";
         db.insertQuery(sql);
