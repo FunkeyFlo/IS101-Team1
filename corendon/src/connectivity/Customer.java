@@ -40,9 +40,9 @@ public class Customer {
 //        System.out.println(customerId + " " + lastName + " " + email);
     }
     
-    public void getCustomerData(String tfUsername) {
+    public void getCustomerData(String tfInput, String databaseVariable) {
         try {
-            String sql = "SELECT *, COUNT(*) as `rows` FROM `customer` WHERE `email`='" + tfUsername + "'";
+            String sql = "SELECT *, COUNT(*) as `rows` FROM `customer` WHERE `" + databaseVariable + "`='" + tfInput + "'";
             ResultSet result = getDb().doQuery(sql);
             if (result.next()) {
                 if (result.getInt("rows") >= 1) {

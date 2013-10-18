@@ -24,6 +24,7 @@ public class Beheerder extends javax.swing.JFrame {
         model = (DefaultTableModel) this.userTable.getModel();
         updateUserTable();
     }
+    
     private void updateUserTable() {
         model.setRowCount(0); //nodig voor 
         users = userModel.getUserList();
@@ -375,7 +376,6 @@ public class Beheerder extends javax.swing.JFrame {
         int newGroup = groupSelector.getSelectedIndex() + 1;
         
         //System.out.println(newGroup);
-
         user.setNewUser(newUsername, newFirstName, newLastName, newPassword, newGroup);
 
         // maakt alle textakken leeg
