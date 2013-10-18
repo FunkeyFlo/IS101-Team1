@@ -21,7 +21,43 @@ public class Login extends javax.swing.JFrame {
     public Login() {
         initComponents();
     }
+    
+    public void doLogin() {
+        User user = new User();
+        Session session = new Session();
+        String loginReturn = user.login(tfUsername.getText().trim(), tfPassword.getText().trim());
+        boolean statusLocked = user.getLockState();
+        
+        if(statusLocked == false){
+            //session.storeSession(tfUsername.getText().trim());
+            Session.storedUsername = tfUsername.getText().trim();
+            session.storeNames(tfUsername.getText().trim());
+            switch (loginReturn) {
+                case "Login success":
+                    user.resetIncorrectLogin();
+                    dispose();
+                    int groupId = user.detectGroup();
+                    if(groupId == 1)
+                        Main.displayMedewerker();
 
+                    else if(groupId == 2)
+                        Main.displayManager();
+
+                    else
+                        Main.displayBeheerder();
+                    break;
+                case "Password is incorrect":
+                    warningLabel.setText("Password is incorrect");
+                    user.setIncorrectLogin();
+                    break;
+                default:
+                    warningLabel.setText("Username is incorrect");
+                    break;
+            }
+        } else {
+            warningLabel.setText("Your account has been locked");
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -43,6 +79,7 @@ public class Login extends javax.swing.JFrame {
 
         jLabel3.setText("jLabel3");
 
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Bagage Systeem");
         setAlwaysOnTop(true);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -56,6 +93,11 @@ public class Login extends javax.swing.JFrame {
                 tfUsernameActionPerformed(evt);
             }
         });
+        tfUsername.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tfUsernameKeyPressed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Password");
@@ -63,6 +105,11 @@ public class Login extends javax.swing.JFrame {
         tfPassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfPasswordActionPerformed(evt);
+            }
+        });
+        tfPassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tfPasswordKeyPressed(evt);
             }
         });
 
@@ -156,45 +203,26 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_tfPasswordActionPerformed
 
     private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
-        User user = new User();
-        Session session = new Session();
-        String loginReturn = user.login(tfUsername.getText().trim(), tfPassword.getText().trim());
-        boolean statusLocked = user.getLockState();
-        
-        if(statusLocked == false){
-            //session.storeSession(tfUsername.getText().trim());
-            Session.storedUsername = tfUsername.getText().trim();
-            session.storeNames(tfUsername.getText().trim());
-            switch (loginReturn) {
-                case "Login success":
-                    user.resetIncorrectLogin();
-                    dispose();
-                    int groupId = user.detectGroup();
-                    if(groupId == 1)
-                        Main.displayMedewerker();
-
-                    else if(groupId == 2)
-                        Main.displayManager();
-
-                    else
-                        Main.displayBeheerder();
-                    break;
-                case "Password is incorrect":
-                    warningLabel.setText("Password is incorrect");
-                    user.setIncorrectLogin();
-                    break;
-                default:
-                    warningLabel.setText("Username is incorrect");
-                    break;
-            }
-        } else {
-            warningLabel.setText("Your account has been locked");
-        }
+        doLogin();
     }//GEN-LAST:event_loginActionPerformed
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
         dispose();
     }//GEN-LAST:event_cancelButtonActionPerformed
+
+    private void tfUsernameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfUsernameKeyPressed
+        if(evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+            System.out.println("Enter pressed");
+            doLogin();
+        }
+    }//GEN-LAST:event_tfUsernameKeyPressed
+
+    private void tfPasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfPasswordKeyPressed
+        if(evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+            System.out.println("Enter pressed");
+            doLogin();
+        }
+    }//GEN-LAST:event_tfPasswordKeyPressed
 
     /**
      * @param args the command line arguments

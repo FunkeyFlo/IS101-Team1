@@ -34,7 +34,7 @@ public class Beheerder extends javax.swing.JFrame {
                 user.getLastName(),
                 user.getUsername(),
                 user.getGroupId(),
-                (user.getIncorrectLogin() >= userModel.MAX_INCORRECT_LOGINS)? "LOCKED" : user.getIncorrectLogin()});
+                (user.getIncorrectLogin() >= userModel.MAX_INCORRECT_LOGINS)? "LOCKED" : "Active"});
 
             //System.out.println(user.getFirstName());
         }
@@ -56,6 +56,7 @@ public class Beheerder extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLayeredPane1 = new javax.swing.JLayeredPane();
         jPanel9 = new javax.swing.JPanel();
         jButton21 = new javax.swing.JButton();
         jButton22 = new javax.swing.JButton();
@@ -245,12 +246,13 @@ public class Beheerder extends javax.swing.JFrame {
             }
         });
 
+        userTable.setAutoCreateRowSorter(true);
         userTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "User ID", "First Name", "Last Name", "Username", "Group ID", "Incorrect Logins"
+                "User ID", "First Name", "Last Name", "Username", "Group ID", "Account Status"
             }
         ) {
             Class[] types = new Class [] {
@@ -268,6 +270,7 @@ public class Beheerder extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        userTable.setVerifyInputWhenFocusTarget(false);
         jScrollPane1.setViewportView(userTable);
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
@@ -449,6 +452,7 @@ public class Beheerder extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JPanel jPanel7;
