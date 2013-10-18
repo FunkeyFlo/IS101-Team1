@@ -126,7 +126,7 @@ public class User {
     public List<User> getUserList() {
         List<User> users = new ArrayList<>();
         try {
-            String sql = "SELECT * FROM user";
+            String sql = "SELECT * FROM `user`";
             ResultSet result = db.doQuery(sql);
             while (result.next()) {
                 users.add(new User(result.getInt("user_id"),

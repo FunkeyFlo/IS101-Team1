@@ -66,7 +66,7 @@ public class Customer {
     public List<Customer> getCustomerList() {
         List<Customer> customers = new ArrayList<>();
         try {
-            String sql = "SELECT * FROM customer";
+            String sql = "SELECT * FROM `customer`";
             ResultSet result = getDb().doQuery(sql);
             while (result.next()) {
                 customers.add(new Customer(result.getInt("customer_id"),
