@@ -44,6 +44,11 @@ public class Main {
         frameBeheerder.setVisible(true);
     }
     
+    public static void displayLinkLuggage() {
+        LinkLuggage frameLinkLuggage = new LinkLuggage();
+        frameLinkLuggage.setVisible(true);
+    }
+    
     public static void displayRegisterCustomer() {
         RegisterCustomer frameRegisterCustomer = new RegisterCustomer();
         frameRegisterCustomer.setVisible(true);

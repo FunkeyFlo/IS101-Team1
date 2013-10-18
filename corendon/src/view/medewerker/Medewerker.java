@@ -30,6 +30,7 @@ public class Medewerker extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         newCustomer = new javax.swing.JButton();
+        linkLuggage = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         changePassword = new javax.swing.JMenuItem();
@@ -45,20 +46,31 @@ public class Medewerker extends javax.swing.JFrame {
             }
         });
 
+        linkLuggage.setText("Bagage Koppelen");
+        linkLuggage.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                linkLuggageActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(newCustomer)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(newCustomer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(linkLuggage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(592, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(newCustomer)
-                .addGap(0, 393, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(linkLuggage)
+                .addGap(0, 364, Short.MAX_VALUE))
         );
 
         jMenu1.setText("Gebruiker");
@@ -117,6 +129,10 @@ public class Medewerker extends javax.swing.JFrame {
         Main.displayRegisterCustomer();
     }//GEN-LAST:event_newCustomerActionPerformed
 
+    private void linkLuggageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_linkLuggageActionPerformed
+        Main.displayLinkLuggage();
+    }//GEN-LAST:event_linkLuggageActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -157,6 +173,7 @@ public class Medewerker extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton linkLuggage;
     private javax.swing.JMenuItem logout;
     private javax.swing.JButton newCustomer;
     // End of variables declaration//GEN-END:variables
