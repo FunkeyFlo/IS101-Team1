@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class User {
 
-    private final int MAX_INCORRECT_LOGINS = 3;
+    public final int MAX_INCORRECT_LOGINS = 3;
     
     private DbManager db = new DbManager();
     

@@ -15,25 +15,36 @@ import main.Session;
  */
 public class Beheerder extends javax.swing.JFrame {
 
-
-    User userModel;
+    private User userModel = new User();
+    private List<User> users;
+    private DefaultTableModel model;
     
     public Beheerder() {
         initComponents();
-        User userModel = new User();
-        List<User> users = userModel.getUserList();
-        DefaultTableModel model = (DefaultTableModel) this.userTable.getModel();
+        model = (DefaultTableModel) this.userTable.getModel();
+        updateUserTable();
+    }
+    private void updateUserTable() {
+        model.setRowCount(0); //nodig voor 
+        users = userModel.getUserList();
         for(User user : users) {
             model.addRow(new Object[] {new Integer(user.getUserId()),
                 user.getFirstName(),
                 user.getLastName(),
                 user.getUsername(),
                 user.getGroupId(),
-                user.getIncorrectLogin()});
+                (user.getIncorrectLogin() >= userModel.MAX_INCORRECT_LOGINS)? "LOCKED" : user.getIncorrectLogin()});
 
             //System.out.println(user.getFirstName());
         }
     }
+    
+    private void clearFields() {
+        tfUsername.setText("");
+        tfFirstName.setText("");
+        tfLastName.setText("");
+        tfPassword.setText("");
+    }    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -368,28 +379,17 @@ public class Beheerder extends javax.swing.JFrame {
         user.setNewUser(newUsername, newFirstName, newLastName, newPassword, newGroup);
 
         // maakt alle textakken leeg
-        tfUsername.setText("");
-        tfFirstName.setText("");
-        tfLastName.setText("");
-        tfPassword.setText("");
-        
-        //dispose();
-        //Main.displayBeheerder();
+        clearFields();
+        updateUserTable();
     }//GEN-LAST:event_createUserActionPerformed
 
     private void clearFieldsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearFieldsActionPerformed
         // maakt alle textakken leeg
-        tfUsername.setText("");
-        tfFirstName.setText("");
-        tfLastName.setText("");
-        tfPassword.setText("");
-        
+        clearFields();
     }//GEN-LAST:event_clearFieldsActionPerformed
 
     private void refreshButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButton1ActionPerformed
-        //dispose();
-        //Main.displayBeheerder();
-        //this.userTable.
+        updateUserTable();
     }//GEN-LAST:event_refreshButton1ActionPerformed
 
     private void changePasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changePasswordActionPerformed
