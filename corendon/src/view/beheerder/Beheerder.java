@@ -30,7 +30,7 @@ public class Beheerder extends javax.swing.JFrame {
                 user.getUsername(),
                 user.getGroupId(),
                 user.getIncorrectLogin()});
-            
+
             //System.out.println(user.getFirstName());
         }
     }
@@ -362,7 +362,7 @@ public class Beheerder extends javax.swing.JFrame {
         String newLastName = tfLastName.getText().trim();
         String newPassword = tfPassword.getText().trim();
         int newGroup = groupSelector.getSelectedIndex() + 1;
-
+        
         //System.out.println(newGroup);
 
         user.setNewUser(newUsername, newFirstName, newLastName, newPassword, newGroup);
@@ -373,8 +373,8 @@ public class Beheerder extends javax.swing.JFrame {
         tfLastName.setText("");
         tfPassword.setText("");
         
-        dispose();
-        Main.displayBeheerder();
+        //dispose();
+        //Main.displayBeheerder();
     }//GEN-LAST:event_createUserActionPerformed
 
     private void clearFieldsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearFieldsActionPerformed
@@ -387,8 +387,9 @@ public class Beheerder extends javax.swing.JFrame {
     }//GEN-LAST:event_clearFieldsActionPerformed
 
     private void refreshButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButton1ActionPerformed
-        dispose();
-        Main.displayBeheerder();
+        //dispose();
+        //Main.displayBeheerder();
+        //this.userTable.
     }//GEN-LAST:event_refreshButton1ActionPerformed
 
     private void changePasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changePasswordActionPerformed
