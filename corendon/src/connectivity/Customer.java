@@ -28,18 +28,18 @@ public class Customer {
         db.openConnection();
     }
     
-    public Customer(int customerId, String phoneHome, String phoneMobile, String firstName,
-            String lastName, String email, String postalCode, String address, String city, String country) {
+    public Customer(int customerId, String firstName, String lastName, String address,
+            String postalCode, String city, String country, String email, String phoneHome, String phoneMobile) {
         this.customerId = customerId;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.email = email;
-        this.postalCode = postalCode;
         this.address = address;
-        this.phoneHome = phoneHome;
-        this.phoneMobile = phoneMobile;
+        this.postalCode = postalCode;
         this.city = city;
         this.country = country;
+        this.email = email;
+        this.phoneHome = phoneHome;
+        this.phoneMobile = phoneMobile;
         
 //        System.out.println(customerId + " " + lastName + " " + email);
     }
@@ -50,17 +50,17 @@ public class Customer {
             ResultSet result = getDb().doQuery(sql);
             if (result.next()) {
                 if (result.getInt("rows") >= 1) {
-                    this.setEmail(result.getString("email"));
-                    this.setCustomerId(result.getInt("customer_id"));
-                    this.setFirstName(result.getString("first_name"));
-                    this.setLastName(result.getString("last_name"));
-                    this.setPostalCode(result.getString("postal_code"));
-                    this.setPhoneHome(result.getString("phoneHome"));
-                    this.setAddress(result.getString("address"));
-                    this.setPhoneMobile(result.getString("phoneMobile"));
+                    this.email = (result.getString("email"));
+                    this.customerId = (result.getInt("customer_id"));
+                    this.firstName = (result.getString("first_name"));
+                    this.lastName = (result.getString("last_name"));
+                    this.postalCode = (result.getString("postal_code"));
+                    this.phoneHome = (result.getString("phoneHome"));
+                    this.address = (result.getString("address"));
+                    this.phoneMobile = (result.getString("phoneMobile"));
                 }
                 else
-                    this.setEmail("INVALID");
+                    System.out.println("SOMETHING WENT WRONG");
             }
         } catch (SQLException e) {
             System.out.println(getDb().SQL_EXCEPTION + e.getMessage());
@@ -76,13 +76,13 @@ public class Customer {
                 customers.add(new Customer(result.getInt("customer_id"),
                         result.getString("first_name"),
                         result.getString("last_name"),
-                        result.getString("email"),
-                        result.getString("postal_code"),
                         result.getString("address"),
-                        result.getString("phone_home"),
-                        result.getString("phone_mobile"),
+                        result.getString("postal_code"),
                         result.getString("city"),
-                        result.getString("country")));
+                        result.getString("country"),
+                        result.getString("email"),
+                        result.getString("phone_home"),
+                        result.getString("phone_mobile")));
             }
         } catch (SQLException e) {
             System.out.println(getDb().SQL_EXCEPTION + e.getMessage());

@@ -97,6 +97,7 @@ public class LinkLuggage extends javax.swing.JFrame {
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Klanten"));
 
+        customerTable.setAutoCreateRowSorter(true);
         customerTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
