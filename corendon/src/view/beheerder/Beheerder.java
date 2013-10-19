@@ -7,8 +7,7 @@ package view.beheerder;
 import connectivity.User;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
-import main.Main;
-import main.Session;
+import main.*;
 /**
  *
  * @author Flo
@@ -34,10 +33,27 @@ public class Beheerder extends javax.swing.JFrame {
                 user.getLastName(),
                 user.getUsername(),
                 user.getGroupId(),
-                (user.getIncorrectLogin() >= userModel.MAX_INCORRECT_LOGINS)? "LOCKED" : "Active"});
+                (user.getIncorrectLogin() >= userModel.MAX_INCORRECT_LOGINS)? "VERGRENDELD" : "Actief"});
 
             //System.out.println(user.getFirstName());
         }
+    }
+    
+    public void doCreateUser(){
+        User user = new User();
+
+        String newUsername = tfUsername.getText().trim();
+        String newFirstName = tfFirstName.getText().trim();
+        String newLastName = tfLastName.getText().trim();
+        String newPassword = tfPassword.getText().trim();
+        int newGroup = groupSelector.getSelectedIndex() + 1;
+        
+        //System.out.println(newGroup);
+        user.setNewUser(newUsername, newFirstName, newLastName, newPassword, newGroup);
+
+        // maakt alle textakken leeg
+        clearFields();
+        updateUserTable();
     }
     
     private void clearFields() {
@@ -58,10 +74,12 @@ public class Beheerder extends javax.swing.JFrame {
 
         jLayeredPane1 = new javax.swing.JLayeredPane();
         jPanel9 = new javax.swing.JPanel();
-        jButton21 = new javax.swing.JButton();
-        jButton22 = new javax.swing.JButton();
-        jButton23 = new javax.swing.JButton();
-        jButton24 = new javax.swing.JButton();
+        changeFirstName = new javax.swing.JButton();
+        changeLastName = new javax.swing.JButton();
+        changeUserGroup = new javax.swing.JButton();
+        unlockAccount = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        lockAccount = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         tfFirstName = new javax.swing.JTextField();
         tfLastName = new javax.swing.JTextField();
@@ -89,14 +107,29 @@ public class Beheerder extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(720, 534));
 
         jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder("Gebruiker Wijzigen"));
+        jPanel9.setPreferredSize(new java.awt.Dimension(173, 215));
 
-        jButton21.setText("Wijzig voornaam");
+        changeFirstName.setText("Wijzig voornaam");
 
-        jButton22.setText("Wijzig achternaam");
+        changeLastName.setText("Wijzig achternaam");
 
-        jButton23.setText("Wijzig gebruikersgroep");
+        changeUserGroup.setText("Wijzig gebruikersgroep");
 
-        jButton24.setText("Account ontgrendelen");
+        unlockAccount.setText("Account ontgrendelen");
+
+        jButton1.setText("Reset wachtwoord");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        lockAccount.setText("Account vergrendelen");
+        lockAccount.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lockAccountActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -105,24 +138,30 @@ public class Beheerder extends javax.swing.JFrame {
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(changeLastName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(changeFirstName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(changeUserGroup, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(unlockAccount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lockAccount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addGap(5, 5, 5)
-                .addComponent(jButton21)
+                .addComponent(changeFirstName)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton22)
+                .addComponent(changeLastName)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton23)
+                .addComponent(changeUserGroup)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton24)
-                .addGap(0, 34, Short.MAX_VALUE))
+                .addComponent(unlockAccount)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lockAccount)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1)
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder("Gebruiker aanmaken"));
@@ -132,16 +171,31 @@ public class Beheerder extends javax.swing.JFrame {
                 tfFirstNameActionPerformed(evt);
             }
         });
+        tfFirstName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tfFirstNameKeyPressed(evt);
+            }
+        });
 
         tfLastName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfLastNameActionPerformed(evt);
             }
         });
+        tfLastName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tfLastNameKeyPressed(evt);
+            }
+        });
 
         tfUsername.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfUsernameActionPerformed(evt);
+            }
+        });
+        tfUsername.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tfUsernameKeyPressed(evt);
             }
         });
 
@@ -160,11 +214,21 @@ public class Beheerder extends javax.swing.JFrame {
                 tfPasswordActionPerformed(evt);
             }
         });
+        tfPassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tfPasswordKeyPressed(evt);
+            }
+        });
 
         groupSelector.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Medewerker", "Manager", "Beheerder" }));
         groupSelector.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 groupSelectorActionPerformed(evt);
+            }
+        });
+        groupSelector.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                groupSelectorKeyPressed(evt);
             }
         });
 
@@ -289,9 +353,9 @@ public class Beheerder extends javax.swing.JFrame {
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(6, 6, 6)
+                .addComponent(jScrollPane1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(refreshButton1)
                 .addContainerGap())
         );
@@ -326,7 +390,7 @@ public class Beheerder extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -338,10 +402,10 @@ public class Beheerder extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 44, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -370,20 +434,7 @@ public class Beheerder extends javax.swing.JFrame {
     }//GEN-LAST:event_groupSelectorActionPerformed
 
     private void createUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createUserActionPerformed
-        User user = new User();
-
-        String newUsername = tfUsername.getText().trim();
-        String newFirstName = tfFirstName.getText().trim();
-        String newLastName = tfLastName.getText().trim();
-        String newPassword = tfPassword.getText().trim();
-        int newGroup = groupSelector.getSelectedIndex() + 1;
-        
-        //System.out.println(newGroup);
-        user.setNewUser(newUsername, newFirstName, newLastName, newPassword, newGroup);
-
-        // maakt alle textakken leeg
-        clearFields();
-        updateUserTable();
+        doCreateUser();
     }//GEN-LAST:event_createUserActionPerformed
 
     private void clearFieldsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearFieldsActionPerformed
@@ -403,6 +454,39 @@ public class Beheerder extends javax.swing.JFrame {
         dispose();
         Main.displayLogin();
     }//GEN-LAST:event_logoutActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void lockAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lockAccountActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lockAccountActionPerformed
+
+    private void tfPasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfPasswordKeyPressed
+        if(evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER)
+            doCreateUser();
+    }//GEN-LAST:event_tfPasswordKeyPressed
+
+    private void tfUsernameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfUsernameKeyPressed
+        if(evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER)
+            doCreateUser();
+    }//GEN-LAST:event_tfUsernameKeyPressed
+
+    private void tfLastNameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfLastNameKeyPressed
+        if(evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER)
+            doCreateUser();
+    }//GEN-LAST:event_tfLastNameKeyPressed
+
+    private void tfFirstNameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfFirstNameKeyPressed
+        if(evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER)
+            doCreateUser();
+    }//GEN-LAST:event_tfFirstNameKeyPressed
+
+    private void groupSelectorKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_groupSelectorKeyPressed
+        if(evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER)
+            doCreateUser();
+    }//GEN-LAST:event_groupSelectorKeyPressed
 
     /**
      * @param args the command line arguments
@@ -439,14 +523,14 @@ public class Beheerder extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton changeFirstName;
+    private javax.swing.JButton changeLastName;
     private javax.swing.JMenuItem changePassword;
+    private javax.swing.JButton changeUserGroup;
     private javax.swing.JButton clearFields;
     private javax.swing.JButton createUser;
     private javax.swing.JComboBox groupSelector;
-    private javax.swing.JButton jButton21;
-    private javax.swing.JButton jButton22;
-    private javax.swing.JButton jButton23;
-    private javax.swing.JButton jButton24;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -459,12 +543,14 @@ public class Beheerder extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton lockAccount;
     private javax.swing.JMenuItem logout;
     private javax.swing.JButton refreshButton1;
     private javax.swing.JTextField tfFirstName;
     private javax.swing.JTextField tfLastName;
     private javax.swing.JPasswordField tfPassword;
     private javax.swing.JTextField tfUsername;
+    private javax.swing.JButton unlockAccount;
     private javax.swing.JTable userTable;
     // End of variables declaration//GEN-END:variables
 }

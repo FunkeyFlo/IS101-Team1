@@ -4,7 +4,7 @@
  */
 package view.medewerker;
 
-import main.Main;
+import main.*;
 
 /**
  *
@@ -38,6 +38,7 @@ public class Medewerker extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Medewerker - " + Session.storedFirstName + " " + Session.storedLastName);
 
         newCustomer.setText("Klant aanmaken");
         newCustomer.addActionListener(new java.awt.event.ActionListener() {

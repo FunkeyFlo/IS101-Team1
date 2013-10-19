@@ -49,9 +49,12 @@ public class Login extends javax.swing.JFrame {
                 case "Password is incorrect":
                     warningLabel.setText("Password is incorrect");
                     user.setIncorrectLogin();
+                    tfPassword.setText("");
                     break;
                 default:
                     warningLabel.setText("Username is incorrect");
+                    tfPassword.setText("");
+                    tfUsername.setText("");
                     break;
             }
         } else {

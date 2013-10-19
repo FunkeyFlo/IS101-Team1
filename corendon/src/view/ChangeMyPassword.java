@@ -19,6 +19,26 @@ public class ChangeMyPassword extends javax.swing.JFrame {
     public ChangeMyPassword() {
         initComponents();
     }
+    
+    public void doChangePassword() {
+        User user = new User();
+        Session session = new Session();
+        
+        boolean oldPasswordCorrect = user.checkOldPassword(oldPassword.getText().trim(), session.storedUsername);
+        
+        if(oldPasswordCorrect == true){
+            
+            if(newPassword.getText().trim().equals(newPasswordRepeat.getText().trim())){
+                //System.out.println("cool man");
+                user.updatePassword(newPassword.getText().trim(), session.storedUsername);
+                dispose();
+            } else {
+                warningLabel.setText("New password doesn't match");
+            }
+        }
+        else
+            warningLabel.setText("the current password is incorrect");
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -40,7 +60,7 @@ public class ChangeMyPassword extends javax.swing.JFrame {
         okButton = new javax.swing.JButton();
         warningLabel = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Verander Wachtwoord");
         setAlwaysOnTop(true);
 
@@ -49,6 +69,24 @@ public class ChangeMyPassword extends javax.swing.JFrame {
         jLabel2.setText("Typ nieuw wachtwoord");
 
         jLabel3.setText("Herhaal nieuw wachtwoord");
+
+        newPasswordRepeat.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                newPasswordRepeatKeyPressed(evt);
+            }
+        });
+
+        newPassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                newPasswordKeyPressed(evt);
+            }
+        });
+
+        oldPassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                oldPasswordKeyPressed(evt);
+            }
+        });
 
         cancelButton.setText("Annuleren");
         cancelButton.addActionListener(new java.awt.event.ActionListener() {
@@ -134,24 +172,23 @@ public class ChangeMyPassword extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelButtonActionPerformed
 
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
-        User user = new User();
-        Session session = new Session();
-        
-        boolean oldPasswordCorrect = user.checkOldPassword(oldPassword.getText().trim(), session.storedUsername);
-        
-        if(oldPasswordCorrect == true){
-            
-            if(newPassword.getText().trim().equals(newPasswordRepeat.getText().trim())){
-                //System.out.println("cool man");
-                user.updatePassword(newPassword.getText().trim(), session.storedUsername);
-                dispose();
-            } else {
-                warningLabel.setText("New password doesn't match");
-            }
-        }
-        else
-            warningLabel.setText("the current password is incorrect");
+        doChangePassword();
     }//GEN-LAST:event_okButtonActionPerformed
+
+    private void newPasswordRepeatKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_newPasswordRepeatKeyPressed
+        if(evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER)
+            doChangePassword();
+    }//GEN-LAST:event_newPasswordRepeatKeyPressed
+
+    private void newPasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_newPasswordKeyPressed
+        if(evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER)
+            doChangePassword();
+    }//GEN-LAST:event_newPasswordKeyPressed
+
+    private void oldPasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_oldPasswordKeyPressed
+        if(evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER)
+            doChangePassword();
+    }//GEN-LAST:event_oldPasswordKeyPressed
 
     /**
      * @param args the command line arguments

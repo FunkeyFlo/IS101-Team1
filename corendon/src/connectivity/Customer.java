@@ -21,13 +21,15 @@ public class Customer {
     private String email;
     private String postalCode;
     private String address;
+    private String city;
+    private String country;
     
     public Customer() {
         db.openConnection();
     }
     
     public Customer(int customerId, String phoneHome, String phoneMobile, String firstName,
-            String lastName, String email, String postalCode, String address) {
+            String lastName, String email, String postalCode, String address, String city, String country) {
         this.customerId = customerId;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -36,6 +38,8 @@ public class Customer {
         this.address = address;
         this.phoneHome = phoneHome;
         this.phoneMobile = phoneMobile;
+        this.city = city;
+        this.country = country;
         
 //        System.out.println(customerId + " " + lastName + " " + email);
     }
@@ -76,7 +80,9 @@ public class Customer {
                         result.getString("postal_code"),
                         result.getString("address"),
                         result.getString("phone_home"),
-                        result.getString("phone_mobile")));
+                        result.getString("phone_mobile"),
+                        result.getString("city"),
+                        result.getString("country")));
             }
         } catch (SQLException e) {
             System.out.println(getDb().SQL_EXCEPTION + e.getMessage());
@@ -218,6 +224,34 @@ public class Customer {
      */
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    /**
+     * @return the city
+     */
+    public String getCity() {
+        return city;
+    }
+
+    /**
+     * @param city the city to set
+     */
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    /**
+     * @return the country
+     */
+    public String getCountry() {
+        return country;
+    }
+
+    /**
+     * @param country the country to set
+     */
+    public void setCountry(String country) {
+        this.country = country;
     }
 
 }
