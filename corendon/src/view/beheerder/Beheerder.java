@@ -32,7 +32,7 @@ public class Beheerder extends javax.swing.JFrame {
                 user.getFirstName(),
                 user.getLastName(),
                 user.getUsername(),
-                user.getGroupId(),
+                user.getPermissionId(),
                 (user.getIncorrectLogin() >= userModel.MAX_INCORRECT_LOGINS)? "VERGRENDELD" : "Actief"});
 
             //System.out.println(user.getFirstName());
@@ -316,7 +316,7 @@ public class Beheerder extends javax.swing.JFrame {
 
             },
             new String [] {
-                "User ID", "First Name", "Last Name", "Username", "Group ID", "Account Status"
+                "Gebruikers ID", "Voornaam", "Achternaam", "Gebruikersnaam", "Rechten ID", "Account Status"
             }
         ) {
             Class[] types = new Class [] {

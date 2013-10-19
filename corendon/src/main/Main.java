@@ -29,17 +29,17 @@ public class Main {
         frameLogin.setVisible(true);
     }
     
-    public static void displayMedewerker() { //groupId = 1
+    public static void displayMedewerker() { //permissionId = 1
         Medewerker frameMedewerker = new Medewerker();
         frameMedewerker.setVisible(true);
     }
     
-    public static void displayManager() { //groupId = 2
+    public static void displayManager() { //permissionId = 2
         Manager frameManager = new Manager();
         frameManager.setVisible(true);
     }
     
-    public static void displayBeheerder() { //groupId = 3
+    public static void displayBeheerder() { //permissionId = 3
         Beheerder frameBeheerder = new Beheerder();
         frameBeheerder.setVisible(true);
     }

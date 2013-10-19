@@ -29,18 +29,17 @@ public class Login extends javax.swing.JFrame {
         boolean statusLocked = user.getLockState();
         
         if(statusLocked == false){
-            //session.storeSession(tfUsername.getText().trim());
             Session.storedUsername = tfUsername.getText().trim();
             session.storeNames(tfUsername.getText().trim());
             switch (loginReturn) {
                 case "Login success":
                     user.resetIncorrectLogin();
                     dispose();
-                    int groupId = user.detectGroup();
-                    if(groupId == 1)
+                    int permissionId = user.getPermissionId();
+                    if(permissionId == 1)
                         Main.displayMedewerker();
 
-                    else if(groupId == 2)
+                    else if(permissionId == 2)
                         Main.displayManager();
 
                     else
@@ -257,7 +256,6 @@ public class Login extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                
             }
         });
     }

@@ -15,7 +15,7 @@ public class User {
     private DbManager db = new DbManager();
     
     private int userId;
-    private int groupId;
+    private int permissionId;
     private int incorrectLogin;
     private String username;
     private String firstName;
@@ -28,12 +28,12 @@ public class User {
     }
     
     public User(int userId, String firstName, String lastName, String username,
-            int groupId, int incorrectLogin) {
+            int permissionId, int incorrectLogin) {
         this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
-        this.groupId = groupId;
+        this.permissionId = permissionId;
         this.incorrectLogin = incorrectLogin;
         
         //System.out.println(userId + " " + lastName + " " + username);
@@ -73,8 +73,8 @@ public class User {
         return this.userId;
     }
     
-    public int getGroupId() {
-        return this.groupId;
+    public int getPermissionId() {
+        return this.permissionId;
     }
     
     public int getIncorrectLogin() {
@@ -97,10 +97,6 @@ public class User {
             return false;
     }
     
-    public int detectGroup(){
-        return this.groupId;
-    }
-    
     public void getUserData(String tfUsername) {
         try {
             String sql = "SELECT *, COUNT(*) as `rows` FROM `user` WHERE `username`='" + tfUsername + "'";
@@ -111,7 +107,7 @@ public class User {
                     this.userId = result.getInt("user_id");
                     this.firstName = result.getString("first_name");
                     this.lastName = result.getString("last_name");
-                    this.groupId = result.getInt("group_id");
+                    this.permissionId = result.getInt("permission_id");
                     this.password = result.getString("password");
                     this.incorrectLogin = result.getInt("incorrect_login");
                 }
@@ -133,7 +129,7 @@ public class User {
                         result.getString("first_name"),
                         result.getString("last_name"),
                         result.getString("username"),
-                        result.getInt("group_id"),
+                        result.getInt("permission_id"),
                         result.getInt("incorrect_login")));
             }
         } catch (SQLException e) {
@@ -142,10 +138,10 @@ public class User {
         return users;
     }
     
-    public void setNewUser(String tfUsername, String tfFirstName, String tfLastName, String tfPassword, int inputGroupId) {
-        String sql = "INSERT INTO fys.`user` (username, first_name, last_name, password, group_id, incorrect_login) VALUES ('" 
+    public void setNewUser(String tfUsername, String tfFirstName, String tfLastName, String tfPassword, int inputPermissionId) {
+        String sql = "INSERT INTO fys.`user` (username, first_name, last_name, password, permission_id, incorrect_login) VALUES ('" 
                 + tfUsername + "', '" + tfFirstName + "', '" + tfLastName 
-                + "', '" + tfPassword + "', " + inputGroupId + ", 0)";
+                + "', '" + tfPassword + "', " + inputPermissionId + ", 0)";
         db.insertQuery(sql);
     }
     
