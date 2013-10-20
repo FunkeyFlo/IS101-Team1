@@ -27,7 +27,7 @@ public class Luggage {
     }
     
     public Luggage(int luggageId, int customerId, String description,
-            String date, String time, String location, boolean isLost,
+            String location, String date, String time, boolean isLost,
             boolean isHandled) {
         this.luggageId = luggageId;
         this.customerId = customerId;

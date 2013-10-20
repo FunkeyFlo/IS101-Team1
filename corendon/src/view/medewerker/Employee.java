@@ -76,7 +76,7 @@ public class Employee extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        TabbedPane = new javax.swing.JTabbedPane();
+        overviewPane = new javax.swing.JTabbedPane();
         registerCustomer = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         tfAddress2 = new javax.swing.JTextField();
@@ -102,19 +102,21 @@ public class Employee extends javax.swing.JFrame {
         linkLuggage = new javax.swing.JPanel();
         jSplitPane1 = new javax.swing.JSplitPane();
         jPanel6 = new javax.swing.JPanel();
-        jTextField7 = new javax.swing.JTextField();
-        jButton4 = new javax.swing.JButton();
+        baggageSearchField = new javax.swing.JTextField();
+        baggageSearchButton = new javax.swing.JButton();
         jScrollPane6 = new javax.swing.JScrollPane();
         luggageTable = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
-        jTextField8 = new javax.swing.JTextField();
-        jButton5 = new javax.swing.JButton();
+        customerSearchField = new javax.swing.JTextField();
+        customerSearchButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         customerTable = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         linkButton = new javax.swing.JButton();
         refreshButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         changePassword = new javax.swing.JMenuItem();
@@ -122,6 +124,8 @@ public class Employee extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Medewerker - " + Session.storedFirstName + " " + Session.storedLastName);
+
+        overviewPane.setToolTipText("tooltip");
 
         jLabel1.setText("Adres");
 
@@ -257,7 +261,9 @@ public class Employee extends javax.swing.JFrame {
                 .addContainerGap(308, Short.MAX_VALUE))
         );
 
-        TabbedPane.addTab("Klant Registreren", registerCustomer);
+        overviewPane.addTab("Klant Registreren", registerCustomer);
+
+        linkLuggage.setPreferredSize(new java.awt.Dimension(1024, 768));
 
         jSplitPane1.setBorder(javax.swing.BorderFactory.createTitledBorder("Overzichten"));
         jSplitPane1.setDividerLocation(417);
@@ -265,9 +271,7 @@ public class Employee extends javax.swing.JFrame {
 
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder("Bagage"));
 
-        jTextField7.setText("jTextField3");
-
-        jButton4.setText("Zoeken");
+        baggageSearchButton.setText("Zoeken");
 
         luggageTable.setAutoCreateRowSorter(true);
         luggageTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -304,9 +308,9 @@ public class Employee extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(baggageSearchField, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton4)
+                        .addComponent(baggageSearchButton)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 432, Short.MAX_VALUE))
                 .addContainerGap())
@@ -316,8 +320,8 @@ public class Employee extends javax.swing.JFrame {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4))
+                    .addComponent(baggageSearchField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(baggageSearchButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
                 .addContainerGap())
@@ -327,9 +331,7 @@ public class Employee extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Klanten"));
 
-        jTextField8.setText("jTextField3");
-
-        jButton5.setText("Zoeken");
+        customerSearchButton.setText("Zoeken");
 
         customerTable.setAutoCreateRowSorter(true);
         customerTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -365,9 +367,9 @@ public class Employee extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(customerSearchField, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton5)
+                        .addComponent(customerSearchButton)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 379, Short.MAX_VALUE))
                 .addContainerGap())
@@ -377,8 +379,8 @@ public class Employee extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton5))
+                    .addComponent(customerSearchField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(customerSearchButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
                 .addContainerGap())
@@ -404,6 +406,10 @@ public class Employee extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("Klant aanpassen");
+
+        jButton6.setText("Bagage aanpassen");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -412,6 +418,10 @@ public class Employee extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(refreshButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(cancelButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(linkButton)
@@ -423,7 +433,9 @@ public class Employee extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(linkButton)
                     .addComponent(refreshButton)
-                    .addComponent(cancelButton))
+                    .addComponent(cancelButton)
+                    .addComponent(jButton1)
+                    .addComponent(jButton6))
                 .addGap(0, 11, Short.MAX_VALUE))
         );
 
@@ -448,7 +460,7 @@ public class Employee extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        TabbedPane.addTab("Baggage Koppelen", linkLuggage);
+        overviewPane.addTab("Overzichten", linkLuggage);
 
         jMenu2.setText("Gebruiker");
 
@@ -476,16 +488,17 @@ public class Employee extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(TabbedPane)
+            .addComponent(overviewPane, javax.swing.GroupLayout.DEFAULT_SIZE, 922, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(TabbedPane)
+            .addComponent(overviewPane, javax.swing.GroupLayout.DEFAULT_SIZE, 552, Short.MAX_VALUE)
         );
 
-        TabbedPane.getAccessibleContext().setAccessibleName("Tabbed Pane");
+        overviewPane.getAccessibleContext().setAccessibleName("Tabbed Pane");
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void changePasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changePasswordActionPerformed
@@ -564,15 +577,18 @@ public class Employee extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTabbedPane TabbedPane;
+    private javax.swing.JButton baggageSearchButton;
+    private javax.swing.JTextField baggageSearchField;
     private javax.swing.JButton cancelButton;
     private javax.swing.JMenuItem changePassword;
     private javax.swing.JButton createCustomer;
+    private javax.swing.JButton customerSearchButton;
+    private javax.swing.JTextField customerSearchField;
     private javax.swing.JTable customerTable;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -596,12 +612,11 @@ public class Employee extends javax.swing.JFrame {
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
     private javax.swing.JButton linkButton;
     private javax.swing.JPanel linkLuggage;
     private javax.swing.JMenuItem logout;
     private javax.swing.JTable luggageTable;
+    private javax.swing.JTabbedPane overviewPane;
     private javax.swing.JButton refreshButton;
     private javax.swing.JPanel registerCustomer;
     private javax.swing.JTextField tfAddress1;
