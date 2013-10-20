@@ -5,6 +5,7 @@
 package view.medewerker;
 
 import connectivity.Customer;
+import connectivity.Luggage;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import main.*;
@@ -14,37 +15,39 @@ import main.*;
  */
 public class Employee extends javax.swing.JFrame {
 
-//    private User userModel = new User();
+    private Luggage luggageModel = new Luggage();
     private Customer customerModel = new Customer();
-//    private List<User> users;
+    private List<Luggage> luggages;
     private List<Customer> customers;
-    private DefaultTableModel modelUser, modelCustomer;
+    private DefaultTableModel modelLuggage, modelCustomer;
     
     public Employee() {
         initComponents();
-//        modelUser = (DefaultTableModel) this.userTable.getModel();
+        modelLuggage = (DefaultTableModel) this.luggageTable.getModel();
         modelCustomer = (DefaultTableModel) this.customerTable.getModel();
-//        updateUserTable();
+        updateLuggageTable();
         updateCustomerTable();
     }
 //    Dit Stuk code is gebruikt als test vulling voor de rechter tabel
 //    Dit kan dusdanig aangepast worden om bagage in deze tabel te stoppen
     
-//    private void updateUserTable() {
-//        modelUser.setRowCount(0); //nodig voor 
-//        users = userModel.getUserList();
-//        for(User user : users) {
-//            modelUser.addRow(new Object[] {new Integer(user.getUserId()),
-//                user.getFirstName(),
-//                user.getLastName(),
-//                user.getUsername(),
-//                user.getGroupId(),
-//                (user.getIncorrectLogin() >= userModel.MAX_INCORRECT_LOGINS)? "VERGRENDELD" : "Actief"});
-//
-//            //System.out.println(user.getFirstName());
-//        }
-//    }
-//    
+    private void updateLuggageTable() {
+        modelLuggage.setRowCount(0); //nodig voor 
+        luggages = luggageModel.getLuggageList();
+        for(Luggage luggage : luggages) {
+            modelLuggage.addRow(new Object[] {new Integer(luggage.getLuggageId()),
+                luggage.getCustomerId(),
+                luggage.getDescription(),
+                luggage.getLocation(),
+                luggage.getDate(),
+                luggage.getTime(),
+                luggage.isIsLost(),
+                luggage.isIsHandled()});
+
+            //System.out.println(user.getFirstName());
+        }
+    }
+    
     private void updateCustomerTable() {
         modelCustomer.setRowCount(0); //nodig voor 
         customers = customerModel.getCustomerList();
@@ -98,15 +101,16 @@ public class Employee extends javax.swing.JFrame {
         createCustomer = new javax.swing.JButton();
         linkLuggage = new javax.swing.JPanel();
         jSplitPane1 = new javax.swing.JSplitPane();
-        jPanel3 = new javax.swing.JPanel();
+        jPanel6 = new javax.swing.JPanel();
+        jTextField7 = new javax.swing.JTextField();
+        jButton4 = new javax.swing.JButton();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        luggageTable = new javax.swing.JTable();
+        jPanel1 = new javax.swing.JPanel();
+        jTextField8 = new javax.swing.JTextField();
+        jButton5 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         customerTable = new javax.swing.JTable();
-        jTextField3 = new javax.swing.JTextField();
-        jPanel4 = new javax.swing.JPanel();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        userTable = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         linkButton = new javax.swing.JButton();
         refreshButton = new javax.swing.JButton();
@@ -259,7 +263,73 @@ public class Employee extends javax.swing.JFrame {
         jSplitPane1.setDividerLocation(417);
         jSplitPane1.setDividerSize(10);
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Klanten"));
+        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder("Bagage"));
+
+        jTextField7.setText("jTextField3");
+
+        jButton4.setText("Zoeken");
+
+        luggageTable.setAutoCreateRowSorter(true);
+        luggageTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Luggage ID", "Customer ID", "Description", "Location", "Date", "Time", "Is Lost", "Is Handled"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Boolean.class, java.lang.Boolean.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        luggageTable.setVerifyInputWhenFocusTarget(false);
+        jScrollPane6.setViewportView(luggageTable);
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton4)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 432, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jSplitPane1.setLeftComponent(jPanel6);
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Klanten"));
+
+        jTextField8.setText("jTextField3");
+
+        jButton5.setText("Zoeken");
 
         customerTable.setAutoCreateRowSorter(true);
         customerTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -287,100 +357,34 @@ public class Employee extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(customerTable);
 
-        jTextField3.setText("jTextField3");
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 379, Short.MAX_VALUE)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton5)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 379, Short.MAX_VALUE))
                 .addContainerGap())
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 345, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        jSplitPane1.setLeftComponent(jPanel3);
-
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Bagage"));
-
-        jTextField4.setText("jTextField3");
-
-        jTextField5.setText("jTextField3");
-
-        userTable.setAutoCreateRowSorter(true);
-        userTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "User ID", "First Name", "Last Name", "Username", "Group ID", "Account Status"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        userTable.setVerifyInputWhenFocusTarget(false);
-        jScrollPane3.setViewportView(userTable);
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 287, Short.MAX_VALUE))
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 432, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
                 .addContainerGap())
-            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel4Layout.createSequentialGroup()
-                    .addGap(152, 152, 152)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(155, Short.MAX_VALUE)))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 345, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel4Layout.createSequentialGroup()
-                    .addGap(217, 217, 217)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(156, Short.MAX_VALUE)))
         );
 
-        jSplitPane1.setRightComponent(jPanel4);
+        jSplitPane1.setRightComponent(jPanel1);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Opties"));
 
@@ -565,6 +569,10 @@ public class Employee extends javax.swing.JFrame {
     private javax.swing.JMenuItem changePassword;
     private javax.swing.JButton createCustomer;
     private javax.swing.JTable customerTable;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -576,18 +584,24 @@ public class Employee extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar2;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JSplitPane jSplitPane1;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField jTextField6;
+    private javax.swing.JTextField jTextField7;
+    private javax.swing.JTextField jTextField8;
     private javax.swing.JButton linkButton;
     private javax.swing.JPanel linkLuggage;
     private javax.swing.JMenuItem logout;
+    private javax.swing.JTable luggageTable;
     private javax.swing.JButton refreshButton;
     private javax.swing.JPanel registerCustomer;
     private javax.swing.JTextField tfAddress1;
@@ -602,5 +616,6 @@ public class Employee extends javax.swing.JFrame {
     private javax.swing.JTextField tfPostalCode1;
     private javax.swing.JTextField tfPostalCode2;
     private javax.swing.JTable userTable;
+    private javax.swing.JTable userTable1;
     // End of variables declaration//GEN-END:variables
 }
