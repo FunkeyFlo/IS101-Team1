@@ -37,7 +37,8 @@ public class Login extends javax.swing.JFrame {
                     dispose();
                     int permissionId = user.getPermissionId();
                     if(permissionId == 1)
-                        Main.displayMedewerker();
+//                        Main.displayMedewerker();
+                        Main.displayEmployee();
 
                     else if(permissionId == 2)
                         Main.displayManager();

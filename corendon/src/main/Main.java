@@ -34,6 +34,11 @@ public class Main {
         frameMedewerker.setVisible(true);
     }
     
+    public static void displayEmployee() { //permissionId = 1
+        Employee frameEmployee = new Employee();
+        frameEmployee.setVisible(true);
+    }
+    
     public static void displayManager() { //permissionId = 2
         Manager frameManager = new Manager();
         frameManager.setVisible(true);

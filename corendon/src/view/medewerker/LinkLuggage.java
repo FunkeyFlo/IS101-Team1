@@ -225,7 +225,7 @@ public class LinkLuggage extends javax.swing.JFrame {
         refreshButton.setText("Overzichten verversen");
         refreshButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                refreshButtonActionPerformed(evt);
+                refreshButtonButtonActionPerformed(evt);
             }
         });
 
@@ -287,10 +287,10 @@ public class LinkLuggage extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_cancelButtonActionPerformed
 
-    private void refreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButtonActionPerformed
+    private void refreshButtonButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButtonButtonActionPerformed
         updateCustomerTable();
-//        updateUserTable();
-    }//GEN-LAST:event_refreshButtonActionPerformed
+        //        updateUserTable();
+    }//GEN-LAST:event_refreshButtonButtonActionPerformed
 
     /**
      * @param args the command line arguments
