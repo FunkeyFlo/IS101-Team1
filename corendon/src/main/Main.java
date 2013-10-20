@@ -9,6 +9,7 @@ import view.manager.Manager;
 import view.beheerder.Beheerder;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
 import view.*;
 import view.medewerker.*;
 
@@ -65,6 +66,12 @@ public class Main {
     }
 
     public static void main(String args[]) {
+        
+        try { 
+            UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel"); 
+        } catch (Exception ex) { 
+            ex.printStackTrace(); 
+        }
 
         SwingUtilities.invokeLater(new Runnable() {
             @Override
