@@ -27,6 +27,7 @@ public class Employee extends javax.swing.JFrame {
         modelCustomer1 = (DefaultTableModel) this.customerTable1.getModel();
         modelLuggage2 = (DefaultTableModel) this.luggageTable2.getModel();
         modelCustomer2 = (DefaultTableModel) this.customerTable2.getModel();
+        
         updateCustomerTable1();
         updateLuggageTable1();
         updateCustomerTable2();
@@ -134,10 +135,8 @@ public class Employee extends javax.swing.JFrame {
         jComboBox3 = new javax.swing.JComboBox();
         jPanel2 = new javax.swing.JPanel();
         linkButton = new javax.swing.JButton();
-        refreshButton = new javax.swing.JButton();
+        refreshTables1 = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
         register = new javax.swing.JPanel();
         jLayeredPane2 = new javax.swing.JLayeredPane();
         lblCustomerID4 = new javax.swing.JLabel();
@@ -158,6 +157,7 @@ public class Employee extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         customerTable2 = new javax.swing.JTable();
         jComboBox6 = new javax.swing.JComboBox();
+        refreshCustomerTable2 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
@@ -190,6 +190,7 @@ public class Employee extends javax.swing.JFrame {
         jScrollPane7 = new javax.swing.JScrollPane();
         luggageTable2 = new javax.swing.JTable();
         jComboBox5 = new javax.swing.JComboBox();
+        refreshLuggageTable2 = new javax.swing.JButton();
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         changePassword = new javax.swing.JMenuItem();
@@ -342,10 +343,10 @@ public class Employee extends javax.swing.JFrame {
 
         linkButton.setText("Koppelen");
 
-        refreshButton.setText("Overzichten verversen");
-        refreshButton.addActionListener(new java.awt.event.ActionListener() {
+        refreshTables1.setText("Overzichten verversen");
+        refreshTables1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                refreshButtonActionPerformed(evt);
+                refreshTables1ActionPerformed(evt);
             }
         });
 
@@ -356,22 +357,14 @@ public class Employee extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Klant aanpassen");
-
-        jButton6.setText("Bagage aanpassen");
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(refreshButton)
+                .addComponent(refreshTables1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(cancelButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(linkButton)
@@ -382,10 +375,8 @@ public class Employee extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(linkButton)
-                    .addComponent(refreshButton)
-                    .addComponent(cancelButton)
-                    .addComponent(jButton1)
-                    .addComponent(jButton6))
+                    .addComponent(refreshTables1)
+                    .addComponent(cancelButton))
                 .addGap(0, 11, Short.MAX_VALUE))
         );
 
@@ -546,6 +537,13 @@ public class Employee extends javax.swing.JFrame {
         jComboBox6.setMaximumRowCount(11);
         jComboBox6.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Alle velden", "Klant ID", "Voornaam", "Achternaam", "Adres", "Postcode", "Stad", "Land", "Email", "Tel. huis", "Tel. mobiel" }));
 
+        refreshCustomerTable2.setText("Overzicht verversen");
+        refreshCustomerTable2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refreshCustomerTable2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -559,7 +557,8 @@ public class Employee extends javax.swing.JFrame {
                         .addComponent(customerSearchButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(refreshCustomerTable2))
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 684, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -570,7 +569,8 @@ public class Employee extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(customerSearchField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(customerSearchButton1)
-                    .addComponent(jComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(refreshCustomerTable2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 428, Short.MAX_VALUE)
                 .addContainerGap())
@@ -793,6 +793,13 @@ public class Employee extends javax.swing.JFrame {
 
         jComboBox5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Alle velden", "Bagage ID", "Klant ID", "Omschrijving", "Locatie", "Datum", "Tijd" }));
 
+        refreshLuggageTable2.setText("Overzicht verversen");
+        refreshLuggageTable2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refreshLuggageTable2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
@@ -806,7 +813,8 @@ public class Employee extends javax.swing.JFrame {
                         .addComponent(baggageSearchButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(refreshLuggageTable2))
                     .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 677, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -817,7 +825,8 @@ public class Employee extends javax.swing.JFrame {
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(baggageSearchField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(baggageSearchButton1)
-                    .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(refreshLuggageTable2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 428, Short.MAX_VALUE)
                 .addContainerGap())
@@ -900,11 +909,11 @@ public class Employee extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_cancelButtonActionPerformed
 
-    private void refreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButtonActionPerformed
+    private void refreshTables1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshTables1ActionPerformed
         updateCustomerTable1();
         updateLuggageTable1();
         //        updateUserTable();
-    }//GEN-LAST:event_refreshButtonActionPerformed
+    }//GEN-LAST:event_refreshTables1ActionPerformed
 
     private void tfLocation1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfLocation1ActionPerformed
         // TODO add your handling code here:
@@ -925,6 +934,14 @@ public class Employee extends javax.swing.JFrame {
     private void createCustomer1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createCustomer1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_createCustomer1ActionPerformed
+
+    private void refreshCustomerTable2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshCustomerTable2ActionPerformed
+        updateCustomerTable2();
+    }//GEN-LAST:event_refreshCustomerTable2ActionPerformed
+
+    private void refreshLuggageTable2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshLuggageTable2ActionPerformed
+        updateLuggageTable2();
+    }//GEN-LAST:event_refreshLuggageTable2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -976,10 +993,8 @@ public class Employee extends javax.swing.JFrame {
     private javax.swing.JTextField customerSearchField1;
     private javax.swing.JTable customerTable1;
     private javax.swing.JTable customerTable2;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton6;
     private javax.swing.JComboBox jComboBox2;
     private javax.swing.JComboBox jComboBox3;
     private javax.swing.JComboBox jComboBox4;
@@ -1025,7 +1040,9 @@ public class Employee extends javax.swing.JFrame {
     private javax.swing.JTabbedPane overviewPane;
     private javax.swing.JRadioButton rbtnFound1;
     private javax.swing.JRadioButton rbtnLost1;
-    private javax.swing.JButton refreshButton;
+    private javax.swing.JButton refreshCustomerTable2;
+    private javax.swing.JButton refreshLuggageTable2;
+    private javax.swing.JButton refreshTables1;
     private javax.swing.JPanel register;
     private javax.swing.JTextField tfAddress3;
     private javax.swing.JTextField tfAddress4;
