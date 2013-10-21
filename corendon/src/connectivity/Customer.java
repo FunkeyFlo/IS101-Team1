@@ -91,13 +91,14 @@ public class Customer {
     }
         
     public void setNewCustomer(String tfFirstName, String tfLastName,
-            String tfAddress, String tfPostalCode, String tfEmail,
+            String tfAddress, String tfPostalCode, String tfCity, String tfCountry, String tfEmail,
             String tfPhoneHome, String tfPhoneMobile) {
-        String sql = "INSERT INTO fys.`customer` (first_name, last_name, address, postal_code, email, phone_home, phone_mobile) VALUES ('" 
-                + tfFirstName + "', '" + tfLastName + "', '" + tfAddress 
-                + "', '" + tfPostalCode + "', '" + tfEmail + "', '"
-                + tfPhoneHome + "', '" + tfPhoneMobile + "'";
-        getDb().insertQuery(sql);
+        String sql = "INSERT INTO fys.`customer` (first_name, last_name, address, postal_code, city, country, email, phone_home, phone_mobile) VALUES ('" 
+                + tfFirstName + "', '" + tfLastName + "', '" + tfAddress
+                + "', '" + tfPostalCode + "', '" + tfCity + "', '" + tfCountry
+                + "', '" + tfEmail + "', '" + tfPhoneHome + "', '"
+                + tfPhoneMobile + "'";
+        db.insertQuery(sql);
     }
 
     /**
