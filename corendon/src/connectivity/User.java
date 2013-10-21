@@ -44,8 +44,8 @@ public class User {
         this.getUserData(tfUsername);
         if (this.username.equals(tfUsername)){
             
-            if (this.password.equals(tfPasswd)) {
-                this.isLoggedIn = true;
+            if (this.getPassword().equals(tfPasswd)) {
+                this.setIsLoggedIn(true);
                 return "Login success";
                 
             } else {
@@ -83,7 +83,7 @@ public class User {
     
     public boolean checkOldPassword(String oldPassword, String storedUsername) {
         this.getUserData(storedUsername);
-        if(this.password.equals(oldPassword)){
+        if(this.getPassword().equals(oldPassword)){
             return true;
         } else {
             return false;
@@ -103,16 +103,16 @@ public class User {
             ResultSet result = db.doQuery(sql);
             if (result.next()) {
                 if (result.getInt("rows") >= 1) {
-                    this.username = result.getString("username");
-                    this.userId = result.getInt("user_id");
-                    this.firstName = result.getString("first_name");
-                    this.lastName = result.getString("last_name");
-                    this.permissionId = result.getInt("permission_id");
-                    this.password = result.getString("password");
-                    this.incorrectLogin = result.getInt("incorrect_login");
+                    this.setUsername(result.getString("username"));
+                    this.setUserId(result.getInt("user_id"));
+                    this.setFirstName(result.getString("first_name"));
+                    this.setLastName(result.getString("last_name"));
+                    this.setPermissionId(result.getInt("permission_id"));
+                    this.setPassword(result.getString("password"));
+                    this.setIncorrectLogin(result.getInt("incorrect_login"));
                 }
                 else
-                    this.username = "INVALID";
+                    this.setUsername("INVALID");
             }
         } catch (SQLException e) {
             System.out.println(db.SQL_EXCEPTION + e.getMessage());
@@ -145,6 +145,12 @@ public class User {
         db.insertQuery(sql);
     }
     
+    
+    public void changeUserData(String inputUsername, String dbField, String newValue) {
+        String sql = "UPDATE `user` SET `" + dbField + "` = '" + newValue + "' WHERE `username` = '" + inputUsername + "'";
+        db.insertQuery(sql);
+    }
+    
     public void setIncorrectLogin() {
         String sql = "UPDATE `user` SET `incorrect_login` = `incorrect_login` + 1 WHERE `user_id` = '" + this.userId + "'";
         db.insertQuery(sql);
@@ -157,7 +163,77 @@ public class User {
     }
     
     public void updatePassword(String tfPassword, String tfUsername) {
-        String sql = "UPDATE `user` SET password = '" + tfPassword + "' WHERE `username`='" + tfUsername + "'";
+        String sql = "UPDATE `user` SET `password` = '" + tfPassword + "' WHERE `username`='" + tfUsername + "'";
         db.insertQuery(sql);
+    }
+
+    /**
+     * @param userId the userId to set
+     */
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    /**
+     * @param permissionId the permissionId to set
+     */
+    public void setPermissionId(int permissionId) {
+        this.permissionId = permissionId;
+    }
+
+    /**
+     * @param incorrectLogin the incorrectLogin to set
+     */
+    public void setIncorrectLogin(int incorrectLogin) {
+        this.incorrectLogin = incorrectLogin;
+    }
+
+    /**
+     * @param username the username to set
+     */
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    /**
+     * @param firstName the firstName to set
+     */
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    /**
+     * @param lastName the lastName to set
+     */
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    /**
+     * @return the password
+     */
+    public String getPassword() {
+        return password;
+    }
+
+    /**
+     * @param password the password to set
+     */
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    /**
+     * @return the isLoggedIn
+     */
+    public boolean isIsLoggedIn() {
+        return isLoggedIn;
+    }
+
+    /**
+     * @param isLoggedIn the isLoggedIn to set
+     */
+    public void setIsLoggedIn(boolean isLoggedIn) {
+        this.isLoggedIn = isLoggedIn;
     }
 }

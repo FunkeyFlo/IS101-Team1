@@ -17,6 +17,10 @@ public class Beheerder extends javax.swing.JFrame {
     private User userModel = new User();
     private List<User> users;
     private DefaultTableModel model;
+    private User user = new User();
+    
+    public static String nameTypeToChange;
+    public static String accountToChange;
     
     public Beheerder() {
         initComponents();
@@ -40,7 +44,6 @@ public class Beheerder extends javax.swing.JFrame {
     }
     
     public void doCreateUser(){
-        User user = new User();
 
         String newUsername = tfUsername.getText().trim();
         String newFirstName = tfFirstName.getText().trim();
@@ -80,6 +83,7 @@ public class Beheerder extends javax.swing.JFrame {
         unlockAccount = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         lockAccount = new javax.swing.JButton();
+        deleteUser = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         tfFirstName = new javax.swing.JTextField();
         tfLastName = new javax.swing.JTextField();
@@ -97,6 +101,8 @@ public class Beheerder extends javax.swing.JFrame {
         refreshButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         userTable = new javax.swing.JTable();
+        jTextField1 = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         changePassword = new javax.swing.JMenuItem();
@@ -110,8 +116,18 @@ public class Beheerder extends javax.swing.JFrame {
         jPanel9.setPreferredSize(new java.awt.Dimension(173, 215));
 
         changeFirstName.setText("Wijzig voornaam");
+        changeFirstName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                changeFirstNameActionPerformed(evt);
+            }
+        });
 
         changeLastName.setText("Wijzig achternaam");
+        changeLastName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                changeLastNameActionPerformed(evt);
+            }
+        });
 
         changeUserGroup.setText("Wijzig gebruikersgroep");
 
@@ -131,6 +147,8 @@ public class Beheerder extends javax.swing.JFrame {
             }
         });
 
+        deleteUser.setText("Gebruiker verwijderen");
+
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
@@ -143,7 +161,8 @@ public class Beheerder extends javax.swing.JFrame {
                     .addComponent(changeUserGroup, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(unlockAccount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lockAccount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lockAccount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(deleteUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel9Layout.setVerticalGroup(
@@ -161,7 +180,9 @@ public class Beheerder extends javax.swing.JFrame {
                 .addComponent(lockAccount)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(deleteUser)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder("Gebruiker aanmaken"));
@@ -337,6 +358,14 @@ public class Beheerder extends javax.swing.JFrame {
         userTable.setVerifyInputWhenFocusTarget(false);
         jScrollPane1.setViewportView(userTable);
 
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Zoeken");
+
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
@@ -345,8 +374,11 @@ public class Beheerder extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 660, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(refreshButton1)))
                 .addContainerGap())
         );
@@ -356,7 +388,10 @@ public class Beheerder extends javax.swing.JFrame {
                 .addGap(6, 6, 6)
                 .addComponent(jScrollPane1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(refreshButton1)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(refreshButton1)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2))
                 .addContainerGap())
         );
 
@@ -402,10 +437,10 @@ public class Beheerder extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 44, Short.MAX_VALUE)))
+                        .addGap(0, 29, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -488,6 +523,22 @@ public class Beheerder extends javax.swing.JFrame {
             doCreateUser();
     }//GEN-LAST:event_groupSelectorKeyPressed
 
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void changeFirstNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeFirstNameActionPerformed
+        nameTypeToChange = "voornaam";
+        accountToChange = userTable.getValueAt(userTable.getSelectedRow(), 3).toString();
+        Main.displayChangeName();
+    }//GEN-LAST:event_changeFirstNameActionPerformed
+
+    private void changeLastNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeLastNameActionPerformed
+        nameTypeToChange = "achternaam";
+        accountToChange = userTable.getValueAt(userTable.getSelectedRow(), 3).toString();
+        Main.displayChangeName();
+    }//GEN-LAST:event_changeLastNameActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -529,8 +580,10 @@ public class Beheerder extends javax.swing.JFrame {
     private javax.swing.JButton changeUserGroup;
     private javax.swing.JButton clearFields;
     private javax.swing.JButton createUser;
+    private javax.swing.JButton deleteUser;
     private javax.swing.JComboBox groupSelector;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -543,6 +596,7 @@ public class Beheerder extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JButton lockAccount;
     private javax.swing.JMenuItem logout;
     private javax.swing.JButton refreshButton1;

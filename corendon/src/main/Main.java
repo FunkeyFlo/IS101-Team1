@@ -6,7 +6,7 @@ package main;
 
 import view.medewerker.Medewerker;
 import view.manager.Manager;
-import view.beheerder.Beheerder;
+import view.beheerder.*;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
@@ -63,6 +63,11 @@ public class Main {
     public static void displayChangeMyPassword() {
         ChangeMyPassword frameChangeMyPassword = new ChangeMyPassword();
         frameChangeMyPassword.setVisible(true);
+    }
+    
+    public static void displayChangeName() {
+        ChangeName frameChangeName = new ChangeName();
+        frameChangeName.setVisible(true);
     }
 
     public static void main(String args[]) {
