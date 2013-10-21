@@ -43,7 +43,7 @@ public class Administrator extends javax.swing.JFrame {
         }
     }
     
-    public void doCreateUser(){
+    private void doCreateUser(){
 
         String newUsername = tfUsername.getText().trim();
         String newFirstName = tfFirstName.getText().trim();
@@ -81,7 +81,7 @@ public class Administrator extends javax.swing.JFrame {
         changeLastName = new javax.swing.JButton();
         changeUserGroup = new javax.swing.JButton();
         unlockAccount = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        resetPassword = new javax.swing.JButton();
         lockAccount = new javax.swing.JButton();
         deleteUser = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
@@ -139,10 +139,10 @@ public class Administrator extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Reset wachtwoord");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        resetPassword.setText("Reset wachtwoord");
+        resetPassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                resetPasswordActionPerformed(evt);
             }
         });
 
@@ -171,7 +171,7 @@ public class Administrator extends javax.swing.JFrame {
                     .addComponent(changeFirstName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(changeUserGroup, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(unlockAccount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(resetPassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lockAccount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(deleteUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -190,7 +190,7 @@ public class Administrator extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lockAccount)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addComponent(resetPassword)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(deleteUser)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -460,8 +460,6 @@ public class Administrator extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel9.getAccessibleContext().setAccessibleName("Opties voor gebruiker");
-
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
@@ -508,9 +506,11 @@ public class Administrator extends javax.swing.JFrame {
         Main.displayLogin();
     }//GEN-LAST:event_logoutActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void resetPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetPasswordActionPerformed
+        nameTypeToChange = "wachtwoord";
+        accountToChange = userTable.getValueAt(userTable.getSelectedRow(), 3).toString();
+        Main.displayChangePassword();
+    }//GEN-LAST:event_resetPasswordActionPerformed
 
     private void lockAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lockAccountActionPerformed
         user.changeUserIntData(userTable.getValueAt(userTable.getSelectedRow(),
@@ -614,7 +614,6 @@ public class Administrator extends javax.swing.JFrame {
     private javax.swing.JButton createUser;
     private javax.swing.JButton deleteUser;
     private javax.swing.JComboBox groupSelector;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
@@ -633,6 +632,7 @@ public class Administrator extends javax.swing.JFrame {
     private javax.swing.JButton lockAccount;
     private javax.swing.JMenuItem logout;
     private javax.swing.JButton refreshButton1;
+    private javax.swing.JButton resetPassword;
     private javax.swing.JTextField tfFirstName;
     private javax.swing.JTextField tfLastName;
     private javax.swing.JPasswordField tfPassword;
