@@ -139,14 +139,23 @@ public class User {
     }
     
     public void setNewUser(String tfUsername, String tfFirstName, String tfLastName, String tfPassword, int inputPermissionId) {
-        String sql = "INSERT INTO fys.`user` (username, first_name, last_name, password, permission_id, incorrect_login) VALUES ('" 
+        String sql = "INSERT INTO `user` (username, first_name, last_name, password, permission_id, incorrect_login) VALUES ('" 
                 + tfUsername + "', '" + tfFirstName + "', '" + tfLastName 
                 + "', '" + tfPassword + "', " + inputPermissionId + ", 0)";
         db.insertQuery(sql);
     }
     
+    public void deleteUser(String tfUsername) {
+        String sql = "DELETE FROM `user` WHERE `username` = '" + tfUsername + "'";
+        db.insertQuery(sql);
+    }
     
-    public void changeUserData(String inputUsername, String dbField, String newValue) {
+    public void changeUserStringData(String inputUsername, String dbField, String newValue) {
+        String sql = "UPDATE `user` SET `" + dbField + "` = '" + newValue + "' WHERE `username` = '" + inputUsername + "'";
+        db.insertQuery(sql);
+    }
+    
+    public void changeUserIntData(String inputUsername, String dbField, int newValue) {
         String sql = "UPDATE `user` SET `" + dbField + "` = '" + newValue + "' WHERE `username` = '" + inputUsername + "'";
         db.insertQuery(sql);
     }

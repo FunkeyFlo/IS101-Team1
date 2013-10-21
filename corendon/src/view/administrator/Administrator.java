@@ -103,6 +103,7 @@ public class Administrator extends javax.swing.JFrame {
         userTable = new javax.swing.JTable();
         jTextField1 = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox();
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         changePassword = new javax.swing.JMenuItem();
@@ -112,7 +113,7 @@ public class Administrator extends javax.swing.JFrame {
         setTitle("Beheerder - " + Session.storedFirstName + " " + Session.storedLastName);
         setMinimumSize(new java.awt.Dimension(720, 534));
 
-        jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder("Gebruiker Wijzigen"));
+        jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder("Opties voor gebruiker"));
         jPanel9.setPreferredSize(new java.awt.Dimension(173, 215));
 
         changeFirstName.setText("Wijzig voornaam");
@@ -132,6 +133,11 @@ public class Administrator extends javax.swing.JFrame {
         changeUserGroup.setText("Wijzig gebruikersgroep");
 
         unlockAccount.setText("Account ontgrendelen");
+        unlockAccount.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                unlockAccountActionPerformed(evt);
+            }
+        });
 
         jButton1.setText("Reset wachtwoord");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -148,6 +154,11 @@ public class Administrator extends javax.swing.JFrame {
         });
 
         deleteUser.setText("Gebruiker verwijderen");
+        deleteUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteUserActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -366,6 +377,8 @@ public class Administrator extends javax.swing.JFrame {
 
         jButton2.setText("Zoeken");
 
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Alle velden", "Gebruikers ID", "Voornaam", "Achternaam", "Gebruikersnaam", "Rechten ID", "Account Status" }));
+
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
@@ -378,6 +391,8 @@ public class Administrator extends javax.swing.JFrame {
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(refreshButton1)))
                 .addContainerGap())
@@ -391,7 +406,8 @@ public class Administrator extends javax.swing.JFrame {
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(refreshButton1)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2))
+                    .addComponent(jButton2)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -444,6 +460,8 @@ public class Administrator extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jPanel9.getAccessibleContext().setAccessibleName("Opties voor gebruiker");
+
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
@@ -495,7 +513,9 @@ public class Administrator extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void lockAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lockAccountActionPerformed
-        // TODO add your handling code here:
+        user.changeUserIntData(userTable.getValueAt(userTable.getSelectedRow(),
+                3).toString(), "incorrect_login", user.MAX_INCORRECT_LOGINS);
+        updateUserTable();
     }//GEN-LAST:event_lockAccountActionPerformed
 
     private void tfPasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfPasswordKeyPressed
@@ -538,6 +558,18 @@ public class Administrator extends javax.swing.JFrame {
         accountToChange = userTable.getValueAt(userTable.getSelectedRow(), 3).toString();
         Main.displayChangeName();
     }//GEN-LAST:event_changeLastNameActionPerformed
+
+    private void unlockAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_unlockAccountActionPerformed
+        user.changeUserStringData(userTable.getValueAt(userTable.getSelectedRow(),
+                3).toString(), "incorrect_login", "0");
+        updateUserTable();
+    }//GEN-LAST:event_unlockAccountActionPerformed
+
+    private void deleteUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteUserActionPerformed
+        user.deleteUser(userTable.getValueAt(userTable.getSelectedRow(),
+                3).toString());
+        updateUserTable();
+    }//GEN-LAST:event_deleteUserActionPerformed
 
     /**
      * @param args the command line arguments
@@ -584,6 +616,7 @@ public class Administrator extends javax.swing.JFrame {
     private javax.swing.JComboBox groupSelector;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

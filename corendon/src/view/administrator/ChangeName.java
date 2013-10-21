@@ -127,7 +127,7 @@ public class ChangeName extends javax.swing.JFrame {
         else
             dbField = "last_name";
         
-        user.changeUserData(Administrator.accountToChange, "first_name", tfInput.getText().trim());
+        user.changeUserStringData(Administrator.accountToChange, dbField, tfInput.getText().trim());
         dispose();
     }//GEN-LAST:event_okButtonActionPerformed
 
