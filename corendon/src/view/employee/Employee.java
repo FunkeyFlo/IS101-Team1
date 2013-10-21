@@ -103,7 +103,7 @@ public class Employee extends javax.swing.JFrame {
                 customer.getPhoneHome(),
                 customer.getPhoneMobile()});
 
-            //System.out.println(user.getFirstName());
+            System.out.println("PIES");
         }
     }
 
