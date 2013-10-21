@@ -131,6 +131,11 @@ public class Administrator extends javax.swing.JFrame {
         });
 
         changeUserGroup.setText("Wijzig gebruikersgroep");
+        changeUserGroup.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                changeUserGroupActionPerformed(evt);
+            }
+        });
 
         unlockAccount.setText("Account ontgrendelen");
         unlockAccount.addActionListener(new java.awt.event.ActionListener() {
@@ -570,6 +575,10 @@ public class Administrator extends javax.swing.JFrame {
                 3).toString());
         updateUserTable();
     }//GEN-LAST:event_deleteUserActionPerformed
+
+    private void changeUserGroupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeUserGroupActionPerformed
+        Main.displayChangePermission();
+    }//GEN-LAST:event_changeUserGroupActionPerformed
 
     /**
      * @param args the command line arguments
