@@ -97,7 +97,7 @@ public class Customer {
                 + tfFirstName + "', '" + tfLastName + "', '" + tfAddress
                 + "', '" + tfPostalCode + "', '" + tfCity + "', '" + tfCountry
                 + "', '" + tfEmail + "', '" + tfPhoneHome + "', '"
-                + tfPhoneMobile + "'";
+                + tfPhoneMobile + "')";
         db.insertQuery(sql);
     }
 
