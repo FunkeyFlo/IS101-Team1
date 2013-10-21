@@ -102,8 +102,6 @@ public class Employee extends javax.swing.JFrame {
                 customer.getEmail(),
                 customer.getPhoneHome(),
                 customer.getPhoneMobile()});
-
-            System.out.println("PIES");
         }
     }
 
