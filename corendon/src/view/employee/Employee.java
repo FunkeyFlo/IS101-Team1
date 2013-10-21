@@ -941,7 +941,7 @@ public class Employee extends javax.swing.JFrame {
         String newEmail = tfEmail1.getText().trim() + "@" + tfEmail2.getText().trim();
         String newPhoneHome = tfPhoneHome.getText().trim();
         String newPhoneMobile = tfPhoneMobile.getText().trim();
-        //System.out.println(newFirstName + newLastName + newAddress + newPostalCode + newCountry + newCity + newEmail + newPhoneHome + newPhoneMobile);
+        System.out.println(newFirstName + newLastName + newAddress + newPostalCode + newCountry + newCity + newEmail + newPhoneHome + newPhoneMobile);
         
         customer.setNewCustomer(newFirstName, newLastName,
              newAddress, newPostalCode, newCity, newCountry, newEmail,
