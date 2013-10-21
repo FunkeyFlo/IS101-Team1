@@ -16,6 +16,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import view.*;
 import view.administrator.ChangePassword;
+import view.administrator.ChangePermission;
 
 /**
  *
@@ -77,6 +78,10 @@ public class Main {
     public static void displayChangePassword() {
         ChangePassword frameChangePassword = new ChangePassword();
         frameChangePassword.setVisible(true);
+    }
+    public static void displayChangePermission() {
+        ChangePermission frameChangePermission = new ChangePermission();
+        frameChangePermission.setVisible(true);
     }
 
     public static void main(String args[]) {
