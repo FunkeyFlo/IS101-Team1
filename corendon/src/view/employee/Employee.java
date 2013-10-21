@@ -4,8 +4,7 @@
  */
 package view.employee;
 
-import connectivity.Customer;
-import connectivity.Luggage;
+import connectivity.*;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import main.*;
@@ -122,29 +121,29 @@ public class Employee extends javax.swing.JFrame {
         customer = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
-        tfAddress3 = new javax.swing.JTextField();
-        tfAddress4 = new javax.swing.JTextField();
+        tfAddress2 = new javax.swing.JTextField();
+        tfAddress1 = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
-        tfPostalCode3 = new javax.swing.JTextField();
-        tfFirstName1 = new javax.swing.JTextField();
-        tfPostalCode4 = new javax.swing.JTextField();
+        tfPostalCode1 = new javax.swing.JTextField();
+        tfFirstName = new javax.swing.JTextField();
+        tfPostalCode2 = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        tfLastName1 = new javax.swing.JTextField();
+        tfLastName = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
-        tfEmail3 = new javax.swing.JTextField();
+        tfEmail1 = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
-        tfEmail4 = new javax.swing.JTextField();
-        tfPhoneHome1 = new javax.swing.JTextField();
+        tfEmail2 = new javax.swing.JTextField();
+        tfPhoneHome = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
-        tfPhoneMobile1 = new javax.swing.JTextField();
+        tfPhoneMobile = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
         createCustomer1 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jComboBox4 = new javax.swing.JComboBox();
+        tfCity = new javax.swing.JTextField();
+        tfCountry = new javax.swing.JComboBox();
         jPanel4 = new javax.swing.JPanel();
         customerSearchField1 = new javax.swing.JTextField();
         customerSearchButton1 = new javax.swing.JButton();
@@ -207,17 +206,17 @@ public class Employee extends javax.swing.JFrame {
 
         jLabel7.setText("Adres");
 
-        tfAddress3.addActionListener(new java.awt.event.ActionListener() {
+        tfAddress2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfAddress3ActionPerformed(evt);
+                tfAddress2ActionPerformed(evt);
             }
         });
 
         jLabel12.setText("Postcode");
 
-        tfFirstName1.addActionListener(new java.awt.event.ActionListener() {
+        tfFirstName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfFirstName1ActionPerformed(evt);
+                tfFirstNameActionPerformed(evt);
             }
         });
 
@@ -229,9 +228,9 @@ public class Employee extends javax.swing.JFrame {
 
         jLabel16.setText("@");
 
-        tfEmail4.addActionListener(new java.awt.event.ActionListener() {
+        tfEmail2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfEmail4ActionPerformed(evt);
+                tfEmail2ActionPerformed(evt);
             }
         });
 
@@ -252,7 +251,7 @@ public class Employee extends javax.swing.JFrame {
 
         jLabel20.setText("Land");
 
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Nederland", "Turkije", "Australië" }));
+        tfCountry.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Nederland", "Turkije", "Australië" }));
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -269,18 +268,18 @@ public class Employee extends javax.swing.JFrame {
                             .addComponent(jLabel7))
                         .addGap(39, 39, 39)
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tfLastName1)
-                            .addComponent(tfFirstName1, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(tfLastName)
+                            .addComponent(tfFirstName, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel7Layout.createSequentialGroup()
                                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel7Layout.createSequentialGroup()
-                                        .addComponent(tfPostalCode3, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(tfPostalCode1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(tfPostalCode4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(tfPostalCode2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel7Layout.createSequentialGroup()
-                                        .addComponent(tfAddress4, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(tfAddress1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(tfAddress3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(tfAddress2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(0, 27, Short.MAX_VALUE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -295,21 +294,21 @@ public class Employee extends javax.swing.JFrame {
                         .addGap(26, 26, 26)
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel7Layout.createSequentialGroup()
-                                .addComponent(tfEmail3, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(tfEmail1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel16)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(tfEmail4))
-                            .addComponent(tfPhoneHome1)
-                            .addComponent(tfPhoneMobile1)))
+                                .addComponent(tfEmail2))
+                            .addComponent(tfPhoneHome)
+                            .addComponent(tfPhoneMobile)))
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addComponent(jLabel20)
                         .addGap(74, 74, 74)
-                        .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(tfCountry, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addComponent(jLabel19)
                         .addGap(75, 75, 75)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(tfCity, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
@@ -317,43 +316,43 @@ public class Employee extends javax.swing.JFrame {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfFirstName1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel13))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14)
-                    .addComponent(tfLastName1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfLastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(tfAddress4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfAddress3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfAddress1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfAddress2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
-                    .addComponent(tfPostalCode3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfPostalCode4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfPostalCode1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfPostalCode2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel19)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel20)
-                    .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfCountry, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfEmail3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfEmail4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfEmail1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfEmail2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel16)
                     .addComponent(jLabel15))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfPhoneHome1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfPhoneHome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel17))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfPhoneMobile1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfPhoneMobile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel18))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -919,20 +918,34 @@ public class Employee extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tfLocation1ActionPerformed
 
-    private void tfAddress3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfAddress3ActionPerformed
+    private void tfAddress2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfAddress2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_tfAddress3ActionPerformed
+    }//GEN-LAST:event_tfAddress2ActionPerformed
 
-    private void tfFirstName1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfFirstName1ActionPerformed
+    private void tfFirstNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfFirstNameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_tfFirstName1ActionPerformed
+    }//GEN-LAST:event_tfFirstNameActionPerformed
 
-    private void tfEmail4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfEmail4ActionPerformed
+    private void tfEmail2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfEmail2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_tfEmail4ActionPerformed
+    }//GEN-LAST:event_tfEmail2ActionPerformed
 
     private void createCustomer1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createCustomer1ActionPerformed
-        // TODO add your handling code here:
+        Customer customer = new Customer();
+        String newFirstName = tfFirstName.getText().trim();
+        String newLastName = tfLastName.getText().trim();
+        String newAddress = tfAddress1.getText().trim() + " " + tfAddress2.getText().trim();
+        String newPostalCode = tfPostalCode1.getText().trim() + tfPostalCode2.getText().trim();
+        String newCountry = tfCountry.getSelectedItem().toString();
+        String newCity = tfCity.getText().trim();
+        String newEmail = tfEmail1.getText().trim() + "@" + tfEmail2.getText().trim();
+        String newPhoneHome = tfPhoneHome.getText().trim();
+        String newPhoneMobile = tfPhoneMobile.getText().trim();
+        //System.out.println(newFirstName + newLastName + newAddress + newPostalCode + newCountry + newCity + newEmail + newPhoneHome + newPhoneMobile);
+        
+        customer.setNewCustomer(newFirstName, newLastName,
+             newAddress, newPostalCode, newCity, newCountry, newEmail,
+             newPhoneHome, newPhoneMobile);
     }//GEN-LAST:event_createCustomer1ActionPerformed
 
     private void refreshCustomerTable2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshCustomerTable2ActionPerformed
@@ -998,7 +1011,6 @@ public class Employee extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JComboBox jComboBox2;
     private javax.swing.JComboBox jComboBox3;
-    private javax.swing.JComboBox jComboBox4;
     private javax.swing.JComboBox jComboBox5;
     private javax.swing.JComboBox jComboBox6;
     private javax.swing.JLabel jLabel12;
@@ -1027,7 +1039,6 @@ public class Employee extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JLabel lblCustomerID4;
     private javax.swing.JLabel lblCustomerID5;
     private javax.swing.JLabel lblCustomerID6;
@@ -1044,17 +1055,19 @@ public class Employee extends javax.swing.JFrame {
     private javax.swing.JButton refreshCustomerTable2;
     private javax.swing.JButton refreshLuggageTable2;
     private javax.swing.JButton refreshTables1;
-    private javax.swing.JTextField tfAddress3;
-    private javax.swing.JTextField tfAddress4;
+    private javax.swing.JTextField tfAddress1;
+    private javax.swing.JTextField tfAddress2;
+    private javax.swing.JTextField tfCity;
+    private javax.swing.JComboBox tfCountry;
     private javax.swing.JTextField tfCustomerID1;
-    private javax.swing.JTextField tfEmail3;
-    private javax.swing.JTextField tfEmail4;
-    private javax.swing.JTextField tfFirstName1;
-    private javax.swing.JTextField tfLastName1;
+    private javax.swing.JTextField tfEmail1;
+    private javax.swing.JTextField tfEmail2;
+    private javax.swing.JTextField tfFirstName;
+    private javax.swing.JTextField tfLastName;
     private javax.swing.JTextField tfLocation1;
-    private javax.swing.JTextField tfPhoneHome1;
-    private javax.swing.JTextField tfPhoneMobile1;
-    private javax.swing.JTextField tfPostalCode3;
-    private javax.swing.JTextField tfPostalCode4;
+    private javax.swing.JTextField tfPhoneHome;
+    private javax.swing.JTextField tfPhoneMobile;
+    private javax.swing.JTextField tfPostalCode1;
+    private javax.swing.JTextField tfPostalCode2;
     // End of variables declaration//GEN-END:variables
 }
