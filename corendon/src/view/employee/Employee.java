@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package view.medewerker;
+package view.employee;
 
 import connectivity.Customer;
 import connectivity.Luggage;
@@ -586,8 +586,6 @@ public class Employee extends javax.swing.JFrame {
     private javax.swing.JTextField customerSearchField;
     private javax.swing.JTable customerTable;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -602,16 +600,10 @@ public class Employee extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JSplitPane jSplitPane1;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
     private javax.swing.JButton linkButton;
     private javax.swing.JPanel linkLuggage;
     private javax.swing.JMenuItem logout;
@@ -630,7 +622,5 @@ public class Employee extends javax.swing.JFrame {
     private javax.swing.JTextField tfPhoneMobile;
     private javax.swing.JTextField tfPostalCode1;
     private javax.swing.JTextField tfPostalCode2;
-    private javax.swing.JTable userTable;
-    private javax.swing.JTable userTable1;
     // End of variables declaration//GEN-END:variables
 }

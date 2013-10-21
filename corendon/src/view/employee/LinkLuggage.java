@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package view.medewerker;
+package view.employee;
 
 //import connectivity.User;
 import connectivity.Customer;

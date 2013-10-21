@@ -4,14 +4,17 @@
  */
 package main;
 
-import view.medewerker.Medewerker;
+import view.administrator.Administrator;
+import view.administrator.ChangeName;
+import view.employee.RegisterCustomer;
+import view.employee.Employee;
+import view.employee.LinkLuggage;
+import view.employee.Medewerker;
 import view.manager.Manager;
-import view.beheerder.*;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import view.*;
-import view.medewerker.*;
 
 /**
  *
@@ -46,7 +49,7 @@ public class Main {
     }
     
     public static void displayBeheerder() { //permissionId = 3
-        Beheerder frameBeheerder = new Beheerder();
+        Administrator frameBeheerder = new Administrator();
         frameBeheerder.setVisible(true);
     }
     

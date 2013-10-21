@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package view.beheerder;
+package view.administrator;
 
 import main.Main;
 import connectivity.User;
@@ -36,13 +36,13 @@ public class ChangeName extends javax.swing.JFrame {
         cancelButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Verander " + Beheerder.nameTypeToChange);
+        setTitle("Verander " + Administrator.nameTypeToChange);
         setAlwaysOnTop(true);
         setResizable(false);
 
-        jLabel1.setText(Beheerder.nameTypeToChange + " veranderen voor gebruiker: " + Beheerder.accountToChange);
+        jLabel1.setText(Administrator.nameTypeToChange + " veranderen voor gebruiker: " + Administrator.accountToChange);
 
-        jLabel2.setText("Typ nieuwe " + Beheerder.nameTypeToChange);
+        jLabel2.setText("Typ nieuwe " + Administrator.nameTypeToChange);
 
         okButton.setText("Toepassen");
         okButton.addActionListener(new java.awt.event.ActionListener() {
@@ -122,12 +122,12 @@ public class ChangeName extends javax.swing.JFrame {
         User user = new User();
         String dbField;
         
-        if(Beheerder.nameTypeToChange.equals("voornaam"))
+        if(Administrator.nameTypeToChange.equals("voornaam"))
             dbField = "first_name";
         else
             dbField = "last_name";
         
-        user.changeUserData(Beheerder.accountToChange, "first_name", tfInput.getText().trim());
+        user.changeUserData(Administrator.accountToChange, "first_name", tfInput.getText().trim());
         dispose();
     }//GEN-LAST:event_okButtonActionPerformed
 

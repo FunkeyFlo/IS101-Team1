@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package view.medewerker;
+package view.employee;
 
 /**
  *
@@ -88,7 +88,6 @@ public class LuggageOverview extends javax.swing.JFrame {
                 .addContainerGap(25, Short.MAX_VALUE))
         );
 
-        jButton1.getAccessibleContext().setAccessibleName("Refresh");
         jButton1.getAccessibleContext().setAccessibleDescription("");
 
         pack();

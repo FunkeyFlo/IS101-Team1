@@ -4,7 +4,7 @@
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="2"/>
     <Property name="title" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-      <Connection code="&quot;Verander &quot; + Beheerder.nameTypeToChange" type="code"/>
+      <Connection code="&quot;Verander &quot; + view.administrator.Administrator.nameTypeToChange" type="code"/>
     </Property>
     <Property name="alwaysOnTop" type="boolean" value="true"/>
     <Property name="resizable" type="boolean" value="false"/>
@@ -96,14 +96,14 @@
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
             <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="Beheerder.nameTypeToChange + &quot; veranderen voor gebruiker: &quot; + Beheerder.accountToChange" type="code"/>
+              <Connection code="view.administrator.Administrator.nameTypeToChange + &quot; veranderen voor gebruiker: &quot; + view.administrator.Administrator.accountToChange" type="code"/>
             </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
             <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="&quot;Typ nieuwe &quot; + Beheerder.nameTypeToChange" type="code"/>
+              <Connection code="&quot;Typ nieuwe &quot; + view.administrator.Administrator.nameTypeToChange" type="code"/>
             </Property>
           </Properties>
         </Component>
