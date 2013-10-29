@@ -1104,7 +1104,7 @@ public class Employee extends javax.swing.JFrame {
         for (int i = 0; i < correctInput.length; i++) {
             if (correctInput[i] == false) {
                 totalCorrectInput = false;
-//                System.out.println("false" + i);
+//                System.out.println("false" + i); TESTBLABLA
                 break;
             }
             else {
