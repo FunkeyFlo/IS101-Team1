@@ -69,7 +69,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="jPanel7" max="32767" attributes="0"/>
-                  <Component id="jPanel9" pref="182" max="32767" attributes="0"/>
+                  <Component id="jPanel9" pref="201" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jPanel8" max="32767" attributes="0"/>
@@ -111,14 +111,10 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="deleteUser" max="32767" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-              </Group>
               <Component id="unlockAccount" alignment="0" max="32767" attributes="0"/>
               <Component id="resetPassword" alignment="0" max="32767" attributes="0"/>
               <Component id="lockAccount" alignment="0" max="32767" attributes="0"/>
+              <Component id="deleteUser" alignment="0" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -130,9 +126,8 @@
                   <Component id="lockAccount" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="resetPassword" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="104" max="-2" attributes="0"/>
-                  <Component id="deleteUser" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
+                  <Component id="deleteUser" min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
