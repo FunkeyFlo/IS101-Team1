@@ -28,23 +28,23 @@ public class ChangePermission extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        comboPermission = new javax.swing.JComboBox();
-        btExecute = new javax.swing.JButton();
-        btCancel = new javax.swing.JButton();
+        userInfoLabel = new javax.swing.JLabel();
+        permissionLabel = new javax.swing.JLabel();
+        permissionSelector = new javax.swing.JComboBox();
+        commitButton = new javax.swing.JButton();
+        cancelButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText(view.administrator.Administrator.nameTypeToChange + " veranderen voor gebruiker: " + view.administrator.Administrator.accountToChange);
+        userInfoLabel.setText(view.administrator.Administrator.nameTypeToChange + " veranderen voor gebruiker: " + view.administrator.Administrator.accountToChange);
 
-        jLabel2.setText("Selecteer groep");
+        permissionLabel.setText("Selecteer groep");
 
-        comboPermission.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Member", "Manager", "Administrator", " " }));
+        permissionSelector.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Member", "Manager", "Administrator", " " }));
 
-        btExecute.setText("Toepassen");
+        commitButton.setText("Toepassen");
 
-        btCancel.setText("Annuleren");
+        cancelButton.setText("Annuleren");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -53,17 +53,17 @@ public class ChangePermission extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(userInfoLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(btCancel)
+                                .addComponent(cancelButton)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btExecute))
+                                .addComponent(commitButton))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(permissionLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(comboPermission, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(permissionSelector, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -71,15 +71,15 @@ public class ChangePermission extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(userInfoLabel)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(comboPermission, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(permissionLabel)
+                    .addComponent(permissionSelector, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btExecute)
-                    .addComponent(btCancel))
+                    .addComponent(commitButton)
+                    .addComponent(cancelButton))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -122,10 +122,10 @@ public class ChangePermission extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btCancel;
-    private javax.swing.JButton btExecute;
-    private javax.swing.JComboBox comboPermission;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton cancelButton;
+    private javax.swing.JButton commitButton;
+    private javax.swing.JLabel permissionLabel;
+    private javax.swing.JComboBox permissionSelector;
+    private javax.swing.JLabel userInfoLabel;
     // End of variables declaration//GEN-END:variables
 }

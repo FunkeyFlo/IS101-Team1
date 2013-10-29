@@ -30,8 +30,8 @@ public class Manager extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jMenuBar2 = new javax.swing.JMenuBar();
-        jMenu2 = new javax.swing.JMenu();
+        menuBar = new javax.swing.JMenuBar();
+        userMenu = new javax.swing.JMenu();
         changePassword = new javax.swing.JMenuItem();
         logout = new javax.swing.JMenuItem();
 
@@ -41,7 +41,7 @@ public class Manager extends javax.swing.JFrame {
 
         jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Flo\\Desktop\\grafiek.jpg")); // NOI18N
 
-        jMenu2.setText("Gebruiker");
+        userMenu.setText("Gebruiker");
 
         changePassword.setText("Wachtwoord wijzigen..");
         changePassword.addActionListener(new java.awt.event.ActionListener() {
@@ -49,7 +49,7 @@ public class Manager extends javax.swing.JFrame {
                 changePasswordActionPerformed(evt);
             }
         });
-        jMenu2.add(changePassword);
+        userMenu.add(changePassword);
 
         logout.setText("Uitloggen");
         logout.addActionListener(new java.awt.event.ActionListener() {
@@ -57,11 +57,11 @@ public class Manager extends javax.swing.JFrame {
                 logoutActionPerformed(evt);
             }
         });
-        jMenu2.add(logout);
+        userMenu.add(logout);
 
-        jMenuBar2.add(jMenu2);
+        menuBar.add(userMenu);
 
-        setJMenuBar(jMenuBar2);
+        setJMenuBar(menuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -130,8 +130,8 @@ public class Manager extends javax.swing.JFrame {
     private javax.swing.JMenuItem changePassword;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem logout;
+    private javax.swing.JMenuBar menuBar;
+    private javax.swing.JMenu userMenu;
     // End of variables declaration//GEN-END:variables
 }
