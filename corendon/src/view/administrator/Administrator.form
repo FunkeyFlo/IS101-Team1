@@ -84,10 +84,10 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jPanel8" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
-                      <Component id="jPanel9" min="-2" pref="236" max="-2" attributes="0"/>
+                      <Component id="jPanel9" min="-2" pref="158" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jPanel7" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="29" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -113,35 +113,24 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="changeLastName" alignment="0" max="32767" attributes="0"/>
-                      <Component id="changeFirstName" alignment="0" max="32767" attributes="0"/>
-                      <Component id="changeUserGroup" alignment="0" max="32767" attributes="0"/>
-                      <Component id="unlockAccount" alignment="0" max="32767" attributes="0"/>
-                      <Component id="resetPassword" alignment="0" max="32767" attributes="0"/>
-                      <Component id="lockAccount" alignment="0" max="32767" attributes="0"/>
-                      <Component id="deleteUser" alignment="0" max="32767" attributes="0"/>
-                  </Group>
+                  <Component id="deleteUser" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
+              <Component id="unlockAccount" alignment="0" max="32767" attributes="0"/>
+              <Component id="resetPassword" alignment="0" max="32767" attributes="0"/>
+              <Component id="lockAccount" alignment="0" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
-                  <Component id="changeFirstName" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="changeLastName" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="changeUserGroup" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="unlockAccount" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="lockAccount" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="resetPassword" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="104" max="-2" attributes="0"/>
                   <Component id="deleteUser" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -149,30 +138,6 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="changeFirstName">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Wijzig voornaam"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="changeFirstNameActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="changeLastName">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Wijzig achternaam"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="changeLastNameActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="changeUserGroup">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Wijzig gebruikersgroep"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="changeUserGroupActionPerformed"/>
-          </Events>
-        </Component>
         <Component class="javax.swing.JButton" name="unlockAccount">
           <Properties>
             <Property name="text" type="java.lang.String" value="Account ontgrendelen"/>
@@ -396,7 +361,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                  <Component id="jScrollPane1" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" pref="561" max="32767" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="refreshButton1" alignment="3" min="-2" max="-2" attributes="0"/>
