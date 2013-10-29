@@ -1119,6 +1119,7 @@ public class Employee extends javax.swing.JFrame {
 
             clearFields();
             updateCustomerTable2();
+            warningLabel1.setText("");
         }
     }//GEN-LAST:event_createCustomer1ActionPerformed
 
