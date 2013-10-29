@@ -84,16 +84,17 @@ public class Luggage {
         }
         return luggages;
     }
-//        
-//    public void setNewLuggage(String tfFirstName, String tfLastName,
-//            String tfAddress, String tfPostalCode, String tfEmail,
-//            String tfPhoneHome, String tfPhoneMobile) {
-//        String sql = "INSERT INTO fys.`customer` (first_name, last_name, address, postal_code, email, phone_home, phone_mobile) VALUES ('" 
-//                + tfFirstName + "', '" + tfLastName + "', '" + tfAddress 
-//                + "', '" + tfPostalCode + "', '" + tfEmail + "', '"
-//                + tfPhoneHome + "', '" + tfPhoneMobile + "'";
-//        db.insertQuery(sql);
-//    }
+        
+    // moet nog waardes van luggage krijgen, staan nu nog customer waardes in
+    public void setNewLuggage(String tfFirstName, String tfLastName,
+            String tfAddress, String tfPostalCode, String tfEmail,
+            String tfPhoneHome, String tfPhoneMobile) {
+        String sql = "INSERT INTO fys.`customer` (first_name, last_name, address, postal_code, email, phone_home, phone_mobile) VALUES ('" 
+                + tfFirstName + "', '" + tfLastName + "', '" + tfAddress 
+                + "', '" + tfPostalCode + "', '" + tfEmail + "', '"
+                + tfPhoneHome + "', '" + tfPhoneMobile + "'";
+        db.insertQuery(sql);
+    }
 
     /**
      * @return the db
@@ -135,6 +136,11 @@ public class Luggage {
      */
     public void setCustomerId(int customerId) {
         this.customerId = customerId;
+    }
+    
+    public void linkCustomerId(int customerId, int luggageId) {
+        String sql = "UPDATE `luggage` SET `customer_id` = " + customerId + " WHERE `luggage_id` = " + luggageId;
+        db.insertQuery(sql);
     }
 
     /**

@@ -8,6 +8,7 @@ import connectivity.*;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import main.*;
+import static view.administrator.Administrator.accountToChange;
 /**
  *
  * @author Flo
@@ -19,6 +20,8 @@ public class Employee extends javax.swing.JFrame {
     private List<Luggage> luggages;
     private List<Customer> customers;
     private DefaultTableModel modelLuggage1, modelCustomer1, modelLuggage2, modelCustomer2;
+    public static int customerId;
+    public static int luggageId;
     
     public Employee() {
         initComponents();
@@ -887,6 +890,11 @@ public class Employee extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Opties"));
 
         linkButton.setText("Koppelen");
+        linkButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                linkButtonActionPerformed(evt);
+            }
+        });
 
         refreshTables1.setText("Overzichten verversen");
         refreshTables1.addActionListener(new java.awt.event.ActionListener() {
@@ -1142,6 +1150,28 @@ public class Employee extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void linkButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_linkButtonActionPerformed
+        Luggage luggage = new Luggage();
+        String customerToLink = customerTable1.getValueAt(customerTable1.getSelectedRow(), 0).toString();
+        String luggageToLink = luggageTable1.getValueAt(luggageTable1.getSelectedRow(), 0).toString();
+        
+        System.out.println(customerToLink);
+        System.out.println(luggageToLink);
+        
+        customerId = Integer.parseInt(customerToLink);
+        luggageId = Integer.parseInt(luggageToLink);
+                
+        System.out.println(luggageId);
+        System.out.println(customerId);
+        
+        luggage.linkCustomerId(customerId, luggageId);
+        
+        
+        
+        updateCustomerTable1();
+        updateLuggageTable1();
+    }//GEN-LAST:event_linkButtonActionPerformed
 
     /**
      * @param args the command line arguments
