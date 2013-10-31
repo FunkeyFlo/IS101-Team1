@@ -8,6 +8,7 @@ import connectivity.*;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import main.*;
+import view.employee.LinkLuggagePopUp;
 import static view.administrator.Administrator.accountToChange;
 /**
  *
@@ -22,6 +23,7 @@ public class Employee extends javax.swing.JFrame {
     private DefaultTableModel modelLuggage1, modelCustomer1, modelLuggage2, modelCustomer2;
     public static int customerId;
     public static int luggageId;
+    public static String customerFullName;
     
     public Employee() {
         initComponents();
@@ -1152,23 +1154,22 @@ public class Employee extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void linkButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_linkButtonActionPerformed
-        Luggage luggage = new Luggage();
+        
         String customerToLink = customerTable1.getValueAt(customerTable1.getSelectedRow(), 0).toString();
         String luggageToLink = luggageTable1.getValueAt(luggageTable1.getSelectedRow(), 0).toString();
+        String customerFirstName = customerTable1.getValueAt(customerTable1.getSelectedRow(), 1).toString() + " ";
+        String customerLastName = customerTable1.getValueAt(customerTable1.getSelectedRow(), 2).toString();
+        customerFullName = customerFirstName + customerLastName;
         
-//        System.out.println(customerToLink);
+//        System.out.println(customerFullName);
 //        System.out.println(luggageToLink);
         
         customerId = Integer.parseInt(customerToLink);
         luggageId = Integer.parseInt(luggageToLink);
-                
-//        System.out.println(luggageId);
-//        System.out.println(customerId);
         
-        luggage.linkCustomerId(customerId, luggageId);
-        
-        updateCustomerTable1();
-        updateLuggageTable1();
+       Main.displayLinkLuggage();
+       updateCustomerTable1();
+       updateLuggageTable1();
     }//GEN-LAST:event_linkButtonActionPerformed
 
     /**

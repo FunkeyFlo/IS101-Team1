@@ -8,7 +8,7 @@ import view.administrator.Administrator;
 import view.administrator.ChangeName;
 import view.employee.RegisterCustomer;
 import view.employee.Employee;
-import view.employee.LinkLuggage;
+import view.employee.LinkLuggagePopUp;
 import view.employee.Medewerker;
 import view.manager.Manager;
 import javax.swing.JFrame;
@@ -56,7 +56,7 @@ public class Main {
     }
     
     public static void displayLinkLuggage() {
-        LinkLuggage frameLinkLuggage = new LinkLuggage();
+        LinkLuggagePopUp frameLinkLuggage = new LinkLuggagePopUp();
         frameLinkLuggage.setVisible(true);
     }
     
