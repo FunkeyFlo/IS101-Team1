@@ -419,11 +419,13 @@
         <Component class="javax.swing.JComboBox" name="searchComboBox">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
+              <StringArray count="6">
                 <StringItem index="0" value="Alle velden"/>
-                <StringItem index="1" value="Voornaam"/>
-                <StringItem index="2" value="Achternaam"/>
-                <StringItem index="3" value="Gebruikersnaam"/>
+                <StringItem index="1" value="Gebruikers ID"/>
+                <StringItem index="2" value="Voornaam"/>
+                <StringItem index="3" value="Achternaam"/>
+                <StringItem index="4" value="Gebruikersnaam"/>
+                <StringItem index="5" value="Rechten ID"/>
               </StringArray>
             </Property>
           </Properties>

@@ -418,7 +418,7 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="customerSearchButton1" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jComboBox6" min="-2" max="-2" attributes="0"/>
+                                  <Component id="cbSearchCustomer1" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace pref="207" max="32767" attributes="0"/>
                                   <Component id="refreshCustomerTable2" min="-2" max="-2" attributes="0"/>
                               </Group>
@@ -435,7 +435,7 @@
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="customerSearchField1" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="customerSearchButton1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jComboBox6" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="cbSearchCustomer1" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="refreshCustomerTable2" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
@@ -452,6 +452,9 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Zoeken"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="customerSearchButton1ActionPerformed"/>
+                  </Events>
                 </Component>
                 <Container class="javax.swing.JScrollPane" name="jScrollPane3">
                   <AuxValues>
@@ -484,7 +487,7 @@
                     </Component>
                   </SubComponents>
                 </Container>
-                <Component class="javax.swing.JComboBox" name="jComboBox6">
+                <Component class="javax.swing.JComboBox" name="cbSearchCustomer1">
                   <Properties>
                     <Property name="maximumRowCount" type="int" value="11"/>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
@@ -629,10 +632,10 @@
                                       <Component id="jScrollPane2" max="32767" attributes="0"/>
                                       <Group type="102" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="rbtnLost1" min="-2" max="-2" attributes="0"/>
                                               <Component id="tfLocation1" min="-2" pref="134" max="-2" attributes="0"/>
                                               <Component id="tfCustomerID1" min="-2" pref="168" max="-2" attributes="0"/>
-                                              <Component id="rbtnFound1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jRadioButton1" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jRadioButton2" alignment="0" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace min="0" pref="69" max="32767" attributes="0"/>
                                       </Group>
@@ -667,11 +670,11 @@
                           <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="lblCustomerID7" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="rbtnLost1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jRadioButton1" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="rbtnFound1" min="-2" pref="23" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                          <Component id="jRadioButton2" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="createLuggage1" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jButton3" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -709,22 +712,6 @@
                     <Property name="text" type="java.lang.String" value="Status"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JRadioButton" name="rbtnLost1">
-                  <Properties>
-                    <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-                      <ComponentRef name="buttonGroup1"/>
-                    </Property>
-                    <Property name="text" type="java.lang.String" value="Verloren"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JRadioButton" name="rbtnFound1">
-                  <Properties>
-                    <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-                      <ComponentRef name="buttonGroup1"/>
-                    </Property>
-                    <Property name="text" type="java.lang.String" value="Gevonden"/>
-                  </Properties>
-                </Component>
                 <Component class="javax.swing.JButton" name="createLuggage1">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Voeg toe"/>
@@ -750,6 +737,19 @@
                     </Component>
                   </SubComponents>
                 </Container>
+                <Component class="javax.swing.JRadioButton" name="jRadioButton1">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Vermist"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JRadioButton" name="jRadioButton2">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Afgehandeld"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRadioButton2ActionPerformed"/>
+                  </Events>
+                </Component>
               </SubComponents>
             </Container>
             <Container class="javax.swing.JPanel" name="luggageTablePanel">
@@ -1091,7 +1091,7 @@
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="customerSearchButton" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jComboBox3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="cbSearchCustomer" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   </Group>
                                   <Component id="jScrollPane1" alignment="0" pref="617" max="32767" attributes="0"/>
@@ -1107,7 +1107,7 @@
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="customerSearchField" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="customerSearchButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jComboBox3" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="cbSearchCustomer" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jScrollPane1" pref="320" max="32767" attributes="0"/>
@@ -1123,6 +1123,9 @@
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Zoeken"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="customerSearchButtonActionPerformed"/>
+                      </Events>
                     </Component>
                     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
                       <AuxValues>
@@ -1156,7 +1159,7 @@
                         </Component>
                       </SubComponents>
                     </Container>
-                    <Component class="javax.swing.JComboBox" name="jComboBox3">
+                    <Component class="javax.swing.JComboBox" name="cbSearchCustomer">
                       <Properties>
                         <Property name="maximumRowCount" type="int" value="11"/>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">

@@ -119,25 +119,6 @@ public class User {
         }
     }
     
-    public List<User> getUserList() {
-        List<User> users = new ArrayList<>();
-        try {
-            String sql = "SELECT * FROM `user`";
-            ResultSet result = db.doQuery(sql);
-            while (result.next()) {
-                users.add(new User(result.getInt("user_id"),
-                        result.getString("first_name"),
-                        result.getString("last_name"),
-                        result.getString("username"),
-                        result.getInt("permission_id"),
-                        result.getInt("incorrect_login")));
-            }
-        } catch (SQLException e) {
-            System.out.println(db.SQL_EXCEPTION + e.getMessage());
-        }
-        return users;
-    }
-    
     public void setNewUser(String tfUsername, String tfFirstName, String tfLastName, String tfPassword, int inputPermissionId) {
         String sql = "INSERT INTO `user` (username, first_name, last_name, password, permission_id, incorrect_login) VALUES ('" 
                 + tfUsername + "', '" + tfFirstName + "', '" + tfLastName 
@@ -176,10 +157,37 @@ public class User {
         db.insertQuery(sql);
     }
     
-    public List<User> searchUserList(String dbField, String tfSearch) {
+    public List<User> searchUserList(int searchField, String tfSearch) {
         List<User> users = new ArrayList<>();
+        String sql = "";
+        
+        if (searchField == 0) {
+            sql = "SELECT * FROM `user` WHERE `user_id` LIKE '%" + tfSearch + "%'"
+                    + "OR `last_name` LIKE '%" + tfSearch + "%'" 
+                    + "OR `first_name` LIKE '%" + tfSearch + "%'"
+                    + "OR `username` LIKE '%" + tfSearch + "%'"
+                    + "OR `permission_id` LIKE '%" + tfSearch + "%'";
+        }
+        else if (searchField == 1) {
+            sql = "SELECT * FROM `user` WHERE `user_id` LIKE '%" + tfSearch + "%'";
+        }
+        else if (searchField == 2) {
+            sql = "SELECT * FROM `user` WHERE `first_name` LIKE '%" + tfSearch + "%'";
+        }
+        else if (searchField == 3) {
+            sql = "SELECT * FROM `user` WHERE `last_name` LIKE '%" + tfSearch + "%'";
+        }
+        else if (searchField == 4) {
+            sql = "SELECT * FROM `user` WHERE `username` LIKE '%" + tfSearch + "%'";
+        }
+        else if (searchField == 5) {
+            sql = "SELECT * FROM `user` WHERE `permission_id` LIKE '%" + tfSearch + "%'";
+        }
+        else {
+            sql = "SELECT * FROM `user`";
+        }
+//        System.out.println(sql);
         try {
-            String sql = "SELECT * FROM `user` WHERE `" + dbField + "` LIKE '%" + tfSearch + "%'";
             ResultSet result = db.doQuery(sql);
             while (result.next()) {
                 users.add(new User(result.getInt("user_id"),
@@ -188,7 +196,6 @@ public class User {
                         result.getString("username"),
                         result.getInt("permission_id"),
                         result.getInt("incorrect_login")));
-                System.out.println(result.getString("last_name"));
             }
         } catch (SQLException e) {
             System.out.println(db.SQL_EXCEPTION + e.getMessage());

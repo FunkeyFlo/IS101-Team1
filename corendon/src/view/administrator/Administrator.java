@@ -25,27 +25,12 @@ public class Administrator extends javax.swing.JFrame {
     public Administrator() {
         initComponents();
         model = (DefaultTableModel) this.userTable.getModel();
-        updateUserTable();
+        searchUserTable(9999, "");
     }
     
-    private void updateUserTable() {
+    private void searchUserTable(int defInt, String defStr) {
         model.setRowCount(0); //nodig voor 
-        users = userModel.getUserList();
-        for(User user : users) {
-            model.addRow(new Object[] {new Integer(user.getUserId()),
-                user.getFirstName(),
-                user.getLastName(),
-                user.getUsername(),
-                user.getPermissionId(),
-                (user.getIncorrectLogin() >= userModel.MAX_INCORRECT_LOGINS)? "VERGRENDELD" : "Actief"});
-
-            //System.out.println(user.getFirstName());
-        }
-    }
-    
-    private void searchUserTable() {
-        model.setRowCount(0); //nodig voor 
-        users = userModel.getUserList();
+        users = userModel.searchUserList(defInt, defStr);
         for(User user : users) {
             model.addRow(new Object[] {new Integer(user.getUserId()),
                 user.getFirstName(),
@@ -71,7 +56,7 @@ public class Administrator extends javax.swing.JFrame {
 
         // maakt alle textakken leeg
         clearFields();
-        updateUserTable();
+        searchUserTable(9999, "");
     }
     
     private void clearFields() {
@@ -364,7 +349,7 @@ public class Administrator extends javax.swing.JFrame {
             }
         });
 
-        searchComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Alle velden", "Voornaam", "Achternaam", "Gebruikersnaam" }));
+        searchComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Alle velden", "Gebruikers ID", "Voornaam", "Achternaam", "Gebruikersnaam", "Rechten ID" }));
         searchComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 searchComboBoxActionPerformed(evt);
@@ -486,7 +471,7 @@ public class Administrator extends javax.swing.JFrame {
     }//GEN-LAST:event_clearFieldsActionPerformed
 
     private void refreshButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButton1ActionPerformed
-        updateUserTable();
+        searchUserTable(9999, "");
     }//GEN-LAST:event_refreshButton1ActionPerformed
 
     private void changePasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changePasswordActionPerformed
@@ -507,7 +492,7 @@ public class Administrator extends javax.swing.JFrame {
     private void lockAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lockAccountActionPerformed
         user.changeUserIntData(userTable.getValueAt(userTable.getSelectedRow(),
                 3).toString(), "incorrect_login", user.MAX_INCORRECT_LOGINS);
-        updateUserTable();
+        searchUserTable(9999, "");
     }//GEN-LAST:event_lockAccountActionPerformed
 
     private void tfPasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfPasswordKeyPressed
@@ -542,13 +527,13 @@ public class Administrator extends javax.swing.JFrame {
     private void unlockAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_unlockAccountActionPerformed
         user.changeUserStringData(userTable.getValueAt(userTable.getSelectedRow(),
                 3).toString(), "incorrect_login", "0");
-        updateUserTable();
+        searchUserTable(9999, "");
     }//GEN-LAST:event_unlockAccountActionPerformed
 
     private void deleteUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteUserActionPerformed
         user.deleteUser(userTable.getValueAt(userTable.getSelectedRow(),
             3).toString());
-        updateUserTable();
+        searchUserTable(9999, "");
     }//GEN-LAST:event_deleteUserActionPerformed
 
     private void searchComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchComboBoxActionPerformed
@@ -556,24 +541,11 @@ public class Administrator extends javax.swing.JFrame {
     }//GEN-LAST:event_searchComboBoxActionPerformed
 
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
-        int searchSelection = searchComboBox.getSelectedIndex();
-        String dbField;
+        int searchField = searchComboBox.getSelectedIndex();
 //        System.out.println(searchSelection);
-        if (searchSelection == 0) {
-            dbField = "allFields";
-        }
-        else if (searchSelection == 1) {
-            dbField = "first_name";
-        }
-        else if (searchSelection == 2) {
-            dbField = "last_name";
-        }
-        else
-            dbField = "username";
         
         //System.out.println(dbField + tfSearch.getText());
-        user.searchUserList(dbField, tfSearch.getText().trim());
-        
+        searchUserTable(searchField, tfSearch.getText().trim());
     }//GEN-LAST:event_searchButtonActionPerformed
 
     /**

@@ -67,10 +67,56 @@ public class Customer {
         }
     }
     
-    public List<Customer> getCustomerList() {
+    public List<Customer> searchCustomerList(int searchField, String tfSearch) {
         List<Customer> customers = new ArrayList<>();
+        String sql = "", sqlSelect = "SELECT * FROM `customer`";
+        
+        if (searchField == 0) {
+            sql = sqlSelect + " WHERE `customer_id` LIKE '%" + tfSearch + "%'"
+                    + "OR `first_name` LIKE '%" + tfSearch + "%'" 
+                    + "OR `last_name` LIKE '%" + tfSearch + "%'"
+                    + "OR `address` LIKE '%" + tfSearch + "%'"
+                    + "OR `postal_code` LIKE '%" + tfSearch + "%'"
+                    + "OR `city` LIKE '%" + tfSearch + "%'"
+                    + "OR `country` LIKE '%" + tfSearch + "%'"
+                    + "OR `email` LIKE '%" + tfSearch + "%'"
+                    + "OR `phone_home` LIKE '%" + tfSearch + "%'"
+                    + "OR `phone_mobile` LIKE '%" + tfSearch + "%'";
+        }
+        else if (searchField == 1) {
+            sql = sqlSelect + " WHERE `customer_id` LIKE '%" + tfSearch + "%'";
+        }
+        else if (searchField == 2) {
+            sql = sqlSelect + " WHERE `first_name` LIKE '%" + tfSearch + "%'";
+        }
+        else if (searchField == 3) {
+            sql = sqlSelect + " WHERE `last_name` LIKE '%" + tfSearch + "%'";
+        }
+        else if (searchField == 4) {
+            sql = sqlSelect + " WHERE `address` LIKE '%" + tfSearch + "%'";
+        }
+        else if (searchField == 5) {
+            sql = sqlSelect + " WHERE `postal_code` LIKE '%" + tfSearch + "%'";
+        }
+        else if (searchField == 6) {
+            sql = sqlSelect + " WHERE `city` LIKE '%" + tfSearch + "%'";
+        }
+        else if (searchField == 7) {
+            sql = sqlSelect + " WHERE `country` LIKE '%" + tfSearch + "%'";
+        }
+        else if (searchField == 8) {
+            sql = sqlSelect + " WHERE `email` LIKE '%" + tfSearch + "%'";
+        }
+        else if (searchField == 9) {
+            sql = sqlSelect + " WHERE `phone_home` LIKE '%" + tfSearch + "%'";
+        }
+        else if (searchField == 10) {
+            sql = sqlSelect + " WHERE `phone_mobile` LIKE '%" + tfSearch + "%'";
+        }
+        else
+            sql = sqlSelect;
+        
         try {
-            String sql = "SELECT * FROM `customer`";
             ResultSet result = getDb().doQuery(sql);
             while (result.next()) {
                 customers.add(new Customer(result.getInt("customer_id"),
