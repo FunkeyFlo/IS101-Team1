@@ -28,9 +28,9 @@ public class Administrator extends javax.swing.JFrame {
         searchUserTable(9999, "");
     }
     
-    private void searchUserTable(int defInt, String defStr) {
+    private void searchUserTable(int dbField, String searchArg) {
         model.setRowCount(0); //nodig voor 
-        users = userModel.searchUserList(defInt, defStr);
+        users = userModel.searchUserList(dbField, searchArg);
         for(User user : users) {
             model.addRow(new Object[] {new Integer(user.getUserId()),
                 user.getFirstName(),

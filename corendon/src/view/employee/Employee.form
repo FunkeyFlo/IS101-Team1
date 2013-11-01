@@ -768,11 +768,11 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="baggageSearchField1" min="-2" pref="145" max="-2" attributes="0"/>
+                                  <Component id="luggageSearchField1" min="-2" pref="145" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="baggageSearchButton1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="luggageSearchButton1" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jComboBox5" min="-2" max="-2" attributes="0"/>
+                                  <Component id="cbSearchLuggage1" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
                                   <Component id="refreshLuggageTable2" min="-2" max="-2" attributes="0"/>
                               </Group>
@@ -787,10 +787,10 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="baggageSearchField1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="baggageSearchButton1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jComboBox5" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="luggageSearchField1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="cbSearchLuggage1" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="refreshLuggageTable2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="luggageSearchButton1" alignment="1" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jScrollPane7" pref="413" max="32767" attributes="0"/>
@@ -800,12 +800,15 @@
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JTextField" name="baggageSearchField1">
+                <Component class="javax.swing.JTextField" name="luggageSearchField1">
                 </Component>
-                <Component class="javax.swing.JButton" name="baggageSearchButton1">
+                <Component class="javax.swing.JButton" name="luggageSearchButton1">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Zoeken"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="luggageSearchButton1ActionPerformed"/>
+                  </Events>
                 </Component>
                 <Container class="javax.swing.JScrollPane" name="jScrollPane7">
                   <AuxValues>
@@ -834,7 +837,7 @@
                     </Component>
                   </SubComponents>
                 </Container>
-                <Component class="javax.swing.JComboBox" name="jComboBox5">
+                <Component class="javax.swing.JComboBox" name="cbSearchLuggage1">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="7">
@@ -985,11 +988,11 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="baggageSearchField" min="-2" pref="145" max="-2" attributes="0"/>
+                                      <Component id="luggageSearchField" min="-2" pref="145" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="baggageSearchButton" min="-2" max="-2" attributes="0"/>
+                                      <Component id="luggageSearchButton" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jComboBox2" min="-2" max="-2" attributes="0"/>
+                                      <Component id="cbSearchLuggage" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="0" pref="69" max="32767" attributes="0"/>
                                   </Group>
                                   <Component id="jScrollPane6" alignment="0" pref="305" max="32767" attributes="0"/>
@@ -1003,9 +1006,9 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="baggageSearchField" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="baggageSearchButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jComboBox2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="luggageSearchField" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="luggageSearchButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="cbSearchLuggage" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jScrollPane6" pref="320" max="32767" attributes="0"/>
@@ -1015,12 +1018,15 @@
                     </DimensionLayout>
                   </Layout>
                   <SubComponents>
-                    <Component class="javax.swing.JTextField" name="baggageSearchField">
+                    <Component class="javax.swing.JTextField" name="luggageSearchField">
                     </Component>
-                    <Component class="javax.swing.JButton" name="baggageSearchButton">
+                    <Component class="javax.swing.JButton" name="luggageSearchButton">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Zoeken"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="luggageSearchButtonActionPerformed"/>
+                      </Events>
                     </Component>
                     <Container class="javax.swing.JScrollPane" name="jScrollPane6">
                       <AuxValues>
@@ -1049,7 +1055,7 @@
                         </Component>
                       </SubComponents>
                     </Container>
-                    <Component class="javax.swing.JComboBox" name="jComboBox2">
+                    <Component class="javax.swing.JComboBox" name="cbSearchLuggage">
                       <Properties>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                           <StringArray count="7">

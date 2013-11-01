@@ -64,10 +64,55 @@ public class Luggage {
         }
     }
     
-    public List<Luggage> getLuggageList() {
+    public List<Luggage> searchLuggageList(int dbField, String searchArg) {
         List<Luggage> luggages = new ArrayList<>();
+        String sql, sqlSelect = "SELECT * FROM `luggage`";
+        
+        // Statement for searching all collumns
+        if (dbField == 0) {
+            sql = sqlSelect + " WHERE `luggage_id` LIKE '%" + searchArg + "%'"
+                    + "OR `customer_id` LIKE '%" + searchArg + "%'" 
+                    + "OR `description` LIKE '%" + searchArg + "%'"
+                    + "OR `location` LIKE '%" + searchArg + "%'"
+                    + "OR `date` LIKE '%" + searchArg + "%'"
+                    + "OR `time` LIKE '%" + searchArg + "%'";
+        }
+        
+        // for searching luggageId
+        else if (dbField == 1) {
+            sql = sqlSelect + " WHERE `luggage_id` LIKE '%" + searchArg + "%'";
+        }
+        
+        // customerId
+        else if (dbField == 2) {
+            sql = sqlSelect + " WHERE `customer_id` LIKE '%" + searchArg + "%'";
+        }
+        
+        // description
+        else if (dbField == 3) {
+            sql = sqlSelect + " WHERE `description` LIKE '%" + searchArg + "%'";
+        }
+        
+        // location
+        else if (dbField == 4) {
+            sql = sqlSelect + " WHERE `location` LIKE '%" + searchArg + "%'";
+        }
+        
+        // date
+        else if (dbField == 5) {
+            sql = sqlSelect + " WHERE `date` LIKE '%" + searchArg + "%'";
+        }
+        
+        // time
+        else if (dbField == 6) {
+            sql = sqlSelect + " WHERE `time` LIKE '%" + searchArg + "%'";
+        }
+        
+        // Else statement is used to fill the table with all users
+        else
+            sql = sqlSelect;
+        
         try {
-            String sql = "SELECT * FROM `luggage`";
             ResultSet result = getDb().doQuery(sql);
             while (result.next()) {
                 luggages.add(new Luggage(result.getInt("luggage_id"),

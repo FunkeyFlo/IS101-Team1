@@ -28,6 +28,7 @@ public class Customer {
         db.openConnection();
     }
     
+    // Constructor used to initiate the customer object
     public Customer(int customerId, String firstName, String lastName, String address,
             String postalCode, String city, String country, String email, String phoneHome, String phoneMobile) {
         this.customerId = customerId;
@@ -44,6 +45,7 @@ public class Customer {
 //        System.out.println(customerId + " " + lastName + " " + email);
     }
     
+    // Gets customer data for one specific user
     public void getCustomerData(String tfInput, String databaseVariable) {
         try {
             String sql = "SELECT *, COUNT(*) as `rows` FROM `customer` WHERE `" + databaseVariable + "`='" + tfInput + "'";
@@ -67,52 +69,76 @@ public class Customer {
         }
     }
     
-    public List<Customer> searchCustomerList(int searchField, String tfSearch) {
+    // Used to populate jTables and search database for customers
+    public List<Customer> searchCustomerList(int dbField, String searchArg) {
         List<Customer> customers = new ArrayList<>();
-        String sql = "", sqlSelect = "SELECT * FROM `customer`";
+        String sql, sqlSelect = "SELECT * FROM `customer`";
         
-        if (searchField == 0) {
-            sql = sqlSelect + " WHERE `customer_id` LIKE '%" + tfSearch + "%'"
-                    + "OR `first_name` LIKE '%" + tfSearch + "%'" 
-                    + "OR `last_name` LIKE '%" + tfSearch + "%'"
-                    + "OR `address` LIKE '%" + tfSearch + "%'"
-                    + "OR `postal_code` LIKE '%" + tfSearch + "%'"
-                    + "OR `city` LIKE '%" + tfSearch + "%'"
-                    + "OR `country` LIKE '%" + tfSearch + "%'"
-                    + "OR `email` LIKE '%" + tfSearch + "%'"
-                    + "OR `phone_home` LIKE '%" + tfSearch + "%'"
-                    + "OR `phone_mobile` LIKE '%" + tfSearch + "%'";
+        // Statement for searching all collumns
+        if (dbField == 0) {
+            sql = sqlSelect + " WHERE `customer_id` LIKE '%" + searchArg + "%'"
+                    + "OR `first_name` LIKE '%" + searchArg + "%'" 
+                    + "OR `last_name` LIKE '%" + searchArg + "%'"
+                    + "OR `address` LIKE '%" + searchArg + "%'"
+                    + "OR `postal_code` LIKE '%" + searchArg + "%'"
+                    + "OR `city` LIKE '%" + searchArg + "%'"
+                    + "OR `country` LIKE '%" + searchArg + "%'"
+                    + "OR `email` LIKE '%" + searchArg + "%'"
+                    + "OR `phone_home` LIKE '%" + searchArg + "%'"
+                    + "OR `phone_mobile` LIKE '%" + searchArg + "%'";
         }
-        else if (searchField == 1) {
-            sql = sqlSelect + " WHERE `customer_id` LIKE '%" + tfSearch + "%'";
+        
+        // for searching customerId
+        else if (dbField == 1) {
+            sql = sqlSelect + " WHERE `customer_id` LIKE '%" + searchArg + "%'";
         }
-        else if (searchField == 2) {
-            sql = sqlSelect + " WHERE `first_name` LIKE '%" + tfSearch + "%'";
+        
+        // firstName
+        else if (dbField == 2) {
+            sql = sqlSelect + " WHERE `first_name` LIKE '%" + searchArg + "%'";
         }
-        else if (searchField == 3) {
-            sql = sqlSelect + " WHERE `last_name` LIKE '%" + tfSearch + "%'";
+        
+        //lastName
+        else if (dbField == 3) {
+            sql = sqlSelect + " WHERE `last_name` LIKE '%" + searchArg + "%'";
         }
-        else if (searchField == 4) {
-            sql = sqlSelect + " WHERE `address` LIKE '%" + tfSearch + "%'";
+        
+        // address
+        else if (dbField == 4) {
+            sql = sqlSelect + " WHERE `address` LIKE '%" + searchArg + "%'";
         }
-        else if (searchField == 5) {
-            sql = sqlSelect + " WHERE `postal_code` LIKE '%" + tfSearch + "%'";
+        
+        // postalCode
+        else if (dbField == 5) {
+            sql = sqlSelect + " WHERE `postal_code` LIKE '%" + searchArg + "%'";
         }
-        else if (searchField == 6) {
-            sql = sqlSelect + " WHERE `city` LIKE '%" + tfSearch + "%'";
+        
+        // city
+        else if (dbField == 6) {
+            sql = sqlSelect + " WHERE `city` LIKE '%" + searchArg + "%'";
         }
-        else if (searchField == 7) {
-            sql = sqlSelect + " WHERE `country` LIKE '%" + tfSearch + "%'";
+        
+        // country
+        else if (dbField == 7) {
+            sql = sqlSelect + " WHERE `country` LIKE '%" + searchArg + "%'";
         }
-        else if (searchField == 8) {
-            sql = sqlSelect + " WHERE `email` LIKE '%" + tfSearch + "%'";
+        
+        // email
+        else if (dbField == 8) {
+            sql = sqlSelect + " WHERE `email` LIKE '%" + searchArg + "%'";
         }
-        else if (searchField == 9) {
-            sql = sqlSelect + " WHERE `phone_home` LIKE '%" + tfSearch + "%'";
+        
+        // phoneHome
+        else if (dbField == 9) {
+            sql = sqlSelect + " WHERE `phone_home` LIKE '%" + searchArg + "%'";
         }
-        else if (searchField == 10) {
-            sql = sqlSelect + " WHERE `phone_mobile` LIKE '%" + tfSearch + "%'";
+        
+        // phoneMobile
+        else if (dbField == 10) {
+            sql = sqlSelect + " WHERE `phone_mobile` LIKE '%" + searchArg + "%'";
         }
+        
+        // Else statement is used to fill the table with all users
         else
             sql = sqlSelect;
         
