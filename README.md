@@ -42,7 +42,13 @@ Wanneer men veranderingen in het project heeft aangebracht klikt men met de rech
 Hier vult men relevante informatie in, denk hierbij aan aanpassingen die je gemaakt hebt, waarom en waar.
 Daarna klikt men nogmaals met de rechtermuisknop op de gewenste Class/Package/src en selecteert men Git > Remote.. > Push. Loop deze reeks door en selecteer de nodige opties. Wanneer met een upstream blablabla.. error krijgt wil dit zeggen dat men niet de laatste versie heeft van het project heeft tijdens het pushen van de aanpassingen. Pull daarna het project.
 
+|=LIBRARIES============================================================|
 
+Voor sommige onderdelen zijn libraries nodig.
+
+De jFreeChart library toevoegen:
+Downloadlink: http://sourceforge.net/projects/jfreechart/files/ <-- Vergeet niet te unpacken
+Rechtermuisknop op het project in 'Projects', en ga naar 'properties'. Vervolgens ga je naar 'libraries'. Druk op Add 'JAR/Folder'. Ga naar je jFreeChart folder > lib folder, en voeg jCommon toe. Druk op edit. Bij source voeg je de source folder in je JFreeChart toe. Bij javadoc voeg je de checkstyle folder uit je JFreeChart folder toe.
 
 |=SQL Scripts==========================================================|
 
