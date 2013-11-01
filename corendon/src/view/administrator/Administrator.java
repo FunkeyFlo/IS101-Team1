@@ -43,6 +43,21 @@ public class Administrator extends javax.swing.JFrame {
         }
     }
     
+    private void searchUserTable() {
+        model.setRowCount(0); //nodig voor 
+        users = userModel.getUserList();
+        for(User user : users) {
+            model.addRow(new Object[] {new Integer(user.getUserId()),
+                user.getFirstName(),
+                user.getLastName(),
+                user.getUsername(),
+                user.getPermissionId(),
+                (user.getIncorrectLogin() >= userModel.MAX_INCORRECT_LOGINS)? "VERGRENDELD" : "Actief"});
+
+            //System.out.println(user.getFirstName());
+        }
+    }
+    
     private void doCreateUser(){
 
         String newUsername = tfUsername.getText().trim();
@@ -98,9 +113,9 @@ public class Administrator extends javax.swing.JFrame {
         refreshButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         userTable = new javax.swing.JTable();
-        jTextField1 = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox();
+        tfSearch = new javax.swing.JTextField();
+        searchButton = new javax.swing.JButton();
+        searchComboBox = new javax.swing.JComboBox();
         menuBar = new javax.swing.JMenuBar();
         userMenu = new javax.swing.JMenu();
         changePassword = new javax.swing.JMenuItem();
@@ -336,15 +351,25 @@ public class Administrator extends javax.swing.JFrame {
         userTable.setVerifyInputWhenFocusTarget(false);
         jScrollPane1.setViewportView(userTable);
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        tfSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                tfSearchActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Zoeken");
+        searchButton.setText("Zoeken");
+        searchButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchButtonActionPerformed(evt);
+            }
+        });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Alle velden", "Gebruikers ID", "Voornaam", "Achternaam", "Gebruikersnaam", "Rechten ID", "Account Status" }));
+        searchComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Alle velden", "Voornaam", "Achternaam", "Gebruikersnaam" }));
+        searchComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchComboBoxActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout userTablePanelLayout = new javax.swing.GroupLayout(userTablePanel);
         userTablePanel.setLayout(userTablePanelLayout);
@@ -355,11 +380,11 @@ public class Administrator extends javax.swing.JFrame {
                 .addGroup(userTablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 660, Short.MAX_VALUE)
                     .addGroup(userTablePanelLayout.createSequentialGroup()
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tfSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton2)
+                        .addComponent(searchButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(searchComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(refreshButton1)))
                 .addContainerGap())
@@ -372,9 +397,9 @@ public class Administrator extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(userTablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(refreshButton1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(searchButton)
+                    .addComponent(searchComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -510,9 +535,9 @@ public class Administrator extends javax.swing.JFrame {
             doCreateUser();
     }//GEN-LAST:event_permissionSelectorKeyPressed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void tfSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfSearchActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_tfSearchActionPerformed
 
     private void unlockAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_unlockAccountActionPerformed
         user.changeUserStringData(userTable.getValueAt(userTable.getSelectedRow(),
@@ -523,8 +548,33 @@ public class Administrator extends javax.swing.JFrame {
     private void deleteUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteUserActionPerformed
         user.deleteUser(userTable.getValueAt(userTable.getSelectedRow(),
             3).toString());
-    updateUserTable();
+        updateUserTable();
     }//GEN-LAST:event_deleteUserActionPerformed
+
+    private void searchComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchComboBoxActionPerformed
+
+    private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
+        int searchSelection = searchComboBox.getSelectedIndex();
+        String dbField;
+//        System.out.println(searchSelection);
+        if (searchSelection == 0) {
+            dbField = "allFields";
+        }
+        else if (searchSelection == 1) {
+            dbField = "first_name";
+        }
+        else if (searchSelection == 2) {
+            dbField = "last_name";
+        }
+        else
+            dbField = "username";
+        
+        //System.out.println(dbField + tfSearch.getText());
+        user.searchUserList(dbField, tfSearch.getText().trim());
+        
+    }//GEN-LAST:event_searchButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -566,11 +616,8 @@ public class Administrator extends javax.swing.JFrame {
     private javax.swing.JButton createUser;
     private javax.swing.JButton deleteUser;
     private javax.swing.JLabel firstNameLabel;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lastNameLabel;
     private javax.swing.JButton lockAccount;
     private javax.swing.JMenuItem logout;
@@ -580,9 +627,12 @@ public class Administrator extends javax.swing.JFrame {
     private javax.swing.JComboBox permissionSelector;
     private javax.swing.JButton refreshButton1;
     private javax.swing.JButton resetPassword;
+    private javax.swing.JButton searchButton;
+    private javax.swing.JComboBox searchComboBox;
     private javax.swing.JTextField tfFirstName;
     private javax.swing.JTextField tfLastName;
     private javax.swing.JPasswordField tfPassword;
+    private javax.swing.JTextField tfSearch;
     private javax.swing.JTextField tfUsername;
     private javax.swing.JButton unlockAccount;
     private javax.swing.JPanel userCreationPanel;

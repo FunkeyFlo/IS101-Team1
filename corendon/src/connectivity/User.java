@@ -175,6 +175,26 @@ public class User {
         String sql = "UPDATE `user` SET `password` = '" + tfPassword + "' WHERE `username`='" + tfUsername + "'";
         db.insertQuery(sql);
     }
+    
+    public List<User> searchUserList(String dbField, String tfSearch) {
+        List<User> users = new ArrayList<>();
+        try {
+            String sql = "SELECT * FROM `user` WHERE `" + dbField + "` LIKE '%" + tfSearch + "%'";
+            ResultSet result = db.doQuery(sql);
+            while (result.next()) {
+                users.add(new User(result.getInt("user_id"),
+                        result.getString("first_name"),
+                        result.getString("last_name"),
+                        result.getString("username"),
+                        result.getInt("permission_id"),
+                        result.getInt("incorrect_login")));
+                System.out.println(result.getString("last_name"));
+            }
+        } catch (SQLException e) {
+            System.out.println(db.SQL_EXCEPTION + e.getMessage());
+        }
+        return users;
+    }
 
     /**
      * @param userId the userId to set

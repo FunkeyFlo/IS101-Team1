@@ -850,6 +850,7 @@ public class Employee extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        customerTable1.setDragEnabled(true);
         jScrollPane1.setViewportView(customerTable1);
 
         jComboBox3.setMaximumRowCount(11);
