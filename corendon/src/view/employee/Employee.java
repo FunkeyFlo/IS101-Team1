@@ -5,11 +5,16 @@
 package view.employee;
 
 import connectivity.*;
+import java.awt.Component;
+import java.awt.Frame;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.List;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import main.*;
-import view.employee.LinkLuggagePopUp;
-import static view.administrator.Administrator.accountToChange;
+
 /**
  *
  * @author Flo
@@ -23,7 +28,12 @@ public class Employee extends javax.swing.JFrame {
     private DefaultTableModel modelLuggage1, modelCustomer1, modelLuggage2, modelCustomer2;
     public static int customerId;
     public static int luggageId;
+    String customerToLink = null;
+    String luggageToLink = null;
+    public boolean isLinked = false;
     public static String customerFullName;
+    private Component ErrorPopUp;
+    private Component LuggagePopUp;
     
     public Employee() {
         initComponents();
@@ -38,7 +48,7 @@ public class Employee extends javax.swing.JFrame {
         searchLuggageTable2(9999, "");
     }
     
-    private void searchLuggageTable1(int dbField, String searchArg) {
+    public void searchLuggageTable1(int dbField, String searchArg) {
         modelLuggage1.setRowCount(0); //nodig voor 
         luggages = luggageModel.searchLuggageList(dbField, searchArg);
         for(Luggage luggage : luggages) {
@@ -72,7 +82,7 @@ public class Employee extends javax.swing.JFrame {
         }
     }
     
-    private void searchCustomerTable1(int dbField, String searchArg) {
+    public void searchCustomerTable1(int dbField, String searchArg) {
         modelCustomer1.setRowCount(0); //nodig voor 
         customers = customerModel.searchCustomerList(dbField, searchArg);
         for(Customer customer : customers) {
@@ -120,6 +130,12 @@ public class Employee extends javax.swing.JFrame {
         tfPhoneMobile.setText("");
         tfPostalCode1.setText("");
         tfPostalCode2.setText("");
+    }
+    
+    public void refreshLink()
+    {
+        searchCustomerTable1(cbSearchLuggage.getSelectedIndex(), customerSearchField.getText());
+        searchLuggageTable1(cbSearchCustomer.getSelectedIndex(), luggageSearchField.getText());
     }
 
     /**
@@ -693,11 +709,12 @@ public class Employee extends javax.swing.JFrame {
             luggageTablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(luggageTablePanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(luggageTablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(luggageSearchField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbSearchLuggage1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(refreshLuggageTable2)
-                    .addComponent(luggageSearchButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(luggageTablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(luggageSearchButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(luggageTablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(luggageSearchField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cbSearchLuggage1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(refreshLuggageTable2)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 413, Short.MAX_VALUE)
                 .addContainerGap())
@@ -1176,22 +1193,68 @@ public class Employee extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void linkButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_linkButtonActionPerformed
+        isLinked = true;
+        try
+        {
+            customerToLink = customerTable1.getValueAt(customerTable1.getSelectedRow(), 0).toString();
+            luggageToLink = luggageTable1.getValueAt(luggageTable1.getSelectedRow(), 0).toString();
+            String customerFirstName = customerTable1.getValueAt(customerTable1.getSelectedRow(), 1).toString() + " ";
+            String customerLastName = customerTable1.getValueAt(customerTable1.getSelectedRow(), 2).toString();
+            customerFullName = customerFirstName + customerLastName;
+        }
+        catch(IndexOutOfBoundsException e)
+        {
+            JOptionPane.showMessageDialog(ErrorPopUp,
+            "Please make a selection in both tables and try again.");
+            isLinked = false;
+        }
         
-        String customerToLink = customerTable1.getValueAt(customerTable1.getSelectedRow(), 0).toString();
-        String luggageToLink = luggageTable1.getValueAt(luggageTable1.getSelectedRow(), 0).toString();
-        String customerFirstName = customerTable1.getValueAt(customerTable1.getSelectedRow(), 1).toString() + " ";
-        String customerLastName = customerTable1.getValueAt(customerTable1.getSelectedRow(), 2).toString();
-        customerFullName = customerFirstName + customerLastName;
-        
-//        System.out.println(customerFullName);
-//        System.out.println(luggageToLink);
+        //System.out.println(customerFullName);
+        //System.out.println(luggageToLink);
         
         customerId = Integer.parseInt(customerToLink);
         luggageId = Integer.parseInt(luggageToLink);
+   
+        final JOptionPane linkLuggagePopUp = new JOptionPane(
+        "Weet u zeker dat u klant: " + customerFullName + "\n"
+        + "Wilt koppelen aan baggagestuk: " + luggageId ,
+        JOptionPane.QUESTION_MESSAGE,
+        JOptionPane.YES_NO_OPTION);
+        if(isLinked == true) 
+        {
+        final JDialog dialog = new JDialog((Frame) LuggagePopUp, "Click a button", true);
+        dialog.setContentPane(linkLuggagePopUp);
+        linkLuggagePopUp.addPropertyChangeListener(
+        new PropertyChangeListener()
+        {
+        public void propertyChange(PropertyChangeEvent e) {
+            String prop = e.getPropertyName();
+
+            if (dialog.isVisible() 
+             && (e.getSource() == linkLuggagePopUp)
+             && (prop.equals(JOptionPane.VALUE_PROPERTY))) {
+                dialog.setVisible(false);
+            }
+        }
+    });
+    dialog.pack();
+    dialog.setVisible(true);
+
+    int value = ((Integer)linkLuggagePopUp.getValue()).intValue();
+    if (value == JOptionPane.YES_OPTION) {
+        Luggage luggage = new Luggage();
+        luggage.linkCustomerId(customerId, luggageId);
+        searchCustomerTable1(cbSearchLuggage.getSelectedIndex(), customerSearchField.getText());
+        searchLuggageTable1(cbSearchCustomer.getSelectedIndex(), luggageSearchField.getText());
+    } else if (value == JOptionPane.NO_OPTION) {
+        dispose();
+    }
+        }
+        //Main.displayLinkLuggage();
         
-       Main.displayLinkLuggage();
-       searchCustomerTable1(9999, "");
-       searchLuggageTable1(9999, "");
+        //searchCustomerTable1(cbSearchLuggage.getSelectedIndex(), customerSearchField.getText());
+        //searchLuggageTable1(cbSearchCustomer.getSelectedIndex(), luggageSearchField.getText());
+
     }//GEN-LAST:event_linkButtonActionPerformed
 
     private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed

@@ -786,11 +786,13 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="luggageSearchField1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="cbSearchLuggage1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="refreshLuggageTable2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="luggageSearchButton1" alignment="1" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="luggageSearchField1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="cbSearchLuggage1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="refreshLuggageTable2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jScrollPane7" pref="413" max="32767" attributes="0"/>
