@@ -39,6 +39,7 @@ private String luggageNumber = Integer.toString(luggageId);
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jLabel1.setText("Weet u zeker dat u klant:");
 
@@ -102,6 +103,7 @@ private String luggageNumber = Integer.toString(luggageId);
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed

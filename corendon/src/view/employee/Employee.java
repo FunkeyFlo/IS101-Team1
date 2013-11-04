@@ -1176,22 +1176,26 @@ public class Employee extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void linkButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_linkButtonActionPerformed
-        
+        int searchField1 = cbSearchCustomer.getSelectedIndex();
+        int searchField2 = cbSearchLuggage.getSelectedIndex();
         String customerToLink = customerTable1.getValueAt(customerTable1.getSelectedRow(), 0).toString();
         String luggageToLink = luggageTable1.getValueAt(luggageTable1.getSelectedRow(), 0).toString();
         String customerFirstName = customerTable1.getValueAt(customerTable1.getSelectedRow(), 1).toString() + " ";
         String customerLastName = customerTable1.getValueAt(customerTable1.getSelectedRow(), 2).toString();
         customerFullName = customerFirstName + customerLastName;
-        
-//        System.out.println(customerFullName);
-//        System.out.println(luggageToLink);
-        
+
+    //        System.out.println(customerFullName);
+    //        System.out.println(luggageToLink);
+
         customerId = Integer.parseInt(customerToLink);
         luggageId = Integer.parseInt(luggageToLink);
         
-       Main.displayLinkLuggage();
-       searchCustomerTable1(9999, "");
-       searchLuggageTable1(9999, "");
+        // HIERZO
+        Main.displayLinkLuggage();
+//        searchCustomerTable1(9999, "");
+//        searchLuggageTable1(9999, "");
+        searchCustomerTable1(searchField1, customerSearchField.getText().trim());
+        searchLuggageTable1(searchField2, luggageSearchField.getText().trim());
     }//GEN-LAST:event_linkButtonActionPerformed
 
     private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
