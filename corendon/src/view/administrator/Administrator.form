@@ -111,7 +111,7 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="unlockAccount" alignment="0" max="32767" attributes="0"/>
+              <Component id="unlockAccount" alignment="0" pref="189" max="32767" attributes="0"/>
               <Component id="resetPassword" alignment="0" max="32767" attributes="0"/>
               <Component id="lockAccount" alignment="0" max="32767" attributes="0"/>
               <Component id="deleteUser" alignment="0" max="32767" attributes="0"/>

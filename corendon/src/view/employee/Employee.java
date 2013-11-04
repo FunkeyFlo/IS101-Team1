@@ -1193,6 +1193,7 @@ public class Employee extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void linkButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_linkButtonActionPerformed
+
         isLinked = true;
         try
         {
@@ -1208,10 +1209,8 @@ public class Employee extends javax.swing.JFrame {
             "Please make a selection in both tables and try again.");
             isLinked = false;
         }
-        
-        //System.out.println(customerFullName);
-        //System.out.println(luggageToLink);
-        
+
+
         customerId = Integer.parseInt(customerToLink);
         luggageId = Integer.parseInt(luggageToLink);
    
@@ -1246,15 +1245,8 @@ public class Employee extends javax.swing.JFrame {
         luggage.linkCustomerId(customerId, luggageId);
         searchCustomerTable1(cbSearchLuggage.getSelectedIndex(), customerSearchField.getText());
         searchLuggageTable1(cbSearchCustomer.getSelectedIndex(), luggageSearchField.getText());
-    } else if (value == JOptionPane.NO_OPTION) {
-        dispose();
     }
-        }
-        //Main.displayLinkLuggage();
-        
-        //searchCustomerTable1(cbSearchLuggage.getSelectedIndex(), customerSearchField.getText());
-        //searchLuggageTable1(cbSearchCustomer.getSelectedIndex(), luggageSearchField.getText());
-
+    }
     }//GEN-LAST:event_linkButtonActionPerformed
 
     private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed

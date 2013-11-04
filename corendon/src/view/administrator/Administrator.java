@@ -463,6 +463,7 @@ public class Administrator extends javax.swing.JFrame {
 
     private void createUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createUserActionPerformed
         doCreateUser();
+        Main.displayUserSuccesPopup();
     }//GEN-LAST:event_createUserActionPerformed
 
     private void clearFieldsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearFieldsActionPerformed
@@ -493,6 +494,7 @@ public class Administrator extends javax.swing.JFrame {
         user.changeUserIntData(userTable.getValueAt(userTable.getSelectedRow(),
                 3).toString(), "incorrect_login", user.MAX_INCORRECT_LOGINS);
         searchUserTable(9999, "");
+        Main.displayAccountLockedPopup();
     }//GEN-LAST:event_lockAccountActionPerformed
 
     private void tfPasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfPasswordKeyPressed
@@ -528,12 +530,14 @@ public class Administrator extends javax.swing.JFrame {
         user.changeUserStringData(userTable.getValueAt(userTable.getSelectedRow(),
                 3).toString(), "incorrect_login", "0");
         searchUserTable(9999, "");
+        Main.displayAccountUnlockedPopup();
     }//GEN-LAST:event_unlockAccountActionPerformed
 
     private void deleteUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteUserActionPerformed
         user.deleteUser(userTable.getValueAt(userTable.getSelectedRow(),
             3).toString());
         searchUserTable(9999, "");
+        Main.displayUserDeletionPopup();
     }//GEN-LAST:event_deleteUserActionPerformed
 
     private void searchComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchComboBoxActionPerformed
