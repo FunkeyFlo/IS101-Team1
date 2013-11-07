@@ -48,7 +48,14 @@ Voor sommige onderdelen zijn libraries nodig.
 
 De jFreeChart library toevoegen:
 Downloadlink: http://sourceforge.net/projects/jfreechart/files/ <-- Vergeet niet te unpacken
-Rechtermuisknop op het project in 'Projects', en ga naar 'properties'. Vervolgens ga je naar 'libraries'. Druk op Add 'JAR/Folder'. Ga naar je jFreeChart folder > lib folder, en voeg jCommon toe. Druk op edit. Bij source voeg je de source folder in je JFreeChart toe. Bij javadoc voeg je de checkstyle folder uit je JFreeChart folder toe.
+
+1. Ga naar Tools > Libraries
+2. Klik op New Library... en noem de library JCommon-1.0.20
+3. Selecteer de classpath tab, klik op Add JAR/Folder en navigeer naar de jfreechart folder, dan naar de lib folder en selecteer jcommon-1.0.20.jar
+4. Klik weer op New Library... en noem de library JFreeChart 1.0.16
+5. Selecteer de classpath tab, klik op Add JAR/Folder en navigeer naar de jfreechart folder, dan naar de lib folder en selecteer jfreechart-1.0.16.jar
+6. Selecteer de sources tab, klik op Add JAR/Folder en navigeer naar de jfreechart folder en voeg de source folder toe.
+Voeg vervolgens de libraries toe aan het project. Dit doe je door in netbeans in het project met je rechtermuisknop op libraries te klikken, dan op Add Libraries klikken en vervolgens de libraries die je net hebt aangemaakt toe te voegen.
 
 |=SQL Scripts==========================================================|
 
