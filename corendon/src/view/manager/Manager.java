@@ -4,19 +4,106 @@
  */
 package view.manager;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
 import main.Main;
-
+import org.jfree.chart.ChartFactory;
+//import org.jfree.chart.ChartFrame;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
 /**
  *
  * @author Florentijn Cornet
  */
 public class Manager extends javax.swing.JFrame {
 
+        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+        DefaultCategoryDataset lostBaggageGraph = new DefaultCategoryDataset();
+        DefaultCategoryDataset foundBaggageGraph = new DefaultCategoryDataset();
+        DefaultCategoryDataset returnedBaggageGraph = new DefaultCategoryDataset();
+        final String[] MONTHS = {"Januari", "Februari", "Maart", "April", "Mei",
+            "Juni", "Juli", "Augustus", "September", "Oktober", "November",
+            "December"};
+
+        //dummy data
+        int[] lostBaggageList = {33, 6, 30, 48, 80, 18, 14, 71, 32, 23, 18, 19};
+        int[] foundBaggageList = {6, 64, 20, 92, 32, 47, 85, 37, 22, 79, 35, 27};
+        int[] returnedBaggageList = {17, 80, 60, 82, 100, 21, 40, 65, 63, 40, 83, 16};
+        //names
+        final String CHART_NAME = "Verloren, gevonden en afgehandelde baggage per maand";
+        final String X_AXIS_NAME = "Maand";
+        final String Y_AXIS_NAME = "Aantal";
+    
+    
     /**
      * Creates new form Gebruiker
      */
     public Manager() {
         initComponents();
+        
+        for (int i = 0; i < MONTHS.length; i++) {
+            dataset.setValue(lostBaggageList[i], "Verloren", MONTHS[i]);
+            dataset.setValue(foundBaggageList[i], "Gevonden", MONTHS[i]);
+            dataset.setValue(returnedBaggageList[i], "Afgehandeld", MONTHS[i]);
+            
+            lostBaggageGraph.setValue(lostBaggageList[i], "Verloren", MONTHS[i]);
+            
+            foundBaggageGraph.setValue(foundBaggageList[i], "Gevonden", MONTHS[i]);
+            
+            returnedBaggageGraph.setValue(returnedBaggageList[i], "Afgehandeld", MONTHS[i]);
+        }
+        
+        /**
+         * ALL DATA GRAPH
+         */
+        JFreeChart chart = ChartFactory.createBarChart(CHART_NAME, X_AXIS_NAME, Y_AXIS_NAME, dataset, PlotOrientation.VERTICAL, false, true, false);
+        CategoryPlot p = chart.getCategoryPlot();
+        p.setRangeGridlinePaint(Color.BLACK);
+        ChartPanel allGraphsPanel = new ChartPanel(chart);
+        
+        
+        allGraphsTab.setLayout(new BorderLayout());
+        allGraphsTab.add(allGraphsPanel, BorderLayout.CENTER);
+        allGraphsTab.validate();
+        
+        /**
+         * LOST BAGGAGE GRAPH
+         */
+        JFreeChart lostBaggageChart = ChartFactory.createBarChart("Verloren baggage", "Maand", "Verloren", lostBaggageGraph, PlotOrientation.VERTICAL, false, true, false);
+        CategoryPlot lostBaggagePlot = lostBaggageChart.getCategoryPlot();
+        lostBaggagePlot.setRangeGridlinePaint(Color.BLACK);
+        ChartPanel lostBaggagePanel = new ChartPanel(lostBaggageChart);
+        
+        lostBaggage.setLayout(new BorderLayout());
+        lostBaggage.add(lostBaggagePanel, BorderLayout.CENTER);
+        lostBaggage.validate();
+        
+        /**
+         * FOUND BAGGAGE GRAPH
+         */
+        JFreeChart foundBaggageChart = ChartFactory.createBarChart("Gevonden baggage", "Maand", "Gevonden", foundBaggageGraph, PlotOrientation.VERTICAL, false, true, false);
+        CategoryPlot foundBaggagePlot = foundBaggageChart.getCategoryPlot();
+        foundBaggagePlot.setRangeGridlinePaint(Color.BLACK);
+        ChartPanel foundBaggagePanel = new ChartPanel(foundBaggageChart);
+        
+        foundBaggage.setLayout(new BorderLayout());
+        foundBaggage.add(foundBaggagePanel, BorderLayout.CENTER);
+        foundBaggage.validate();
+        
+        /**
+         * RETURNED BAGGAGE GRAPH
+         */
+        JFreeChart returnedBaggageChart = ChartFactory.createBarChart("Afgehandelde baggage", "Maand", "Afgehandeld", returnedBaggageGraph, PlotOrientation.VERTICAL, false, true, false);
+        CategoryPlot returnedBaggagePlot = returnedBaggageChart.getCategoryPlot();
+        returnedBaggagePlot.setRangeGridlinePaint(Color.BLACK);
+        ChartPanel returnedBaggagePanel = new ChartPanel(returnedBaggageChart);
+        
+        returnedBaggage.setLayout(new BorderLayout());
+        returnedBaggage.add(returnedBaggagePanel, BorderLayout.CENTER);
+        returnedBaggage.validate();
     }
 
     /**
@@ -29,6 +116,11 @@ public class Manager extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        overviewPane = new javax.swing.JTabbedPane();
+        allGraphsTab = new javax.swing.JPanel();
+        lostBaggage = new javax.swing.JPanel();
+        foundBaggage = new javax.swing.JPanel();
+        returnedBaggage = new javax.swing.JPanel();
         menuBar = new javax.swing.JMenuBar();
         userMenu = new javax.swing.JMenu();
         changePassword = new javax.swing.JMenuItem();
@@ -37,6 +129,58 @@ public class Manager extends javax.swing.JFrame {
         jLabel1.setText("ingelogd als gebruiker");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        javax.swing.GroupLayout allGraphsTabLayout = new javax.swing.GroupLayout(allGraphsTab);
+        allGraphsTab.setLayout(allGraphsTabLayout);
+        allGraphsTabLayout.setHorizontalGroup(
+            allGraphsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 548, Short.MAX_VALUE)
+        );
+        allGraphsTabLayout.setVerticalGroup(
+            allGraphsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 462, Short.MAX_VALUE)
+        );
+
+        overviewPane.addTab("Alle data", allGraphsTab);
+
+        javax.swing.GroupLayout lostBaggageLayout = new javax.swing.GroupLayout(lostBaggage);
+        lostBaggage.setLayout(lostBaggageLayout);
+        lostBaggageLayout.setHorizontalGroup(
+            lostBaggageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 548, Short.MAX_VALUE)
+        );
+        lostBaggageLayout.setVerticalGroup(
+            lostBaggageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 462, Short.MAX_VALUE)
+        );
+
+        overviewPane.addTab("Vermiste baggage", lostBaggage);
+
+        javax.swing.GroupLayout foundBaggageLayout = new javax.swing.GroupLayout(foundBaggage);
+        foundBaggage.setLayout(foundBaggageLayout);
+        foundBaggageLayout.setHorizontalGroup(
+            foundBaggageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 548, Short.MAX_VALUE)
+        );
+        foundBaggageLayout.setVerticalGroup(
+            foundBaggageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 462, Short.MAX_VALUE)
+        );
+
+        overviewPane.addTab("Gevonden baggage", foundBaggage);
+
+        javax.swing.GroupLayout returnedBaggageLayout = new javax.swing.GroupLayout(returnedBaggage);
+        returnedBaggage.setLayout(returnedBaggageLayout);
+        returnedBaggageLayout.setHorizontalGroup(
+            returnedBaggageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 548, Short.MAX_VALUE)
+        );
+        returnedBaggageLayout.setVerticalGroup(
+            returnedBaggageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 462, Short.MAX_VALUE)
+        );
+
+        overviewPane.addTab("Afgehandelde baggage", returnedBaggage);
 
         userMenu.setText("Gebruiker");
 
@@ -64,11 +208,11 @@ public class Manager extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 553, Short.MAX_VALUE)
+            .addComponent(overviewPane)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 490, Short.MAX_VALUE)
+            .addComponent(overviewPane)
         );
 
         pack();
@@ -118,10 +262,15 @@ public class Manager extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel allGraphsTab;
     private javax.swing.JMenuItem changePassword;
+    private javax.swing.JPanel foundBaggage;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuItem logout;
+    private javax.swing.JPanel lostBaggage;
     private javax.swing.JMenuBar menuBar;
+    private javax.swing.JTabbedPane overviewPane;
+    private javax.swing.JPanel returnedBaggage;
     private javax.swing.JMenu userMenu;
     // End of variables declaration//GEN-END:variables
 }
