@@ -786,13 +786,13 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="luggageSearchButton1" alignment="1" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="luggageSearchField1" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="cbSearchLuggage1" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="refreshLuggageTable2" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
+                              <Component id="luggageSearchButton1" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jScrollPane7" pref="413" max="32767" attributes="0"/>
@@ -963,7 +963,7 @@
                     <TitledBorder title="Overzichten"/>
                   </Border>
                 </Property>
-                <Property name="dividerLocation" type="int" value="417"/>
+                <Property name="dividerLocation" type="int" value="600"/>
                 <Property name="dividerSize" type="int" value="10"/>
               </Properties>
 
@@ -995,9 +995,9 @@
                                       <Component id="luggageSearchButton" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="cbSearchLuggage" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="0" pref="69" max="32767" attributes="0"/>
+                                      <EmptySpace min="0" pref="225" max="32767" attributes="0"/>
                                   </Group>
-                                  <Component id="jScrollPane6" alignment="0" pref="305" max="32767" attributes="0"/>
+                                  <Component id="jScrollPane6" alignment="0" pref="558" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
@@ -1102,7 +1102,7 @@
                                       <Component id="cbSearchCustomer" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   </Group>
-                                  <Component id="jScrollPane1" alignment="0" pref="617" max="32767" attributes="0"/>
+                                  <Component id="jScrollPane1" alignment="0" pref="434" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
