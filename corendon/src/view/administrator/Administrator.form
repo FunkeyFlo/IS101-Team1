@@ -4,9 +4,7 @@
   <NonVisualComponents>
     <Container class="javax.swing.JLayeredPane" name="jLayeredPane1">
 
-      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
-        <Property name="useNullLayout" type="boolean" value="true"/>
-      </Layout>
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout"/>
     </Container>
     <Menu class="javax.swing.JMenuBar" name="menuBar">
       <SubComponents>
@@ -69,7 +67,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="userCreationPanel" max="32767" attributes="0"/>
-                  <Component id="userOptionsPanel" pref="201" max="32767" attributes="0"/>
+                  <Component id="userOptionsPanel" pref="226" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="userTablePanel" max="32767" attributes="0"/>
@@ -84,7 +82,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="userTablePanel" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
-                      <Component id="userOptionsPanel" min="-2" pref="158" max="-2" attributes="0"/>
+                      <Component id="userOptionsPanel" min="-2" pref="172" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="userCreationPanel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -111,10 +109,11 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="unlockAccount" alignment="0" pref="189" max="32767" attributes="0"/>
-              <Component id="resetPassword" alignment="0" max="32767" attributes="0"/>
+              <Component id="unlockAccount" alignment="0" pref="214" max="32767" attributes="0"/>
               <Component id="lockAccount" alignment="0" max="32767" attributes="0"/>
               <Component id="deleteUser" alignment="0" max="32767" attributes="0"/>
+              <Component id="adjustCustomer" alignment="0" max="32767" attributes="0"/>
+              <Component id="resetPassword" alignment="0" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -127,7 +126,10 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="resetPassword" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
+                  <Component id="adjustCustomer" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="deleteUser" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -163,6 +165,14 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteUserActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="adjustCustomer">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Klant aanpassen"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="adjustCustomerActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
@@ -337,7 +347,7 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jScrollPane1" pref="660" max="32767" attributes="0"/>
+                      <Component id="jScrollPane1" pref="635" max="32767" attributes="0"/>
                       <Group type="102" attributes="0">
                           <Component id="tfSearch" min="-2" pref="144" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>

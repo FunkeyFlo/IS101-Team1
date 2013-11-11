@@ -81,6 +81,7 @@ public class Administrator extends javax.swing.JFrame {
         resetPassword = new javax.swing.JButton();
         lockAccount = new javax.swing.JButton();
         deleteUser = new javax.swing.JButton();
+        adjustCustomer = new javax.swing.JButton();
         userCreationPanel = new javax.swing.JPanel();
         tfFirstName = new javax.swing.JTextField();
         tfLastName = new javax.swing.JTextField();
@@ -141,14 +142,22 @@ public class Administrator extends javax.swing.JFrame {
             }
         });
 
+        adjustCustomer.setText("Klant aanpassen");
+        adjustCustomer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adjustCustomerActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout userOptionsPanelLayout = new javax.swing.GroupLayout(userOptionsPanel);
         userOptionsPanel.setLayout(userOptionsPanelLayout);
         userOptionsPanelLayout.setHorizontalGroup(
             userOptionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(unlockAccount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(resetPassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(unlockAccount, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
             .addComponent(lockAccount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(deleteUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(adjustCustomer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(resetPassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         userOptionsPanelLayout.setVerticalGroup(
             userOptionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -160,7 +169,10 @@ public class Administrator extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(resetPassword)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(deleteUser))
+                .addComponent(adjustCustomer)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(deleteUser)
+                .addGap(12, 12, 12))
         );
 
         userCreationPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Gebruiker aanmaken"));
@@ -363,7 +375,7 @@ public class Administrator extends javax.swing.JFrame {
             .addGroup(userTablePanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(userTablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 660, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 635, Short.MAX_VALUE)
                     .addGroup(userTablePanelLayout.createSequentialGroup()
                         .addComponent(tfSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -418,7 +430,7 @@ public class Administrator extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(userCreationPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(userOptionsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE))
+                    .addComponent(userOptionsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(userTablePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -430,7 +442,7 @@ public class Administrator extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(userTablePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(userOptionsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(userOptionsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(userCreationPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -552,6 +564,10 @@ public class Administrator extends javax.swing.JFrame {
         searchUserTable(searchField, tfSearch.getText().trim());
     }//GEN-LAST:event_searchButtonActionPerformed
 
+    private void adjustCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adjustCustomerActionPerformed
+        view.popUps.displayPopUpKlantAanpas();
+    }//GEN-LAST:event_adjustCustomerActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -587,6 +603,7 @@ public class Administrator extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton adjustCustomer;
     private javax.swing.JMenuItem changePassword;
     private javax.swing.JButton clearFields;
     private javax.swing.JButton createUser;
