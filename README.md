@@ -89,13 +89,15 @@ CREATE TABLE `customer` (
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8
 
 CREATE TABLE `luggage` (
-  `luggage_id` INT NOT NULL AUTO_INCREMENT,
-  `customer_id` INT,
-  `description` VARCHAR(200),
-  `location` VARCHAR(50) NOT NULL,
-  `date` DATE NOT NULL,
-  `time` TIME NOT NULL,
-  `is_lost` TINYINT default 1 NOT NULL,
-  `is_handled` TINYINT default 0 NOT NULL,
+  `luggage_id` int(11) NOT NULL AUTO_INCREMENT,
+  `customer_id` int(11) DEFAULT NULL,
+  `description` varchar(200) DEFAULT NULL,
+  `location` varchar(50) NOT NULL,
+  `is_lost` tinyint(4) NOT NULL DEFAULT '1',
+  `is_handled` tinyint(4) NOT NULL DEFAULT '0',
+  `date_changed` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `date_lost` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `last_changed_by` varchar(50) NOT NULL,
+  `date_handled` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`luggage_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8
