@@ -447,6 +447,9 @@
               </Layout>
               <SubComponents>
                 <Component class="javax.swing.JTextField" name="customerSearchField1">
+                  <Events>
+                    <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="customerSearchField1KeyPressed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="customerSearchButton1">
                   <Properties>
@@ -803,6 +806,10 @@
               </Layout>
               <SubComponents>
                 <Component class="javax.swing.JTextField" name="luggageSearchField1">
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="luggageSearchField1ActionPerformed"/>
+                    <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="luggageSearchField1KeyPressed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="luggageSearchButton1">
                   <Properties>
@@ -1021,6 +1028,10 @@
                   </Layout>
                   <SubComponents>
                     <Component class="javax.swing.JTextField" name="luggageSearchField">
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="luggageSearchFieldActionPerformed"/>
+                        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="luggageSearchFieldKeyPressed"/>
+                      </Events>
                     </Component>
                     <Component class="javax.swing.JButton" name="luggageSearchButton">
                       <Properties>
@@ -1126,6 +1137,9 @@
                   </Layout>
                   <SubComponents>
                     <Component class="javax.swing.JTextField" name="customerSearchField">
+                      <Events>
+                        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="customerSearchFieldKeyPressed"/>
+                      </Events>
                     </Component>
                     <Component class="javax.swing.JButton" name="customerSearchButton">
                       <Properties>
