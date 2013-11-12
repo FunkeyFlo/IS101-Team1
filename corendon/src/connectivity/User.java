@@ -38,8 +38,6 @@ public class User {
         this.username = username;
         this.permissionId = permissionId;
         this.incorrectLogin = incorrectLogin;
-
-        //System.out.println(userId + " " + lastName + " " + username);
     }
 
     // determines whether a user is logging in with the correct information
