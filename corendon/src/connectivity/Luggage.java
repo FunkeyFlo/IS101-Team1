@@ -131,13 +131,10 @@ public class Luggage {
     }
         
     // moet nog waardes van luggage krijgen, staan nu nog customer waardes in
-    public void setNewLuggage(String tfFirstName, String tfLastName,
-            String tfAddress, String tfPostalCode, String tfEmail,
-            String tfPhoneHome, String tfPhoneMobile) {
-        String sql = "INSERT INTO fys.`customer` (first_name, last_name, address, postal_code, email, phone_home, phone_mobile) VALUES ('" 
-                + tfFirstName + "', '" + tfLastName + "', '" + tfAddress 
-                + "', '" + tfPostalCode + "', '" + tfEmail + "', '"
-                + tfPhoneHome + "', '" + tfPhoneMobile + "'";
+    public void setNewLuggage(int customerId, String description, String location, boolean isLost, boolean  isHandled) {
+        String sql = "INSERT INTO fys.`luggage` (customer_id, description, location, is_lost, is_handled) VALUES ('" 
+                + customerId + "', '" + description + "', '" + location 
+                + "', '" + isLost + "', '" + isHandled + "'";
         db.insertQuery(sql);
     }
 
