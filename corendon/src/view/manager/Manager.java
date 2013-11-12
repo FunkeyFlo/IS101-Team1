@@ -20,21 +20,13 @@ import org.jfree.data.category.DefaultCategoryDataset;
  */
 public class Manager extends javax.swing.JFrame {
 
-        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-        DefaultCategoryDataset lostBaggageGraph = new DefaultCategoryDataset();
-        DefaultCategoryDataset foundBaggageGraph = new DefaultCategoryDataset();
-        DefaultCategoryDataset returnedBaggageGraph = new DefaultCategoryDataset();
-        final String[] MONTHS = {"Jan", "Feb", "Mrt", "Apr", "Mei",
+        private DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+        private DefaultCategoryDataset lostBaggageGraph = new DefaultCategoryDataset();
+        private DefaultCategoryDataset foundBaggageGraph = new DefaultCategoryDataset();
+        private DefaultCategoryDataset returnedBaggageGraph = new DefaultCategoryDataset();
+        private final String[] MONTHS = {"Jan", "Feb", "Mrt", "Apr", "Mei",
             "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dec"};
 
-        //dummy data
-        int[] lostBaggageList = {33, 6, 30, 48, 80, 18, 14, 71, 32, 23, 18, 19};
-        int[] foundBaggageList = {6, 64, 20, 92, 32, 47, 85, 37, 22, 79, 35, 27};
-        int[] returnedBaggageList = {17, 80, 60, 82, 100, 21, 40, 65, 63, 40, 83, 16};
-        //names
-        final String CHART_NAME = "Verloren, gevonden en afgehandelde baggage per maand";
-        final String X_AXIS_NAME = "Maand";
-        final String Y_AXIS_NAME = "Aantal";
     
     
     /**
@@ -43,67 +35,7 @@ public class Manager extends javax.swing.JFrame {
     public Manager() {
         initComponents();
         
-        for (int i = 0; i < MONTHS.length; i++) {
-            dataset.setValue(lostBaggageList[i], "Verloren", MONTHS[i]);
-            dataset.setValue(foundBaggageList[i], "Gevonden", MONTHS[i]);
-            dataset.setValue(returnedBaggageList[i], "Afgehandeld", MONTHS[i]);
-            
-            lostBaggageGraph.setValue(lostBaggageList[i], "Verloren", MONTHS[i]);
-            
-            foundBaggageGraph.setValue(foundBaggageList[i], "Gevonden", MONTHS[i]);
-            
-            returnedBaggageGraph.setValue(returnedBaggageList[i], "Afgehandeld", MONTHS[i]);
-        }
-        
-        /**
-         * ALL DATA GRAPH
-         */
-        JFreeChart chart = ChartFactory.createBarChart(CHART_NAME, X_AXIS_NAME, Y_AXIS_NAME, dataset, PlotOrientation.VERTICAL, false, true, false);
-        CategoryPlot p = chart.getCategoryPlot();
-        p.setRangeGridlinePaint(Color.BLACK);
-        ChartPanel allGraphsPanel = new ChartPanel(chart);
-        
-        
-        allGraphs.setLayout(new BorderLayout());
-        allGraphs.add(allGraphsPanel, BorderLayout.CENTER);
-        allGraphs.setSize(300, 200);
-        allGraphs.validate();
-        
-        /**
-         * LOST BAGGAGE GRAPH
-         */
-        JFreeChart lostBaggageChart = ChartFactory.createBarChart("Verloren baggage", "Maand", "Verloren", lostBaggageGraph, PlotOrientation.VERTICAL, false, true, false);
-        CategoryPlot lostBaggagePlot = lostBaggageChart.getCategoryPlot();
-        lostBaggagePlot.setRangeGridlinePaint(Color.BLACK);
-        ChartPanel lostBaggagePanel = new ChartPanel(lostBaggageChart);
-        
-        lostBaggage.setLayout(new BorderLayout());
-        lostBaggage.add(lostBaggagePanel, BorderLayout.CENTER);
-        lostBaggage.validate();
-        
-        /**
-         * FOUND BAGGAGE GRAPH
-         */
-        JFreeChart foundBaggageChart = ChartFactory.createBarChart("Gevonden baggage", "Maand", "Gevonden", foundBaggageGraph, PlotOrientation.VERTICAL, false, true, false);
-        CategoryPlot foundBaggagePlot = foundBaggageChart.getCategoryPlot();
-        foundBaggagePlot.setRangeGridlinePaint(Color.BLACK);
-        ChartPanel foundBaggagePanel = new ChartPanel(foundBaggageChart);
-        
-        foundBaggage.setLayout(new BorderLayout());
-        foundBaggage.add(foundBaggagePanel, BorderLayout.CENTER);
-        foundBaggage.validate();
-        
-        /**
-         * RETURNED BAGGAGE GRAPH
-         */
-        JFreeChart returnedBaggageChart = ChartFactory.createBarChart("Afgehandelde baggage", "Maand", "Afgehandeld", returnedBaggageGraph, PlotOrientation.VERTICAL, false, true, false);
-        CategoryPlot returnedBaggagePlot = returnedBaggageChart.getCategoryPlot();
-        returnedBaggagePlot.setRangeGridlinePaint(Color.BLACK);
-        ChartPanel returnedBaggagePanel = new ChartPanel(returnedBaggageChart);
-        
-        returnedBaggage.setLayout(new BorderLayout());
-        returnedBaggage.add(returnedBaggagePanel, BorderLayout.CENTER);
-        returnedBaggage.validate();
+        setGraphs();
     }
 
     /**
@@ -254,6 +186,82 @@ public class Manager extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void setGraphs() {
+        //temp dummy data
+        int[] lostBaggageList = {33, 6, 30, 48, 80, 18, 14, 71, 32, 23, 18, 19};
+        int[] foundBaggageList = {6, 64, 20, 92, 32, 47, 85, 37, 22, 79, 35, 27};
+        int[] returnedBaggageList = {17, 80, 60, 82, 100, 21, 40, 65, 63, 40, 83, 16};
+        //names of chart attributes
+        final String CHART_NAME = "Verloren, gevonden en afgehandelde baggage per maand";
+        final String X_AXIS_NAME = "Maand";
+        final String Y_AXIS_NAME = "Aantal";
+        
+        //Sets value for all graphs
+        for (int i = 0; i < MONTHS.length; i++) {
+            //all graphs
+            dataset.setValue(lostBaggageList[i], "Verloren", MONTHS[i]);
+            dataset.setValue(foundBaggageList[i], "Gevonden", MONTHS[i]);
+            dataset.setValue(returnedBaggageList[i], "Afgehandeld", MONTHS[i]);
+            //lost
+            lostBaggageGraph.setValue(lostBaggageList[i], "Verloren", MONTHS[i]);
+            //found
+            foundBaggageGraph.setValue(foundBaggageList[i], "Gevonden", MONTHS[i]);
+            //returned
+            returnedBaggageGraph.setValue(returnedBaggageList[i], "Afgehandeld", MONTHS[i]);
+        }
+        
+        /**
+         * ALL DATA GRAPH
+         */
+        JFreeChart chart = ChartFactory.createBarChart(CHART_NAME, X_AXIS_NAME, Y_AXIS_NAME, dataset, PlotOrientation.VERTICAL, false, true, false);
+        CategoryPlot p = chart.getCategoryPlot();
+        p.setRangeGridlinePaint(Color.BLACK);
+        ChartPanel allGraphsPanel = new ChartPanel(chart);
+        
+        
+        allGraphs.setLayout(new BorderLayout());
+        allGraphs.add(allGraphsPanel, BorderLayout.CENTER);
+        allGraphs.setSize(300, 200);
+        allGraphs.validate();
+        
+        /**
+         * LOST BAGGAGE GRAPH
+         */
+        JFreeChart lostBaggageChart = ChartFactory.createBarChart("Verloren baggage", "Maand", "Verloren", lostBaggageGraph, PlotOrientation.VERTICAL, false, true, false);
+        CategoryPlot lostBaggagePlot = lostBaggageChart.getCategoryPlot();
+        lostBaggagePlot.setRangeGridlinePaint(Color.BLACK);
+        ChartPanel lostBaggagePanel = new ChartPanel(lostBaggageChart);
+        
+        lostBaggage.setLayout(new BorderLayout());
+        lostBaggage.add(lostBaggagePanel, BorderLayout.CENTER);
+        lostBaggage.validate();
+        
+        /**
+         * FOUND BAGGAGE GRAPH
+         */
+        JFreeChart foundBaggageChart = ChartFactory.createBarChart("Gevonden baggage", "Maand", "Gevonden", foundBaggageGraph, PlotOrientation.VERTICAL, false, true, false);
+        CategoryPlot foundBaggagePlot = foundBaggageChart.getCategoryPlot();
+        foundBaggagePlot.setRangeGridlinePaint(Color.BLACK);
+        ChartPanel foundBaggagePanel = new ChartPanel(foundBaggageChart);
+        
+        foundBaggage.setLayout(new BorderLayout());
+        foundBaggage.add(foundBaggagePanel, BorderLayout.CENTER);
+        foundBaggage.validate();
+        
+        /**
+         * RETURNED BAGGAGE GRAPH
+         */
+        JFreeChart returnedBaggageChart = ChartFactory.createBarChart("Afgehandelde baggage", "Maand", "Afgehandeld", returnedBaggageGraph, PlotOrientation.VERTICAL, false, true, false);
+        CategoryPlot returnedBaggagePlot = returnedBaggageChart.getCategoryPlot();
+        returnedBaggagePlot.setRangeGridlinePaint(Color.BLACK);
+        ChartPanel returnedBaggagePanel = new ChartPanel(returnedBaggageChart);
+        
+        returnedBaggage.setLayout(new BorderLayout());
+        returnedBaggage.add(returnedBaggagePanel, BorderLayout.CENTER);
+        returnedBaggage.validate();
+        
+    }
+    
     private void changePasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changePasswordActionPerformed
         Main.displayChangeMyPassword();
     }//GEN-LAST:event_changePasswordActionPerformed
