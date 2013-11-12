@@ -413,6 +413,12 @@ public class Employee extends javax.swing.JFrame {
 
         customerTablePanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Klanten"));
 
+        customerSearchField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                customerSearchField1KeyPressed(evt);
+            }
+        });
+
         customerSearchButton1.setText("Zoeken");
         customerSearchButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -644,6 +650,17 @@ public class Employee extends javax.swing.JFrame {
 
         luggageTablePanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Bagage"));
 
+        luggageSearchField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                luggageSearchField1ActionPerformed(evt);
+            }
+        });
+        luggageSearchField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                luggageSearchField1KeyPressed(evt);
+            }
+        });
+
         luggageSearchButton1.setText("Zoeken");
         luggageSearchButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -789,6 +806,17 @@ public class Employee extends javax.swing.JFrame {
 
         linkLuggageTablePanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Bagage"));
 
+        luggageSearchField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                luggageSearchFieldActionPerformed(evt);
+            }
+        });
+        luggageSearchField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                luggageSearchFieldKeyPressed(evt);
+            }
+        });
+
         luggageSearchButton.setText("Zoeken");
         luggageSearchButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -858,6 +886,12 @@ public class Employee extends javax.swing.JFrame {
         linkTableSplitter.setLeftComponent(linkLuggageTablePanel);
 
         linkCustomerTablePanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Klanten"));
+
+        customerSearchField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                customerSearchFieldKeyPressed(evt);
+            }
+        });
 
         customerSearchButton.setText("Zoeken");
         customerSearchButton.addActionListener(new java.awt.event.ActionListener() {
@@ -1226,6 +1260,7 @@ public class Employee extends javax.swing.JFrame {
         linkLuggagePopUp.addPropertyChangeListener(
         new PropertyChangeListener()
         {
+        @Override
         public void propertyChange(PropertyChangeEvent e) {
             String prop = e.getPropertyName();
 
@@ -1255,35 +1290,60 @@ public class Employee extends javax.swing.JFrame {
 
     private void customerSearchButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customerSearchButton1ActionPerformed
         int searchField = cbSearchCustomer1.getSelectedIndex();
-//        System.out.println(searchSelection);
-        
-        //System.out.println(dbField + tfSearch.getText());
         searchCustomerTable2(searchField, customerSearchField1.getText().trim());
     }//GEN-LAST:event_customerSearchButton1ActionPerformed
 
     private void customerSearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customerSearchButtonActionPerformed
         int searchField = cbSearchCustomer.getSelectedIndex();
-//        System.out.println(searchSelection);
-        
-        //System.out.println(dbField + tfSearch.getText());
         searchCustomerTable1(searchField, customerSearchField.getText().trim());
     }//GEN-LAST:event_customerSearchButtonActionPerformed
 
     private void luggageSearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_luggageSearchButtonActionPerformed
         int searchField = cbSearchLuggage.getSelectedIndex();
-//        System.out.println(searchSelection);
-        
-        //System.out.println(dbField + tfSearch.getText());
         searchLuggageTable1(searchField, luggageSearchField.getText().trim());
     }//GEN-LAST:event_luggageSearchButtonActionPerformed
 
     private void luggageSearchButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_luggageSearchButton1ActionPerformed
         int searchField = cbSearchLuggage1.getSelectedIndex();
-//        System.out.println(searchSelection);
-        
-        //System.out.println(dbField + tfSearch.getText());
         searchLuggageTable2(searchField, luggageSearchField1.getText().trim());
     }//GEN-LAST:event_luggageSearchButton1ActionPerformed
+
+    private void customerSearchField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_customerSearchField1KeyPressed
+        if(evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+            System.out.println("Enter pressed");
+        int searchField = cbSearchCustomer1.getSelectedIndex();
+        searchCustomerTable2(searchField, customerSearchField1.getText().trim());
+        }
+    }//GEN-LAST:event_customerSearchField1KeyPressed
+
+    private void luggageSearchField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_luggageSearchField1KeyPressed
+        if(evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+            int searchField = cbSearchLuggage1.getSelectedIndex();
+            searchLuggageTable2(searchField, luggageSearchField1.getText().trim());
+        }
+    }//GEN-LAST:event_luggageSearchField1KeyPressed
+
+    private void luggageSearchFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_luggageSearchFieldKeyPressed
+    if(evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+            int searchField = cbSearchLuggage.getSelectedIndex();
+            searchLuggageTable1(searchField, luggageSearchField.getText().trim());
+    }
+    }//GEN-LAST:event_luggageSearchFieldKeyPressed
+
+    private void customerSearchFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_customerSearchFieldKeyPressed
+    if(evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+        int searchField = cbSearchCustomer.getSelectedIndex();
+        searchCustomerTable1(searchField, customerSearchField.getText().trim());
+    }
+    }//GEN-LAST:event_customerSearchFieldKeyPressed
+
+    private void luggageSearchField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_luggageSearchField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_luggageSearchField1ActionPerformed
+
+    private void luggageSearchFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_luggageSearchFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_luggageSearchFieldActionPerformed
 
     /**
      * @param args the command line arguments
