@@ -44,7 +44,7 @@ public class User {
     public String login(String tfUsername, String tfPasswd) {
         this.getUserData(tfUsername);
         if (this.username.equals(tfUsername)) {
-            if (BCrypt.checkpw(tfUsername, this.getPassword())) {
+            if (BCrypt.checkpw(tfPasswd, this.getPassword())) {
                 this.setIsLoggedIn(true);
                 return "Login success";
             } else {
