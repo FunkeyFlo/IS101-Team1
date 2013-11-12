@@ -81,7 +81,6 @@ public class Administrator extends javax.swing.JFrame {
         resetPassword = new javax.swing.JButton();
         lockAccount = new javax.swing.JButton();
         deleteUser = new javax.swing.JButton();
-        adjustCustomer = new javax.swing.JButton();
         userCreationPanel = new javax.swing.JPanel();
         tfFirstName = new javax.swing.JTextField();
         tfLastName = new javax.swing.JTextField();
@@ -142,13 +141,6 @@ public class Administrator extends javax.swing.JFrame {
             }
         });
 
-        adjustCustomer.setText("Klant aanpassen");
-        adjustCustomer.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                adjustCustomerActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout userOptionsPanelLayout = new javax.swing.GroupLayout(userOptionsPanel);
         userOptionsPanel.setLayout(userOptionsPanelLayout);
         userOptionsPanelLayout.setHorizontalGroup(
@@ -156,7 +148,6 @@ public class Administrator extends javax.swing.JFrame {
             .addComponent(unlockAccount, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
             .addComponent(lockAccount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(deleteUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(adjustCustomer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(resetPassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         userOptionsPanelLayout.setVerticalGroup(
@@ -168,9 +159,7 @@ public class Administrator extends javax.swing.JFrame {
                 .addComponent(lockAccount)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(resetPassword)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(adjustCustomer)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
                 .addComponent(deleteUser)
                 .addGap(12, 12, 12))
         );
@@ -564,10 +553,6 @@ public class Administrator extends javax.swing.JFrame {
         searchUserTable(searchField, tfSearch.getText().trim());
     }//GEN-LAST:event_searchButtonActionPerformed
 
-    private void adjustCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adjustCustomerActionPerformed
-        view.popUps.displayPopUpKlantAanpas();
-    }//GEN-LAST:event_adjustCustomerActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -603,7 +588,6 @@ public class Administrator extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton adjustCustomer;
     private javax.swing.JMenuItem changePassword;
     private javax.swing.JButton clearFields;
     private javax.swing.JButton createUser;
