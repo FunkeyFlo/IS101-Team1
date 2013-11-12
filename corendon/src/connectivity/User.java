@@ -117,6 +117,7 @@ public class User {
 
     // Used to create a new user, User ID is auto increment
     public void setNewUser(String tfUsername, String tfFirstName, String tfLastName, String tfPassword, int inputPermissionId) {
+        tfPassword = BCrypt.hashpw(tfPassword, BCrypt.gensalt());
         String sql = "INSERT INTO `user` (username, first_name, last_name, password, permission_id, incorrect_login) VALUES ('"
                 + tfUsername + "', '" + tfFirstName + "', '" + tfLastName
                 + "', '" + tfPassword + "', " + inputPermissionId + ", 0)";
