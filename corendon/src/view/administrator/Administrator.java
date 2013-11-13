@@ -4,10 +4,17 @@
  */
 package view.administrator;
 
+import javax.swing.JDialog;
+import java.awt.Frame;
+import java.awt.Component;
 import connectivity.User;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import main.*;
+
 /**
  *
  * @author Flo
@@ -18,39 +25,43 @@ public class Administrator extends javax.swing.JFrame {
     private List<User> users;
     private DefaultTableModel model;
     private User user = new User();
-    
+
+    private Component Succes;
+    private Component deleteUserPopup;
+    private Component createUserPopup;
+
     public static String nameTypeToChange;
     public static String accountToChange;
-    
+
     public Administrator() {
         initComponents();
         model = (DefaultTableModel) this.userTable.getModel();
         searchUserTable(9999, "");
     }
-    
+
     private void searchUserTable(int dbField, String searchArg) {
         model.setRowCount(0); //nodig voor 
         users = userModel.searchUserList(dbField, searchArg);
-        for(User user : users) {
-            model.addRow(new Object[] {new Integer(user.getUserId()),
+        for (User user : users) {
+            model.addRow(new Object[]{new Integer(user.getUserId()),
                 user.getFirstName(),
                 user.getLastName(),
                 user.getUsername(),
                 user.getPermissionId(),
-                (user.getIncorrectLogin() >= userModel.MAX_INCORRECT_LOGINS)? "VERGRENDELD" : "Actief"});
+                (user.getIncorrectLogin() >= userModel.MAX_INCORRECT_LOGINS) ? "VERGRENDELD" : "Actief"});
 
             //System.out.println(user.getFirstName());
         }
     }
-    
-    private void doCreateUser(){
+
+    private void doCreateUser() {
 
         String newUsername = tfUsername.getText().trim();
         String newFirstName = tfFirstName.getText().trim();
         String newLastName = tfLastName.getText().trim();
         String newPassword = tfPassword.getText().trim();
         int newGroup = permissionSelector.getSelectedIndex() + 1;
-        
+
         //System.out.println(newGroup);
         user.setNewUser(newUsername, newFirstName, newLastName, newPassword, newGroup);
 
@@ -58,13 +69,13 @@ public class Administrator extends javax.swing.JFrame {
         clearFields();
         searchUserTable(9999, "");
     }
-    
+
     private void clearFields() {
         tfUsername.setText("");
         tfFirstName.setText("");
         tfLastName.setText("");
         tfPassword.setText("");
-    }    
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -159,7 +170,7 @@ public class Administrator extends javax.swing.JFrame {
                 .addComponent(lockAccount)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(resetPassword)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(deleteUser)
                 .addGap(12, 12, 12))
         );
@@ -463,8 +474,32 @@ public class Administrator extends javax.swing.JFrame {
     }//GEN-LAST:event_permissionSelectorActionPerformed
 
     private void createUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createUserActionPerformed
-        doCreateUser();
-        Main.displayUserSuccesPopup();
+
+        final JOptionPane createUserPopPane = new JOptionPane("Weet u zeker dat u "
+                + "deze gebruiker wilt aanmaken",
+                JOptionPane.QUESTION_MESSAGE,
+                JOptionPane.YES_NO_OPTION);
+        final JDialog dialog = new JDialog((Frame) createUserPopup, "Click a button", true);
+        dialog.setContentPane(createUserPopPane);
+        createUserPopPane.addPropertyChangeListener(
+                new PropertyChangeListener() {
+                    public void propertyChange(PropertyChangeEvent e) {
+                        String prop = e.getPropertyName();
+
+                        if (dialog.isVisible()
+                        && (e.getSource() == createUserPopPane)
+                        && (prop.equals(JOptionPane.VALUE_PROPERTY))) {
+                            dialog.setVisible(false);
+                        }
+                    }
+                });
+        dialog.pack();
+        dialog.setVisible(true);
+
+        int value = ((Integer) createUserPopPane.getValue()).intValue();
+        if (value == JOptionPane.YES_OPTION) {
+            doCreateUser();
+        }
     }//GEN-LAST:event_createUserActionPerformed
 
     private void clearFieldsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearFieldsActionPerformed
@@ -495,32 +530,37 @@ public class Administrator extends javax.swing.JFrame {
         user.changeUserIntData(userTable.getValueAt(userTable.getSelectedRow(),
                 3).toString(), "incorrect_login", user.MAX_INCORRECT_LOGINS);
         searchUserTable(9999, "");
-        Main.displayAccountLockedPopup();
+        JOptionPane.showMessageDialog(Succes, "Account has been succesfully locked");
     }//GEN-LAST:event_lockAccountActionPerformed
 
     private void tfPasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfPasswordKeyPressed
-        if(evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER)
+        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
             doCreateUser();
+        }
     }//GEN-LAST:event_tfPasswordKeyPressed
 
     private void tfUsernameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfUsernameKeyPressed
-        if(evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER)
+        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
             doCreateUser();
+        }
     }//GEN-LAST:event_tfUsernameKeyPressed
 
     private void tfLastNameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfLastNameKeyPressed
-        if(evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER)
+        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
             doCreateUser();
+        }
     }//GEN-LAST:event_tfLastNameKeyPressed
 
     private void tfFirstNameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfFirstNameKeyPressed
-        if(evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER)
+        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
             doCreateUser();
+        }
     }//GEN-LAST:event_tfFirstNameKeyPressed
 
     private void permissionSelectorKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_permissionSelectorKeyPressed
-        if(evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER)
+        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
             doCreateUser();
+        }
     }//GEN-LAST:event_permissionSelectorKeyPressed
 
     private void tfSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfSearchActionPerformed
@@ -531,14 +571,38 @@ public class Administrator extends javax.swing.JFrame {
         user.changeUserStringData(userTable.getValueAt(userTable.getSelectedRow(),
                 3).toString(), "incorrect_login", "0");
         searchUserTable(9999, "");
-        Main.displayAccountUnlockedPopup();
+        JOptionPane.showMessageDialog(Succes, "Account has been succesfully unlocked");
     }//GEN-LAST:event_unlockAccountActionPerformed
 
     private void deleteUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteUserActionPerformed
-        user.deleteUser(userTable.getValueAt(userTable.getSelectedRow(),
-            3).toString());
-        searchUserTable(9999, "");
-        Main.displayUserDeletionPopup();
+
+        final JOptionPane deleteUserPopPane = new JOptionPane("Weet u zeker dat u "
+                + "de gebruiker wilt verwijderen",
+                JOptionPane.QUESTION_MESSAGE,
+                JOptionPane.YES_NO_OPTION);
+        final JDialog dialog = new JDialog((Frame) deleteUserPopup, "Click a button", true);
+        dialog.setContentPane(deleteUserPopPane);
+        deleteUserPopPane.addPropertyChangeListener(
+                new PropertyChangeListener() {
+                    public void propertyChange(PropertyChangeEvent e) {
+                        String prop = e.getPropertyName();
+
+                        if (dialog.isVisible()
+                        && (e.getSource() == deleteUserPopPane)
+                        && (prop.equals(JOptionPane.VALUE_PROPERTY))) {
+                            dialog.setVisible(false);
+                        }
+                    }
+                });
+        dialog.pack();
+        dialog.setVisible(true);
+
+        int value = ((Integer) deleteUserPopPane.getValue()).intValue();
+        if (value == JOptionPane.YES_OPTION) {
+            user.deleteUser(userTable.getValueAt(userTable.getSelectedRow(),
+                    3).toString());
+            searchUserTable(9999, "");
+        }
     }//GEN-LAST:event_deleteUserActionPerformed
 
     private void searchComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchComboBoxActionPerformed
@@ -548,7 +612,7 @@ public class Administrator extends javax.swing.JFrame {
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
         int searchField = searchComboBox.getSelectedIndex();
 //        System.out.println(searchSelection);
-        
+
         //System.out.println(dbField + tfSearch.getText());
         searchUserTable(searchField, tfSearch.getText().trim());
     }//GEN-LAST:event_searchButtonActionPerformed

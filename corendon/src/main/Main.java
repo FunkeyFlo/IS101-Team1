@@ -14,12 +14,8 @@ import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import view.*;
-import view.administrator.AccountLockedPopup;
-import view.administrator.AccountUnlockPopup;
 import view.administrator.ChangePassword;
 import view.administrator.ChangePermission;
-import view.administrator.UserDeletionPopup;
-import view.administrator.UserSuccesPopup;
 
 /**
  *
@@ -86,26 +82,6 @@ public class Main {
     public static void displayChangePermission() {
         ChangePermission frameChangePermission = new ChangePermission();
         frameChangePermission.setVisible(true);
-    }
-
-    public static void displayUserSuccesPopup() {
-        UserSuccesPopup frameUserSuccesPopup = new UserSuccesPopup();
-        frameUserSuccesPopup.setVisible(true);
-    }
-
-    public static void displayUserDeletionPopup() {
-        UserDeletionPopup frameUserDeletionPopup = new UserDeletionPopup();
-        frameUserDeletionPopup.setVisible(true);
-    }
-
-    public static void displayAccountLockedPopup() {
-        AccountLockedPopup frameAccountLockedPopup = new AccountLockedPopup();
-        frameAccountLockedPopup.setVisible(true);
-    }
-    
-    public static void displayAccountUnlockedPopup() {
-        AccountUnlockPopup frameAccountUnlockPopup = new AccountUnlockPopup();
-        frameAccountUnlockPopup.setVisible(true);
     }
     public static void main(String args[]) {
 
