@@ -98,6 +98,6 @@ CREATE TABLE `luggage` (
   `date_changed` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `date_lost` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `last_changed_by` varchar(50) NOT NULL,
-  `date_handled` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `date_handled` timestamp DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`luggage_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8
