@@ -30,8 +30,6 @@ public class Manager extends javax.swing.JFrame {
     private DefaultCategoryDataset lostBaggageGraph = new DefaultCategoryDataset();
     private DefaultCategoryDataset foundBaggageGraph = new DefaultCategoryDataset();
     private DefaultCategoryDataset returnedBaggageGraph = new DefaultCategoryDataset();
-
-    
     
     /**
      * Creates new form Gebruiker
@@ -55,6 +53,12 @@ public class Manager extends javax.swing.JFrame {
         overviewPane = new javax.swing.JTabbedPane();
         allGraphsTab = new javax.swing.JPanel();
         allGraphs = new javax.swing.JPanel();
+        lostBaggageTab = new javax.swing.JPanel();
+        lostBaggage = new javax.swing.JPanel();
+        foundBaggageTab = new javax.swing.JPanel();
+        foundBaggage = new javax.swing.JPanel();
+        returnedBaggageTab = new javax.swing.JPanel();
+        returnedBaggage = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         errorLabel = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -68,15 +72,6 @@ public class Manager extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         cbYearTo = new javax.swing.JComboBox();
-        lostBaggageTab = new javax.swing.JPanel();
-        lostBaggage = new javax.swing.JPanel();
-        jPanel4 = new javax.swing.JPanel();
-        foundBaggageTab = new javax.swing.JPanel();
-        foundBaggage = new javax.swing.JPanel();
-        jPanel5 = new javax.swing.JPanel();
-        returnedBaggageTab = new javax.swing.JPanel();
-        returnedBaggage = new javax.swing.JPanel();
-        jPanel6 = new javax.swing.JPanel();
         menuBar = new javax.swing.JMenuBar();
         userMenu = new javax.swing.JMenu();
         changePassword = new javax.swing.JMenuItem();
@@ -86,8 +81,93 @@ public class Manager extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        allGraphs.setBorder(javax.swing.BorderFactory.createTitledBorder("Grafiek"));
+        allGraphs.setBorder(javax.swing.BorderFactory.createTitledBorder("Alle data"));
         allGraphs.setLayout(new java.awt.GridBagLayout());
+
+        javax.swing.GroupLayout allGraphsTabLayout = new javax.swing.GroupLayout(allGraphsTab);
+        allGraphsTab.setLayout(allGraphsTabLayout);
+        allGraphsTabLayout.setHorizontalGroup(
+            allGraphsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(allGraphsTabLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(allGraphs, javax.swing.GroupLayout.DEFAULT_SIZE, 537, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        allGraphsTabLayout.setVerticalGroup(
+            allGraphsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(allGraphsTabLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(allGraphs, javax.swing.GroupLayout.DEFAULT_SIZE, 374, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        overviewPane.addTab("Alle data", allGraphsTab);
+
+        lostBaggage.setBorder(javax.swing.BorderFactory.createTitledBorder("Vermiste bagage"));
+        lostBaggage.setLayout(new java.awt.GridBagLayout());
+
+        javax.swing.GroupLayout lostBaggageTabLayout = new javax.swing.GroupLayout(lostBaggageTab);
+        lostBaggageTab.setLayout(lostBaggageTabLayout);
+        lostBaggageTabLayout.setHorizontalGroup(
+            lostBaggageTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(lostBaggageTabLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lostBaggage, javax.swing.GroupLayout.DEFAULT_SIZE, 537, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        lostBaggageTabLayout.setVerticalGroup(
+            lostBaggageTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(lostBaggageTabLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lostBaggage, javax.swing.GroupLayout.DEFAULT_SIZE, 374, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        overviewPane.addTab("Vermiste bagage", lostBaggageTab);
+
+        foundBaggage.setBorder(javax.swing.BorderFactory.createTitledBorder("Gevonde bagage"));
+        foundBaggage.setLayout(new java.awt.GridBagLayout());
+
+        javax.swing.GroupLayout foundBaggageTabLayout = new javax.swing.GroupLayout(foundBaggageTab);
+        foundBaggageTab.setLayout(foundBaggageTabLayout);
+        foundBaggageTabLayout.setHorizontalGroup(
+            foundBaggageTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(foundBaggageTabLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(foundBaggage, javax.swing.GroupLayout.DEFAULT_SIZE, 537, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        foundBaggageTabLayout.setVerticalGroup(
+            foundBaggageTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(foundBaggageTabLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(foundBaggage, javax.swing.GroupLayout.DEFAULT_SIZE, 374, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        overviewPane.addTab("Gevonde baggage", foundBaggageTab);
+
+        returnedBaggage.setBorder(javax.swing.BorderFactory.createTitledBorder("Afgehandelde Bagage"));
+        returnedBaggage.setLayout(new java.awt.GridBagLayout());
+
+        javax.swing.GroupLayout returnedBaggageTabLayout = new javax.swing.GroupLayout(returnedBaggageTab);
+        returnedBaggageTab.setLayout(returnedBaggageTabLayout);
+        returnedBaggageTabLayout.setHorizontalGroup(
+            returnedBaggageTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(returnedBaggageTabLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(returnedBaggage, javax.swing.GroupLayout.DEFAULT_SIZE, 537, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        returnedBaggageTabLayout.setVerticalGroup(
+            returnedBaggageTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(returnedBaggageTabLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(returnedBaggage, javax.swing.GroupLayout.DEFAULT_SIZE, 374, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        overviewPane.addTab("Afgehandelde baggage", returnedBaggageTab);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Opties"));
 
@@ -195,14 +275,12 @@ public class Manager extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(errorLabel)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(errorLabel)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(60, Short.MAX_VALUE))))
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -213,137 +291,6 @@ public class Manager extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(errorLabel))
         );
-
-        javax.swing.GroupLayout allGraphsTabLayout = new javax.swing.GroupLayout(allGraphsTab);
-        allGraphsTab.setLayout(allGraphsTabLayout);
-        allGraphsTabLayout.setHorizontalGroup(
-            allGraphsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, allGraphsTabLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(allGraphsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(allGraphs, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        allGraphsTabLayout.setVerticalGroup(
-            allGraphsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(allGraphsTabLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(allGraphs, javax.swing.GroupLayout.DEFAULT_SIZE, 309, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        overviewPane.addTab("Alle data", allGraphsTab);
-
-        lostBaggage.setLayout(new java.awt.GridBagLayout());
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 520, Short.MAX_VALUE)
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 174, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout lostBaggageTabLayout = new javax.swing.GroupLayout(lostBaggageTab);
-        lostBaggageTab.setLayout(lostBaggageTabLayout);
-        lostBaggageTabLayout.setHorizontalGroup(
-            lostBaggageTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(lostBaggageTabLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(lostBaggageTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lostBaggage, javax.swing.GroupLayout.PREFERRED_SIZE, 520, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(29, Short.MAX_VALUE))
-        );
-        lostBaggageTabLayout.setVerticalGroup(
-            lostBaggageTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(lostBaggageTabLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lostBaggage, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18))
-        );
-
-        overviewPane.addTab("Vermiste baggage", lostBaggageTab);
-
-        foundBaggage.setLayout(new java.awt.GridBagLayout());
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 180, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout foundBaggageTabLayout = new javax.swing.GroupLayout(foundBaggageTab);
-        foundBaggageTab.setLayout(foundBaggageTabLayout);
-        foundBaggageTabLayout.setHorizontalGroup(
-            foundBaggageTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(foundBaggageTabLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(foundBaggageTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(foundBaggage, javax.swing.GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE))
-                .addContainerGap(29, Short.MAX_VALUE))
-        );
-        foundBaggageTabLayout.setVerticalGroup(
-            foundBaggageTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(foundBaggageTabLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(foundBaggage, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        overviewPane.addTab("Gevonden baggage", foundBaggageTab);
-
-        returnedBaggage.setLayout(new java.awt.GridBagLayout());
-
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 180, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout returnedBaggageTabLayout = new javax.swing.GroupLayout(returnedBaggageTab);
-        returnedBaggageTab.setLayout(returnedBaggageTabLayout);
-        returnedBaggageTabLayout.setHorizontalGroup(
-            returnedBaggageTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(returnedBaggageTabLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(returnedBaggageTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(returnedBaggage, javax.swing.GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE))
-                .addContainerGap(29, Short.MAX_VALUE))
-        );
-        returnedBaggageTabLayout.setVerticalGroup(
-            returnedBaggageTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(returnedBaggageTabLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(returnedBaggage, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        overviewPane.addTab("Afgehandelde baggage", returnedBaggageTab);
 
         userMenu.setText("Gebruiker");
 
@@ -372,10 +319,18 @@ public class Manager extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(overviewPane)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(overviewPane)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(overviewPane)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -585,9 +540,6 @@ public class Manager extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
     private javax.swing.JMenuItem logout;
     private javax.swing.JPanel lostBaggage;
     private javax.swing.JPanel lostBaggageTab;

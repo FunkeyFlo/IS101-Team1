@@ -40,7 +40,7 @@ public class Luggage {
         this.isHandled = isHandled;
         this.dateChanged = dateChanged;
         this.dateHandled = dateHandled;
-        this.lastChangedBy =lastChangedBy;
+        this.lastChangedBy = lastChangedBy;
         
 //        System.out.println(customerId + " " + lastName + " " + email);
     }
@@ -148,7 +148,7 @@ public class Luggage {
         }
         return luggages;
     }
-        
+    
     // moet nog waardes van luggage krijgen, staan nu nog customer waardes in
     public void setNewLuggage(int customerId, String description, String location, boolean isLost, boolean  isHandled) {
         String sql = "INSERT INTO fys.`luggage` (customer_id, description, location, is_lost, is_handled) VALUES ('" 
