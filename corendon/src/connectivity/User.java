@@ -44,6 +44,7 @@ public class User {
     public String login(String tfUsername, String tfPasswd) {
         this.getUserData(tfUsername);
         if (this.username.equals(tfUsername)) {
+            System.out.println(tfPasswd + " " + this.getPassword());
             if (BCrypt.checkpw(tfPasswd, this.getPassword())) {
                 this.setIsLoggedIn(true);
                 return "Login success";
@@ -115,10 +116,10 @@ public class User {
 
     // Used to create a new user, User ID is auto increment
     public void setNewUser(String tfUsername, String tfFirstName, String tfLastName, String tfPassword, int inputPermissionId) {
-        tfPassword = BCrypt.hashpw(tfPassword, BCrypt.gensalt());
+        String encryptPassword = BCrypt.hashpw(tfPassword, BCrypt.gensalt());
         String sql = "INSERT INTO `user` (username, first_name, last_name, password, permission_id, incorrect_login) VALUES ('"
                 + tfUsername + "', '" + tfFirstName + "', '" + tfLastName
-                + "', '" + tfPassword + "', " + inputPermissionId + ", 0)";
+                + "', '" + encryptPassword + "', " + inputPermissionId + ", 0)";
         db.insertQuery(sql);
     }
 
@@ -126,6 +127,14 @@ public class User {
     public void deleteUser(String tfUsername) {
         String sql = "DELETE FROM `user` WHERE `username` = '" + tfUsername + "'";
         db.insertQuery(sql);
+    }
+    
+    // Change password
+    public void changeUserPassword(String inputUsername, String newPassword) {
+//        System.out.println(newPassword);
+        String encryptPassword = BCrypt.hashpw(newPassword, BCrypt.gensalt());
+        String sql = "UPDATE `user` SET `password` = '" + encryptPassword + "' WHERE `username` = '" + inputUsername + "'";
+//        System.out.println(encryptPassword + " " + inputUsername);
     }
 
     // User to change desired user information (STRINGS)

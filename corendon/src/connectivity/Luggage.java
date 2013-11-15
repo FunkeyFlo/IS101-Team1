@@ -17,8 +17,7 @@ public class Luggage {
     private int customerId;
     private String description;
     private String location;
-    private String date;
-    private String time;
+    private String dateLost;
     private boolean isLost;
     private boolean isHandled;
     
@@ -27,14 +26,13 @@ public class Luggage {
     }
     
     public Luggage(int luggageId, int customerId, String description,
-            String location, String date, String time, boolean isLost,
+            String location, String dateLost, boolean isLost,
             boolean isHandled) {
         this.luggageId = luggageId;
         this.customerId = customerId;
         this.description = description;
         this.location = location;
-        this.date = date;
-        this.time = time;
+        this.dateLost = dateLost;
         this.isLost = isLost;
         this.isHandled = isHandled;
         
@@ -51,8 +49,7 @@ public class Luggage {
                     this.setCustomerId(result.getInt("customer_id"));
                     this.setDescription(result.getString("description"));
                     this.setLocation(result.getString("location"));
-                    this.setDate(result.getString("date"));
-                    this.setTime(result.getString("time"));
+                    this.setDateLost(result.getString("date_lost"));
                     this.setIsLost(result.getBoolean("is_lost"));
                     this.setIsHandled(result.getBoolean("is_handled"));
                 }
@@ -74,8 +71,7 @@ public class Luggage {
                     + "OR `customer_id` LIKE '%" + searchArg + "%'" 
                     + "OR `description` LIKE '%" + searchArg + "%'"
                     + "OR `location` LIKE '%" + searchArg + "%'"
-                    + "OR `date` LIKE '%" + searchArg + "%'"
-                    + "OR `time` LIKE '%" + searchArg + "%'";
+                    + "OR `date_lost` LIKE '%" + searchArg + "%'";
         }
         
         // for searching luggageId
@@ -100,12 +96,7 @@ public class Luggage {
         
         // date
         else if (dbField == 5) {
-            sql = sqlSelect + " WHERE `date` LIKE '%" + searchArg + "%'";
-        }
-        
-        // time
-        else if (dbField == 6) {
-            sql = sqlSelect + " WHERE `time` LIKE '%" + searchArg + "%'";
+            sql = sqlSelect + " WHERE `date_lost` LIKE '%" + searchArg + "%'";
         }
         
         // Else statement is used to fill the table with all users
@@ -119,8 +110,7 @@ public class Luggage {
                         result.getInt("customer_id"),
                         result.getString("description"),
                         result.getString("location"),
-                        result.getString("date"),
-                        result.getString("time"),
+                        result.getString("date_lost"),
                         result.getBoolean("is_lost"),
                         result.getBoolean("is_handled")));
             }
@@ -216,29 +206,15 @@ public class Luggage {
     /**
      * @return the date
      */
-    public String getDate() {
-        return date;
+    public String getDateLost() {
+        return dateLost;
     }
 
     /**
      * @param date the date to set
      */
-    public void setDate(String date) {
-        this.date = date;
-    }
-
-    /**
-     * @return the time
-     */
-    public String getTime() {
-        return time;
-    }
-
-    /**
-     * @param time the time to set
-     */
-    public void setTime(String time) {
-        this.time = time;
+    public void setDateLost(String date) {
+        this.dateLost = dateLost;
     }
 
     /**

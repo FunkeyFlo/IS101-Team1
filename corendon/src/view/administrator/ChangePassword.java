@@ -148,8 +148,8 @@ public class ChangePassword extends javax.swing.JFrame {
         User user = new User();
         
         if(tfPassword1.getText().trim().equals(tfPassword2.getText().trim())){
-            user.changeUserStringData(Administrator.accountToChange, "password", tfPassword1.getText().trim());
-            warningLabel.setText(" ");
+            user.changeUserPassword(Administrator.accountToChange, tfPassword1.getText().trim());
+            warningLabel.setText("");
             dispose();
         } else {
             warningLabel.setText("Wachtwoorden komen niet overeen");

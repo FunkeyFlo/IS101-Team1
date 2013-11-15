@@ -830,13 +830,12 @@
                       <Properties>
                         <Property name="autoCreateRowSorter" type="boolean" value="true"/>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                          <Table columnCount="8" rowCount="0">
+                          <Table columnCount="7" rowCount="0">
                             <Column editable="false" title="Bagage ID" type="java.lang.Integer"/>
                             <Column editable="false" title="Klant ID" type="java.lang.Integer"/>
                             <Column editable="false" title="Omschrijving" type="java.lang.String"/>
                             <Column editable="false" title="Locatie" type="java.lang.String"/>
-                            <Column editable="false" title="Datum" type="java.lang.String"/>
-                            <Column editable="false" title="Tijd" type="java.lang.String"/>
+                            <Column editable="false" title="Datum Vermist" type="java.lang.String"/>
                             <Column editable="false" title="Vermist" type="java.lang.Boolean"/>
                             <Column editable="false" title="Afgehandeld" type="java.lang.Boolean"/>
                           </Table>
@@ -849,17 +848,19 @@
                 <Component class="javax.swing.JComboBox" name="cbSearchLuggage1">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="7">
+                      <StringArray count="6">
                         <StringItem index="0" value="Alle velden"/>
                         <StringItem index="1" value="Bagage ID"/>
                         <StringItem index="2" value="Klant ID"/>
                         <StringItem index="3" value="Omschrijving"/>
                         <StringItem index="4" value="Locatie"/>
-                        <StringItem index="5" value="Datum"/>
-                        <StringItem index="6" value="Tijd"/>
+                        <StringItem index="5" value="Datum Vermist"/>
                       </StringArray>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbSearchLuggage1ActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="refreshLuggageTable2">
                   <Properties>
@@ -1002,7 +1003,7 @@
                                       <Component id="luggageSearchButton" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="cbSearchLuggage" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="0" pref="225" max="32767" attributes="0"/>
+                                      <EmptySpace min="0" pref="214" max="32767" attributes="0"/>
                                   </Group>
                                   <Component id="jScrollPane6" alignment="0" pref="558" max="32767" attributes="0"/>
                               </Group>
@@ -1052,13 +1053,12 @@
                           <Properties>
                             <Property name="autoCreateRowSorter" type="boolean" value="true"/>
                             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                              <Table columnCount="8" rowCount="0">
+                              <Table columnCount="7" rowCount="0">
                                 <Column editable="false" title="Bagage ID" type="java.lang.Integer"/>
                                 <Column editable="false" title="Klant ID" type="java.lang.Integer"/>
                                 <Column editable="false" title="Omschrijving" type="java.lang.String"/>
                                 <Column editable="false" title="Locatie" type="java.lang.String"/>
-                                <Column editable="false" title="Datum" type="java.lang.String"/>
-                                <Column editable="false" title="Tijd" type="java.lang.String"/>
+                                <Column editable="false" title="Datum Vermist" type="java.lang.String"/>
                                 <Column editable="false" title="Vermist" type="java.lang.Boolean"/>
                                 <Column editable="false" title="Afgehandeld" type="java.lang.Boolean"/>
                               </Table>
@@ -1071,14 +1071,13 @@
                     <Component class="javax.swing.JComboBox" name="cbSearchLuggage">
                       <Properties>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                          <StringArray count="7">
+                          <StringArray count="6">
                             <StringItem index="0" value="Alle velden"/>
                             <StringItem index="1" value="Bagage ID"/>
                             <StringItem index="2" value="Klant ID"/>
                             <StringItem index="3" value="Omschrijving"/>
                             <StringItem index="4" value="Locatie"/>
-                            <StringItem index="5" value="Datum"/>
-                            <StringItem index="6" value="Tijd"/>
+                            <StringItem index="5" value="Datum Vermist"/>
                           </StringArray>
                         </Property>
                       </Properties>

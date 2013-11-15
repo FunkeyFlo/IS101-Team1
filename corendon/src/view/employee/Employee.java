@@ -57,8 +57,7 @@ public class Employee extends javax.swing.JFrame {
                 luggage.getCustomerId(),
                 luggage.getDescription(),
                 luggage.getLocation(),
-                luggage.getDate(),
-                luggage.getTime(),
+                luggage.getDateLost(),
                 luggage.isIsLost(),
                 luggage.isIsHandled()});
 
@@ -74,8 +73,7 @@ public class Employee extends javax.swing.JFrame {
                 luggage.getCustomerId(),
                 luggage.getDescription(),
                 luggage.getLocation(),
-                luggage.getDate(),
-                luggage.getTime(),
+                luggage.getDateLost(),
                 luggage.isIsLost(),
                 luggage.isIsHandled()});
 
@@ -675,14 +673,14 @@ public class Employee extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Bagage ID", "Klant ID", "Omschrijving", "Locatie", "Datum", "Tijd", "Vermist", "Afgehandeld"
+                "Bagage ID", "Klant ID", "Omschrijving", "Locatie", "Datum Vermist", "Vermist", "Afgehandeld"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Boolean.class, java.lang.Boolean.class
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Boolean.class, java.lang.Boolean.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -696,7 +694,12 @@ public class Employee extends javax.swing.JFrame {
         luggageTable2.setVerifyInputWhenFocusTarget(false);
         jScrollPane7.setViewportView(luggageTable2);
 
-        cbSearchLuggage1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Alle velden", "Bagage ID", "Klant ID", "Omschrijving", "Locatie", "Datum", "Tijd" }));
+        cbSearchLuggage1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Alle velden", "Bagage ID", "Klant ID", "Omschrijving", "Locatie", "Datum Vermist" }));
+        cbSearchLuggage1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbSearchLuggage1ActionPerformed(evt);
+            }
+        });
 
         refreshLuggageTable2.setText("Overzicht verversen");
         refreshLuggageTable2.addActionListener(new java.awt.event.ActionListener() {
@@ -831,14 +834,14 @@ public class Employee extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Bagage ID", "Klant ID", "Omschrijving", "Locatie", "Datum", "Tijd", "Vermist", "Afgehandeld"
+                "Bagage ID", "Klant ID", "Omschrijving", "Locatie", "Datum Vermist", "Vermist", "Afgehandeld"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Boolean.class, java.lang.Boolean.class
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Boolean.class, java.lang.Boolean.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -852,7 +855,7 @@ public class Employee extends javax.swing.JFrame {
         luggageTable1.setVerifyInputWhenFocusTarget(false);
         jScrollPane6.setViewportView(luggageTable1);
 
-        cbSearchLuggage.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Alle velden", "Bagage ID", "Klant ID", "Omschrijving", "Locatie", "Datum", "Tijd" }));
+        cbSearchLuggage.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Alle velden", "Bagage ID", "Klant ID", "Omschrijving", "Locatie", "Datum Vermist" }));
 
         javax.swing.GroupLayout linkLuggageTablePanelLayout = new javax.swing.GroupLayout(linkLuggageTablePanel);
         linkLuggageTablePanel.setLayout(linkLuggageTablePanelLayout);
@@ -867,7 +870,7 @@ public class Employee extends javax.swing.JFrame {
                         .addComponent(luggageSearchButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cbSearchLuggage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 225, Short.MAX_VALUE))
+                        .addGap(0, 214, Short.MAX_VALUE))
                     .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 558, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -1398,6 +1401,10 @@ public class Employee extends javax.swing.JFrame {
     private void luggageSearchFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_luggageSearchFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_luggageSearchFieldActionPerformed
+
+    private void cbSearchLuggage1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbSearchLuggage1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbSearchLuggage1ActionPerformed
 
     /**
      * @param args the command line arguments
