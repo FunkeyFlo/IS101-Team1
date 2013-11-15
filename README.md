@@ -95,7 +95,7 @@ CREATE TABLE `luggage` (
   `location` varchar(50) NOT NULL,
   `is_lost` tinyint(4) NOT NULL DEFAULT '1',
   `is_handled` tinyint(4) NOT NULL DEFAULT '0',
-  `date_changed` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `date_changed` timestamp NOT NULL,
   `date_lost` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `last_changed_by` varchar(50) NOT NULL,
   `date_handled` timestamp DEFAULT '0000-00-00 00:00:00',
