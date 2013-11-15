@@ -213,7 +213,7 @@ public class Luggage {
     /**
      * @param date the date to set
      */
-    public void setDateLost(String date) {
+    public void setDateLost(String dateLost) {
         this.dateLost = dateLost;
     }
 
