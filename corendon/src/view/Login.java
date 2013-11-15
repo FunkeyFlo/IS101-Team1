@@ -25,12 +25,14 @@ public class Login extends javax.swing.JFrame {
     public void doLogin() {
         User user = new User();
         Session session = new Session();
-        String loginReturn = user.login(tfUsername.getText().trim(), tfPassword.getText().trim());
+        String userName = tfUsername.getText().trim();
+        userName = userName.toLowerCase();
+        String loginReturn = user.login(userName, tfPassword.getText().trim());
         boolean statusLocked = user.getLockState();
         
         if(statusLocked == false){
-            Session.storedUsername = tfUsername.getText().trim();
-            session.storeNames(tfUsername.getText().trim());
+            Session.storedUsername = userName;
+            session.storeNames(userName);
             switch (loginReturn) {
                 case "Login success":
                     user.resetIncorrectLogin();

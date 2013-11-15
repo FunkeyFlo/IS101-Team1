@@ -67,9 +67,12 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="userCreationPanel" max="32767" attributes="0"/>
-                  <Component id="userOptionsPanel" pref="226" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="userCreationPanel" max="32767" attributes="0"/>
+                      <Component id="userOptionsPanel" pref="226" max="32767" attributes="0"/>
+                  </Group>
+                  <Component id="createUser" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="userTablePanel" max="32767" attributes="0"/>
@@ -87,6 +90,8 @@
                       <Component id="userOptionsPanel" min="-2" pref="172" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="userCreationPanel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="createUser" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -126,9 +131,9 @@
                   <Component id="lockAccount" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="resetPassword" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="deleteUser" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -187,7 +192,7 @@
                       <Component id="tfLastName" alignment="0" max="32767" attributes="0"/>
                       <Component id="tfUsername" alignment="0" max="32767" attributes="0"/>
                       <Component id="tfPassword" alignment="0" max="32767" attributes="0"/>
-                      <Group type="102" alignment="0" attributes="0">
+                      <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="firstNameLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="lastNameLabel" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -195,13 +200,9 @@
                               <Component id="passwordLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="permissionLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="permissionSelector" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="clearFields" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="clearFields" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="createUser" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -231,10 +232,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="permissionSelector" min="-2" max="-2" attributes="0"/>
                   <EmptySpace pref="32" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="createUser" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="clearFields" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="clearFields" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -303,14 +301,6 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="permissionSelectorActionPerformed"/>
             <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="permissionSelectorKeyPressed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="createUser">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Aanmaken"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="createUserActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="clearFields">
@@ -407,6 +397,7 @@
         <Component class="javax.swing.JTextField" name="tfSearch">
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfSearchActionPerformed"/>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfSearchKeyPressed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="searchButton">
@@ -415,6 +406,7 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searchButtonActionPerformed"/>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="searchButtonKeyPressed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JComboBox" name="searchComboBox">
@@ -436,5 +428,13 @@
         </Component>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JButton" name="createUser">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Aanmaken"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="createUserActionPerformed"/>
+      </Events>
+    </Component>
   </SubComponents>
 </Form>
