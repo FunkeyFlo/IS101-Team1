@@ -20,14 +20,17 @@ public class Luggage {
     private String dateLost;
     private boolean isLost;
     private boolean isHandled;
+    private String dateChanged;
+    private String dateHandled;
+    private String lastChangedBy;
     
     public Luggage() {
         db.openConnection();
     }
     
     public Luggage(int luggageId, int customerId, String description,
-            String location, String dateLost, boolean isLost,
-            boolean isHandled) {
+            String location, String dateLost, boolean isLost, boolean isHandled,
+            String dateChanged, String dateHandled, String lastChangedBy) {
         this.luggageId = luggageId;
         this.customerId = customerId;
         this.description = description;
@@ -35,6 +38,9 @@ public class Luggage {
         this.dateLost = dateLost;
         this.isLost = isLost;
         this.isHandled = isHandled;
+        this.dateChanged = dateChanged;
+        this.dateHandled = dateHandled;
+        this.lastChangedBy =lastChangedBy;
         
 //        System.out.println(customerId + " " + lastName + " " + email);
     }
@@ -52,6 +58,9 @@ public class Luggage {
                     this.setDateLost(result.getString("date_lost"));
                     this.setIsLost(result.getBoolean("is_lost"));
                     this.setIsHandled(result.getBoolean("is_handled"));
+                    this.setDateChanged(result.getString("date_changed"));
+                    this.setDateHandled(result.getString("date_handled"));
+                    this.setLastChangedBy(result.getString("last_changed_by"));
                 }
                 else
                     System.out.println("SOMETHING WENT WRONG");
@@ -112,7 +121,10 @@ public class Luggage {
                         result.getString("location"),
                         result.getString("date_lost"),
                         result.getBoolean("is_lost"),
-                        result.getBoolean("is_handled")));
+                        result.getBoolean("is_handled"),
+                        result.getString("date_changed"),
+                        result.getString("date_handled"),
+                        result.getString("last_changed_by")));
             }
         } catch (SQLException e) {
             System.out.println(getDb().SQL_EXCEPTION + e.getMessage());
@@ -243,5 +255,47 @@ public class Luggage {
      */
     public void setIsHandled(boolean isHandled) {
         this.isHandled = isHandled;
+    }
+
+    /**
+     * @return the dateChanged
+     */
+    public String getDateChanged() {
+        return dateChanged;
+    }
+
+    /**
+     * @param dateChanged the dateChanged to set
+     */
+    public void setDateChanged(String dateChanged) {
+        this.dateChanged = dateChanged;
+    }
+
+    /**
+     * @return the dateHandled
+     */
+    public String getDateHandled() {
+        return dateHandled;
+    }
+
+    /**
+     * @param dateHandled the dateHandled to set
+     */
+    public void setDateHandled(String dateHandled) {
+        this.dateHandled = dateHandled;
+    }
+
+    /**
+     * @return the lastChangedBy
+     */
+    public String getLastChangedBy() {
+        return lastChangedBy;
+    }
+
+    /**
+     * @param lastChangedBy the lastChangedBy to set
+     */
+    public void setLastChangedBy(String lastChangedBy) {
+        this.lastChangedBy = lastChangedBy;
     }
 }
