@@ -1359,8 +1359,17 @@ public class Employee extends javax.swing.JFrame {
         if (totalCorrectInput) {            
             storedUserId = Session.storedUserId;                   
             luggage.setNewLuggage(customerId, description, location, isLost, isDone, storedUserId);
-        }
+        }        
+        tfCustomerID1.setText("");
+        tfDescription.setText("");
+        tfLocation1.setText("");
+        cbDone.setEnabled(false);
+        cbStatus.setEnabled(false);
+        searchLuggageTable2(9999, "");
         
+        
+        
+       
       
      
       // TODO add your handling code here:
