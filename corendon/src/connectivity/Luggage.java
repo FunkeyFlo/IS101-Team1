@@ -150,10 +150,12 @@ public class Luggage {
     }
     
     // moet nog waardes van luggage krijgen, staan nu nog customer waardes in
-    public void setNewLuggage(int customerId, String description,String location, boolean isLost, boolean  isHandled) {
-        String sql = "INSERT INTO `luggage` (customer_id, description, location, is_lost, is_handled) VALUES ('" 
-                + customerId + "', '" + description + "', '" + location 
-                + "', '" + isLost + "', '" + isHandled + "'";
+    public void setNewLuggage(String customerId, String description,String location, int isLost, int  isHandled, int storedUserId) {
+             if (customerId.equals(""))
+                 customerId = "NULL";        
+        String sql = "INSERT INTO `luggage` (customer_id, description, location, is_lost, is_handled, last_changed_by , date_changed) VALUES (" 
+                + customerId + ", '" + description + "', '" + location 
+                + "', '" + isLost + "', '" + isHandled +  "', '" + storedUserId + "', " + "CURRENT_TIMESTAMP)";
         db.insertQuery(sql);
     }
 

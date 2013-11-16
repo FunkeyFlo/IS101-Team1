@@ -972,7 +972,6 @@
                   </Border>
                 </Property>
                 <Property name="dividerLocation" type="int" value="600"/>
-                <Property name="dividerSize" type="int" value="10"/>
               </Properties>
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JSplitPaneSupportLayout"/>

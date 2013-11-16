@@ -806,7 +806,6 @@ public class Employee extends javax.swing.JFrame {
 
         linkTableSplitter.setBorder(javax.swing.BorderFactory.createTitledBorder("Overzichten"));
         linkTableSplitter.setDividerLocation(600);
-        linkTableSplitter.setDividerSize(10);
 
         linkLuggageTablePanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Bagage"));
 
@@ -1313,9 +1312,10 @@ public class Employee extends javax.swing.JFrame {
         Luggage luggage = new Luggage();
         boolean[] correctInput = new boolean[2];
         boolean totalCorrectInput = false;
-        boolean isLost;
-        boolean isDone;       
-        int customerId;
+        int isLost;
+        int isDone;       
+        String customerId;
+        int storedUserId;
         
          String description = tfDescription.getText().trim();
         if (description.equals("")) {
@@ -1326,7 +1326,7 @@ public class Employee extends javax.swing.JFrame {
             correctInput[0] = true;
         
        
-       customerId = Integer.parseInt(tfCustomerID1.getText().trim());
+       customerId = tfCustomerID1.getText().trim();
         
         String location = tfLocation1.getText().trim();
         if( location.equals("")){
@@ -1337,14 +1337,14 @@ public class Employee extends javax.swing.JFrame {
             correctInput[1] = true;
                     
         if(cbStatus.isSelected())
-            isLost = true;
+            isLost = 1;
         else
-            isLost = false;
+            isLost = 0;
         
         if(cbDone.isSelected())
-            isDone = true;
+            isDone = 1;
         else
-            isDone = false;        
+            isDone = 0;        
       
         for (int i = 0; i < correctInput.length; i++) {
             if (correctInput[i] == false) {
@@ -1356,8 +1356,9 @@ public class Employee extends javax.swing.JFrame {
             }
         }
         System.out.println(totalCorrectInput);
-        if (totalCorrectInput) {
-            luggage.setNewLuggage(customerId, description, location, isLost, isDone);
+        if (totalCorrectInput) {            
+            storedUserId = Session.storedUserId;                   
+            luggage.setNewLuggage(customerId, description, location, isLost, isDone, storedUserId);
         }
         
       
