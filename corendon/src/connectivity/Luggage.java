@@ -70,42 +70,53 @@ public class Luggage {
         }
     }
     
-    public List<Luggage> searchLuggageList(int dbField, String searchArg) {
+    public List<Luggage> searchLuggageList(int dbField, String searchArg, int handled) {
         List<Luggage> luggages = new ArrayList<>();
-        String sql, sqlSelect = "SELECT * FROM `luggage`";
+        String showHandled, sql, sqlSelect = "SELECT * FROM `luggage`";
+        
+        if (handled == 1){
+            showHandled = " AND `is_handled` = 0";
+        } else {
+            showHandled = "";
+        }
         
         // Statement for searching all collumns
         if (dbField == 0) {
-            sql = sqlSelect + " WHERE `luggage_id` LIKE '%" + searchArg + "%'"
-                    + "OR `customer_id` LIKE '%" + searchArg + "%'" 
-                    + "OR `description` LIKE '%" + searchArg + "%'"
-                    + "OR `location` LIKE '%" + searchArg + "%'"
-                    + "OR `date_lost` LIKE '%" + searchArg + "%'";
+            sql = sqlSelect + " WHERE `luggage_id` LIKE '%" + searchArg + "%'" + showHandled
+                    + " OR `customer_id` LIKE '%" + searchArg + "%'" + showHandled
+                    + " OR `description` LIKE '%" + searchArg + "%'" + showHandled
+                    + " OR `location` LIKE '%" + searchArg + "%'" + showHandled
+                    + " OR `date_lost` LIKE '%" + searchArg + "%'" + showHandled;
         }
         
         // for searching luggageId
         else if (dbField == 1) {
-            sql = sqlSelect + " WHERE `luggage_id` LIKE '%" + searchArg + "%'";
+            sql = sqlSelect + " WHERE `luggage_id` LIKE '%" + searchArg + "%'"
+                     + showHandled;
         }
         
         // customerId
         else if (dbField == 2) {
-            sql = sqlSelect + " WHERE `customer_id` LIKE '%" + searchArg + "%'";
+            sql = sqlSelect + " WHERE `customer_id` LIKE '%" + searchArg + "%'"
+                     + showHandled;
         }
         
         // description
         else if (dbField == 3) {
-            sql = sqlSelect + " WHERE `description` LIKE '%" + searchArg + "%'";
+            sql = sqlSelect + " WHERE `description` LIKE '%" + searchArg + "%'"
+                     + showHandled;
         }
         
         // location
         else if (dbField == 4) {
-            sql = sqlSelect + " WHERE `location` LIKE '%" + searchArg + "%'";
+            sql = sqlSelect + " WHERE `location` LIKE '%" + searchArg + "%'"
+                     + showHandled;
         }
         
         // date
         else if (dbField == 5) {
-            sql = sqlSelect + " WHERE `date_lost` LIKE '%" + searchArg + "%'";
+            sql = sqlSelect + " WHERE `date_lost` LIKE '%" + searchArg + "%'"
+                     + showHandled;
         }
         
         //lost luggage
@@ -126,8 +137,12 @@ public class Luggage {
                     + " AND is_lost = 0 AND is_handled = 1";
         }
         // Else statement is used to fill the table with all users
-        else
-            sql = sqlSelect;
+        else {
+            if (handled == 1)
+                sql = sqlSelect + " WHERE `is_handled` = 0";
+            else
+                sql = sqlSelect;
+        }
         
         try {
             ResultSet result = getDb().doQuery(sql);

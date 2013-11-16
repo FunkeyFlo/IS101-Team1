@@ -350,7 +350,7 @@ public class Manager extends javax.swing.JFrame {
         //Value for lost luggage
         for (int i = 0; i < MONTHS.length; i++) {
             luggage.clear();
-            luggage = luggageModel.searchLuggageList(6, MONTH_NUM[i]);
+            luggage = luggageModel.searchLuggageList(6, MONTH_NUM[i], 0);
             numTimesLost.add(0);
             while (numTimesLost.get(i) < luggage.size()) {                
                 numTimesLost.set(i, numTimesLost.get(i) + 1);
@@ -360,7 +360,7 @@ public class Manager extends javax.swing.JFrame {
         //Value for found luggage
         for (int i = 0; i < MONTHS.length; i++) {
             luggage.clear();
-            luggage = luggageModel.searchLuggageList(7, MONTH_NUM[i]);
+            luggage = luggageModel.searchLuggageList(7, MONTH_NUM[i], 0);
             numTimesFound.add(0);
             while (numTimesFound.get(i) < luggage.size()) {                
                 numTimesFound.set(i, numTimesFound.get(i) + 1);
@@ -370,7 +370,7 @@ public class Manager extends javax.swing.JFrame {
         //Value for handled luggage
         for (int i = 0; i < MONTHS.length; i++) {
             luggage.clear();
-            luggage = luggageModel.searchLuggageList(8, MONTH_NUM[i]);
+            luggage = luggageModel.searchLuggageList(8, MONTH_NUM[i], 0);
             numTimesRtrnd.add(0);
             while (numTimesRtrnd.get(i) < luggage.size()) {                
                 numTimesRtrnd.set(i, numTimesRtrnd.get(i) + 1);
