@@ -414,7 +414,7 @@ public class Manager extends javax.swing.JFrame {
         /**
          * LOST BAGGAGE GRAPH
          */
-        JFreeChart lostBaggageChart = ChartFactory.createBarChart("Verloren baggage", "Maand", "Verloren", lostBaggageGraph, PlotOrientation.VERTICAL, false, true, false);
+        JFreeChart lostBaggageChart = ChartFactory.createBarChart3D("Verloren baggage", "Maand", "Verloren", lostBaggageGraph, PlotOrientation.VERTICAL, false, true, false);
         CategoryPlot lostBaggagePlot = lostBaggageChart.getCategoryPlot();
         lostBaggagePlot.setRangeGridlinePaint(Color.BLACK);
         ChartPanel lostBaggagePanel = new ChartPanel(lostBaggageChart);
@@ -426,7 +426,7 @@ public class Manager extends javax.swing.JFrame {
         /**
          * FOUND BAGGAGE GRAPH
          */
-        JFreeChart foundBaggageChart = ChartFactory.createBarChart("Gevonden baggage", "Maand", "Gevonden", foundBaggageGraph, PlotOrientation.VERTICAL, false, true, false);
+        JFreeChart foundBaggageChart = ChartFactory.createLineChart("Gevonden baggage", "Maand", "Gevonden", foundBaggageGraph, PlotOrientation.VERTICAL, false, true, false);
         CategoryPlot foundBaggagePlot = foundBaggageChart.getCategoryPlot();
         foundBaggagePlot.setRangeGridlinePaint(Color.BLACK);
         ChartPanel foundBaggagePanel = new ChartPanel(foundBaggageChart);
@@ -438,7 +438,8 @@ public class Manager extends javax.swing.JFrame {
         /**
          * RETURNED BAGGAGE GRAPH
          */
-        JFreeChart returnedBaggageChart = ChartFactory.createBarChart("Afgehandelde baggage", "Maand", "Afgehandeld", returnedBaggageGraph, PlotOrientation.VERTICAL, false, true, false);
+        //JFreeChart returnedBaggageChart = ChartFactory.createLineChart("Afgehandelde baggage", "Maand", "Afgehandeld", returnedBaggageGraph, PlotOrientation.HORIZONTAL, false, true, false);
+        JFreeChart returnedBaggageChart = ChartFactory.createAreaChart("Afgehandelde baggage", "Maand", "Afgehandeld", returnedBaggageGraph, PlotOrientation.VERTICAL, false, true, false);
         CategoryPlot returnedBaggagePlot = returnedBaggageChart.getCategoryPlot();
         returnedBaggagePlot.setRangeGridlinePaint(Color.BLACK);
         ChartPanel returnedBaggagePanel = new ChartPanel(returnedBaggageChart);

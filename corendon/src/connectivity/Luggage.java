@@ -150,8 +150,8 @@ public class Luggage {
     }
     
     // moet nog waardes van luggage krijgen, staan nu nog customer waardes in
-    public void setNewLuggage(int customerId, String description, String location, boolean isLost, boolean  isHandled) {
-        String sql = "INSERT INTO fys.`luggage` (customer_id, description, location, is_lost, is_handled) VALUES ('" 
+    public void setNewLuggage(int customerId, String description,String location, boolean isLost, boolean  isHandled) {
+        String sql = "INSERT INTO `luggage` (customer_id, description, location, is_lost, is_handled) VALUES ('" 
                 + customerId + "', '" + description + "', '" + location 
                 + "', '" + isLost + "', '" + isHandled + "'";
         db.insertQuery(sql);
