@@ -88,7 +88,11 @@ CREATE TABLE `customer` (
   PRIMARY KEY (`customer_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8
 
+// De luggage create werkt nu wel, alleen even na het uivoeren van het script.
+// De index van date_lost aanpassen zodat hij weer goed staat.
+
 CREATE TABLE `luggage` (
+  `date_lost` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `luggage_id` int(11) NOT NULL AUTO_INCREMENT,
   `customer_id` int(11) DEFAULT NULL,
   `description` varchar(200) DEFAULT NULL,
@@ -96,7 +100,6 @@ CREATE TABLE `luggage` (
   `is_lost` tinyint(4) NOT NULL DEFAULT '1',
   `is_handled` tinyint(4) NOT NULL DEFAULT '0',
   `date_changed` timestamp NOT NULL,
-  `date_lost` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `last_changed_by` varchar(50) NOT NULL,
   `date_handled` timestamp DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`luggage_id`)
