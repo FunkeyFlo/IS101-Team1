@@ -54,7 +54,7 @@ public class Employee extends javax.swing.JFrame {
         luggages = luggageModel.searchLuggageList(dbField, searchArg, showHandled);
         for(Luggage luggage : luggages) {
             modelLuggage1.addRow(new Object[] {new Integer(luggage.getLuggageId()),
-                luggage.getCustomerId(),
+                (luggage.getCustomerId() == 0) ? "Nog niet toegewezen" : luggage.getCustomerId(),
                 luggage.getDescription(),
                 luggage.getLocation(),
                 luggage.getDateLost(),
@@ -70,7 +70,7 @@ public class Employee extends javax.swing.JFrame {
         luggages = luggageModel.searchLuggageList(dbField, searchArg, showHandled);
         for(Luggage luggage : luggages) {
             modelLuggage2.addRow(new Object[] {new Integer(luggage.getLuggageId()),
-                luggage.getCustomerId(),
+                (luggage.getCustomerId() == 0) ? "Nog niet toegewezen" : luggage.getCustomerId(),
                 luggage.getDescription(),
                 luggage.getLocation(),
                 luggage.getDateLost(),
