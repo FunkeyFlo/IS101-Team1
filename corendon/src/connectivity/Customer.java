@@ -138,6 +138,11 @@ public class Customer {
                 + tfPhoneMobile + "')";
         db.insertQuery(sql);
     }
+    
+    public void deleteCustomer(String tfCustomerID) {
+        String sql = "DELETE FROM `customer` WHERE `customer_id` = '" + tfCustomerID + "'";
+        db.insertQuery(sql);
+    }
 
     /**
      * @return the db

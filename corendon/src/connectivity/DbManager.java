@@ -22,7 +22,7 @@ public class DbManager {
         try {
             Class.forName("com.mysql.jdbc.Driver");
 
-            String url = "jdbc:mysql://localhost/fys";
+            String url = "jdbc:mysql://localhost/fys?zeroDateTimeBehavior=convertToNull";
             String user = "root", pass = "1234";
 
             /** Open connection */

@@ -289,9 +289,13 @@
                 <Component class="javax.swing.JTextField" name="tfAddress2">
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfAddress2ActionPerformed"/>
+                    <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfAddress2KeyPressed"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JTextField" name="tfAddress1">
+                  <Events>
+                    <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfAddress1KeyPressed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel12">
                   <Properties>
@@ -301,9 +305,13 @@
                 <Component class="javax.swing.JTextField" name="tfFirstName">
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfFirstNameActionPerformed"/>
+                    <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfFirstNameKeyPressed"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JTextField" name="tfPostalCode2">
+                  <Events>
+                    <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfPostalCode2KeyPressed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel13">
                   <Properties>
@@ -316,6 +324,9 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="tfLastName">
+                  <Events>
+                    <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfLastNameKeyPressed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel15">
                   <Properties>
@@ -323,6 +334,9 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="tfEmail1">
+                  <Events>
+                    <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfEmail1KeyPressed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel16">
                   <Properties>
@@ -332,9 +346,13 @@
                 <Component class="javax.swing.JTextField" name="tfEmail2">
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfEmail2ActionPerformed"/>
+                    <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfEmail2KeyPressed"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JTextField" name="tfPhoneHome">
+                  <Events>
+                    <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfPhoneHomeKeyPressed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel17">
                   <Properties>
@@ -342,6 +360,9 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="tfPhoneMobile">
+                  <Events>
+                    <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfPhoneMobileKeyPressed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel18">
                   <Properties>
@@ -375,6 +396,9 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="tfCity">
+                  <Events>
+                    <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfCityKeyPressed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JComboBox" name="tfCountry">
                   <Properties>
@@ -395,6 +419,9 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="tfPostalCode1">
+                  <Events>
+                    <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfPostalCode1KeyPressed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -419,7 +446,7 @@
                                   <Component id="customerSearchButton2" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="cbSearchCustomer1" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="207" max="32767" attributes="0"/>
+                                  <EmptySpace pref="208" max="32767" attributes="0"/>
                                   <Component id="refreshCustomerTable2" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Component id="jScrollPane3" alignment="0" pref="680" max="32767" attributes="0"/>
@@ -532,9 +559,12 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
+                      <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="jButton1" max="32767" attributes="0"/>
+                              <Component id="customerDeleteButton" max="32767" attributes="0"/>
+                          </Group>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -544,7 +574,9 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="62" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="customerDeleteButton" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace pref="30" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -554,6 +586,14 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Klant gegevens aanpassen"/>
                   </Properties>
+                </Component>
+                <Component class="javax.swing.JButton" name="customerDeleteButton">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Klant verwijderen"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="customerDeleteButtonActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -781,7 +821,7 @@
                                   <EmptySpace max="32767" attributes="0"/>
                                   <Component id="refreshLuggageTable2" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="jScrollPane7" alignment="0" pref="684" max="32767" attributes="0"/>
+                              <Component id="jScrollPane7" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>

@@ -35,6 +35,7 @@ public class Employee extends javax.swing.JFrame {
     public static String customerFullName;
     private Component ErrorPopUp;
     private Component LuggagePopUp;
+    private Component customerPopUp;
     
     public Employee() {
         initComponents();
@@ -152,6 +153,154 @@ public class Employee extends javax.swing.JFrame {
         searchCustomerTable1(cbSearchLuggage.getSelectedIndex(), customerSearchField.getText());
         searchLuggageTable1(cbSearchCustomer.getSelectedIndex(), luggageSearchField.getText(), getShowHandled1());
     }
+    
+    private void errorPopUp(String errorMessage)
+    {
+            JOptionPane.showMessageDialog(ErrorPopUp, errorMessage);
+    }
+    
+    private boolean errorCheckCreateCustomer()
+    {
+        boolean[] correctInput = new boolean[6];
+        boolean totalCorrectInput = false;
+        
+        String newFirstName = tfFirstName.getText().trim();
+        String newLastName = tfLastName.getText().trim();
+        String newAddress = tfAddress1.getText().trim() + " " + tfAddress2.getText().trim();
+        String newPostalCode = tfPostalCode1.getText().trim() + tfPostalCode2.getText().trim().toUpperCase();
+        String newCity = tfCity.getText().trim();
+        String newEmail = tfEmail1.getText().trim() + "@" + tfEmail2.getText().trim();
+
+
+        if (newFirstName.equals("") || newFirstName.length() > 50) 
+        {
+            correctInput[0] = false;
+        } 
+        else 
+        {
+            correctInput[0] = true;
+        }
+        
+        
+        if (newLastName.equals("") || newLastName.length() > 50) 
+        {
+            correctInput[1] = false;
+        } 
+        else 
+        {
+            correctInput[1] = true;
+        }
+        
+        
+        if (newAddress.equals(" ") || tfAddress1.getText().equals("") || tfAddress2.getText().equals("")) 
+        {
+            correctInput[2] = false;
+        }
+        else 
+        {
+            correctInput[2] = true;
+        }
+            
+        if (newPostalCode.equals("")) 
+        {
+            correctInput[3] = false;
+        }
+        else if (!tfPostalCode1.getText().matches("[0-9]+")) 
+        {
+            correctInput[3] = false;
+        }
+        else if (!tfPostalCode2.getText().toUpperCase().matches("[A-Z]+")) 
+        {
+            correctInput[3] = false;
+        }
+        else 
+        {
+            correctInput[3] = true;
+        }
+
+        if (newCity.equals("")) 
+        {
+            correctInput[4] = false;
+        }
+        else 
+        {
+            correctInput[4] = true;
+        }
+        
+        
+        if (newEmail.length() > 75) 
+        {
+            correctInput[5] = false;
+        }
+        else if (!tfEmail2.getText().contains(".")) 
+        {
+            correctInput[5] = false;
+        }
+        else 
+        {
+            correctInput[5] = true;
+        }
+
+        for (int i = 0; i < correctInput.length; i++) {
+            if (correctInput[i] == false) {
+                totalCorrectInput = false;
+            }
+            else {
+                totalCorrectInput = true;
+            }
+            
+        }   
+        return totalCorrectInput;
+    }
+    
+    private boolean customerPopUp(String message)        
+    {
+        boolean confirm = false ;
+        final JOptionPane createUserPopPane = new JOptionPane(message,
+                JOptionPane.QUESTION_MESSAGE,
+                JOptionPane.YES_NO_OPTION);
+        final JDialog dialog = new JDialog((Frame) customerPopUp, "Click a button", true);
+        dialog.setContentPane(createUserPopPane);
+        createUserPopPane.addPropertyChangeListener(
+                new PropertyChangeListener() {
+                    public void propertyChange(PropertyChangeEvent e) {
+                        String prop = e.getPropertyName();
+
+                        if (dialog.isVisible()
+                        && (e.getSource() == createUserPopPane)
+                        && (prop.equals(JOptionPane.VALUE_PROPERTY))) {
+                            dialog.setVisible(false);
+                        }
+                    }
+                });
+        dialog.pack();
+        dialog.setVisible(true);
+
+        int value = ((Integer) createUserPopPane.getValue()).intValue();
+        if (value == JOptionPane.YES_OPTION) {
+            confirm = true;
+        }
+        return confirm;
+    }
+    
+    private void doCreateCustomer()
+    {
+        Customer customer = new Customer();
+        String newFirstName = tfFirstName.getText().trim();
+        String newLastName = tfLastName.getText().trim();
+        String newAddress = tfAddress1.getText().trim() + " " + tfAddress2.getText().trim();
+        String newPostalCode = tfPostalCode1.getText().trim() + tfPostalCode2.getText().trim().toUpperCase();
+        String newCountry = tfCountry.getSelectedItem().toString();
+        String newCity = tfCity.getText().trim();
+        String newEmail = tfEmail1.getText().trim() + "@" + tfEmail2.getText().trim();
+        String newPhoneHome = tfPhoneHome.getText().trim();
+        String newPhoneMobile = tfPhoneMobile.getText().trim();
+        customer.setNewCustomer(newFirstName , newLastName,
+                 newAddress, newPostalCode, newCity, newCountry, newEmail,
+                 newPhoneHome, newPhoneMobile);
+        clearFields();
+        searchCustomerTable2(9999, "");
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -200,6 +349,7 @@ public class Employee extends javax.swing.JFrame {
         refreshCustomerTable2 = new javax.swing.JButton();
         customerOptionsPanel = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
+        customerDeleteButton = new javax.swing.JButton();
         luggage = new javax.swing.JPanel();
         luggageRegistrationPanel = new javax.swing.JLayeredPane();
         lblCustomerID4 = new javax.swing.JLabel();
@@ -265,6 +415,17 @@ public class Employee extends javax.swing.JFrame {
                 tfAddress2ActionPerformed(evt);
             }
         });
+        tfAddress2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tfAddress2KeyPressed(evt);
+            }
+        });
+
+        tfAddress1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tfAddress1KeyPressed(evt);
+            }
+        });
 
         jLabel12.setText("Postcode");
 
@@ -273,12 +434,35 @@ public class Employee extends javax.swing.JFrame {
                 tfFirstNameActionPerformed(evt);
             }
         });
+        tfFirstName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tfFirstNameKeyPressed(evt);
+            }
+        });
+
+        tfPostalCode2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tfPostalCode2KeyPressed(evt);
+            }
+        });
 
         jLabel13.setText("Voornaam");
 
         jLabel14.setText("Achternaam");
 
+        tfLastName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tfLastNameKeyPressed(evt);
+            }
+        });
+
         jLabel15.setText("E-mail");
+
+        tfEmail1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tfEmail1KeyPressed(evt);
+            }
+        });
 
         jLabel16.setText("@");
 
@@ -287,8 +471,25 @@ public class Employee extends javax.swing.JFrame {
                 tfEmail2ActionPerformed(evt);
             }
         });
+        tfEmail2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tfEmail2KeyPressed(evt);
+            }
+        });
+
+        tfPhoneHome.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tfPhoneHomeKeyPressed(evt);
+            }
+        });
 
         jLabel17.setText("Huis telefoon");
+
+        tfPhoneMobile.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tfPhoneMobileKeyPressed(evt);
+            }
+        });
 
         jLabel18.setText("Mobiel tel.");
 
@@ -310,9 +511,21 @@ public class Employee extends javax.swing.JFrame {
 
         jLabel20.setText("Land");
 
+        tfCity.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tfCityKeyPressed(evt);
+            }
+        });
+
         tfCountry.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Nederland", "Turkije", "Australië" }));
 
         warningLabel1.setForeground(new java.awt.Color(255, 0, 0));
+
+        tfPostalCode1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tfPostalCode1KeyPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout customerRegistrationPanelLayout = new javax.swing.GroupLayout(customerRegistrationPanel);
         customerRegistrationPanel.setLayout(customerRegistrationPanelLayout);
@@ -492,7 +705,7 @@ public class Employee extends javax.swing.JFrame {
                         .addComponent(customerSearchButton2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cbSearchCustomer1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 207, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 208, Short.MAX_VALUE)
                         .addComponent(refreshCustomerTable2))
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 680, Short.MAX_VALUE))
                 .addContainerGap())
@@ -515,13 +728,22 @@ public class Employee extends javax.swing.JFrame {
 
         jButton1.setText("Klant gegevens aanpassen");
 
+        customerDeleteButton.setText("Klant verwijderen");
+        customerDeleteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                customerDeleteButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout customerOptionsPanelLayout = new javax.swing.GroupLayout(customerOptionsPanel);
         customerOptionsPanel.setLayout(customerOptionsPanelLayout);
         customerOptionsPanelLayout.setHorizontalGroup(
             customerOptionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(customerOptionsPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton1)
+                .addGroup(customerOptionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(customerDeleteButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         customerOptionsPanelLayout.setVerticalGroup(
@@ -529,7 +751,9 @@ public class Employee extends javax.swing.JFrame {
             .addGroup(customerOptionsPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jButton1)
-                .addContainerGap(62, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(customerDeleteButton)
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout customerLayout = new javax.swing.GroupLayout(customer);
@@ -750,7 +974,7 @@ public class Employee extends javax.swing.JFrame {
                         .addComponent(showHandledLuggage2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(refreshLuggageTable2))
-                    .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 684, Short.MAX_VALUE))
+                    .addComponent(jScrollPane7))
                 .addContainerGap())
         );
         luggageTablePanelLayout.setVerticalGroup(
@@ -1147,109 +1371,13 @@ public class Employee extends javax.swing.JFrame {
     }//GEN-LAST:event_tfEmail2ActionPerformed
 
     private void createCustomer1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createCustomer1ActionPerformed
-        Customer customer = new Customer();
-        boolean[] correctInput = new boolean[6];
-        boolean totalCorrectInput = false;
-        
-        
-        String newFirstName = tfFirstName.getText().trim();
-        if (newFirstName.equals("") || newFirstName.length() > 50) {
-            warningLabel1.setText("Voer een voornaam in");
-            correctInput[0] = false;
-        } else {
-            correctInput[0] = true;
+        boolean totalCorrectInput = errorCheckCreateCustomer();
+        if (totalCorrectInput == true) 
+        {
+            doCreateCustomer();
         }
-        
-        String newLastName = tfLastName.getText().trim();
-        if (newLastName.equals("") || newLastName.length() > 50) {
-            warningLabel1.setText("Voer een achternaam in");
-            correctInput[1] = false;
-        } else {
-            correctInput[1] = true;
-        }
-        
-        String newAddress = tfAddress1.getText().trim() + " " + tfAddress2.getText().trim();
-        if (newAddress.equals(" ")) {
-            warningLabel1.setText("Voer een adres in");
-            correctInput[2] = false;
-        }
-        else if (tfAddress1.getText().equals("")) {
-            warningLabel1.setText("Voer een straatnaam in");
-            correctInput[2] = false;
-        }
-        else if (tfAddress2.getText().equals("")) {
-            warningLabel1.setText("Voer een huisnummer in");
-            correctInput[2] = false;
-        } 
-        else {
-            correctInput[2] = true;
-        }
-            
-        String newPostalCode = tfPostalCode1.getText().trim() + tfPostalCode2.getText().trim().toUpperCase();
-        System.out.println(tfPostalCode1.getText() + " " + tfPostalCode2.getText() + " " + newPostalCode);
-        if (newPostalCode.equals("")) {
-            warningLabel1.setText("Voer een postcode in");
-            correctInput[3] = false;
-        }
-        else if (!tfPostalCode1.getText().matches("[0-9]+")) {
-            warningLabel1.setText("Eerste vier karakters van een postcode zijn cijfers");
-            correctInput[3] = false;
-        }
-        else if (!tfPostalCode2.getText().toUpperCase().matches("[A-Z]+")) {
-            warningLabel1.setText("Laatste twee karakters van een postcode zijn letters");
-            correctInput[3] = false;
-        }
-        else {
-            correctInput[3] = true;
-        }
-        
-        String newCountry = tfCountry.getSelectedItem().toString();
-        
-        String newCity = tfCity.getText().trim();
-        if (newCity.equals("")) {
-            warningLabel1.setText("Voer een stad in");
-            correctInput[4] = false;
-        }
-        else {
-            correctInput[4] = true;
-        }
-        
-        String newEmail = tfEmail1.getText().trim() + "@" + tfEmail2.getText().trim();
-        if (newEmail.length() > 75) {
-            warningLabel1.setText("Emailadres is te lang");
-            correctInput[5] = false;
-        }
-        else if (!tfEmail2.getText().contains(".")) {
-            warningLabel1.setText("Voer een emailadres met een punt in");
-            correctInput[5] = false;
-        }
-        else {
-            correctInput[5] = true;
-        }
-        
-        String newPhoneHome = tfPhoneHome.getText().trim();
-        String newPhoneMobile = tfPhoneMobile.getText().trim();
- 
-        for (int i = 0; i < correctInput.length; i++) {
-            if (correctInput[i] == false) {
-                totalCorrectInput = false;
-//                System.out.println("false" + i); koekje
-                break;
-            }
-            else {
-                totalCorrectInput = true;
-            }
-        }
-        
-        if (totalCorrectInput) {
-            customer.setNewCustomer(newFirstName, newLastName,
-                 newAddress, newPostalCode, newCity, newCountry, newEmail,
-                 newPhoneHome, newPhoneMobile);
-
-            clearFields();
-            searchCustomerTable2(9999, "");
-            warningLabel1.setText("");
-        }
+        else
+            errorPopUp("Vul alle velden volledig in en probeer het nog eens.");
     }//GEN-LAST:event_createCustomer1ActionPerformed
 
     private void refreshCustomerTable2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshCustomerTable2ActionPerformed
@@ -1269,7 +1397,7 @@ public class Employee extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void linkButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_linkButtonActionPerformed
-
+        boolean confirmation;
         isLinked = true;
         try
         {
@@ -1289,41 +1417,19 @@ public class Employee extends javax.swing.JFrame {
 
         customerId = Integer.parseInt(customerToLink);
         luggageId = Integer.parseInt(luggageToLink);
-   
-        final JOptionPane linkLuggagePopUp = new JOptionPane(
-        "Weet u zeker dat u klant: " + customerFullName + "\n"
-        + "Wilt koppelen aan baggagestuk: " + luggageId ,
-        JOptionPane.QUESTION_MESSAGE,
-        JOptionPane.YES_NO_OPTION);
-        if(isLinked == true) 
+        String message = "Weet u zeker dat u klant: " + customerFullName + "\n"
+        + "Wilt koppelen aan baggagestuk: " + luggageId ;
+        
+        confirmation = customerPopUp(message);
+        if (confirmation == true)
         {
-        final JDialog dialog = new JDialog((Frame) LuggagePopUp, "Click a button", true);
-        dialog.setContentPane(linkLuggagePopUp);
-        linkLuggagePopUp.addPropertyChangeListener(
-        new PropertyChangeListener()
-        {
-        @Override
-        public void propertyChange(PropertyChangeEvent e) {
-            String prop = e.getPropertyName();
-
-            if (dialog.isVisible() 
-             && (e.getSource() == linkLuggagePopUp)
-             && (prop.equals(JOptionPane.VALUE_PROPERTY))) {
-                dialog.setVisible(false);
-            }
-        }
-    });
-    dialog.pack();
-    dialog.setVisible(true);
-
-    int value = ((Integer)linkLuggagePopUp.getValue()).intValue();
-    if (value == JOptionPane.YES_OPTION) {
         Luggage luggage = new Luggage();
         luggage.linkCustomerId(customerId, luggageId);
         searchCustomerTable1(cbSearchLuggage.getSelectedIndex(), customerSearchField.getText());
         searchLuggageTable1(cbSearchCustomer.getSelectedIndex(), luggageSearchField.getText(), getShowHandled1());
-    }
-    }
+        }
+    
+    
     }//GEN-LAST:event_linkButtonActionPerformed
 
     private void customerSearchButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customerSearchButton2ActionPerformed
@@ -1462,6 +1568,165 @@ public class Employee extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_showHandledLuggage1ActionPerformed
 
+    private void tfFirstNameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfFirstNameKeyPressed
+    if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+        boolean totalCorrectInput = errorCheckCreateCustomer();
+        if (totalCorrectInput == true) 
+        {
+            doCreateCustomer();
+        }
+        else
+            errorPopUp("Vul alle velden volledig in en probeer het nog eens.");
+        }                                                 
+    }//GEN-LAST:event_tfFirstNameKeyPressed
+
+    private void tfLastNameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfLastNameKeyPressed
+    if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+        boolean totalCorrectInput = errorCheckCreateCustomer();
+        if (totalCorrectInput == true) 
+        {
+            doCreateCustomer();
+        }
+        else
+            errorPopUp("Vul alle velden volledig in en probeer het nog eens.");
+        }                                                 
+    }//GEN-LAST:event_tfLastNameKeyPressed
+
+    private void tfAddress1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfAddress1KeyPressed
+    if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+        boolean totalCorrectInput = errorCheckCreateCustomer();
+        if (totalCorrectInput == true) 
+        {
+            doCreateCustomer();
+        }
+        else
+            errorPopUp("Vul alle velden volledig in en probeer het nog eens.");
+        }                                                 
+    }//GEN-LAST:event_tfAddress1KeyPressed
+
+    private void tfAddress2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfAddress2KeyPressed
+    if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+        boolean totalCorrectInput = errorCheckCreateCustomer();
+        if (totalCorrectInput == true) 
+        {
+            doCreateCustomer();
+        }
+        else
+            errorPopUp("Vul alle velden volledig in en probeer het nog eens.");
+        }                                                 
+    }//GEN-LAST:event_tfAddress2KeyPressed
+
+    private void tfPostalCode1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfPostalCode1KeyPressed
+    if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+        boolean totalCorrectInput = errorCheckCreateCustomer();
+        if (totalCorrectInput == true) 
+        {
+            doCreateCustomer();
+        }
+        else
+            errorPopUp("Vul alle velden volledig in en probeer het nog eens.");
+        }                                                 
+    }//GEN-LAST:event_tfPostalCode1KeyPressed
+
+    private void tfPostalCode2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfPostalCode2KeyPressed
+    if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+        boolean totalCorrectInput = errorCheckCreateCustomer();
+        if (totalCorrectInput == true) 
+        {
+            doCreateCustomer();
+        }
+        else
+            errorPopUp("Vul alle velden volledig in en probeer het nog eens.");
+        }                                                 
+    }//GEN-LAST:event_tfPostalCode2KeyPressed
+
+    private void tfCityKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfCityKeyPressed
+    if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+        boolean totalCorrectInput = errorCheckCreateCustomer();
+        if (totalCorrectInput == true) 
+        {
+            doCreateCustomer();
+        }
+        else
+            errorPopUp("Vul alle velden volledig in en probeer het nog eens.");
+        }                                                 
+    }//GEN-LAST:event_tfCityKeyPressed
+
+    private void tfEmail1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfEmail1KeyPressed
+    if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+        boolean totalCorrectInput = errorCheckCreateCustomer();
+        if (totalCorrectInput == true) 
+        {
+            doCreateCustomer();
+        }
+        else
+            errorPopUp("Vul alle velden volledig in en probeer het nog eens.");
+        }                                                 
+    }//GEN-LAST:event_tfEmail1KeyPressed
+
+    private void tfEmail2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfEmail2KeyPressed
+    if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+        boolean totalCorrectInput = errorCheckCreateCustomer();
+        if (totalCorrectInput == true) 
+        {
+            doCreateCustomer();
+        }
+        else
+            errorPopUp("Vul alle velden volledig in en probeer het nog eens.");
+        }                                                 
+    }//GEN-LAST:event_tfEmail2KeyPressed
+
+    private void tfPhoneHomeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfPhoneHomeKeyPressed
+    if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+        boolean totalCorrectInput = errorCheckCreateCustomer();
+        if (totalCorrectInput == true) 
+        {
+            doCreateCustomer();
+        }
+        else
+            errorPopUp("Vul alle velden volledig in en probeer het nog eens.");
+        }                                                 
+    }//GEN-LAST:event_tfPhoneHomeKeyPressed
+
+    private void tfPhoneMobileKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfPhoneMobileKeyPressed
+    if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+        boolean totalCorrectInput = errorCheckCreateCustomer();
+        if (totalCorrectInput == true) 
+        {
+            doCreateCustomer();
+        }
+        else
+            errorPopUp("Vul alle velden volledig in en probeer het nog eens.");
+        }                                                 
+    }//GEN-LAST:event_tfPhoneMobileKeyPressed
+
+    private void customerDeleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customerDeleteButtonActionPerformed
+        boolean isError = false;
+        boolean confirmation = false;
+        Customer customer = new Customer();
+        try
+        {
+        String customerFirstName = customerTable2.getValueAt(customerTable2.getSelectedRow(), 1).toString() + " ";
+        String customerLastName = customerTable2.getValueAt(customerTable2.getSelectedRow(), 2).toString();
+        customerFullName = customerFirstName + customerLastName;
+        }catch(IndexOutOfBoundsException e)
+        {
+            errorPopUp("Maak een selectie in de tabel en probeer het nog eens.");
+            isError = true;
+        }
+        if(isError == false)
+        {
+            String message = "Weet u zeker dat u klant: " + customerFullName +  " wilt verwijderen?"; 
+            confirmation = customerPopUp(message);
+            if(confirmation == true)
+            {
+                String customerID = customerTable2.getValueAt(customerTable2.getSelectedRow(), 0).toString();
+                customer.deleteCustomer(customerID);
+                searchCustomerTable2(9999, "");
+            }
+        }
+    }//GEN-LAST:event_customerDeleteButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1509,6 +1774,7 @@ public class Employee extends javax.swing.JFrame {
     private javax.swing.JButton createCustomer1;
     private javax.swing.JButton createLuggage1;
     private javax.swing.JPanel customer;
+    private javax.swing.JButton customerDeleteButton;
     private javax.swing.JPanel customerOptionsPanel;
     private javax.swing.JPanel customerRegistrationPanel;
     private javax.swing.JButton customerSearchButton1;

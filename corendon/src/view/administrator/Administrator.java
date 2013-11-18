@@ -115,28 +115,28 @@ public class Administrator extends javax.swing.JFrame {
     {
       boolean isError[] = new boolean[4];
         boolean totalCorrectInput = true;
-        String userName = tfUsername.getText();
-        String passWord = tfPassword.getText();
-        String firstName = tfFirstName.getText();
-        String lastName = tfLastName.getText();
+        String userName = tfUsername.getText().trim();
+        String passWord = tfPassword.getText().trim();
+        String firstName = tfFirstName.getText().trim();
+        String lastName = tfLastName.getText().trim();
         String empty = "";
         
-        if(userName.equals(empty))
+        if(userName.equals(empty) || userName.length() > 20)
             isError[0] = true;
         else
             isError[0] = false;
         
-        if(passWord.equals(empty))
+        if(passWord.equals(empty) || passWord.length() > 100)
             isError[1] = true;
         else
             isError[1] = false;
         
-        if(firstName.equals(empty))
+        if(firstName.equals(empty) || firstName.length() > 50)
             isError[2] = true;
         else
             isError[2] = false;
         
-        if(lastName.equals(empty))
+        if(lastName.equals(empty) || lastName.length() > 50)
             isError[3] = true;
         else
             isError[3] = false;
@@ -568,7 +568,7 @@ public class Administrator extends javax.swing.JFrame {
         boolean isConfirm = false;
         if(totalCorrectInput == false)
         {
-            errorPopUp("Please fill in all the fields before trying again.");
+            errorPopUp("Vul alle velden volledig in en probeer het nog eens.");
         }
         else
         {
@@ -606,7 +606,7 @@ public class Administrator extends javax.swing.JFrame {
         }
         catch(IndexOutOfBoundsException e)
         {
-            errorPopUp("Please make a selection in the table before trying again.");
+            errorPopUp("Maak een selectie in de tabel en probeer het nog eens.");
             isError = true;
         }
         if(isError == false)
@@ -622,13 +622,13 @@ public class Administrator extends javax.swing.JFrame {
         }
         catch(IndexOutOfBoundsException e)
         {
-            errorPopUp("Please make a selection in the table before trying again.");
+            errorPopUp("Maak een selectie in de tabel en probeer het nog eens.");
             isError = true;
         }
         if(isError == false)
         {
             searchUserTable(9999, "");
-            JOptionPane.showMessageDialog(Succes, "Account has been succesfully locked");
+            JOptionPane.showMessageDialog(Succes, "Gebruikersaccount succesvol vergrendelt.");
         }
     }//GEN-LAST:event_lockAccountActionPerformed
 
@@ -638,7 +638,7 @@ public class Administrator extends javax.swing.JFrame {
             boolean isConfirm = false;
             if(totalCorrectInput == false)
             {
-                errorPopUp("Please fill in all the fields before trying again.");
+                errorPopUp("Vul alle velden volledig in en probeer het nog eens.");
             }
             else
             {
@@ -655,7 +655,7 @@ public class Administrator extends javax.swing.JFrame {
             boolean isConfirm = false;
             if(totalCorrectInput == false)
             {
-                errorPopUp("Please fill in all the fields before trying again.");
+                errorPopUp("Vul alle velden volledig in en probeer het nog eens.");
             }
             else
             {
@@ -673,7 +673,7 @@ public class Administrator extends javax.swing.JFrame {
             boolean isConfirm = false;
             if(totalCorrectInput == false)
             {
-                errorPopUp("Please fill in all the fields before trying again.");
+                errorPopUp("Vul alle velden volledig in en probeer het nog eens.");
             }
             else
             {
@@ -690,7 +690,7 @@ public class Administrator extends javax.swing.JFrame {
             boolean isConfirm = false;
             if(totalCorrectInput == false)
             {
-                errorPopUp("Please fill in all the fields before trying again.");
+                errorPopUp("Vul alle velden volledig in en probeer het nog eens.");
             }
             else
             {
@@ -708,7 +708,7 @@ public class Administrator extends javax.swing.JFrame {
             boolean isConfirm = false;
             if(totalCorrectInput == false)
             {
-                errorPopUp("Please fill in all the fields before trying again.");
+                errorPopUp("Vul alle velden volledig in en probeer het nog eens.");
             }
             else
             {
@@ -731,13 +731,13 @@ public class Administrator extends javax.swing.JFrame {
         }
         catch(IndexOutOfBoundsException e)
         {
-            errorPopUp("Please make a selection in the table before trying again.");
+            errorPopUp("Maak een selectie in de tabel en probeer het nog eens.");
             isError = true;
         }
         if(isError == false)
         {    
         searchUserTable(9999, "");
-        JOptionPane.showMessageDialog(Succes, "Account has been succesfully unlocked");
+        JOptionPane.showMessageDialog(Succes, "Gebruikersaccount succesvol vergrendelt.");
         }
     }//GEN-LAST:event_unlockAccountActionPerformed
 
@@ -749,7 +749,7 @@ public class Administrator extends javax.swing.JFrame {
         }
         catch(IndexOutOfBoundsException e)
         {
-            errorPopUp("Please make a selection in the table before trying again.");
+            errorPopUp("Maak een selectie in de tabel en probeer het nog eens.");
             isError = true;
         }
         if(isError == false)
