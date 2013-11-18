@@ -211,7 +211,7 @@
             </Container>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JPanel" name="returnedBaggageTab">
+        <Container class="javax.swing.JPanel" name="handledBaggageTab">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
               <JTabbedPaneConstraints tabName="Afgehandelde baggage">
@@ -225,7 +225,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="returnedBaggage" pref="537" max="32767" attributes="0"/>
+                      <Component id="handledBaggage" pref="537" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -234,14 +234,14 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="returnedBaggage" pref="374" max="32767" attributes="0"/>
+                      <Component id="handledBaggage" pref="374" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Container class="javax.swing.JPanel" name="returnedBaggage">
+            <Container class="javax.swing.JPanel" name="handledBaggage">
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
@@ -378,10 +378,10 @@
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="4">
-                    <StringItem index="0" value="2013"/>
-                    <StringItem index="1" value="2012"/>
-                    <StringItem index="2" value="2011"/>
-                    <StringItem index="3" value="2010"/>
+                    <StringItem index="0" value="2010"/>
+                    <StringItem index="1" value="2011"/>
+                    <StringItem index="2" value="2012"/>
+                    <StringItem index="3" value="2013"/>
                   </StringArray>
                 </Property>
               </Properties>
@@ -486,10 +486,10 @@
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="4">
-                    <StringItem index="0" value="2013"/>
-                    <StringItem index="1" value="2012"/>
-                    <StringItem index="2" value="2011"/>
-                    <StringItem index="3" value="2010"/>
+                    <StringItem index="0" value="2010"/>
+                    <StringItem index="1" value="2011"/>
+                    <StringItem index="2" value="2012"/>
+                    <StringItem index="3" value="2013"/>
                   </StringArray>
                 </Property>
               </Properties>
