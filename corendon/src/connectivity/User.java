@@ -123,12 +123,6 @@ public class User {
         db.insertQuery(sql);
     }
 
-    // Change password
-    public void changeUserPassword(String inputUsername, String newPassword) {
-        newPassword = BCrypt.hashpw(newPassword, BCrypt.gensalt());
-        String sql = "UPDATE `user` SET `password` = '" + newPassword + "' WHERE `username` = '" + inputUsername + "'";
-    }
-
     // User to change desired user information (STRINGS)
     public void changeUserStringData(String inputUsername, String dbField, String newValue) {
         String sql = "UPDATE `user` SET `" + dbField + "` = '" + newValue + "' WHERE `username` = '" + inputUsername + "'";

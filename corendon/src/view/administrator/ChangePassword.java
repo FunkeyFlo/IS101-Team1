@@ -82,12 +82,11 @@ public class ChangePassword extends javax.swing.JFrame {
                                 .addGap(73, 73, 73)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(tfPassword2)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(cancelButton)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(okButton))
-                                .addComponent(tfPassword1)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(cancelButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(okButton))
+                            .addComponent(tfPassword1))
                         .addContainerGap())))
         );
         jPanel1Layout.setVerticalGroup(
@@ -135,7 +134,7 @@ public class ChangePassword extends javax.swing.JFrame {
         User user = new User();
 
         if (tfPassword1.getText().trim().equals(tfPassword2.getText().trim())) {
-            user.changeUserPassword(Administrator.accountToChange, tfPassword1.getText().trim());
+            user.updatePassword(tfPassword1.getText().trim(), Administrator.accountToChange);
             warningLabel.setText("");
             dispose();
         } else {
