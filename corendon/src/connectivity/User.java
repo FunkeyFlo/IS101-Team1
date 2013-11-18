@@ -6,22 +6,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author Florentijn Cornet
+ * @author IS_101
  */
 public class User {
+
+    private final DbManager db = new DbManager();
 
     // Variable that sets the maximum ammount of incorrect login attempts
     public final int MAX_INCORRECT_LOGINS = 3;
 
-    private final DbManager db = new DbManager();
-
-    private int userId;
-    private int permissionId;
-    private int incorrectLogin;
-    private String username;
-    private String firstName;
-    private String lastName;
-    private String password;
+    private int userId, permissionId, incorrectLogin;
+    private String username, firstName, lastName, password;
     private boolean isLoggedIn = false;
 
     public User() {
@@ -41,11 +36,10 @@ public class User {
     }
 
     // determines whether a user is logging in with the correct information
-    public String login(String tfUsername, String tfPasswd) {
+    public String login(String tfUsername, String tfPassword) {
         this.getUserData(tfUsername);
         if (this.username.equals(tfUsername)) {
-            System.out.println(tfPasswd + " " + this.getPassword());
-            if (BCrypt.checkpw(tfPasswd, this.getPassword())) {
+            if (BCrypt.checkpw(tfPassword, this.getPassword())) {
                 this.setIsLoggedIn(true);
                 return "Login success";
             } else {
@@ -83,7 +77,7 @@ public class User {
     // Checks whether the old password is correct (USED IN COMBINATION WITH updatePassword METHOD)
     public boolean checkOldPassword(String oldPassword, String storedUsername) {
         this.getUserData(storedUsername);
-        return this.getPassword().equals(oldPassword);
+        return BCrypt.checkpw(oldPassword, this.getPassword());
     }
 
     // Determines whether a user's account has been locked
@@ -116,10 +110,10 @@ public class User {
 
     // Used to create a new user, User ID is auto increment
     public void setNewUser(String tfUsername, String tfFirstName, String tfLastName, String tfPassword, int inputPermissionId) {
-        String encryptPassword = BCrypt.hashpw(tfPassword, BCrypt.gensalt());
+        tfPassword = BCrypt.hashpw(tfPassword, BCrypt.gensalt());
         String sql = "INSERT INTO `user` (username, first_name, last_name, password, permission_id, incorrect_login) VALUES ('"
                 + tfUsername + "', '" + tfFirstName + "', '" + tfLastName
-                + "', '" + encryptPassword + "', " + inputPermissionId + ", 0)";
+                + "', '" + tfPassword + "', " + inputPermissionId + ", 0)";
         db.insertQuery(sql);
     }
 
@@ -128,7 +122,7 @@ public class User {
         String sql = "DELETE FROM `user` WHERE `username` = '" + tfUsername + "'";
         db.insertQuery(sql);
     }
-    
+
     // Change password
     public void changeUserPassword(String inputUsername, String newPassword) {
 //        System.out.println(newPassword);
@@ -164,6 +158,7 @@ public class User {
 
     // Password update method
     public void updatePassword(String tfPassword, String tfUsername) {
+        tfPassword = BCrypt.hashpw(tfPassword, BCrypt.gensalt());
         String sql = "UPDATE `user` SET `password` = '" + tfPassword + "' WHERE `username`='" + tfUsername + "'";
         db.insertQuery(sql);
     }
