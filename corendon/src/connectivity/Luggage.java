@@ -7,27 +7,20 @@ import java.util.List;
 
 /**
  *
- * @author $Jelle
+ * @author IS_101
  */
 public class Luggage {
-    
+
     private DbManager db = new DbManager();
-    
-    private int luggageId;
-    private int customerId;
-    private String description;
-    private String location;
-    private String dateLost;
-    private boolean isLost;
-    private boolean isHandled;
-    private String dateChanged;
-    private String dateHandled;
-    private String lastChangedBy;
-    
+
+    private int luggageId, customerId;
+    private String description, location, dateLost, dateChanged, dateHandled, lastChangedBy;
+    private boolean isLost, isHandled;
+
     public Luggage() {
         db.openConnection();
     }
-    
+
     public Luggage(int luggageId, int customerId, String description,
             String location, String dateLost, boolean isLost, boolean isHandled,
             String dateChanged, String dateHandled, String lastChangedBy) {
@@ -41,10 +34,8 @@ public class Luggage {
         this.dateChanged = dateChanged;
         this.dateHandled = dateHandled;
         this.lastChangedBy = lastChangedBy;
-        
-//        System.out.println(customerId + " " + lastName + " " + email);
     }
-    
+
     public void getCustomerData(String tfInput, String databaseVariable) {
         try {
             String sql = "SELECT *, COUNT(*) as `rows` FROM `customer` WHERE `" + databaseVariable + "`='" + tfInput + "'";
@@ -61,25 +52,25 @@ public class Luggage {
                     this.setDateChanged(result.getString("date_changed"));
                     this.setDateHandled(result.getString("date_handled"));
                     this.setLastChangedBy(result.getString("last_changed_by"));
-                }
-                else
+                } else {
                     System.out.println("SOMETHING WENT WRONG");
+                }
             }
         } catch (SQLException e) {
             System.out.println(getDb().SQL_EXCEPTION + e.getMessage());
         }
     }
-    
+
     public List<Luggage> searchLuggageList(int dbField, String searchArg, int handled) {
         List<Luggage> luggages = new ArrayList<>();
         String showHandled, sql, sqlSelect = "SELECT * FROM `luggage`";
-        
-        if (handled == 1){
+
+        if (handled == 1) {
             showHandled = " AND `is_handled` = 0";
         } else {
             showHandled = "";
         }
-        
+
         // Statement for searching all collumns
         if (dbField == 0) {
             sql = sqlSelect + " WHERE `luggage_id` LIKE '%" + searchArg + "%'" + showHandled
@@ -87,63 +78,47 @@ public class Luggage {
                     + " OR `description` LIKE '%" + searchArg + "%'" + showHandled
                     + " OR `location` LIKE '%" + searchArg + "%'" + showHandled
                     + " OR `date_lost` LIKE '%" + searchArg + "%'" + showHandled;
-        }
-        
-        // for searching luggageId
+        } // for searching luggageId
         else if (dbField == 1) {
             sql = sqlSelect + " WHERE `luggage_id` LIKE '%" + searchArg + "%'"
-                     + showHandled;
-        }
-        
-        // customerId
+                    + showHandled;
+        } // customerId
         else if (dbField == 2) {
             sql = sqlSelect + " WHERE `customer_id` LIKE '%" + searchArg + "%'"
-                     + showHandled;
-        }
-        
-        // description
+                    + showHandled;
+        } // description
         else if (dbField == 3) {
             sql = sqlSelect + " WHERE `description` LIKE '%" + searchArg + "%'"
-                     + showHandled;
-        }
-        
-        // location
+                    + showHandled;
+        } // location
         else if (dbField == 4) {
             sql = sqlSelect + " WHERE `location` LIKE '%" + searchArg + "%'"
-                     + showHandled;
-        }
-        
-        // date
+                    + showHandled;
+        } // date
         else if (dbField == 5) {
             sql = sqlSelect + " WHERE `date_lost` LIKE '%" + searchArg + "%'"
-                     + showHandled;
-        }
-        
-        //lost luggage
+                    + showHandled;
+        } //lost luggage
         else if (dbField == 6) {
             sql = sqlSelect + " WHERE `date_lost` LIKE '%" + searchArg + "%'"
                     + " AND is_lost = 1 AND is_handled = 0";
-        }
-        
-        //found luggage
+        } //found luggage
         else if (dbField == 7) {
             sql = sqlSelect + " WHERE `date_lost` LIKE '%" + searchArg + "%'"
                     + " AND is_lost = 0 AND is_handled = 0";
-        }
-        
-        //handled luggage
+        } //handled luggage
         else if (dbField == 8) {
             sql = sqlSelect + " WHERE `date_handled` LIKE '%" + searchArg + "%'"
                     + " AND is_lost = 0 AND is_handled = 1";
-        }
-        // Else statement is used to fill the table with all users
+        } // Else statement is used to fill the table with all users
         else {
-            if (handled == 1)
+            if (handled == 1) {
                 sql = sqlSelect + " WHERE `is_handled` = 0";
-            else
+            } else {
                 sql = sqlSelect;
+            }
         }
-        
+
         try {
             ResultSet result = getDb().doQuery(sql);
             while (result.next()) {
@@ -163,14 +138,15 @@ public class Luggage {
         }
         return luggages;
     }
-    
+
     // moet nog waardes van luggage krijgen, staan nu nog customer waardes in
-    public void setNewLuggage(String customerId, String description,String location, int isLost, int  isHandled, int storedUserId) {
-             if (customerId.equals(""))
-                 customerId = "NULL";        
-        String sql = "INSERT INTO `luggage` (customer_id, description, location, is_lost, is_handled, last_changed_by , date_changed) VALUES (" 
-                + customerId + ", '" + description + "', '" + location 
-                + "', '" + isLost + "', '" + isHandled +  "', '" + storedUserId + "', " + "CURRENT_TIMESTAMP)";
+    public void setNewLuggage(String customerId, String description, String location, int isLost, int isHandled, int storedUserId) {
+        if (customerId.equals("")) {
+            customerId = "NULL";
+        }
+        String sql = "INSERT INTO `luggage` (customer_id, description, location, is_lost, is_handled, last_changed_by , date_changed) VALUES ("
+                + customerId + ", '" + description + "', '" + location
+                + "', '" + isLost + "', '" + isHandled + "', '" + storedUserId + "', " + "CURRENT_TIMESTAMP)";
         db.insertQuery(sql);
     }
 
@@ -215,7 +191,7 @@ public class Luggage {
     public void setCustomerId(int customerId) {
         this.customerId = customerId;
     }
-    
+
     public void linkCustomerId(int customerId, int luggageId) {
         String sql = "UPDATE `luggage` SET `customer_id` = " + customerId + " WHERE `luggage_id` = " + luggageId;
         db.insertQuery(sql);
@@ -257,7 +233,7 @@ public class Luggage {
     }
 
     /**
-     * @param date the date to set
+     * @param dateLost
      */
     public void setDateLost(String dateLost) {
         this.dateLost = dateLost;

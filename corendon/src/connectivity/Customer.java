@@ -5,29 +5,18 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author $Jelle
- */
 public class Customer {
-    
+
     private DbManager db = new DbManager();
-    
+
     private int customerId;
-    private String phoneHome;
-    private String phoneMobile;
-    private String firstName;
-    private String lastName;
-    private String email;
-    private String postalCode;
-    private String address;
-    private String city;
-    private String country;
-    
+    private String phoneHome, phoneMobile, firstName, lastName, email,
+            postalCode, address, city, country;
+
     public Customer() {
         db.openConnection();
     }
-    
+
     // Constructor used to initiate the customer object
     public Customer(int customerId, String firstName, String lastName, String address,
             String postalCode, String city, String country, String email, String phoneHome, String phoneMobile) {
@@ -41,10 +30,8 @@ public class Customer {
         this.email = email;
         this.phoneHome = phoneHome;
         this.phoneMobile = phoneMobile;
-        
-//        System.out.println(customerId + " " + lastName + " " + email);
     }
-    
+
     // Gets customer data for one specific user
     public void getCustomerData(String tfInput, String databaseVariable) {
         try {
@@ -60,24 +47,24 @@ public class Customer {
                     this.phoneHome = (result.getString("phoneHome"));
                     this.address = (result.getString("address"));
                     this.phoneMobile = (result.getString("phoneMobile"));
-                }
-                else
+                } else {
                     System.out.println("SOMETHING WENT WRONG");
+                }
             }
         } catch (SQLException e) {
             System.out.println(getDb().SQL_EXCEPTION + e.getMessage());
         }
     }
-    
+
     // Used to populate jTables and search database for customers
     public List<Customer> searchCustomerList(int dbField, String searchArg) {
         List<Customer> customers = new ArrayList<>();
         String sql, sqlSelect = "SELECT * FROM `customer`";
-        
+
         // Statement for searching all collumns
         if (dbField == 0) {
             sql = sqlSelect + " WHERE `customer_id` LIKE '%" + searchArg + "%'"
-                    + "OR `first_name` LIKE '%" + searchArg + "%'" 
+                    + "OR `first_name` LIKE '%" + searchArg + "%'"
                     + "OR `last_name` LIKE '%" + searchArg + "%'"
                     + "OR `address` LIKE '%" + searchArg + "%'"
                     + "OR `postal_code` LIKE '%" + searchArg + "%'"
@@ -86,62 +73,41 @@ public class Customer {
                     + "OR `email` LIKE '%" + searchArg + "%'"
                     + "OR `phone_home` LIKE '%" + searchArg + "%'"
                     + "OR `phone_mobile` LIKE '%" + searchArg + "%'";
-        }
-        
-        // for searching customerId
+        } // for searching customerId
         else if (dbField == 1) {
             sql = sqlSelect + " WHERE `customer_id` LIKE '%" + searchArg + "%'";
-        }
-        
-        // firstName
+        } // firstName
         else if (dbField == 2) {
             sql = sqlSelect + " WHERE `first_name` LIKE '%" + searchArg + "%'";
-        }
-        
-        //lastName
+        } //lastName
         else if (dbField == 3) {
             sql = sqlSelect + " WHERE `last_name` LIKE '%" + searchArg + "%'";
-        }
-        
-        // address
+        } // address
         else if (dbField == 4) {
             sql = sqlSelect + " WHERE `address` LIKE '%" + searchArg + "%'";
-        }
-        
-        // postalCode
+        } // postalCode
         else if (dbField == 5) {
             sql = sqlSelect + " WHERE `postal_code` LIKE '%" + searchArg + "%'";
-        }
-        
-        // city
+        } // city
         else if (dbField == 6) {
             sql = sqlSelect + " WHERE `city` LIKE '%" + searchArg + "%'";
-        }
-        
-        // country
+        } // country
         else if (dbField == 7) {
             sql = sqlSelect + " WHERE `country` LIKE '%" + searchArg + "%'";
-        }
-        
-        // email
+        } // email
         else if (dbField == 8) {
             sql = sqlSelect + " WHERE `email` LIKE '%" + searchArg + "%'";
-        }
-        
-        // phoneHome
+        } // phoneHome
         else if (dbField == 9) {
             sql = sqlSelect + " WHERE `phone_home` LIKE '%" + searchArg + "%'";
-        }
-        
-        // phoneMobile
+        } // phoneMobile
         else if (dbField == 10) {
             sql = sqlSelect + " WHERE `phone_mobile` LIKE '%" + searchArg + "%'";
-        }
-        
-        // Else statement is used to fill the table with all users
-        else
+        } // Else statement is used to fill the table with all users
+        else {
             sql = sqlSelect;
-        
+        }
+
         try {
             ResultSet result = getDb().doQuery(sql);
             while (result.next()) {
@@ -161,11 +127,11 @@ public class Customer {
         }
         return customers;
     }
-        
+
     public void setNewCustomer(String tfFirstName, String tfLastName,
             String tfAddress, String tfPostalCode, String tfCity, String tfCountry, String tfEmail,
             String tfPhoneHome, String tfPhoneMobile) {
-        String sql = "INSERT INTO `customer` (first_name, last_name, address, postal_code, city, country, email, phone_home, phone_mobile) VALUES ('" 
+        String sql = "INSERT INTO `customer` (first_name, last_name, address, postal_code, city, country, email, phone_home, phone_mobile) VALUES ('"
                 + tfFirstName + "', '" + tfLastName + "', '" + tfAddress
                 + "', '" + tfPostalCode + "', '" + tfCity + "', '" + tfCountry
                 + "', '" + tfEmail + "', '" + tfPhoneHome + "', '"

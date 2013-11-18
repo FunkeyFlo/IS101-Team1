@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package view.manager;
 
 import connectivity.Luggage;
@@ -18,25 +14,19 @@ import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
-/**
- *
- * @author Florentijn Cornet
- */
+
 public class Manager extends javax.swing.JFrame {
 
     private List<Luggage> luggage = new ArrayList<>();
-    private Luggage luggageModel = new Luggage();
+    private final Luggage luggageModel = new Luggage();
     private DefaultCategoryDataset dataset = new DefaultCategoryDataset();
     private DefaultCategoryDataset lostBaggageGraph = new DefaultCategoryDataset();
     private DefaultCategoryDataset foundBaggageGraph = new DefaultCategoryDataset();
     private DefaultCategoryDataset returnedBaggageGraph = new DefaultCategoryDataset();
-    
-    /**
-     * Creates new form Gebruiker
-     */
+
     public Manager() {
         initComponents();
-        
+
         setGraphs();
     }
 
@@ -338,31 +328,31 @@ public class Manager extends javax.swing.JFrame {
 
     private void setGraphs() {
         final String[] MONTHS = {"Jan", "Feb", "Mrt", "Apr", "Mei",
-        "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dec"};
+            "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dec"};
         //temp
-        final String[] MONTH_NUM = {"2013-01", "2013-02", "2013-03", 
-            "2013-04", "2013-05", "2013-06", "2013-07", "2013-08", 
+        final String[] MONTH_NUM = {"2013-01", "2013-02", "2013-03",
+            "2013-04", "2013-05", "2013-06", "2013-07", "2013-08",
             "2013-09", "2013-10", "2013-11", "2013-12"};
         List<Integer> numTimesLost = new ArrayList<>();
         List<Integer> numTimesFound = new ArrayList<>();
         List<Integer> numTimesRtrnd = new ArrayList<>();
-        
+
         //Value for lost luggage
         for (int i = 0; i < MONTHS.length; i++) {
             luggage.clear();
             luggage = luggageModel.searchLuggageList(6, MONTH_NUM[i], 0);
             numTimesLost.add(0);
-            while (numTimesLost.get(i) < luggage.size()) {                
+            while (numTimesLost.get(i) < luggage.size()) {
                 numTimesLost.set(i, numTimesLost.get(i) + 1);
             }
         }
-        
+
         //Value for found luggage
         for (int i = 0; i < MONTHS.length; i++) {
             luggage.clear();
             luggage = luggageModel.searchLuggageList(7, MONTH_NUM[i], 0);
             numTimesFound.add(0);
-            while (numTimesFound.get(i) < luggage.size()) {                
+            while (numTimesFound.get(i) < luggage.size()) {
                 numTimesFound.set(i, numTimesFound.get(i) + 1);
             }
         }
@@ -372,23 +362,23 @@ public class Manager extends javax.swing.JFrame {
             luggage.clear();
             luggage = luggageModel.searchLuggageList(8, MONTH_NUM[i], 0);
             numTimesRtrnd.add(0);
-            while (numTimesRtrnd.get(i) < luggage.size()) {                
+            while (numTimesRtrnd.get(i) < luggage.size()) {
                 numTimesRtrnd.set(i, numTimesRtrnd.get(i) + 1);
             }
         }
-        
+
         //names of chart attributes
         final String CHART_NAME = "Verloren, gevonden en afgehandelde baggage per maand";
         final String X_AXIS_NAME = "Maand";
         final String Y_AXIS_NAME = "Aantal";
-        
+
         //Sets value for all graphs
         for (int i = 0; i < MONTHS.length; i++) {
             //all graphs
             dataset.setValue(numTimesLost.get(i), "Verloren", MONTHS[i]);
             dataset.setValue(numTimesFound.get(i), "Gevonden", MONTHS[i]);
             dataset.setValue(numTimesRtrnd.get(i), "Afgehandeld", MONTHS[i]);
-            
+
             //lost
             lostBaggageGraph.setValue(numTimesLost.get(i), "Verloren", MONTHS[i]);
             //found
@@ -396,7 +386,7 @@ public class Manager extends javax.swing.JFrame {
             //returned
             returnedBaggageGraph.setValue(numTimesRtrnd.get(i), "Afgehandeld", MONTHS[i]);
         }
-        
+
         /**
          * ALL DATA GRAPH
          */
@@ -404,13 +394,12 @@ public class Manager extends javax.swing.JFrame {
         CategoryPlot p = chart.getCategoryPlot();
         p.setRangeGridlinePaint(Color.BLACK);
         ChartPanel allGraphsPanel = new ChartPanel(chart);
-        
-        
+
         allGraphs.setLayout(new BorderLayout());
         allGraphs.add(allGraphsPanel, BorderLayout.CENTER);
         allGraphs.setSize(300, 200);
         allGraphs.validate();
-        
+
         /**
          * LOST BAGGAGE GRAPH
          */
@@ -418,11 +407,11 @@ public class Manager extends javax.swing.JFrame {
         CategoryPlot lostBaggagePlot = lostBaggageChart.getCategoryPlot();
         lostBaggagePlot.setRangeGridlinePaint(Color.BLACK);
         ChartPanel lostBaggagePanel = new ChartPanel(lostBaggageChart);
-        
+
         lostBaggage.setLayout(new BorderLayout());
         lostBaggage.add(lostBaggagePanel, BorderLayout.CENTER);
         lostBaggage.validate();
-        
+
         /**
          * FOUND BAGGAGE GRAPH
          */
@@ -430,11 +419,11 @@ public class Manager extends javax.swing.JFrame {
         CategoryPlot foundBaggagePlot = foundBaggageChart.getCategoryPlot();
         foundBaggagePlot.setRangeGridlinePaint(Color.BLACK);
         ChartPanel foundBaggagePanel = new ChartPanel(foundBaggageChart);
-        
+
         foundBaggage.setLayout(new BorderLayout());
         foundBaggage.add(foundBaggagePanel, BorderLayout.CENTER);
         foundBaggage.validate();
-        
+
         /**
          * RETURNED BAGGAGE GRAPH
          */
@@ -443,14 +432,14 @@ public class Manager extends javax.swing.JFrame {
         CategoryPlot returnedBaggagePlot = returnedBaggageChart.getCategoryPlot();
         returnedBaggagePlot.setRangeGridlinePaint(Color.BLACK);
         ChartPanel returnedBaggagePanel = new ChartPanel(returnedBaggageChart);
-        
+
         returnedBaggage.setLayout(new BorderLayout());
         returnedBaggage.add(returnedBaggagePanel, BorderLayout.CENTER);
         returnedBaggage.validate();
-        
+
     }
-    
-   
+
+
     private void changePasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changePasswordActionPerformed
         Main.displayChangeMyPassword();
     }//GEN-LAST:event_changePasswordActionPerformed
@@ -463,24 +452,26 @@ public class Manager extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 //        System.out.println(tfYear.getText());
 //        System.out.println(tfMonth.getSelectedItem());
-        
+
         String yearFrom = cbYearFrom.getSelectedItem().toString(), zeroFrom = "",
-               yearTo = cbYearTo.getSelectedItem().toString(), zeroTo = "";
+                yearTo = cbYearTo.getSelectedItem().toString(), zeroTo = "";
         int monthFrom = cbMonthFrom.getSelectedIndex() + 1;
         int monthTo = cbMonthTo.getSelectedIndex() + 1;
-        
-        if(monthFrom < 10)
+
+        if (monthFrom < 10) {
             zeroFrom = "0";
-        
-        if(monthTo < 10)
+        }
+
+        if (monthTo < 10) {
             zeroTo = "0";
-        
+        }
+
         String searchArgFrom = yearFrom + "-" + zeroFrom + monthFrom;
         String searchArgTo = yearTo + "-" + zeroTo + monthTo;
         System.out.println(searchArgFrom);
-        System.out.println(searchArgTo); 
-        
-        
+        System.out.println(searchArgTo);
+
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void cbYearToActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbYearToActionPerformed
@@ -503,19 +494,14 @@ public class Manager extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Manager.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Manager.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Manager.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Manager.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new Manager().setVisible(true);
             }
