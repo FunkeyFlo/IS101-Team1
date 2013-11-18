@@ -125,10 +125,8 @@ public class User {
 
     // Change password
     public void changeUserPassword(String inputUsername, String newPassword) {
-//        System.out.println(newPassword);
-        String encryptPassword = BCrypt.hashpw(newPassword, BCrypt.gensalt());
-        String sql = "UPDATE `user` SET `password` = '" + encryptPassword + "' WHERE `username` = '" + inputUsername + "'";
-//        System.out.println(encryptPassword + " " + inputUsername);
+        newPassword = BCrypt.hashpw(newPassword, BCrypt.gensalt());
+        String sql = "UPDATE `user` SET `password` = '" + newPassword + "' WHERE `username` = '" + inputUsername + "'";
     }
 
     // User to change desired user information (STRINGS)
