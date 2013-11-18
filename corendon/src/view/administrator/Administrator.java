@@ -70,9 +70,9 @@ public class Administrator extends javax.swing.JFrame {
         searchUserTable(9999, "");
     }
     
-    private void createUserPopUp(){
-                final JOptionPane createUserPopPane = new JOptionPane("Weet u zeker dat u "
-                + "deze gebruiker wilt aanmaken?",
+    private boolean createUserPopUp(String message){
+        boolean createConfirm = false;
+                final JOptionPane createUserPopPane = new JOptionPane(message,
                 JOptionPane.QUESTION_MESSAGE,
                 JOptionPane.YES_NO_OPTION);
         final JDialog dialog = new JDialog((Frame) createUserPopup, "Click a button", true);
@@ -94,8 +94,9 @@ public class Administrator extends javax.swing.JFrame {
 
         int value = ((Integer) createUserPopPane.getValue()).intValue();
         if (value == JOptionPane.YES_OPTION) {
-            doCreateUser();
+            createConfirm = true;
         }
+        return createConfirm;
     }
 
     private void clearFields() {
@@ -564,14 +565,16 @@ public class Administrator extends javax.swing.JFrame {
     private void createUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createUserActionPerformed
 
         boolean totalCorrectInput = errorCheckCreateUser();
-        String git = "For github purposes.";
+        boolean isConfirm = false;
         if(totalCorrectInput == false)
         {
             errorPopUp("Please fill in all the fields before trying again.");
         }
         else
         {
-            createUserPopUp();
+            isConfirm = createUserPopUp("Weet u zeker dat u deze gebruiker wilt aanmaken?");
+            if(isConfirm == true)
+                doCreateUser();
         }
 
     }//GEN-LAST:event_createUserActionPerformed
@@ -632,24 +635,34 @@ public class Administrator extends javax.swing.JFrame {
     private void tfPasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfPasswordKeyPressed
         if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
             boolean totalCorrectInput = errorCheckCreateUser();
+            boolean isConfirm = false;
             if(totalCorrectInput == false)
             {
-                errorPopUp("Please fill in all fields before trying again.");
+                errorPopUp("Please fill in all the fields before trying again.");
             }
             else
-                createUserPopUp();
+            {
+                isConfirm = createUserPopUp("Weet u zeker dat u deze gebruiker wilt aanmaken?");
+            if(isConfirm == true)
+                doCreateUser();
+            }
         }
     }//GEN-LAST:event_tfPasswordKeyPressed
 
     private void tfUsernameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfUsernameKeyPressed
         if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
             boolean totalCorrectInput = errorCheckCreateUser();
+            boolean isConfirm = false;
             if(totalCorrectInput == false)
             {
-                errorPopUp("Please fill in all fields before trying again.");
+                errorPopUp("Please fill in all the fields before trying again.");
             }
             else
-                createUserPopUp();
+            {
+                isConfirm = createUserPopUp("Weet u zeker dat u deze gebruiker wilt aanmaken?");
+            if(isConfirm == true)
+                doCreateUser();
+            }
         }
         
     }//GEN-LAST:event_tfUsernameKeyPressed
@@ -657,25 +670,34 @@ public class Administrator extends javax.swing.JFrame {
     private void tfLastNameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfLastNameKeyPressed
         if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
             boolean totalCorrectInput = errorCheckCreateUser();
+            boolean isConfirm = false;
             if(totalCorrectInput == false)
             {
-                errorPopUp("Please fill in all fields before trying again.");
+                errorPopUp("Please fill in all the fields before trying again.");
             }
             else
-                createUserPopUp();
-        
+            {
+                isConfirm = createUserPopUp("Weet u zeker dat u deze gebruiker wilt aanmaken?");
+            if(isConfirm == true)
+                doCreateUser();
+            }
         }
     }//GEN-LAST:event_tfLastNameKeyPressed
 
     private void tfFirstNameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfFirstNameKeyPressed
         if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
             boolean totalCorrectInput = errorCheckCreateUser();
+            boolean isConfirm = false;
             if(totalCorrectInput == false)
             {
-                errorPopUp("Please fill in all fields before trying again.");
+                errorPopUp("Please fill in all the fields before trying again.");
             }
             else
-                createUserPopUp();
+            {
+                isConfirm = createUserPopUp("Weet u zeker dat u deze gebruiker wilt aanmaken?");
+            if(isConfirm == true)
+                doCreateUser();
+            }
         }
         
     }//GEN-LAST:event_tfFirstNameKeyPressed
@@ -683,12 +705,17 @@ public class Administrator extends javax.swing.JFrame {
     private void permissionSelectorKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_permissionSelectorKeyPressed
         if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
             boolean totalCorrectInput = errorCheckCreateUser();
+            boolean isConfirm = false;
             if(totalCorrectInput == false)
             {
-                errorPopUp("Please fill in all fields before trying again.");
+                errorPopUp("Please fill in all the fields before trying again.");
             }
             else
-                createUserPopUp();
+            {
+                isConfirm = createUserPopUp("Weet u zeker dat u deze gebruiker wilt aanmaken?");
+            if(isConfirm == true)
+                doCreateUser();
+            }
         }
     }//GEN-LAST:event_permissionSelectorKeyPressed
 
