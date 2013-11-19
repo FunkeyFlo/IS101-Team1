@@ -10,19 +10,34 @@ import main.Session;
 public class ChangeCustomer extends javax.swing.JFrame {
 
     Customer customer = new Customer();
-    
+
     public ChangeCustomer() {
-        initComponents();
         customer.getCustomerData(Session.storedCustomerId, "customer_id");
-        tfAddress1.setText(customer.getAddress());
+        
+        String email = customer.getEmail();   
+        String[] result = email.split("@");
+        String emailName = result[0];
+        String emailDomain = result[1];
+        
+        String[] postalCode = seperateString(customer.getPostalCode());
+        String[] address = seperateString(customer.getAddress());
+        
+        
+        initComponents();
+        
+        tfAddress1.setText(address[0]);
+        tfAddress2.setText(address[1]);
         tfFirstName.setText(customer.getFirstName());
         tfLastName.setText(customer.getLastName());
-        tfPostalCode1.setText(customer.getPostalCode());
+        tfPostalCode1.setText(postalCode[0]);
+        tfPostalCode2.setText(postalCode[1]);
         tfCity.setText(customer.getCity());
         cbCountry.setSelectedItem(customer.getCountry());
-        tfEmail1.setText(customer.getEmail());
+        tfEmail1.setText(emailName);
+        tfEmail2.setText(emailDomain);
         tfPhoneHome.setText(customer.getPhoneHome());
         tfPhoneMobile.setText(customer.getPhoneMobile());
+        
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -51,8 +66,8 @@ public class ChangeCustomer extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         tfPhoneMobile = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
-        createCustomer1 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        changeCustomer = new javax.swing.JButton();
+        cancelChangeCustomer = new javax.swing.JButton();
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         tfCity = new javax.swing.JTextField();
@@ -61,6 +76,8 @@ public class ChangeCustomer extends javax.swing.JFrame {
         tfPostalCode1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setAlwaysOnTop(true);
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         customerRegistrationPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Klant Registreren"));
 
@@ -98,17 +115,17 @@ public class ChangeCustomer extends javax.swing.JFrame {
 
         jLabel18.setText("Mobiel tel.");
 
-        createCustomer1.setText("Aanpassen");
-        createCustomer1.addActionListener(new java.awt.event.ActionListener() {
+        changeCustomer.setText("Aanpassen");
+        changeCustomer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                createCustomer1ActionPerformed(evt);
+                changeCustomerActionPerformed(evt);
             }
         });
 
-        jButton4.setText("Annuleren");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        cancelChangeCustomer.setText("Annuleren");
+        cancelChangeCustomer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                cancelChangeCustomerActionPerformed(evt);
             }
         });
 
@@ -135,9 +152,9 @@ public class ChangeCustomer extends javax.swing.JFrame {
                     .addComponent(warningLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, customerRegistrationPanelLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton4)
+                        .addComponent(cancelChangeCustomer)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(createCustomer1))
+                        .addComponent(changeCustomer))
                     .addGroup(customerRegistrationPanelLayout.createSequentialGroup()
                         .addGroup(customerRegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel15)
@@ -234,8 +251,8 @@ public class ChangeCustomer extends javax.swing.JFrame {
                 .addComponent(warningLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 17, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(customerRegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(createCustomer1)
-                    .addComponent(jButton4))
+                    .addComponent(changeCustomer)
+                    .addComponent(cancelChangeCustomer))
                 .addContainerGap())
         );
 
@@ -275,18 +292,34 @@ public class ChangeCustomer extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tfEmail2ActionPerformed
 
-    private void createCustomer1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createCustomer1ActionPerformed
-     
-    }//GEN-LAST:event_createCustomer1ActionPerformed
+    private void changeCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeCustomerActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_changeCustomerActionPerformed
+
+    private void cancelChangeCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelChangeCustomerActionPerformed
         dispose();
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_cancelChangeCustomerActionPerformed
 
     private void cbCountryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbCountryActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbCountryActionPerformed
-
+    
+    public String[] seperateString(String itemToSeperate){
+        String[] seperatedItems = {"", ""};
+        
+        String[] temp = itemToSeperate.split(" ");
+        
+        
+        for (int i = 0; i < temp.length-1; i++) {
+            seperatedItems[0] += (temp[i] + " ");
+        }
+        
+        seperatedItems[1] = temp[temp.length-1];
+       
+        
+        return seperatedItems;
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -322,10 +355,10 @@ public class ChangeCustomer extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton cancelChangeCustomer;
     private javax.swing.JComboBox cbCountry;
-    private javax.swing.JButton createCustomer1;
+    private javax.swing.JButton changeCustomer;
     private javax.swing.JPanel customerRegistrationPanel;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;

@@ -13,13 +13,15 @@ public class ChangeLuggage extends javax.swing.JFrame {
 
     
     public ChangeLuggage() {
-        initComponents();
+        
         luggage.getLuggageData(Session.storedLuggageId, "luggage_id");
+
+        initComponents();
         tfDescription.setText(luggage.getDescription());
         tfLocation1.setText(luggage.getLocation());
         tfCustomerId1.setText(String.valueOf(luggage.getCustomerId()));
-        isLost.setContentAreaFilled(luggage.isIsLost());
-        isHandled.setContentAreaFilled(luggage.isIsHandled());
+        isLost.setSelected(luggage.isIsLost());
+        isHandled.setSelected(luggage.isIsHandled());
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -207,7 +209,7 @@ public class ChangeLuggage extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void createLuggage1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createLuggage1ActionPerformed
- 
+        
     }//GEN-LAST:event_createLuggage1ActionPerformed
 
     private void tfCustomerId1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfCustomerId1ActionPerformed
