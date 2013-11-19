@@ -39,10 +39,9 @@ public class Luggage {
     public void getLuggageData(String tfInput, String databaseVariable) {
         try {
             String sql = "SELECT *, COUNT(*) as `rows` FROM `luggage` WHERE `" + databaseVariable + "`='" + tfInput + "'";
-            System.out.println(sql);
             ResultSet result = getDb().doQuery(sql);
             if (result.next()) {
-                if (result.getInt("rows") >= 1) {
+                if (result.getInt("rows") >= 0) {
                     this.setLuggageId(result.getInt("luggage_id"));
                     this.setCustomerId(result.getInt("customer_id"));
                     this.setDescription(result.getString("description"));

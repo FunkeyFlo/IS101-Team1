@@ -362,8 +362,8 @@ public class Employee extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tfDescription = new javax.swing.JTextArea();
-        cbStatus = new javax.swing.JCheckBox();
-        cbDone = new javax.swing.JCheckBox();
+        rbDone = new javax.swing.JRadioButton();
+        rbStatus = new javax.swing.JRadioButton();
         luggageTablePanel = new javax.swing.JPanel();
         luggageSearchField1 = new javax.swing.JTextField();
         luggageSearchButton2 = new javax.swing.JButton();
@@ -819,9 +819,16 @@ public class Employee extends javax.swing.JFrame {
         tfDescription.setRows(5);
         jScrollPane2.setViewportView(tfDescription);
 
-        cbStatus.setText("Vermist");
+        buttonGroup1.add(rbDone);
+        rbDone.setText("Afgehandeld");
+        rbDone.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbDoneActionPerformed(evt);
+            }
+        });
 
-        cbDone.setText("Afgehandeld");
+        buttonGroup1.add(rbStatus);
+        rbStatus.setText("Vermist");
 
         javax.swing.GroupLayout luggageRegistrationPanelLayout = new javax.swing.GroupLayout(luggageRegistrationPanel);
         luggageRegistrationPanel.setLayout(luggageRegistrationPanelLayout);
@@ -848,9 +855,9 @@ public class Employee extends javax.swing.JFrame {
                                 .addGroup(luggageRegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(tfLocation1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(tfCustomerID1, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(cbStatus)
-                                    .addComponent(cbDone))
-                                .addGap(0, 69, Short.MAX_VALUE)))))
+                                    .addComponent(rbDone)
+                                    .addComponent(rbStatus))
+                                .addGap(0, 110, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         luggageRegistrationPanelLayout.setVerticalGroup(
@@ -870,13 +877,13 @@ public class Employee extends javax.swing.JFrame {
                 .addGroup(luggageRegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCustomerID6)
                     .addComponent(tfLocation1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
-                .addGroup(luggageRegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblCustomerID7)
-                    .addComponent(cbStatus))
+                .addGap(14, 14, 14)
+                .addComponent(lblCustomerID7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cbDone)
-                .addGap(28, 28, 28)
+                .addComponent(rbStatus)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(rbDone)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(luggageRegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(createLuggage1)
                     .addComponent(jButton3))
@@ -891,8 +898,8 @@ public class Employee extends javax.swing.JFrame {
         luggageRegistrationPanel.setLayer(createLuggage1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         luggageRegistrationPanel.setLayer(jButton3, javax.swing.JLayeredPane.DEFAULT_LAYER);
         luggageRegistrationPanel.setLayer(jScrollPane2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        luggageRegistrationPanel.setLayer(cbStatus, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        luggageRegistrationPanel.setLayer(cbDone, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        luggageRegistrationPanel.setLayer(rbDone, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        luggageRegistrationPanel.setLayer(rbStatus, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         luggageTablePanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Bagage"));
 
@@ -1486,12 +1493,12 @@ public class Employee extends javax.swing.JFrame {
         else 
             correctInput[1] = true;
                     
-        if(cbStatus.isSelected())
+        if(rbStatus.isSelected())
             isLost = 1;
         else
             isLost = 0;
         
-        if(cbDone.isSelected())
+        if(rbDone.isSelected())
             isDone = 1;
         else
             isDone = 0;        
@@ -1513,8 +1520,8 @@ public class Employee extends javax.swing.JFrame {
         tfCustomerID1.setText("");
         tfDescription.setText("");
         tfLocation1.setText("");
-        cbDone.setEnabled(false);
-        cbStatus.setEnabled(false);
+        rbDone.setEnabled(false);
+        rbStatus.setEnabled(false);
         searchLuggageTable2(9999, "", getShowHandled2());
         
         
@@ -1738,6 +1745,10 @@ public class Employee extends javax.swing.JFrame {
         Main.displayChangeCustomer();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void rbDoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbDoneActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rbDoneActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1775,12 +1786,10 @@ public class Employee extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton cancelButton;
-    private javax.swing.JCheckBox cbDone;
     private javax.swing.JComboBox cbSearchCustomer;
     private javax.swing.JComboBox cbSearchCustomer1;
     private javax.swing.JComboBox cbSearchLuggage;
     private javax.swing.JComboBox cbSearchLuggage1;
-    private javax.swing.JCheckBox cbStatus;
     private javax.swing.JMenuItem changePassword;
     private javax.swing.JButton createCustomer1;
     private javax.swing.JButton createLuggage1;
@@ -1838,6 +1847,8 @@ public class Employee extends javax.swing.JFrame {
     private javax.swing.JPanel luggageTablePanel;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JTabbedPane overviewPane;
+    private javax.swing.JRadioButton rbDone;
+    private javax.swing.JRadioButton rbStatus;
     private javax.swing.JButton refreshCustomerTable2;
     private javax.swing.JButton refreshLuggageTable2;
     private javax.swing.JButton refreshTables1;

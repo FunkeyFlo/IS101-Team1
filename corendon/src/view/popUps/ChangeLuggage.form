@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.9" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <NonVisualComponents>
+    <Component class="javax.swing.ButtonGroup" name="buttonGroup2">
+    </Component>
+  </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="2"/>
   </Properties>
@@ -81,7 +85,7 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="tfLocation1" alignment="0" min="-2" pref="134" max="-2" attributes="0"/>
-                                      <Component id="tfCustomerID1" alignment="0" min="-2" pref="168" max="-2" attributes="0"/>
+                                      <Component id="tfCustomerId1" alignment="0" min="-2" pref="168" max="-2" attributes="0"/>
                                       <Component id="isLost" alignment="0" min="-2" max="-2" attributes="0"/>
                                       <Component id="isHandled" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
@@ -100,7 +104,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblCustomerID4" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="tfCustomerID1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tfCustomerId1" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
@@ -138,9 +142,9 @@
             <Property name="text" type="java.lang.String" value="Klant ID"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="tfCustomerID1">
+        <Component class="javax.swing.JTextField" name="tfCustomerId1">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfCustomerID1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfCustomerId1ActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lblCustomerID5">
@@ -196,6 +200,9 @@
         </Container>
         <Component class="javax.swing.JRadioButton" name="isLost">
           <Properties>
+            <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+              <ComponentRef name="buttonGroup2"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Vermist"/>
           </Properties>
           <Events>
@@ -204,6 +211,9 @@
         </Component>
         <Component class="javax.swing.JRadioButton" name="isHandled">
           <Properties>
+            <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+              <ComponentRef name="buttonGroup2"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Afgehandeld"/>
           </Properties>
           <Events>

@@ -13,6 +13,7 @@ public class Session {
     public static String storedLastName;
     public static String storedCustomerId;
     public static String storedLuggageId;
+    
     public static int storedUserId;
     
     public static void storeNames(String inputUsername) {

@@ -10,15 +10,16 @@ import main.Session;
 public class ChangeLuggage extends javax.swing.JFrame {
 
     Luggage luggage = new Luggage();
-    Customer customer = new Customer();
+
     
     public ChangeLuggage() {
         initComponents();
         luggage.getLuggageData(Session.storedLuggageId, "luggage_id");
         tfDescription.setText(luggage.getDescription());
         tfLocation1.setText(luggage.getLocation());
-        isLost.setEnabled(luggage.isIsLost());
-        isHandled.setEnabled(luggage.isIsHandled());
+        tfCustomerId1.setText(String.valueOf(luggage.getCustomerId()));
+        isLost.setContentAreaFilled(luggage.isIsLost());
+        isHandled.setContentAreaFilled(luggage.isIsHandled());
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -29,9 +30,10 @@ public class ChangeLuggage extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup2 = new javax.swing.ButtonGroup();
         luggageRegistrationPanel = new javax.swing.JLayeredPane();
         lblCustomerID4 = new javax.swing.JLabel();
-        tfCustomerID1 = new javax.swing.JTextField();
+        tfCustomerId1 = new javax.swing.JTextField();
         lblCustomerID5 = new javax.swing.JLabel();
         lblCustomerID6 = new javax.swing.JLabel();
         tfLocation1 = new javax.swing.JTextField();
@@ -49,9 +51,9 @@ public class ChangeLuggage extends javax.swing.JFrame {
 
         lblCustomerID4.setText("Klant ID");
 
-        tfCustomerID1.addActionListener(new java.awt.event.ActionListener() {
+        tfCustomerId1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfCustomerID1ActionPerformed(evt);
+                tfCustomerId1ActionPerformed(evt);
             }
         });
 
@@ -85,6 +87,7 @@ public class ChangeLuggage extends javax.swing.JFrame {
         tfDescription.setRows(5);
         jScrollPane2.setViewportView(tfDescription);
 
+        buttonGroup2.add(isLost);
         isLost.setText("Vermist");
         isLost.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -92,6 +95,7 @@ public class ChangeLuggage extends javax.swing.JFrame {
             }
         });
 
+        buttonGroup2.add(isHandled);
         isHandled.setText("Afgehandeld");
         isHandled.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -123,7 +127,7 @@ public class ChangeLuggage extends javax.swing.JFrame {
                             .addGroup(luggageRegistrationPanelLayout.createSequentialGroup()
                                 .addGroup(luggageRegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(tfLocation1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(tfCustomerID1, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(tfCustomerId1, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(isLost)
                                     .addComponent(isHandled))
                                 .addGap(0, 17, Short.MAX_VALUE)))))
@@ -135,7 +139,7 @@ public class ChangeLuggage extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(luggageRegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCustomerID4)
-                    .addComponent(tfCustomerID1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfCustomerId1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(luggageRegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(luggageRegistrationPanelLayout.createSequentialGroup()
@@ -159,7 +163,7 @@ public class ChangeLuggage extends javax.swing.JFrame {
                 .addContainerGap())
         );
         luggageRegistrationPanel.setLayer(lblCustomerID4, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        luggageRegistrationPanel.setLayer(tfCustomerID1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        luggageRegistrationPanel.setLayer(tfCustomerId1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         luggageRegistrationPanel.setLayer(lblCustomerID5, javax.swing.JLayeredPane.DEFAULT_LAYER);
         luggageRegistrationPanel.setLayer(lblCustomerID6, javax.swing.JLayeredPane.DEFAULT_LAYER);
         luggageRegistrationPanel.setLayer(tfLocation1, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -198,10 +202,6 @@ public class ChangeLuggage extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tfLocation1ActionPerformed
 
-    private void isHandledActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_isHandledActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_isHandledActionPerformed
-
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
@@ -210,12 +210,16 @@ public class ChangeLuggage extends javax.swing.JFrame {
  
     }//GEN-LAST:event_createLuggage1ActionPerformed
 
-    private void tfCustomerID1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfCustomerID1ActionPerformed
+    private void tfCustomerId1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfCustomerId1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_tfCustomerID1ActionPerformed
+    }//GEN-LAST:event_tfCustomerId1ActionPerformed
+
+    private void isHandledActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_isHandledActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_isHandledActionPerformed
 
     private void isLostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_isLostActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_isLostActionPerformed
 
     /**
@@ -253,6 +257,7 @@ public class ChangeLuggage extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JButton createLuggage1;
     private javax.swing.JRadioButton isHandled;
     private javax.swing.JRadioButton isLost;
@@ -263,7 +268,7 @@ public class ChangeLuggage extends javax.swing.JFrame {
     private javax.swing.JLabel lblCustomerID6;
     private javax.swing.JLabel lblCustomerID7;
     private javax.swing.JLayeredPane luggageRegistrationPanel;
-    private javax.swing.JTextField tfCustomerID1;
+    private javax.swing.JTextField tfCustomerId1;
     private javax.swing.JTextArea tfDescription;
     private javax.swing.JTextField tfLocation1;
     // End of variables declaration//GEN-END:variables
