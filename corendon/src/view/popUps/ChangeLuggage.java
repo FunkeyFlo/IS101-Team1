@@ -7,14 +7,14 @@ import main.Session;
  *
  * @author Viktor
  */
-public class ChangeBagage extends javax.swing.JFrame {
+public class ChangeLuggage extends javax.swing.JFrame {
 
     Luggage luggage = new Luggage();
     Customer customer = new Customer();
     
-    public ChangeBagage() {
+    public ChangeLuggage() {
         initComponents();
-        customer.getCustomerData(Session.storedCustomerId, "customer_id");
+        luggage.getLuggageData(Session.storedLuggageId, "luggage_id");
         tfDescription.setText(luggage.getDescription());
         tfLocation1.setText(luggage.getLocation());
         isLost.setEnabled(luggage.isIsLost());
@@ -235,20 +235,20 @@ public class ChangeBagage extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ChangeBagage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ChangeLuggage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ChangeBagage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ChangeLuggage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ChangeBagage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ChangeLuggage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ChangeBagage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ChangeLuggage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ChangeBagage().setVisible(true);
+                new ChangeLuggage().setVisible(true);
             }
         });
     }

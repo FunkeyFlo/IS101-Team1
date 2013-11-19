@@ -44,9 +44,11 @@ public class Customer {
                     this.firstName = (result.getString("first_name"));
                     this.lastName = (result.getString("last_name"));
                     this.postalCode = (result.getString("postal_code"));
-                    this.phoneHome = (result.getString("phoneHome"));
+                    this.phoneHome = (result.getString("phone_home"));
                     this.address = (result.getString("address"));
-                    this.phoneMobile = (result.getString("phoneMobile"));
+                    this.phoneMobile = (result.getString("phone_mobile"));
+                    this.city = (result.getString("city"));
+                    this.country = (result.getString("country"));
                 } else {
                     System.out.println("SOMETHING WENT WRONG");
                 }

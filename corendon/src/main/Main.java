@@ -16,6 +16,7 @@ import javax.swing.UIManager;
 import view.*;
 import view.administrator.ChangePassword;
 import view.administrator.ChangePermission;
+import view.popUps.*;
 
 /**
  *
@@ -83,6 +84,17 @@ public class Main {
         ChangePermission frameChangePermission = new ChangePermission();
         frameChangePermission.setVisible(true);
     }
+    
+    public static void displayChangeCustomer() {
+        ChangeCustomer frameChangeCustomer = new ChangeCustomer();
+        frameChangeCustomer.setVisible(true);
+    }
+    
+    public static void displayChangeLuggage() {
+        ChangeLuggage frameChangeLuggage = new ChangeLuggage();
+        frameChangeLuggage.setVisible(true);
+    }
+    
     public static void main(String args[]) {
 
         try {

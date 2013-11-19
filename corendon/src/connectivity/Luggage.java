@@ -36,9 +36,10 @@ public class Luggage {
         this.lastChangedBy = lastChangedBy;
     }
 
-    public void getCustomerData(String tfInput, String databaseVariable) {
+    public void getLuggageData(String tfInput, String databaseVariable) {
         try {
-            String sql = "SELECT *, COUNT(*) as `rows` FROM `customer` WHERE `" + databaseVariable + "`='" + tfInput + "'";
+            String sql = "SELECT *, COUNT(*) as `rows` FROM `luggage` WHERE `" + databaseVariable + "`='" + tfInput + "'";
+            System.out.println(sql);
             ResultSet result = getDb().doQuery(sql);
             if (result.next()) {
                 if (result.getInt("rows") >= 1) {

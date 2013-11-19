@@ -727,6 +727,11 @@ public class Employee extends javax.swing.JFrame {
         customerOptionsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Opties"));
 
         jButton1.setText("Klant gegevens aanpassen");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         customerDeleteButton.setText("Klant verwijderen");
         customerDeleteButton.addActionListener(new java.awt.event.ActionListener() {
@@ -1393,7 +1398,8 @@ public class Employee extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        Session.storedLuggageId = luggageTable2.getValueAt(luggageTable2.getSelectedRow(), 0).toString();
+        Main.displayChangeLuggage();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void linkButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_linkButtonActionPerformed
@@ -1726,6 +1732,11 @@ public class Employee extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_customerDeleteButtonActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Session.storedCustomerId = customerTable2.getValueAt(customerTable2.getSelectedRow(), 0).toString();
+        Main.displayChangeCustomer();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
