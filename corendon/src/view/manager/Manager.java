@@ -4,11 +4,13 @@ import connectivity.Luggage;
 import connectivity.Luggage.*;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.swing.JOptionPane;
 import main.Main;
 import org.jfree.chart.ChartFactory;
 //import org.jfree.chart.ChartFrame;
@@ -20,6 +22,7 @@ import org.jfree.data.category.DefaultCategoryDataset;
 
 public class Manager extends javax.swing.JFrame {
 
+    private Component ErrorPopUp;
     private List<Luggage> luggage = new ArrayList<>();
     private final Luggage luggageModel = new Luggage();
     private final List<String> CB_YEAR_VALUES1 = getNumYears();
@@ -35,6 +38,7 @@ public class Manager extends javax.swing.JFrame {
     //new Integer[getNumYears()];
     private final String[] MONTHS = {"Jan", "Feb", "Mrt", "Apr", "Mei",
             "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dec"};
+        
     
     public Manager() {
         initComponents();
@@ -75,11 +79,12 @@ public class Manager extends javax.swing.JFrame {
         cbMonthFrom = new javax.swing.JComboBox();
         cbYearFrom = new javax.swing.JComboBox();
         jPanel3 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        buttonUpdateAllDataGraph = new javax.swing.JButton();
         cbMonthTo = new javax.swing.JComboBox();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         cbYearTo = new javax.swing.JComboBox();
+        labelError = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         userMenu = new javax.swing.JMenu();
         changePassword = new javax.swing.JMenuItem();
@@ -153,7 +158,7 @@ public class Manager extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        overviewPane.addTab("Gevonde baggage", foundBaggageTab);
+        overviewPane.addTab("Gevonden baggage", foundBaggageTab);
 
         handledBaggage.setBorder(javax.swing.BorderFactory.createTitledBorder("Afgehandelde Bagage"));
         handledBaggage.setLayout(new java.awt.GridBagLayout());
@@ -220,10 +225,10 @@ public class Manager extends javax.swing.JFrame {
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Tot"));
 
-        jButton1.setText("Update");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        buttonUpdateAllDataGraph.setText("Update");
+        buttonUpdateAllDataGraph.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                buttonUpdateAllDataGraphActionPerformed(evt);
             }
         });
 
@@ -246,9 +251,9 @@ public class Manager extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
                             .addComponent(jLabel5))
@@ -257,8 +262,9 @@ public class Manager extends javax.swing.JFrame {
                             .addComponent(cbMonthTo, 0, 101, Short.MAX_VALUE)
                             .addComponent(cbYearTo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton1)))
+                        .addComponent(labelError)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(buttonUpdateAllDataGraph)))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -272,8 +278,11 @@ public class Manager extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addComponent(cbMonthTo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addContainerGap())
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(buttonUpdateAllDataGraph)
+                        .addContainerGap())
+                    .addComponent(labelError, javax.swing.GroupLayout.Alignment.TRAILING)))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -346,6 +355,10 @@ public class Manager extends javax.swing.JFrame {
 
     private void setAllDataGraph(int beginYear, int endYear,
             int beginMonth, int endMonth) {
+        allGraphs.removeAll();
+        allGraphs.revalidate();
+        allDataGraph.clear();
+        
         List<Integer> numTimesLost = new ArrayList<>();
         List<Integer> numTimesFound = new ArrayList<>();
         List<Integer> numTimesRtrnd = new ArrayList<>();
@@ -427,22 +440,30 @@ public class Manager extends javax.swing.JFrame {
         final String CHART_NAME = "Verloren, gevonden en afgehandelde baggage per maand";
         final String X_AXIS_NAME = "Maand";
         final String Y_AXIS_NAME = "Aantal";
-        JFreeChart allGraphsChart = ChartFactory.createBarChart
-                (CHART_NAME, X_AXIS_NAME, Y_AXIS_NAME, allDataGraph, 
-                PlotOrientation.VERTICAL, false, true, false);
+        JFreeChart allGraphsChart = ChartFactory.createBarChart(CHART_NAME, X_AXIS_NAME, Y_AXIS_NAME, allDataGraph, PlotOrientation.VERTICAL, false, true, false);
         CategoryPlot allGraphsPlot = allGraphsChart.getCategoryPlot();
         allGraphsPlot.setRangeGridlinePaint(Color.BLACK);
-        ChartPanel allGraphsPanel = new ChartPanel(allGraphsChart);
+        ChartPanel lostBaggagePanel = new ChartPanel(allGraphsChart);
 
+        
+        //allGraphs.removeAll();
+        //allGraphs.revalidate();
+        allGraphsChart = ChartFactory.createBarChart
+                (CHART_NAME, X_AXIS_NAME, Y_AXIS_NAME, allDataGraph, 
+                PlotOrientation.VERTICAL, false, true, false);
+        allGraphsPlot = allGraphsChart.getCategoryPlot();
+        allGraphsPlot.setRangeGridlinePaint(Color.BLACK);
+        
+        
         allGraphs.setLayout(new BorderLayout());
-        allGraphs.add(allGraphsPanel, BorderLayout.CENTER);
-        allGraphs.setSize(300, 200);
+        allGraphs.add(lostBaggagePanel, BorderLayout.CENTER);
         allGraphs.validate();
-
+        
     }
     
     private void setLostGraph(int beginYear, int endYear, 
             int beginMonth, int endMonth) {
+        lostBaggageGraph.clear();
         List<Integer> numLostPerMonth = new ArrayList<>();
         List<String> months = new ArrayList<>();
         List<String> yyyyMM = new ArrayList<>();
@@ -486,7 +507,7 @@ public class Manager extends javax.swing.JFrame {
         final String CHART_NAME = "Verloren baggage";
         final String X_AXIS_NAME = "Maand/Jaar";
         final String Y_AXIS_NAME = "Aantal";
-        JFreeChart lostBaggageChart = ChartFactory.createBarChart3D(CHART_NAME, X_AXIS_NAME, Y_AXIS_NAME, lostBaggageGraph, PlotOrientation.VERTICAL, false, true, false);
+        JFreeChart lostBaggageChart = ChartFactory.createBarChart(CHART_NAME, X_AXIS_NAME, Y_AXIS_NAME, lostBaggageGraph, PlotOrientation.VERTICAL, false, true, false);
         CategoryPlot lostBaggagePlot = lostBaggageChart.getCategoryPlot();
         lostBaggagePlot.setRangeGridlinePaint(Color.BLACK);
         ChartPanel lostBaggagePanel = new ChartPanel(lostBaggageChart);
@@ -500,6 +521,7 @@ public class Manager extends javax.swing.JFrame {
     
     private void setFoundGraph(int beginYear, int endYear, 
             int beginMonth, int endMonth) {
+        foundBaggageGraph.clear();
         List<Integer> numFoundPerMonth = new ArrayList<>();
         List<String> months = new ArrayList<>();
         List<String> yyyyMM = new ArrayList<>();
@@ -546,7 +568,7 @@ public class Manager extends javax.swing.JFrame {
         final String CHART_NAME = "Gevonden baggage";
         final String X_AXIS_NAME = "Maand/Jaar";
         final String Y_AXIS_NAME = "Aantal";
-        JFreeChart foundBaggageChart = ChartFactory.createBarChart3D(CHART_NAME, X_AXIS_NAME, Y_AXIS_NAME, foundBaggageGraph, PlotOrientation.VERTICAL, false, true, false);
+        JFreeChart foundBaggageChart = ChartFactory.createBarChart(CHART_NAME, X_AXIS_NAME, Y_AXIS_NAME, foundBaggageGraph, PlotOrientation.VERTICAL, false, true, false);
         CategoryPlot foundBaggagePlot = foundBaggageChart.getCategoryPlot();
         foundBaggagePlot.setRangeGridlinePaint(Color.BLACK);
         ChartPanel foundBaggagePanel = new ChartPanel(foundBaggageChart);
@@ -559,6 +581,7 @@ public class Manager extends javax.swing.JFrame {
     
     private void setHandledGraph(int beginYear, int endYear, 
             int beginMonth, int endMonth) {
+        handledBaggageGraph.clear();
         List<Integer> numHandledPerMonth = new ArrayList<>();
         List<String> months = new ArrayList<>();
         List<String> yyyyMM = new ArrayList<>();
@@ -605,9 +628,8 @@ public class Manager extends javax.swing.JFrame {
         final String CHART_NAME = "Afgehandelde baggage";
         final String X_AXIS_NAME = "Maand/Jaar";
         final String Y_AXIS_NAME = "Aantal";
-        JFreeChart handledBaggageChart = ChartFactory.createBarChart3D(CHART_NAME, X_AXIS_NAME, Y_AXIS_NAME, handledBaggageGraph, PlotOrientation.VERTICAL, false, true, false);
+        JFreeChart handledBaggageChart = ChartFactory.createBarChart(CHART_NAME, X_AXIS_NAME, Y_AXIS_NAME, handledBaggageGraph, PlotOrientation.VERTICAL, false, true, false);
         CategoryPlot handledBaggagePlot = handledBaggageChart.getCategoryPlot();
-        handledBaggagePlot.setRangeGridlinePaint(Color.BLACK);
         ChartPanel handledBaggagePanel = new ChartPanel(handledBaggageChart);
 
         //applies graph to panel
@@ -625,45 +647,51 @@ public class Manager extends javax.swing.JFrame {
         Main.displayLogin();
     }//GEN-LAST:event_logoutActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-//        System.out.println(tfYear.getText());
-//        System.out.println(tfMonth.getSelectedItem());
-
-        int yearF = cbYearFrom.getSelectedIndex() + 2010,
-            yearT = cbYearTo.getSelectedIndex() + 2010,
-            monthF = cbMonthFrom.getSelectedIndex() + 1,
-            monthT = cbMonthTo.getSelectedIndex() + 1;
-        System.out.println(yearF + "\n" + yearT + "\n" + monthF 
-                + "\n" + monthT);
-        setAllDataGraph(yearF, yearT, monthF, monthT);
-        setLostGraph(yearF, yearT, monthF, monthT);
-        setFoundGraph(yearF, yearT, monthF, monthT);
-        setHandledGraph(yearF, yearT, monthF, monthT);
-        
-        String yearFrom = cbYearFrom.getSelectedItem().toString(), zeroFrom = "",
-                yearTo = cbYearTo.getSelectedItem().toString(), zeroTo = "";
-        int monthFrom = cbMonthFrom.getSelectedIndex() + 1;
-        int monthTo = cbMonthTo.getSelectedIndex() + 1;
-
-        if (monthFrom < 10) {
-            zeroFrom = "0";
-        }
-
-        if (monthTo < 10) {
-            zeroTo = "0";
-        }
-
-        String searchArgFrom = yearFrom + "-" + zeroFrom + monthFrom;
-        String searchArgTo = yearTo + "-" + zeroTo + monthTo;
-        System.out.println(searchArgFrom);
-        System.out.println(searchArgTo);
-
-
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void cbYearToActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbYearToActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbYearToActionPerformed
+
+    private void buttonUpdateAllDataGraphActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonUpdateAllDataGraphActionPerformed
+        //        System.out.println(tfYear.getText());
+        //        System.out.println(tfMonth.getSelectedItem());
+
+        int yearFrom = cbYearFrom.getSelectedIndex() + 2010,
+        yearTo = cbYearTo.getSelectedIndex() + 2010,
+        monthFrom = cbMonthFrom.getSelectedIndex() + 1,
+        monthTo = cbMonthTo.getSelectedIndex() + 1;
+        if (yearFrom > yearTo) {
+            errorPopUp("Begindatum kan niet groter zijn dan einddatum.");
+        } else {
+            setAllDataGraph(yearFrom, yearTo, monthFrom, monthTo);
+            setLostGraph(yearFrom, yearTo, monthFrom, monthTo);
+            setFoundGraph(yearFrom, yearTo, monthFrom, monthTo);
+            setHandledGraph(yearFrom, yearTo, monthFrom, monthTo);
+        }
+        /*
+        *   The following comments can be deleted
+        */
+        //System.out.println(yearF + "\n" + yearT + "\n" + monthF
+          //  + "\n" + monthT);
+        
+//        String yearFrom = cbYearFrom.getSelectedItem().toString(), zeroFrom = "",
+//        yearTo = cbYearTo.getSelectedItem().toString(), zeroTo = "";
+//        int monthFrom = cbMonthFrom.getSelectedIndex() + 1;
+//        int monthTo = cbMonthTo.getSelectedIndex() + 1;
+//
+//        if (monthFrom < 10) {
+//            zeroFrom = "0";
+//        }
+//
+//        if (monthTo < 10) {
+//            zeroTo = "0";
+//        }
+//
+//        String searchArgFrom = yearFrom + "-" + zeroFrom + monthFrom;
+//        String searchArgTo = yearTo + "-" + zeroTo + monthTo;
+//        System.out.println(searchArgFrom);
+//        System.out.println(searchArgTo);
+
+    }//GEN-LAST:event_buttonUpdateAllDataGraphActionPerformed
 
     private List<String> getNumYears() {
         DateFormat dateFormat = new SimpleDateFormat("yyyy");
@@ -674,6 +702,10 @@ public class Manager extends javax.swing.JFrame {
             num.add(Integer.toString(i));
         }
         return num;
+    }
+ 
+    private void errorPopUp(String errorMessage) {
+        JOptionPane.showMessageDialog(ErrorPopUp, errorMessage);
     }
     
     /**
@@ -708,6 +740,7 @@ public class Manager extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel allGraphs;
     private javax.swing.JPanel allGraphsTab;
+    private javax.swing.JButton buttonUpdateAllDataGraph;
     private javax.swing.JComboBox cbMonthFrom;
     private javax.swing.JComboBox cbMonthTo;
     private javax.swing.JComboBox cbYearFrom;
@@ -718,7 +751,6 @@ public class Manager extends javax.swing.JFrame {
     private javax.swing.JPanel foundBaggageTab;
     private javax.swing.JPanel handledBaggage;
     private javax.swing.JPanel handledBaggageTab;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -727,6 +759,7 @@ public class Manager extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JLabel labelError;
     private javax.swing.JMenuItem logout;
     private javax.swing.JPanel lostBaggage;
     private javax.swing.JPanel lostBaggageTab;
