@@ -113,31 +113,11 @@ public class Administrator extends javax.swing.JFrame {
     private boolean errorCheckCreateUser() {
         boolean isError[] = new boolean[4];
         boolean totalCorrectInput = true;
-        String userName = tfUsername.getText().trim();
-        String passWord = tfPassword.getText().trim();
-        String firstName = tfFirstName.getText().trim();
-        String lastName = tfLastName.getText().trim();
+        String userName = tfUsername.getText();
+        String passWord = tfPassword.getText();
+        String firstName = tfFirstName.getText();
+        String lastName = tfLastName.getText();
         String empty = "";
-        
-        if(userName.equals(empty) || userName.length() > 20)
-            isError[0] = true;
-        else
-            isError[0] = false;
-        
-        if(passWord.equals(empty) || passWord.length() > 100)
-            isError[1] = true;
-        else
-            isError[1] = false;
-        
-        if(firstName.equals(empty) || firstName.length() > 50)
-            isError[2] = true;
-        else
-            isError[2] = false;
-        
-        if(lastName.equals(empty) || lastName.length() > 50)
-            isError[3] = true;
-        else
-            isError[3] = false;
 
         if (userName.equals(empty)) {
             isError[0] = true;
@@ -588,14 +568,11 @@ public class Administrator extends javax.swing.JFrame {
 
         boolean totalCorrectInput = errorCheckCreateUser();
         boolean isConfirm = false;
-        if(totalCorrectInput == false)
-        {
-            errorPopUp("Vul alle velden volledig in en probeer het nog eens.");
-        }
-        else
-        {
-            isConfirm = createUserPopUp("Weet u zeker dat u deze gebruiker wilt aanmaken?");
-            if(isConfirm == true)
+        if (totalCorrectInput == false) {
+            errorPopUp("Please fill in all the fields before trying again.");
+        } else {
+            isConfirm = createPopUp("Weet u zeker dat u deze gebruiker wilt aanmaken?");
+            if (isConfirm == true) {
                 doCreateUser();
             }
         }
@@ -625,10 +602,8 @@ public class Administrator extends javax.swing.JFrame {
         boolean isError = false;
         try {
             accountToChange = userTable.getValueAt(userTable.getSelectedRow(), 3).toString();
-        }
-        catch(IndexOutOfBoundsException e)
-        {
-            errorPopUp("Maak een selectie in de tabel en probeer het nog eens.");
+        } catch (IndexOutOfBoundsException e) {
+            errorPopUp("Please make a selection in the table before trying again.");
             isError = true;
         }
         if (isError == false) {
@@ -640,16 +615,14 @@ public class Administrator extends javax.swing.JFrame {
         boolean isError = false;
         try {
             user.changeUserIntData(userTable.getValueAt(userTable.getSelectedRow(),
-            3).toString(), "incorrect_login", user.MAX_INCORRECT_LOGINS);
-        }
-        catch(IndexOutOfBoundsException e)
-        {
-            errorPopUp("Maak een selectie in de tabel en probeer het nog eens.");
+                    3).toString(), "incorrect_login", user.MAX_INCORRECT_LOGINS);
+        } catch (IndexOutOfBoundsException e) {
+            errorPopUp("Please make a selection in the table before trying again.");
             isError = true;
         }
         if (isError == false) {
             searchUserTable(9999, "");
-            JOptionPane.showMessageDialog(Succes, "Gebruikersaccount succesvol vergrendelt.");
+            JOptionPane.showMessageDialog(Succes, "Account has been succesfully locked");
         }
     }//GEN-LAST:event_lockAccountActionPerformed
 
@@ -657,15 +630,13 @@ public class Administrator extends javax.swing.JFrame {
         if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
             boolean totalCorrectInput = errorCheckCreateUser();
             boolean isConfirm = false;
-            if(totalCorrectInput == false)
-            {
-                errorPopUp("Vul alle velden volledig in en probeer het nog eens.");
-            }
-            else
-            {
-                isConfirm = createUserPopUp("Weet u zeker dat u deze gebruiker wilt aanmaken?");
-            if(isConfirm == true)
-                doCreateUser();
+            if (totalCorrectInput == false) {
+                errorPopUp("Please fill in all the fields before trying again.");
+            } else {
+                isConfirm = createPopUp("Weet u zeker dat u deze gebruiker wilt aanmaken?");
+                if (isConfirm == true) {
+                    doCreateUser();
+                }
             }
         }
     }//GEN-LAST:event_tfPasswordKeyPressed
@@ -674,15 +645,13 @@ public class Administrator extends javax.swing.JFrame {
         if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
             boolean totalCorrectInput = errorCheckCreateUser();
             boolean isConfirm = false;
-            if(totalCorrectInput == false)
-            {
-                errorPopUp("Vul alle velden volledig in en probeer het nog eens.");
-            }
-            else
-            {
-                isConfirm = createUserPopUp("Weet u zeker dat u deze gebruiker wilt aanmaken?");
-            if(isConfirm == true)
-                doCreateUser();
+            if (totalCorrectInput == false) {
+                errorPopUp("Please fill in all the fields before trying again.");
+            } else {
+                isConfirm = createPopUp("Weet u zeker dat u deze gebruiker wilt aanmaken?");
+                if (isConfirm == true) {
+                    doCreateUser();
+                }
             }
         }
 
@@ -692,15 +661,13 @@ public class Administrator extends javax.swing.JFrame {
         if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
             boolean totalCorrectInput = errorCheckCreateUser();
             boolean isConfirm = false;
-            if(totalCorrectInput == false)
-            {
-                errorPopUp("Vul alle velden volledig in en probeer het nog eens.");
-            }
-            else
-            {
-                isConfirm = createUserPopUp("Weet u zeker dat u deze gebruiker wilt aanmaken?");
-            if(isConfirm == true)
-                doCreateUser();
+            if (totalCorrectInput == false) {
+                errorPopUp("Please fill in all the fields before trying again.");
+            } else {
+                isConfirm = createPopUp("Weet u zeker dat u deze gebruiker wilt aanmaken?");
+                if (isConfirm == true) {
+                    doCreateUser();
+                }
             }
         }
     }//GEN-LAST:event_tfLastNameKeyPressed
@@ -709,15 +676,13 @@ public class Administrator extends javax.swing.JFrame {
         if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
             boolean totalCorrectInput = errorCheckCreateUser();
             boolean isConfirm = false;
-            if(totalCorrectInput == false)
-            {
-                errorPopUp("Vul alle velden volledig in en probeer het nog eens.");
-            }
-            else
-            {
-                isConfirm = createUserPopUp("Weet u zeker dat u deze gebruiker wilt aanmaken?");
-            if(isConfirm == true)
-                doCreateUser();
+            if (totalCorrectInput == false) {
+                errorPopUp("Please fill in all the fields before trying again.");
+            } else {
+                isConfirm = createPopUp("Weet u zeker dat u deze gebruiker wilt aanmaken?");
+                if (isConfirm == true) {
+                    doCreateUser();
+                }
             }
         }
 
@@ -727,15 +692,13 @@ public class Administrator extends javax.swing.JFrame {
         if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
             boolean totalCorrectInput = errorCheckCreateUser();
             boolean isConfirm = false;
-            if(totalCorrectInput == false)
-            {
-                errorPopUp("Vul alle velden volledig in en probeer het nog eens.");
-            }
-            else
-            {
-                isConfirm = createUserPopUp("Weet u zeker dat u deze gebruiker wilt aanmaken?");
-            if(isConfirm == true)
-                doCreateUser();
+            if (totalCorrectInput == false) {
+                errorPopUp("Please fill in all the fields before trying again.");
+            } else {
+                isConfirm = createPopUp("Weet u zeker dat u deze gebruiker wilt aanmaken?");
+                if (isConfirm == true) {
+                    doCreateUser();
+                }
             }
         }
     }//GEN-LAST:event_permissionSelectorKeyPressed
@@ -746,19 +709,16 @@ public class Administrator extends javax.swing.JFrame {
 
     private void unlockAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_unlockAccountActionPerformed
         boolean isError = false;
-        try{
-        user.changeUserStringData(userTable.getValueAt(userTable.getSelectedRow(),
-                3).toString(), "incorrect_login", "0");
-        }
-        catch(IndexOutOfBoundsException e)
-        {
-            errorPopUp("Maak een selectie in de tabel en probeer het nog eens.");
+        try {
+            user.changeUserStringData(userTable.getValueAt(userTable.getSelectedRow(),
+                    3).toString(), "incorrect_login", "0");
+        } catch (IndexOutOfBoundsException e) {
+            errorPopUp("Please make a selection in the table before trying again.");
             isError = true;
         }
-        if(isError == false)
-        {    
-        searchUserTable(9999, "");
-        JOptionPane.showMessageDialog(Succes, "Gebruikersaccount succesvol vergrendelt.");
+        if (isError == false) {
+            searchUserTable(9999, "");
+            JOptionPane.showMessageDialog(Succes, "Account has been succesfully unlocked");
         }
     }//GEN-LAST:event_unlockAccountActionPerformed
 
@@ -766,10 +726,8 @@ public class Administrator extends javax.swing.JFrame {
         boolean isError = false;
         try {
             String check = userTable.getValueAt(userTable.getSelectedRow(), 3).toString();
-        }
-        catch(IndexOutOfBoundsException e)
-        {
-            errorPopUp("Maak een selectie in de tabel en probeer het nog eens.");
+        } catch (IndexOutOfBoundsException e) {
+            errorPopUp("Please make a selection in the table before trying again.");
             isError = true;
         }
         if (isError == false) {

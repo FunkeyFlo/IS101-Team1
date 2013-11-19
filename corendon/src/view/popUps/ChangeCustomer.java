@@ -1,10 +1,7 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package view.popUps;
 
 import connectivity.*;
+import main.Session;
 
 /**
  *
@@ -12,25 +9,20 @@ import connectivity.*;
  */
 public class ChangeCustomer extends javax.swing.JFrame {
 
-    /**
-     * Creates new form PopUpKlantAanpas
-     */
+    Customer customer = new Customer();
+    
     public ChangeCustomer() {
         initComponents();
-    }
-    
-    private void clearFields() {
-        tfAddress1.setText("");
-        tfAddress2.setText("");
-        tfCity.setText("");
-        tfEmail1.setText("");
-        tfEmail2.setText("");
-        tfFirstName.setText("");
-        tfLastName.setText("");
-        tfPhoneHome.setText("");
-        tfPhoneMobile.setText("");
-        tfPostalCode1.setText("");
-        tfPostalCode2.setText("");
+        customer.getCustomerData(Session.storedCustomerId, "customer_id");
+        tfAddress1.setText(customer.getAddress());
+        tfFirstName.setText(customer.getFirstName());
+        tfLastName.setText(customer.getLastName());
+        tfPostalCode1.setText(customer.getPostalCode());
+        tfCity.setText(customer.getCity());
+        cbCountry.setSelectedItem(customer.getCountry());
+        tfEmail1.setText(customer.getEmail());
+        tfPhoneHome.setText(customer.getPhoneHome());
+        tfPhoneMobile.setText(customer.getPhoneMobile());
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -64,11 +56,11 @@ public class ChangeCustomer extends javax.swing.JFrame {
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         tfCity = new javax.swing.JTextField();
-        tfCountry = new javax.swing.JComboBox();
+        cbCountry = new javax.swing.JComboBox();
         warningLabel1 = new javax.swing.JLabel();
         tfPostalCode1 = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         customerRegistrationPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Klant Registreren"));
 
@@ -124,7 +116,12 @@ public class ChangeCustomer extends javax.swing.JFrame {
 
         jLabel20.setText("Land");
 
-        tfCountry.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Nederland", "Turkije", "Australië" }));
+        cbCountry.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Nederland", "Turkije", "Australië" }));
+        cbCountry.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbCountryActionPerformed(evt);
+            }
+        });
 
         warningLabel1.setForeground(new java.awt.Color(255, 0, 0));
 
@@ -176,7 +173,7 @@ public class ChangeCustomer extends javax.swing.JFrame {
                                         .addComponent(tfAddress1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(tfAddress2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(tfCountry, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cbCountry, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(tfCity, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(customerRegistrationPanelLayout.createSequentialGroup()
                                         .addComponent(tfPostalCode1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -217,7 +214,7 @@ public class ChangeCustomer extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(tfCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tfCountry, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(cbCountry, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(customerRegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(customerRegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -279,113 +276,16 @@ public class ChangeCustomer extends javax.swing.JFrame {
     }//GEN-LAST:event_tfEmail2ActionPerformed
 
     private void createCustomer1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createCustomer1ActionPerformed
-        Customer customer = new Customer();
-        boolean[] correctInput = new boolean[6];
-        boolean totalCorrectInput = false;
-
-        String newFirstName = tfFirstName.getText().trim();
-        if (newFirstName.equals("") || newFirstName.length() > 50) {
-            warningLabel1.setText("Voer een voornaam in");
-            correctInput[0] = false;
-        } else {
-            correctInput[0] = true;
-        }
-
-        String newLastName = tfLastName.getText().trim();
-        if (newLastName.equals("") || newLastName.length() > 50) {
-            warningLabel1.setText("Voer een achternaam in");
-            correctInput[1] = false;
-        } else {
-            correctInput[1] = true;
-        }
-
-        String newAddress = tfAddress1.getText().trim() + " " + tfAddress2.getText().trim();
-        if (newAddress.equals(" ")) {
-            warningLabel1.setText("Voer een adres in");
-            correctInput[2] = false;
-        }
-        else if (tfAddress1.getText().equals("")) {
-            warningLabel1.setText("Voer een straatnaam in");
-            correctInput[2] = false;
-        }
-        else if (tfAddress2.getText().equals("")) {
-            warningLabel1.setText("Voer een huisnummer in");
-            correctInput[2] = false;
-        }
-        else {
-            correctInput[2] = true;
-        }
-
-        String newPostalCode = tfPostalCode1.getText().trim() + tfPostalCode2.getText().trim().toUpperCase();
-        System.out.println(tfPostalCode1.getText() + " " + tfPostalCode2.getText() + " " + newPostalCode);
-        if (newPostalCode.equals("")) {
-            warningLabel1.setText("Voer een postcode in");
-            correctInput[3] = false;
-        }
-        else if (!tfPostalCode1.getText().matches("[0-9]+")) {
-            warningLabel1.setText("Eerste vier karakters van een postcode zijn cijfers");
-            correctInput[3] = false;
-        }
-        else if (!tfPostalCode2.getText().toUpperCase().matches("[A-Z]+")) {
-            warningLabel1.setText("Laatste twee karakters van een postcode zijn letters");
-            correctInput[3] = false;
-        }
-        else {
-            correctInput[3] = true;
-        }
-
-        String newCountry = tfCountry.getSelectedItem().toString();
-
-        String newCity = tfCity.getText().trim();
-        if (newCity.equals("")) {
-            warningLabel1.setText("Voer een stad in");
-            correctInput[4] = false;
-        }
-        else {
-            correctInput[4] = true;
-        }
-
-        String newEmail = tfEmail1.getText().trim() + "@" + tfEmail2.getText().trim();
-        if (newEmail.length() > 75) {
-            warningLabel1.setText("Emailadres is te lang");
-            correctInput[5] = false;
-        }
-        else if (!tfEmail2.getText().contains(".")) {
-            warningLabel1.setText("Voer een emailadres met een punt in");
-            correctInput[5] = false;
-        }
-        else {
-            correctInput[5] = true;
-        }
-
-        String newPhoneHome = tfPhoneHome.getText().trim();
-        String newPhoneMobile = tfPhoneMobile.getText().trim();
-
-        for (int i = 0; i < correctInput.length; i++) {
-            if (correctInput[i] == false) {
-                totalCorrectInput = false;
-                //                System.out.println("false" + i); koekje
-                break;
-            }
-            else {
-                totalCorrectInput = true;
-            }
-        }
-
-        if (totalCorrectInput) {
-            customer.setNewCustomer(newFirstName, newLastName,
-                newAddress, newPostalCode, newCity, newCountry, newEmail,
-                newPhoneHome, newPhoneMobile);
-
-            clearFields();
-            //searchCustomerTable2(9999, "");
-            warningLabel1.setText("");
-        }
+     
     }//GEN-LAST:event_createCustomer1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void cbCountryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbCountryActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbCountryActionPerformed
 
     /**
      * @param args the command line arguments
@@ -422,6 +322,7 @@ public class ChangeCustomer extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox cbCountry;
     private javax.swing.JButton createCustomer1;
     private javax.swing.JPanel customerRegistrationPanel;
     private javax.swing.JButton jButton4;
@@ -438,7 +339,6 @@ public class ChangeCustomer extends javax.swing.JFrame {
     private javax.swing.JTextField tfAddress1;
     private javax.swing.JTextField tfAddress2;
     private javax.swing.JTextField tfCity;
-    private javax.swing.JComboBox tfCountry;
     private javax.swing.JTextField tfEmail1;
     private javax.swing.JTextField tfEmail2;
     private javax.swing.JTextField tfFirstName;
