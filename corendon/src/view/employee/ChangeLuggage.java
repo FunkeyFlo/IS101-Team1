@@ -1,4 +1,4 @@
-package view.popUps;
+package view.employee;
 
 import connectivity.*;
 import main.Session;

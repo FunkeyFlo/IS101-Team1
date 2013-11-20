@@ -163,12 +163,11 @@
                                           <Component id="tfEmail2" max="32767" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
-                                          <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                              <Component id="tfPhoneHome" pref="211" max="32767" attributes="0"/>
-                                              <Component id="tfPhoneMobile" max="32767" attributes="0"/>
+                                          <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="tfPhoneMobile" alignment="1" max="32767" attributes="0"/>
+                                              <Component id="tfPhoneHome" max="32767" attributes="0"/>
                                           </Group>
-                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -186,22 +185,18 @@
                                       <Component id="tfLastName" alignment="0" max="32767" attributes="0"/>
                                       <Component id="tfFirstName" alignment="1" max="32767" attributes="0"/>
                                       <Group type="102" attributes="0">
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <Component id="tfAddress1" min="-2" pref="155" max="-2" attributes="0"/>
-                                                  <EmptySpace max="-2" attributes="0"/>
-                                                  <Component id="tfAddress2" min="-2" pref="30" max="-2" attributes="0"/>
-                                              </Group>
-                                              <Component id="tfCountry" alignment="0" min="-2" pref="116" max="-2" attributes="0"/>
-                                              <Component id="tfCity" min="-2" pref="116" max="-2" attributes="0"/>
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <Component id="tfPostalCode1" min="-2" pref="48" max="-2" attributes="0"/>
-                                                  <EmptySpace max="-2" attributes="0"/>
-                                                  <Component id="tfPostalCode2" min="-2" pref="25" max="-2" attributes="0"/>
-                                              </Group>
+                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                              <Component id="tfCountry" alignment="0" pref="116" max="32767" attributes="0"/>
+                                              <Component id="tfCity" pref="116" max="32767" attributes="0"/>
                                               <Component id="tfEmail1" alignment="0" min="-2" pref="94" max="-2" attributes="0"/>
+                                              <Component id="tfPostalCode" alignment="0" max="32767" attributes="0"/>
                                           </Group>
-                                          <EmptySpace min="0" pref="27" max="32767" attributes="0"/>
+                                          <EmptySpace min="0" pref="102" max="32767" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="tfAddress1" min="-2" pref="155" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="tfAddress2" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -239,10 +234,7 @@
                                   <Component id="jLabel20" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="tfPostalCode2" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="tfPostalCode1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="tfPostalCode" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="tfCity" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
@@ -306,11 +298,6 @@
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfFirstNameActionPerformed"/>
                     <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfFirstNameKeyPressed"/>
-                  </Events>
-                </Component>
-                <Component class="javax.swing.JTextField" name="tfPostalCode2">
-                  <Events>
-                    <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfPostalCode2KeyPressed"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel13">
@@ -418,9 +405,9 @@
                     </Property>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="tfPostalCode1">
+                <Component class="javax.swing.JTextField" name="tfPostalCode">
                   <Events>
-                    <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfPostalCode1KeyPressed"/>
+                    <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfPostalCodeKeyPressed"/>
                   </Events>
                 </Component>
               </SubComponents>

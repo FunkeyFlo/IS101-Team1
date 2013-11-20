@@ -4,6 +4,8 @@
  */
 package main;
 
+import view.employee.ChangeLuggage;
+import view.employee.ChangeCustomer;
 import view.administrator.Administrator;
 import view.administrator.ChangeName;
 import view.employee.RegisterCustomer;

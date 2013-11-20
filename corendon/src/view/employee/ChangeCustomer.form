@@ -3,10 +3,7 @@
 <Form version="1.3" maxVersion="1.8" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="2"/>
-    <Property name="alwaysOnTop" type="boolean" value="true"/>
-    <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-      <Color id="Default Cursor"/>
-    </Property>
+    <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -27,7 +24,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <EmptySpace min="0" pref="398" max="32767" attributes="0"/>
+          <EmptySpace min="0" pref="401" max="32767" attributes="0"/>
           <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
@@ -55,7 +52,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-            <TitledBorder title="Klant Registreren"/>
+            <TitledBorder title="Klant gegevens aanpassen"/>
           </Border>
         </Property>
       </Properties>
@@ -69,9 +66,9 @@
                       <Component id="warningLabel1" alignment="0" max="32767" attributes="0"/>
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          <Component id="cancelChangeCustomer" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButton4" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="changeCustomer" min="-2" max="-2" attributes="0"/>
+                          <Component id="createCustomer1" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -88,11 +85,10 @@
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="tfPhoneHome" alignment="0" pref="211" max="32767" attributes="0"/>
-                                      <Component id="tfPhoneMobile" alignment="0" max="32767" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="tfPhoneHome" max="32767" attributes="0"/>
+                                      <Component id="tfPhoneMobile" max="32767" attributes="0"/>
                                   </Group>
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -111,21 +107,19 @@
                               <Component id="tfFirstName" alignment="1" max="32767" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="tfAddress1" min="-2" pref="155" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="tfAddress2" min="-2" pref="30" max="-2" attributes="0"/>
-                                      </Group>
                                       <Component id="cbCountry" alignment="0" min="-2" pref="116" max="-2" attributes="0"/>
-                                      <Component id="tfCity" alignment="0" min="-2" pref="116" max="-2" attributes="0"/>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="tfPostalCode1" min="-2" pref="48" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="tfPostalCode2" min="-2" pref="25" max="-2" attributes="0"/>
-                                      </Group>
                                       <Component id="tfEmail1" alignment="0" min="-2" pref="94" max="-2" attributes="0"/>
+                                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                          <Component id="tfPostalCode" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="tfCity" alignment="0" pref="116" max="32767" attributes="0"/>
+                                      </Group>
                                   </Group>
-                                  <EmptySpace min="0" pref="27" max="32767" attributes="0"/>
+                                  <EmptySpace min="0" pref="102" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="tfAddress1" min="-2" pref="155" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="tfAddress2" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -163,10 +157,7 @@
                           <Component id="jLabel20" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="tfPostalCode2" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="tfPostalCode1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="tfPostalCode" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="tfCity" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
@@ -177,10 +168,12 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                           <Component id="tfEmail2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel16" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel15" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="tfEmail1" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                          <Component id="tfEmail1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel16" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
@@ -196,8 +189,8 @@
                   <Component id="warningLabel1" pref="17" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="changeCustomer" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="cancelChangeCustomer" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="createCustomer1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButton4" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -226,8 +219,6 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfFirstNameActionPerformed"/>
           </Events>
-        </Component>
-        <Component class="javax.swing.JTextField" name="tfPostalCode2">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel13">
           <Properties>
@@ -272,20 +263,20 @@
             <Property name="text" type="java.lang.String" value="Mobiel tel."/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="changeCustomer">
+        <Component class="javax.swing.JButton" name="createCustomer1">
           <Properties>
             <Property name="text" type="java.lang.String" value="Aanpassen"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="changeCustomerActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="createCustomer1ActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="cancelChangeCustomer">
+        <Component class="javax.swing.JButton" name="jButton4">
           <Properties>
             <Property name="text" type="java.lang.String" value="Annuleren"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cancelChangeCustomerActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton4ActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel19">
@@ -321,7 +312,7 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="tfPostalCode1">
+        <Component class="javax.swing.JTextField" name="tfPostalCode">
         </Component>
       </SubComponents>
     </Container>
