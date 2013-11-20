@@ -10,7 +10,6 @@ import view.administrator.Administrator;
 import view.administrator.ChangeName;
 import view.employee.RegisterCustomer;
 import view.employee.Employee;
-import view.employee.Medewerker;
 import view.manager.Manager;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
@@ -35,11 +34,6 @@ public class Main {
     public static void displayLogin() {
         Login frameLogin = new Login();
         frameLogin.setVisible(true);
-    }
-
-    public static void displayMedewerker() { //permissionId = 1
-        Medewerker frameMedewerker = new Medewerker();
-        frameMedewerker.setVisible(true);
     }
 
     public static void displayEmployee() { //permissionId = 1

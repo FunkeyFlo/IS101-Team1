@@ -18,10 +18,9 @@ public class ChangeLuggage extends javax.swing.JFrame {
 
         initComponents();
         tfDescription.setText(luggage.getDescription());
-        tfLocation1.setText(luggage.getLocation());
-        tfCustomerId1.setText(String.valueOf(luggage.getCustomerId()));
-        isLost.setSelected(luggage.isIsLost());
-        isHandled.setSelected(luggage.isIsHandled());
+        tfLocation.setText(luggage.getLocation());
+        rbStatus.setSelected(luggage.isIsLost());
+        rbDone.setSelected(luggage.isIsHandled());
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -34,54 +33,44 @@ public class ChangeLuggage extends javax.swing.JFrame {
 
         buttonGroup2 = new javax.swing.ButtonGroup();
         luggageRegistrationPanel = new javax.swing.JLayeredPane();
-        lblCustomerID4 = new javax.swing.JLabel();
-        tfCustomerId1 = new javax.swing.JTextField();
         lblCustomerID5 = new javax.swing.JLabel();
         lblCustomerID6 = new javax.swing.JLabel();
-        tfLocation1 = new javax.swing.JTextField();
+        tfLocation = new javax.swing.JTextField();
         lblCustomerID7 = new javax.swing.JLabel();
-        createLuggage1 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btUpdateLuggage = new javax.swing.JButton();
+        btCancel = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tfDescription = new javax.swing.JTextArea();
-        isLost = new javax.swing.JRadioButton();
-        isHandled = new javax.swing.JRadioButton();
+        rbStatus = new javax.swing.JRadioButton();
+        rbDone = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         luggageRegistrationPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Bagage Registeren"));
 
-        lblCustomerID4.setText("Klant ID");
-
-        tfCustomerId1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfCustomerId1ActionPerformed(evt);
-            }
-        });
-
         lblCustomerID5.setText("Omschrijving");
 
         lblCustomerID6.setText("Locatie");
 
-        tfLocation1.addActionListener(new java.awt.event.ActionListener() {
+        tfLocation.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfLocation1ActionPerformed(evt);
+                tfLocationActionPerformed(evt);
             }
         });
 
         lblCustomerID7.setText("Status");
 
-        createLuggage1.setText("Aanpassen");
-        createLuggage1.addActionListener(new java.awt.event.ActionListener() {
+        btUpdateLuggage.setText("Aanpassen");
+        btUpdateLuggage.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                createLuggage1ActionPerformed(evt);
+                btUpdateLuggageActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Annuleren");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btCancel.setText("Annuleren");
+        btCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btCancelActionPerformed(evt);
             }
         });
 
@@ -89,19 +78,19 @@ public class ChangeLuggage extends javax.swing.JFrame {
         tfDescription.setRows(5);
         jScrollPane2.setViewportView(tfDescription);
 
-        buttonGroup2.add(isLost);
-        isLost.setText("Vermist");
-        isLost.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup2.add(rbStatus);
+        rbStatus.setText("Vermist");
+        rbStatus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                isLostActionPerformed(evt);
+                rbStatusActionPerformed(evt);
             }
         });
 
-        buttonGroup2.add(isHandled);
-        isHandled.setText("Afgehandeld");
-        isHandled.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup2.add(rbDone);
+        rbDone.setText("Afgehandeld");
+        rbDone.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                isHandledActionPerformed(evt);
+                rbDoneActionPerformed(evt);
             }
         });
 
@@ -112,14 +101,13 @@ public class ChangeLuggage extends javax.swing.JFrame {
             .addGroup(luggageRegistrationPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(luggageRegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, luggageRegistrationPanelLayout.createSequentialGroup()
+                    .addGroup(luggageRegistrationPanelLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton3)
+                        .addComponent(btCancel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(createLuggage1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btUpdateLuggage))
                     .addGroup(luggageRegistrationPanelLayout.createSequentialGroup()
                         .addGroup(luggageRegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblCustomerID4)
                             .addComponent(lblCustomerID5)
                             .addComponent(lblCustomerID6, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblCustomerID7, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -128,59 +116,51 @@ public class ChangeLuggage extends javax.swing.JFrame {
                             .addComponent(jScrollPane2)
                             .addGroup(luggageRegistrationPanelLayout.createSequentialGroup()
                                 .addGroup(luggageRegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(tfLocation1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(tfCustomerId1, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(isLost)
-                                    .addComponent(isHandled))
-                                .addGap(0, 17, Short.MAX_VALUE)))))
+                                    .addComponent(rbStatus)
+                                    .addComponent(rbDone))
+                                .addGap(0, 190, Short.MAX_VALUE))
+                            .addComponent(tfLocation))))
                 .addContainerGap())
         );
         luggageRegistrationPanelLayout.setVerticalGroup(
             luggageRegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(luggageRegistrationPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(luggageRegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblCustomerID4)
-                    .addComponent(tfCustomerId1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(luggageRegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(luggageRegistrationPanelLayout.createSequentialGroup()
                         .addComponent(lblCustomerID5)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(luggageRegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCustomerID6)
-                    .addComponent(tfLocation1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfLocation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10)
                 .addGroup(luggageRegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCustomerID7)
-                    .addComponent(isLost))
+                    .addComponent(rbStatus))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(isHandled)
+                .addComponent(rbDone)
                 .addGap(25, 25, 25)
                 .addGroup(luggageRegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(createLuggage1)
-                    .addComponent(jButton3))
+                    .addComponent(btUpdateLuggage)
+                    .addComponent(btCancel))
                 .addContainerGap())
         );
-        luggageRegistrationPanel.setLayer(lblCustomerID4, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        luggageRegistrationPanel.setLayer(tfCustomerId1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         luggageRegistrationPanel.setLayer(lblCustomerID5, javax.swing.JLayeredPane.DEFAULT_LAYER);
         luggageRegistrationPanel.setLayer(lblCustomerID6, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        luggageRegistrationPanel.setLayer(tfLocation1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        luggageRegistrationPanel.setLayer(tfLocation, javax.swing.JLayeredPane.DEFAULT_LAYER);
         luggageRegistrationPanel.setLayer(lblCustomerID7, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        luggageRegistrationPanel.setLayer(createLuggage1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        luggageRegistrationPanel.setLayer(jButton3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        luggageRegistrationPanel.setLayer(btUpdateLuggage, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        luggageRegistrationPanel.setLayer(btCancel, javax.swing.JLayeredPane.DEFAULT_LAYER);
         luggageRegistrationPanel.setLayer(jScrollPane2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        luggageRegistrationPanel.setLayer(isLost, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        luggageRegistrationPanel.setLayer(isHandled, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        luggageRegistrationPanel.setLayer(rbStatus, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        luggageRegistrationPanel.setLayer(rbDone, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 308, Short.MAX_VALUE)
+            .addGap(0, 415, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
@@ -189,89 +169,102 @@ public class ChangeLuggage extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 346, Short.MAX_VALUE)
+            .addGap(0, 349, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(2, 2, 2)
-                    .addComponent(luggageRegistrationPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(luggageRegistrationPanel)
+                    .addContainerGap()))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tfLocation1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfLocation1ActionPerformed
+    private void tfLocationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfLocationActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_tfLocation1ActionPerformed
+    }//GEN-LAST:event_tfLocationActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelActionPerformed
         dispose();
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btCancelActionPerformed
 
-    private void createLuggage1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createLuggage1ActionPerformed
+    private void btUpdateLuggageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btUpdateLuggageActionPerformed
+        int isLost;
+        int isDone;
         
-    }//GEN-LAST:event_createLuggage1ActionPerformed
+        if(rbStatus.isSelected()) {
+            isLost = 1;
+        } else {
+            isLost = 0;
+        }
+        
+        if(rbDone.isSelected()) {
+            isDone = 1;
+        } else {
+            isDone = 0;
+        }
+        
+        luggage.updateLuggage(luggage.getLuggageId(),
+                tfDescription.getText().trim(),
+                tfLocation.getText().trim(),
+                isLost,
+                isDone);
+    }//GEN-LAST:event_btUpdateLuggageActionPerformed
 
-    private void tfCustomerId1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfCustomerId1ActionPerformed
+    private void rbDoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbDoneActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_tfCustomerId1ActionPerformed
+    }//GEN-LAST:event_rbDoneActionPerformed
 
-    private void isHandledActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_isHandledActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_isHandledActionPerformed
+    private void rbStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbStatusActionPerformed
 
-    private void isLostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_isLostActionPerformed
-
-    }//GEN-LAST:event_isLostActionPerformed
+    }//GEN-LAST:event_rbStatusActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ChangeLuggage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ChangeLuggage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ChangeLuggage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ChangeLuggage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ChangeLuggage().setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(ChangeLuggage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(ChangeLuggage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(ChangeLuggage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(ChangeLuggage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new ChangeLuggage().setVisible(true);
+//            }
+//        });
+//    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btCancel;
+    private javax.swing.JButton btUpdateLuggage;
     private javax.swing.ButtonGroup buttonGroup2;
-    private javax.swing.JButton createLuggage1;
-    private javax.swing.JRadioButton isHandled;
-    private javax.swing.JRadioButton isLost;
-    private javax.swing.JButton jButton3;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JLabel lblCustomerID4;
     private javax.swing.JLabel lblCustomerID5;
     private javax.swing.JLabel lblCustomerID6;
     private javax.swing.JLabel lblCustomerID7;
     private javax.swing.JLayeredPane luggageRegistrationPanel;
-    private javax.swing.JTextField tfCustomerId1;
+    private javax.swing.JRadioButton rbDone;
+    private javax.swing.JRadioButton rbStatus;
     private javax.swing.JTextArea tfDescription;
-    private javax.swing.JTextField tfLocation1;
+    private javax.swing.JTextField tfLocation;
     // End of variables declaration//GEN-END:variables
 }

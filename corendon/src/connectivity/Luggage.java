@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import main.Session;
 
 /**
  *
@@ -38,7 +39,8 @@ public class Luggage {
 
     public void getLuggageData(String tfInput, String databaseVariable) {
         try {
-            String sql = "SELECT *, COUNT(*) as `rows` FROM `luggage` WHERE `" + databaseVariable + "`='" + tfInput + "'";
+            String sql = "SELECT *, COUNT(*) as `rows` FROM `luggage` WHERE `" 
+                    + databaseVariable + "`='" + tfInput + "'";
             ResultSet result = getDb().doQuery(sql);
             if (result.next()) {
                 if (result.getInt("rows") >= 0) {
@@ -140,16 +142,41 @@ public class Luggage {
     }
 
     // moet nog waardes van luggage krijgen, staan nu nog customer waardes in
-    public void setNewLuggage(String customerId, String description, String location, int isLost, int isHandled, int storedUserId) {
+    public void setNewLuggage(String customerId, String description, 
+            String location, int isLost, int isHandled, int storedUserId) {
         if (customerId.equals("")) {
             customerId = "NULL";
         }
-        String sql = "INSERT INTO `luggage` (customer_id, description, location, is_lost, is_handled, last_changed_by , date_changed) VALUES ("
-                + customerId + ", '" + description + "', '" + location
-                + "', '" + isLost + "', '" + isHandled + "', '" + storedUserId + "', " + "CURRENT_TIMESTAMP)";
+        String sql = "INSERT INTO `luggage` (customer_id, description, location, "
+                + "is_lost, is_handled, last_changed_by , date_changed) VALUES ("
+                + customerId + ", '" 
+                + description + "', '" 
+                + location + "', '"
+                + isLost + "', '"
+                + isHandled + "', '"
+                + storedUserId + "', "
+                + "CURRENT_TIMESTAMP)";
         db.insertQuery(sql);
     }
-
+    
+    public void updateLuggage(int luggageId, String description, 
+            String location, int isLost, int isHandled) {
+        String dateHandled = "";
+        
+        if(isHandled == 1) {
+            dateHandled = ", `date_handled` = CURRENT_TIMESTAMP";
+        }
+        
+        String sql = "UPDATE `luggage` SET `description` = '" + description + "'"
+                + ", `location` = '" + location + "'"
+                + ", `is_lost` = " + isLost + ""
+                + ", `is_handled` = " + isHandled + ""
+                + ", `date_changed` = CURRENT_TIMESTAMP"
+                + dateHandled
+                + ", `last_changed_by` = '" + Session.storedUserId + "'"
+                + " WHERE `luggage_id` =" + luggageId + "";
+        db.insertQuery(sql);
+    }
     /**
      * @return the db
      */
@@ -193,7 +220,8 @@ public class Luggage {
     }
 
     public void linkCustomerId(int customerId, int luggageId) {
-        String sql = "UPDATE `luggage` SET `customer_id` = " + customerId + " WHERE `luggage_id` = " + luggageId;
+        String sql = "UPDATE `luggage` SET `customer_id` = " + customerId 
+                + " WHERE `luggage_id` = " + luggageId;
         db.insertQuery(sql);
     }
 
