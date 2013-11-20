@@ -1495,9 +1495,8 @@ public class Employee extends javax.swing.JFrame {
             }
         }
         System.out.println(totalCorrectInput);
-        if (totalCorrectInput) {            
-            storedUserId = Session.storedUserId;                   
-            luggage.createLuggage(customerId, description, location, isLost, isDone, storedUserId);
+        if (totalCorrectInput) {                   
+            luggage.createLuggage(customerId, description, location, isLost, isDone);
         }        
         tfCustomerID1.setText("");
         tfDescription.setText("");

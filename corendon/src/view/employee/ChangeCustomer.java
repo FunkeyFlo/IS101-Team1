@@ -10,10 +10,12 @@ import main.Session;
 public class ChangeCustomer extends javax.swing.JFrame {
 
     Customer customer = new Customer();
+    User user = new User();
 
     public ChangeCustomer() {
         customer.getCustomerData(Session.storedCustomerId, "customer_id");
-
+        user.getUserData(customer.getLastChangedBy());
+        
         String[] email = seperateString(customer.getEmail(), "@");
         String[] address = seperateString(customer.getAddress(), " ");
 
@@ -84,6 +86,7 @@ public class ChangeCustomer extends javax.swing.JFrame {
         cbCountry = new javax.swing.JComboBox();
         warningLabel1 = new javax.swing.JLabel();
         tfPostalCode = new javax.swing.JTextField();
+        editInfoLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Gegevens van " + customer.getFirstName() + " " + customer.getLastName());
@@ -152,6 +155,9 @@ public class ChangeCustomer extends javax.swing.JFrame {
 
         warningLabel1.setForeground(new java.awt.Color(255, 0, 0));
 
+        editInfoLabel.setForeground(new java.awt.Color(102, 102, 102));
+        editInfoLabel.setText("Gegevens laatst gewijzigd door " + user.getFirstName() + " " + user.getLastName() + " op " + customer.getDateChanged());
+
         javax.swing.GroupLayout customerRegistrationPanelLayout = new javax.swing.GroupLayout(customerRegistrationPanel);
         customerRegistrationPanel.setLayout(customerRegistrationPanelLayout);
         customerRegistrationPanelLayout.setHorizontalGroup(
@@ -159,6 +165,7 @@ public class ChangeCustomer extends javax.swing.JFrame {
             .addGroup(customerRegistrationPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(customerRegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(editInfoLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(warningLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, customerRegistrationPanelLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -208,13 +215,15 @@ public class ChangeCustomer extends javax.swing.JFrame {
                                 .addGroup(customerRegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(cbCountry, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(tfEmail1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 175, Short.MAX_VALUE)))))
+                                .addGap(0, 174, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         customerRegistrationPanelLayout.setVerticalGroup(
             customerRegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(customerRegistrationPanelLayout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(editInfoLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 21, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(customerRegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tfFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel13))
@@ -257,7 +266,7 @@ public class ChangeCustomer extends javax.swing.JFrame {
                     .addComponent(tfPhoneMobile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel18))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(warningLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 17, Short.MAX_VALUE)
+                .addComponent(warningLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(customerRegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(createCustomer1)
@@ -269,21 +278,17 @@ public class ChangeCustomer extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 568, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(25, 25, 25)
-                    .addComponent(customerRegistrationPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGap(26, 26, 26)))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(customerRegistrationPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 347, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(customerRegistrationPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(customerRegistrationPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -351,6 +356,7 @@ public class ChangeCustomer extends javax.swing.JFrame {
     private javax.swing.JComboBox cbCountry;
     private javax.swing.JButton createCustomer1;
     private javax.swing.JPanel customerRegistrationPanel;
+    private javax.swing.JLabel editInfoLabel;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;

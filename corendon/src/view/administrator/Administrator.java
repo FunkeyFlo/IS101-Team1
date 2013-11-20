@@ -44,8 +44,7 @@ public class Administrator extends javax.swing.JFrame {
         model.setRowCount(0); //nodig voor 
         users = userModel.searchUserList(dbField, searchArg);
         for (User user : users) {
-            model.addRow(new Object[]{new Integer(user.getUserId()),
-                user.getFirstName(),
+            model.addRow(new Object[]{user.getFirstName(),
                 user.getLastName(),
                 user.getUsername(),
                 user.getPermissionId(),
@@ -359,7 +358,7 @@ public class Administrator extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(userCreationPanelLayout.createSequentialGroup()
                         .addComponent(clearFields)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
                         .addComponent(createUser)))
                 .addContainerGap())
         );
@@ -407,14 +406,14 @@ public class Administrator extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Gebruikers ID", "Voornaam", "Achternaam", "Gebruikersnaam", "Rechten ID", "Account Status"
+                "Gebruikersnaam", "Voornaam", "Achternaam", "Rechten ID", "Account Status"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -520,7 +519,7 @@ public class Administrator extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(userCreationPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(userOptionsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE))
+                    .addComponent(userOptionsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(userTablePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())

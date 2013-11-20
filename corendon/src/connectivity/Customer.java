@@ -15,7 +15,7 @@ public class Customer {
 
     private int customerId;
     private String phoneHome, phoneMobile, firstName, lastName, email,
-            postalCode, address, city, country;
+            postalCode, address, city, country, dateChanged, lastChangedBy;
 
     public Customer() {
         db.openConnection();
@@ -23,7 +23,8 @@ public class Customer {
 
     // Constructor used to initiate the customer object
     public Customer(int customerId, String firstName, String lastName, String address,
-            String postalCode, String city, String country, String email, String phoneHome, String phoneMobile) {
+            String postalCode, String city, String country, String email,
+            String phoneHome, String phoneMobile, String dateChanged, String lastChangedBy) {
         this.customerId = customerId;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -34,12 +35,15 @@ public class Customer {
         this.email = email;
         this.phoneHome = phoneHome;
         this.phoneMobile = phoneMobile;
+        this.dateChanged = dateChanged;
+        this.lastChangedBy = lastChangedBy;
     }
 
     // Gets customer data for one specific user
     public void getCustomerData(String tfInput, String databaseVariable) {
         try {
-            String sql = "SELECT *, COUNT(*) as `rows` FROM `customer` WHERE `" + databaseVariable + "`='" + tfInput + "'";
+            String sql = "SELECT *, COUNT(*) as `rows` FROM `customer` WHERE `"
+                    + databaseVariable + "`='" + tfInput + "'";
             ResultSet result = getDb().doQuery(sql);
             if (result.next()) {
                 if (result.getInt("rows") >= 1) {
@@ -53,6 +57,8 @@ public class Customer {
                     this.phoneMobile = (result.getString("phone_mobile"));
                     this.city = (result.getString("city"));
                     this.country = (result.getString("country"));
+                    this.setDateChanged(result.getString("date_changed"));
+                    this.setLastChangedBy(result.getString("last_changed_by"));
                 } else {
                     System.out.println("SOMETHING WENT WRONG");
                 }
@@ -126,7 +132,9 @@ public class Customer {
                         result.getString("country"),
                         result.getString("email"),
                         result.getString("phone_home"),
-                        result.getString("phone_mobile")));
+                        result.getString("phone_mobile"),
+                        result.getString("date_changed"),
+                        result.getString("last_changed_by")));
             }
         } catch (SQLException e) {
             System.out.println(getDb().SQL_EXCEPTION + e.getMessage());
@@ -139,7 +147,8 @@ public class Customer {
             String tfEmail, String tfPhoneHome, String tfPhoneMobile) {
         
         String sql = "INSERT INTO `customer` (first_name, last_name, address,"
-                + "postal_code, city, country, email, phone_home, phone_mobile)"
+                + "postal_code, city, country, email, phone_home, phone_mobile,"
+                + "date_changed, last_changed_by)"
                 + " VALUES ('" + tfFirstName + "', '"
                 + tfLastName + "', '"
                 + tfAddress + "', '"
@@ -148,7 +157,9 @@ public class Customer {
                 + tfCountry + "', '"
                 + tfEmail + "', '"
                 + tfPhoneHome + "', '"
-                + tfPhoneMobile + "')";
+                + tfPhoneMobile + "', "
+                + "CURRENT_TIMESTAMP, '"
+                + Session.storedUsername + "')";
         db.insertQuery(sql);
     }
     
@@ -262,5 +273,21 @@ public class Customer {
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    public String getDateChanged() {
+        return dateChanged;
+    }
+
+    public void setDateChanged(String dateChanged) {
+        this.dateChanged = dateChanged;
+    }
+
+    public String getLastChangedBy() {
+        return lastChangedBy;
+    }
+
+    public void setLastChangedBy(String lastChangedBy) {
+        this.lastChangedBy = lastChangedBy;
     }
 }

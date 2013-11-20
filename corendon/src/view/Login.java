@@ -30,7 +30,6 @@ public class Login extends javax.swing.JFrame {
         boolean statusLocked = user.getLockState();
         
         if(statusLocked == false){
-            Session.storedUsername = userName;
             session.storeNames(userName);
             switch (loginReturn) {
                 case "Login success":

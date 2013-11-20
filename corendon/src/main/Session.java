@@ -12,9 +12,8 @@ public class Session {
     public static String storedFirstName;
     public static String storedLastName;
     public static String storedCustomerId;
+    public static String tempUsername;
     public static String storedLuggageId;
-    
-    public static int storedUserId;
     
     public static void storeNames(String inputUsername) {
         User user = new User();
@@ -22,6 +21,6 @@ public class Session {
         user.getUserData(inputUsername);
         storedFirstName = user.getFirstName();
         storedLastName = user.getLastName();
-        storedUserId = user.getUserId();
+        storedUsername = user.getUsername();
     }
 }

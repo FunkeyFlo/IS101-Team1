@@ -161,7 +161,7 @@ public class Luggage {
 
     // Method to create new luggage
     public void createLuggage(String customerId, String description, 
-            String location, int isLost, int isHandled, int storedUserId) {
+            String location, int isLost, int isHandled) {
         if (customerId.equals("")) {
             customerId = "NULL";
         }
@@ -172,7 +172,7 @@ public class Luggage {
                 + location + "', '"
                 + isLost + "', '"
                 + isHandled + "', '"
-                + storedUserId + "', "
+                + Session.storedUsername + "', "
                 + "CURRENT_TIMESTAMP)";
         db.insertQuery(sql);
     }
@@ -191,7 +191,7 @@ public class Luggage {
                 + ", `is_handled` = " + isHandled + ""
                 + ", `date_changed` = CURRENT_TIMESTAMP"
                 + dateHandled
-                + ", `last_changed_by` = '" + Session.storedUserId + "'"
+                + ", `last_changed_by` = '" + Session.storedUsername + "'"
                 + " WHERE `luggage_id` =" + luggageId + "";
         db.insertQuery(sql);
     }
