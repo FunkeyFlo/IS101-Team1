@@ -80,39 +80,57 @@ public class Luggage {
                     + " OR `description` LIKE '%" + searchArg + "%'" + showHandled
                     + " OR `location` LIKE '%" + searchArg + "%'" + showHandled
                     + " OR `date_lost` LIKE '%" + searchArg + "%'" + showHandled;
-        } // for searching luggageId
+        }
+
+        // for searching luggageId
         else if (dbField == 1) {
             sql = sqlSelect + " WHERE `luggage_id` LIKE '%" + searchArg + "%'"
                     + showHandled;
-        } // customerId
+        }
+
+        // customerId
         else if (dbField == 2) {
             sql = sqlSelect + " WHERE `customer_id` LIKE '%" + searchArg + "%'"
                     + showHandled;
-        } // description
+        }
+
+        // description
         else if (dbField == 3) {
             sql = sqlSelect + " WHERE `description` LIKE '%" + searchArg + "%'"
                     + showHandled;
-        } // location
+        }
+
+        // location
         else if (dbField == 4) {
             sql = sqlSelect + " WHERE `location` LIKE '%" + searchArg + "%'"
                     + showHandled;
-        } // date
+        }
+
+        // date
         else if (dbField == 5) {
             sql = sqlSelect + " WHERE `date_lost` LIKE '%" + searchArg + "%'"
                     + showHandled;
-        } //lost luggage
+        }
+
+        //lost luggage
         else if (dbField == 6) {
             sql = sqlSelect + " WHERE `date_lost` LIKE '%" + searchArg + "%'"
                     + " AND is_lost = 1 AND is_handled = 0";
-        } //found luggage
+        }
+
+        //found luggage
         else if (dbField == 7) {
             sql = sqlSelect + " WHERE `date_lost` LIKE '%" + searchArg + "%'"
                     + " AND is_lost = 0 AND is_handled = 0";
-        } //handled luggage
+        }
+
+        //handled luggage
         else if (dbField == 8) {
             sql = sqlSelect + " WHERE `date_handled` LIKE '%" + searchArg + "%'"
                     + " AND is_lost = 0 AND is_handled = 1";
-        } // Else statement is used to fill the table with all users
+        }
+
+        // Else statement is used to fill the table with all users
         else {
             if (handled == 1) {
                 sql = sqlSelect + " WHERE `is_handled` = 0";
@@ -141,8 +159,8 @@ public class Luggage {
         return luggages;
     }
 
-    // moet nog waardes van luggage krijgen, staan nu nog customer waardes in
-    public void setNewLuggage(String customerId, String description, 
+    // Method to create new luggage
+    public void createLuggage(String customerId, String description, 
             String location, int isLost, int isHandled, int storedUserId) {
         if (customerId.equals("")) {
             customerId = "NULL";
@@ -177,162 +195,98 @@ public class Luggage {
                 + " WHERE `luggage_id` =" + luggageId + "";
         db.insertQuery(sql);
     }
-    /**
-     * @return the db
-     */
-    public DbManager getDb() {
-        return db;
-    }
 
-    /**
-     * @param db the db to set
-     */
-    public void setDb(DbManager db) {
-        this.db = db;
-    }
-
-    /**
-     * @return the luggageId
-     */
-    public int getLuggageId() {
-        return luggageId;
-    }
-
-    /**
-     * @param luggageId the luggageId to set
-     */
-    public void setLuggageId(int luggageId) {
-        this.luggageId = luggageId;
-    }
-
-    /**
-     * @return the customerId
-     */
-    public int getCustomerId() {
-        return customerId;
-    }
-
-    /**
-     * @param customerId the customerId to set
-     */
-    public void setCustomerId(int customerId) {
-        this.customerId = customerId;
-    }
-
+    // Method to link luggage
     public void linkCustomerId(int customerId, int luggageId) {
         String sql = "UPDATE `luggage` SET `customer_id` = " + customerId 
                 + " WHERE `luggage_id` = " + luggageId;
         db.insertQuery(sql);
     }
+    
+    public DbManager getDb() {
+        return db;
+    }
 
-    /**
-     * @return the description
-     */
+    public void setDb(DbManager db) {
+        this.db = db;
+    }
+
+    public int getLuggageId() {
+        return luggageId;
+    }
+
+    public void setLuggageId(int luggageId) {
+        this.luggageId = luggageId;
+    }
+
+    public int getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(int customerId) {
+        this.customerId = customerId;
+    }
+
     public String getDescription() {
         return description;
     }
 
-    /**
-     * @param description the description to set
-     */
     public void setDescription(String description) {
         this.description = description;
     }
 
-    /**
-     * @return the location
-     */
     public String getLocation() {
         return location;
     }
 
-    /**
-     * @param location the location to set
-     */
     public void setLocation(String location) {
         this.location = location;
     }
 
-    /**
-     * @return the date
-     */
     public String getDateLost() {
         return dateLost;
     }
 
-    /**
-     * @param dateLost
-     */
     public void setDateLost(String dateLost) {
         this.dateLost = dateLost;
     }
 
-    /**
-     * @return the isLost
-     */
     public boolean isIsLost() {
         return isLost;
     }
 
-    /**
-     * @param isLost the isLost to set
-     */
     public void setIsLost(boolean isLost) {
         this.isLost = isLost;
     }
 
-    /**
-     * @return the isHandled
-     */
     public boolean isIsHandled() {
         return isHandled;
     }
 
-    /**
-     * @param isHandled the isHandled to set
-     */
     public void setIsHandled(boolean isHandled) {
         this.isHandled = isHandled;
     }
 
-    /**
-     * @return the dateChanged
-     */
     public String getDateChanged() {
         return dateChanged;
     }
 
-    /**
-     * @param dateChanged the dateChanged to set
-     */
     public void setDateChanged(String dateChanged) {
         this.dateChanged = dateChanged;
     }
 
-    /**
-     * @return the dateHandled
-     */
     public String getDateHandled() {
         return dateHandled;
     }
 
-    /**
-     * @param dateHandled the dateHandled to set
-     */
     public void setDateHandled(String dateHandled) {
         this.dateHandled = dateHandled;
     }
 
-    /**
-     * @return the lastChangedBy
-     */
     public String getLastChangedBy() {
         return lastChangedBy;
     }
 
-    /**
-     * @param lastChangedBy the lastChangedBy to set
-     */
     public void setLastChangedBy(String lastChangedBy) {
         this.lastChangedBy = lastChangedBy;
     }
