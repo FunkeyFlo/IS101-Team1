@@ -44,9 +44,9 @@ public class Administrator extends javax.swing.JFrame {
         model.setRowCount(0); //nodig voor 
         users = userModel.searchUserList(dbField, searchArg);
         for (User user : users) {
-            model.addRow(new Object[]{user.getFirstName(),
+            model.addRow(new Object[]{user.getUsername(),
+                user.getFirstName(),
                 user.getLastName(),
-                user.getUsername(),
                 user.getPermissionId(),
                 (user.getIncorrectLogin() >= userModel.MAX_INCORRECT_LOGINS) ? "VERGRENDELD" : "Actief"});
 
@@ -600,7 +600,7 @@ public class Administrator extends javax.swing.JFrame {
         nameTypeToChange = "wachtwoord";
         boolean isError = false;
         try {
-            accountToChange = userTable.getValueAt(userTable.getSelectedRow(), 3).toString();
+            accountToChange = userTable.getValueAt(userTable.getSelectedRow(), 0).toString();
         } catch (IndexOutOfBoundsException e) {
             errorPopUp("Please make a selection in the table before trying again.");
             isError = true;
