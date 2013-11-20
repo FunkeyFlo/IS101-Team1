@@ -8,6 +8,7 @@ import java.awt.Component;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -25,31 +26,19 @@ public class Manager extends javax.swing.JFrame {
     private Component ErrorPopUp;
     private List<Luggage> luggage = new ArrayList<>();
     private final Luggage luggageModel = new Luggage();
-    private final List<String> CB_YEAR_VALUES1 = getNumYears();
-    private final String[] CB_YEAR_VALUES2 = new String[CB_YEAR_VALUES1.size()];
-    private final String[] CB_YEAR_VALUES;
     private DefaultCategoryDataset allDataGraph = new DefaultCategoryDataset();
     private DefaultCategoryDataset lostBaggageGraph = new DefaultCategoryDataset();
     private DefaultCategoryDataset foundBaggageGraph = new DefaultCategoryDataset();
     private DefaultCategoryDataset handledBaggageGraph = new DefaultCategoryDataset();
-    //private final List<Integer> CB_YEAR_VALUES = getNumYears();
-    //private Integer[] CB_YEAR_VALUES_FIN = new Integer[CB_YEAR_VALUES.size()];
-
-    //new Integer[getNumYears()];
-    private final String[] MONTHS = {"Jan", "Feb", "Mrt", "Apr", "Mei",
-            "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dec"};
-        
+    private final Color trans = new Color(0xFF, 0xFF, 0xFF, 0);
+    private final int CURRENT_YEAR = getCurrentYear();
     
     public Manager() {
-        initComponents();
-        CB_YEAR_VALUES = (String[])CB_YEAR_VALUES1.toArray(CB_YEAR_VALUES2);
-        //CB_YEAR_VALUES_FIN = CB_YEAR_VALUES.toArray();
-        //Integer[] CBYV = (Integer [])CB_YEAR_VALUES.toArray(CB_YEAR_VALUES_FIN);
-        //setGraphs();
-        setAllDataGraph(2013, 2013, 1, 12);
-        setLostGraph(2013, 2013, 1, 12);
-        setFoundGraph(2013, 2013, 1, 12);
-        setHandledGraph(2013, 2013, 1, 12);
+        initComponents();        
+        setAllDataGraph(CURRENT_YEAR, CURRENT_YEAR, 1, 12);
+        setLostGraph(CURRENT_YEAR, CURRENT_YEAR, 1, 12);
+        setFoundGraph(CURRENT_YEAR, CURRENT_YEAR, 1, 12);
+        setHandledGraph(CURRENT_YEAR, CURRENT_YEAR, 1, 12);
     }
 
     /**
@@ -355,35 +344,22 @@ public class Manager extends javax.swing.JFrame {
 
     private void setAllDataGraph(int beginYear, int endYear,
             int beginMonth, int endMonth) {
-        allGraphs.removeAll();
-        allGraphs.revalidate();
         allDataGraph.clear();
         
         List<Integer> numTimesLost = new ArrayList<>();
         List<Integer> numTimesFound = new ArrayList<>();
         List<Integer> numTimesRtrnd = new ArrayList<>();
         List<String> months = new ArrayList<>();
-        //List<String> years = new ArrayList<>(); DEL
         List<String> yyyyMM = new ArrayList<>();
         String yyyy;
         String mm;
         String insertZero;
         int currentYear = beginYear;
         boolean nextYear = false;
-        //String mon; DEL
         int month = beginMonth - 1;
-        //int lol = 0; DEL
         
         int numYears = endYear - beginYear == 0 ? 1 : (endYear - beginYear) + 1;
         int numMonths = ((numYears * 12) - beginMonth) - (12 - endMonth) + 1;
-//        System.out.println(numMonths);
-//        DEL
-//        for (int i = beginYear; i <= endYear; i++) {
-//            mon = Integer.toString(i);
-//            years.add(mon);
-//            //System.out.println(years.get(lol));
-//            //lol++;
-//        }
         
         for (int i = 0; i < numMonths; i++) {
             month = month == 12 ? 1 : month + 1;
@@ -444,16 +420,7 @@ public class Manager extends javax.swing.JFrame {
         CategoryPlot allGraphsPlot = allGraphsChart.getCategoryPlot();
         allGraphsPlot.setRangeGridlinePaint(Color.BLACK);
         ChartPanel lostBaggagePanel = new ChartPanel(allGraphsChart);
-
-        
-        //allGraphs.removeAll();
-        //allGraphs.revalidate();
-        allGraphsChart = ChartFactory.createBarChart
-                (CHART_NAME, X_AXIS_NAME, Y_AXIS_NAME, allDataGraph, 
-                PlotOrientation.VERTICAL, false, true, false);
-        allGraphsPlot = allGraphsChart.getCategoryPlot();
-        allGraphsPlot.setRangeGridlinePaint(Color.BLACK);
-        
+        allGraphsChart.setBackgroundPaint(trans);
         
         allGraphs.setLayout(new BorderLayout());
         allGraphs.add(lostBaggagePanel, BorderLayout.CENTER);
@@ -511,7 +478,8 @@ public class Manager extends javax.swing.JFrame {
         CategoryPlot lostBaggagePlot = lostBaggageChart.getCategoryPlot();
         lostBaggagePlot.setRangeGridlinePaint(Color.BLACK);
         ChartPanel lostBaggagePanel = new ChartPanel(lostBaggageChart);
-
+        lostBaggageChart.setBackgroundPaint(trans);
+        
         lostBaggage.setLayout(new BorderLayout());
         lostBaggage.add(lostBaggagePanel, BorderLayout.CENTER);
         lostBaggage.validate();
@@ -572,7 +540,9 @@ public class Manager extends javax.swing.JFrame {
         CategoryPlot foundBaggagePlot = foundBaggageChart.getCategoryPlot();
         foundBaggagePlot.setRangeGridlinePaint(Color.BLACK);
         ChartPanel foundBaggagePanel = new ChartPanel(foundBaggageChart);
-
+        foundBaggageChart.setBackgroundPaint(new Color(0xFF, 0xFF, 0xFF, 0));
+        foundBaggageChart.setBackgroundPaint(trans);
+        
         //applies graph to panel
         foundBaggage.setLayout(new BorderLayout());
         foundBaggage.add(foundBaggagePanel, BorderLayout.CENTER);
@@ -631,7 +601,8 @@ public class Manager extends javax.swing.JFrame {
         JFreeChart handledBaggageChart = ChartFactory.createBarChart(CHART_NAME, X_AXIS_NAME, Y_AXIS_NAME, handledBaggageGraph, PlotOrientation.VERTICAL, false, true, false);
         CategoryPlot handledBaggagePlot = handledBaggageChart.getCategoryPlot();
         ChartPanel handledBaggagePanel = new ChartPanel(handledBaggageChart);
-
+        handledBaggageChart.setBackgroundPaint(trans);
+        
         //applies graph to panel
         handledBaggage.setLayout(new BorderLayout());
         handledBaggage.add(handledBaggagePanel, BorderLayout.CENTER);
@@ -667,42 +638,12 @@ public class Manager extends javax.swing.JFrame {
             setFoundGraph(yearFrom, yearTo, monthFrom, monthTo);
             setHandledGraph(yearFrom, yearTo, monthFrom, monthTo);
         }
-        /*
-        *   The following comments can be deleted
-        */
-        //System.out.println(yearF + "\n" + yearT + "\n" + monthF
-          //  + "\n" + monthT);
-        
-//        String yearFrom = cbYearFrom.getSelectedItem().toString(), zeroFrom = "",
-//        yearTo = cbYearTo.getSelectedItem().toString(), zeroTo = "";
-//        int monthFrom = cbMonthFrom.getSelectedIndex() + 1;
-//        int monthTo = cbMonthTo.getSelectedIndex() + 1;
-//
-//        if (monthFrom < 10) {
-//            zeroFrom = "0";
-//        }
-//
-//        if (monthTo < 10) {
-//            zeroTo = "0";
-//        }
-//
-//        String searchArgFrom = yearFrom + "-" + zeroFrom + monthFrom;
-//        String searchArgTo = yearTo + "-" + zeroTo + monthTo;
-//        System.out.println(searchArgFrom);
-//        System.out.println(searchArgTo);
-
     }//GEN-LAST:event_buttonUpdateAllDataGraphActionPerformed
 
-    private List<String> getNumYears() {
-        DateFormat dateFormat = new SimpleDateFormat("yyyy");
-        Date date = new Date();
-        int currentDate = date.getDate();
-        List<String> num = new ArrayList<>();
-        for (int i = 2010; i < currentDate; i++) {
-            num.add(Integer.toString(i));
-        }
-        return num;
+   private int getCurrentYear() {
+        return Calendar.getInstance().get(Calendar.YEAR);
     }
+ 
  
     private void errorPopUp(String errorMessage) {
         JOptionPane.showMessageDialog(ErrorPopUp, errorMessage);
