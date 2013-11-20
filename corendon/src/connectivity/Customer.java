@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 import main.Session;
 
+/**
+ * @author Team AwesomeSauce
+ */
 public class Customer {
 
     private DbManager db = new DbManager();

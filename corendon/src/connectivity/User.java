@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author IS_101
+ * @author Team AwesomeSauce
  */
 public class User {
 

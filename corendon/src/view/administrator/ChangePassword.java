@@ -2,6 +2,10 @@ package view.administrator;
 
 import connectivity.User;
 
+/**
+ * 
+ * @author Team AwesomeSauce
+ */
 public class ChangePassword extends javax.swing.JFrame {
 
     public ChangePassword() {

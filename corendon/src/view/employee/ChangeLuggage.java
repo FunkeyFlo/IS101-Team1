@@ -4,8 +4,8 @@ import connectivity.*;
 import main.Session;
 
 /**
- *
- * @author Viktor
+ * 
+ * @author Team AwesomeSauce
  */
 public class ChangeLuggage extends javax.swing.JFrame {
 

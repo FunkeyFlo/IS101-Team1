@@ -3,8 +3,8 @@ package main;
 import connectivity.User;
 
 /**
- *
- * @author Flo
+ * 
+ * @author Team AwesomeSauce
  */
 public class Session {
     

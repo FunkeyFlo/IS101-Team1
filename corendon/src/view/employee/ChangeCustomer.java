@@ -5,7 +5,7 @@ import main.Session;
 
 /**
  *
- * @author Viktor
+ * @author Team AwesomeSauce
  */
 public class ChangeCustomer extends javax.swing.JFrame {
 

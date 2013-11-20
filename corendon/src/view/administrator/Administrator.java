@@ -16,8 +16,8 @@ import javax.swing.table.DefaultTableModel;
 import main.*;
 
 /**
- *
- * @author Flo
+ * 
+ * @author Team AwesomeSauce
  */
 public class Administrator extends javax.swing.JFrame {
 

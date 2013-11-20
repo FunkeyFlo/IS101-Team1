@@ -12,6 +12,10 @@ import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import main.*;
 import connectivity.Luggage;
 
+/**
+ * 
+ * @author Team AwesomeSauce
+ */
 public class OverviewPrint {
 
     Luggage luggage = new Luggage();

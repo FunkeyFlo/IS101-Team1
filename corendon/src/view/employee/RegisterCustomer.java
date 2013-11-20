@@ -6,6 +6,10 @@ package view.employee;
 
 import main.Session;
 
+/**
+ * 
+ * @author Team AwesomeSauce
+ */
 public class RegisterCustomer extends javax.swing.JFrame {
 
     /**

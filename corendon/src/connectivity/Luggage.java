@@ -8,7 +8,7 @@ import main.Session;
 
 /**
  *
- * @author IS_101
+ * @author Team AwesomeSauce
  */
 public class Luggage {
 

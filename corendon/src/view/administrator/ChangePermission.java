@@ -6,9 +6,10 @@
 
 package view.administrator;
 import view.administrator.*;
+
 /**
- *
- * @author Jesse
+ * 
+ * @author Team AwesomeSauce
  */
 public class ChangePermission extends javax.swing.JFrame {
 

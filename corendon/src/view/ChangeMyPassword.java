@@ -9,7 +9,7 @@ import main.Session;
 
 /**
  *
- * @author Flo
+ * @author Team AwesomeSauce
  */
 public class ChangeMyPassword extends javax.swing.JFrame {
 

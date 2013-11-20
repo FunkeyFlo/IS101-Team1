@@ -10,8 +10,7 @@ import main.Session;
  */
 
 /**
- *
- * @author Florentijn Cornet
+ * @author Team AwesomeSauce
  */
 public class Login extends javax.swing.JFrame {
 
@@ -39,7 +38,6 @@ public class Login extends javax.swing.JFrame {
                     dispose();
                     int permissionId = user.getPermissionId();
                     if(permissionId == 1)
-//                        Main.displayMedewerker();
                         Main.displayEmployee();
 
                     else if(permissionId == 2)
@@ -217,14 +215,12 @@ public class Login extends javax.swing.JFrame {
 
     private void tfUsernameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfUsernameKeyPressed
         if(evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
-            System.out.println("Enter pressed");
             doLogin();
         }
     }//GEN-LAST:event_tfUsernameKeyPressed
 
     private void tfPasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfPasswordKeyPressed
         if(evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
-            System.out.println("Enter pressed");
             doLogin();
         }
     }//GEN-LAST:event_tfPasswordKeyPressed

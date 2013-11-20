@@ -6,9 +6,10 @@ package view.administrator;
 
 import main.Main;
 import connectivity.User;
+
 /**
- *
- * @author Flo
+ * 
+ * @author Team AwesomeSauce
  */
 public class ChangeName extends javax.swing.JFrame {
 

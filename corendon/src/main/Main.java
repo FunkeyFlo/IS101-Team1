@@ -21,7 +21,7 @@ import view.popUps.*;
 
 /**
  *
- * @author Florentijn Cornet
+ * @author Team AwesomeSauce
  */
 public class Main {
 
