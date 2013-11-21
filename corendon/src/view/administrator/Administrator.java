@@ -40,7 +40,7 @@ public class Administrator extends javax.swing.JFrame {
         searchUserTable(9999, "");
     }
 
-    private void searchUserTable(int dbField, String searchArg) {
+    public void searchUserTable(int dbField, String searchArg) {
         model.setRowCount(0); //nodig voor 
         users = userModel.searchUserList(dbField, searchArg);
         for (User user : users) {
@@ -62,7 +62,7 @@ public class Administrator extends javax.swing.JFrame {
         String newPassword = tfPassword.getText().trim();
         int newGroup = permissionSelector.getSelectedIndex() + 1;
         newUsername = newUsername.toLowerCase();
-        user.setNewUser(newUsername, newFirstName, newLastName, newPassword, newGroup);
+        user.createUser(newUsername, newFirstName, newLastName, newPassword, newGroup);
 
         // maakt alle textakken leeg
         clearFields();
@@ -585,7 +585,7 @@ public class Administrator extends javax.swing.JFrame {
                 doCreateUser();
             }
         }
-
+        
     }//GEN-LAST:event_createUserActionPerformed
 
     private void clearFieldsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearFieldsActionPerformed

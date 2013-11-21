@@ -22,6 +22,7 @@ import main.Session;
 public class ChangeUser extends javax.swing.JFrame {
 
     User user = new User();
+    Administrator admin = new Administrator();
     
     private Component Succes;
     private Component deleteUserPopup;
@@ -45,10 +46,10 @@ public class ChangeUser extends javax.swing.JFrame {
 
     private void doChangeUser() {
 
-        String newFirstName = tfFirstName.getText().trim();
-        String newLastName = tfLastName.getText().trim();
-        int newGroup = permissionSelector.getSelectedIndex() + 1;
-        //user.changeUser(newUsername, newFirstName, newLastName, newPassword, newGroup);
+        String firstName = tfFirstName.getText().trim();
+        String lastName = tfLastName.getText().trim();
+        int permissionId = permissionSelector.getSelectedIndex() + 1;
+        user.updateUser(Session.tempUsername, firstName, lastName, permissionId);
 
         // maakt alle textakken leeg
         clearFields();
@@ -118,7 +119,6 @@ public class ChangeUser extends javax.swing.JFrame {
         }
 
         return totalCorrectInput;
-
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -271,11 +271,13 @@ public class ChangeUser extends javax.swing.JFrame {
             boolean totalCorrectInput = errorCheckCreateUser();
             boolean isConfirm = false;
             if (totalCorrectInput == false) {
-                errorPopUp("Please fill in all the fields before trying again.");
+                errorPopUp("Vul a.u.b. alle velden correct in.");
             } else {
-                isConfirm = createPopUp("Weet u zeker dat u deze gebruiker wilt aanmaken?");
+                isConfirm = createPopUp("Weet u zeker dat u de gegevens van deze gebruiker wilt aanpassen?");
                 if (isConfirm == true) {
                     doChangeUser();
+                    dispose();
+                    admin.searchUserTable(9999, "");
                 }
             }
         }
@@ -290,11 +292,13 @@ public class ChangeUser extends javax.swing.JFrame {
             boolean totalCorrectInput = errorCheckCreateUser();
             boolean isConfirm = false;
             if (totalCorrectInput == false) {
-                errorPopUp("Please fill in all the fields before trying again.");
+                errorPopUp("Vul a.u.b. alle velden in voordat u het opnieuw probeert.");
             } else {
-                isConfirm = createPopUp("Weet u zeker dat u deze gebruiker wilt aanmaken?");
+                isConfirm = createPopUp("Weet u zeker dat u de gegevens van deze gebruiker wilt aanpassen?");
                 if (isConfirm == true) {
                     doChangeUser();
+                    dispose();
+                    admin.searchUserTable(9999, "");
                 }
             }
         }
@@ -309,11 +313,13 @@ public class ChangeUser extends javax.swing.JFrame {
             boolean totalCorrectInput = errorCheckCreateUser();
             boolean isConfirm = false;
             if (totalCorrectInput == false) {
-                errorPopUp("Please fill in all the fields before trying again.");
+                errorPopUp("Vul a.u.b. alle velden in voordat u het opnieuw probeert.");
             } else {
-                isConfirm = createPopUp("Weet u zeker dat u deze gebruiker wilt aanmaken?");
+                isConfirm = createPopUp("Weet u zeker dat u de gegevens van deze gebruiker wilt aanpassen?");
                 if (isConfirm == true) {
                     doChangeUser();
+                    dispose();
+                    admin.searchUserTable(9999, "");
                 }
             }
         }
@@ -334,6 +340,8 @@ public class ChangeUser extends javax.swing.JFrame {
             isConfirm = createPopUp("Weet u zeker dat u deze gebruiker wilt aanmaken?");
             if (isConfirm == true) {
                 doChangeUser();
+                dispose();
+                admin.searchUserTable(9999, "");
             }
         }
     }//GEN-LAST:event_createUserActionPerformed

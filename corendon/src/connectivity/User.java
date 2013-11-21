@@ -84,7 +84,7 @@ public class User {
     }
 
     // Used to create a new user, User ID is auto increment
-    public void setNewUser(String tfUsername, String tfFirstName, String tfLastName,
+    public void createUser(String tfUsername, String tfFirstName, String tfLastName,
             String tfPassword, int inputPermissionId) {
         tfPassword = BCrypt.hashpw(tfPassword, BCrypt.gensalt());
         
@@ -96,6 +96,16 @@ public class User {
                 + tfPassword + "', "
                 + inputPermissionId + ","
                 + STANDARD_INCORRECT_LOGINS + ")";
+        db.insertQuery(sql);
+    }
+    
+    public void updateUser(String username, String firstName, String lastName,
+            int permissionId) {
+        
+        String sql = "UPDATE `user` SET `first_name` = '" + firstName + "', "
+                + "`last_name` = '" + lastName + "', "
+                + "`permission_id` = " + permissionId
+                + " WHERE `username` = '" + username + "'";
         db.insertQuery(sql);
     }
 
