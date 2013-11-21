@@ -203,6 +203,12 @@ public class Luggage {
         db.insertQuery(sql);
     }
     
+    public void deleteLuggage(String luggageId)
+    {
+        String sql = "DELETE FROM `luggage` WHERE `luggage_id` = '" + luggageId + "'";
+        db.insertQuery(sql);
+    }
+    
     public DbManager getDb() {
         return db;
     }
