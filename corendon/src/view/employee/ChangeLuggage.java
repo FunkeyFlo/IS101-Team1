@@ -13,7 +13,6 @@ public class ChangeLuggage extends javax.swing.JFrame {
     User user = new User();
     
     public ChangeLuggage() {
-        
         luggage.getLuggageData(Session.storedLuggageId, "luggage_id");
         user.getUserData(luggage.getLastChangedBy());
         

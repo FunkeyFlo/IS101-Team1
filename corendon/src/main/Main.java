@@ -6,8 +6,7 @@ package main;
 
 import view.employee.ChangeLuggage;
 import view.employee.ChangeCustomer;
-import view.administrator.Administrator;
-import view.administrator.ChangeName;
+import view.administrator.*;
 import view.employee.RegisterCustomer;
 import view.employee.Employee;
 import view.manager.Manager;
@@ -89,6 +88,11 @@ public class Main {
     public static void displayChangeLuggage() {
         ChangeLuggage frameChangeLuggage = new ChangeLuggage();
         frameChangeLuggage.setVisible(true);
+    }
+    
+    public static void displayChangeUser() {
+        ChangeUser frameChangeUser = new ChangeUser();
+        frameChangeUser.setVisible(true);
     }
     
     public static void main(String args[]) {
