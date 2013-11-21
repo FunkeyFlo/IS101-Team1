@@ -10,12 +10,13 @@ import main.Session;
 public class ChangeLuggage extends javax.swing.JFrame {
 
     Luggage luggage = new Luggage();
-
+    User user = new User();
     
     public ChangeLuggage() {
         
         luggage.getLuggageData(Session.storedLuggageId, "luggage_id");
-
+        user.getUserData(luggage.getLastChangedBy());
+        
         initComponents();
         tfDescription.setText(luggage.getDescription());
         tfLocation.setText(luggage.getLocation());
@@ -43,8 +44,10 @@ public class ChangeLuggage extends javax.swing.JFrame {
         tfDescription = new javax.swing.JTextArea();
         rbStatus = new javax.swing.JRadioButton();
         rbDone = new javax.swing.JRadioButton();
+        editLuggageInfo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Gegevens van baggage artikel: " + luggage.getLuggageId());
 
         luggageRegistrationPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Bagage Registeren"));
 
@@ -94,6 +97,9 @@ public class ChangeLuggage extends javax.swing.JFrame {
             }
         });
 
+        editLuggageInfo.setForeground(new java.awt.Color(102, 102, 102));
+        editLuggageInfo.setText("Laatst gewijzigd door " + user.getFirstName() + " " + user.getLastName() + " op " + luggage.getDateChanged());
+
         javax.swing.GroupLayout luggageRegistrationPanelLayout = new javax.swing.GroupLayout(luggageRegistrationPanel);
         luggageRegistrationPanel.setLayout(luggageRegistrationPanelLayout);
         luggageRegistrationPanelLayout.setHorizontalGroup(
@@ -101,6 +107,7 @@ public class ChangeLuggage extends javax.swing.JFrame {
             .addGroup(luggageRegistrationPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(luggageRegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(editLuggageInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(luggageRegistrationPanelLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btCancel)
@@ -113,23 +120,26 @@ public class ChangeLuggage extends javax.swing.JFrame {
                             .addComponent(lblCustomerID7, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(luggageRegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 390, Short.MAX_VALUE)
                             .addGroup(luggageRegistrationPanelLayout.createSequentialGroup()
                                 .addGroup(luggageRegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(rbStatus)
-                                    .addComponent(rbDone))
-                                .addGap(0, 190, Short.MAX_VALUE))
-                            .addComponent(tfLocation))))
+                                    .addComponent(rbDone)
+                                    .addComponent(tfLocation, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         luggageRegistrationPanelLayout.setVerticalGroup(
             luggageRegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(luggageRegistrationPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(editLuggageInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(luggageRegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(luggageRegistrationPanelLayout.createSequentialGroup()
                         .addComponent(lblCustomerID5)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(luggageRegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCustomerID6)
@@ -155,26 +165,23 @@ public class ChangeLuggage extends javax.swing.JFrame {
         luggageRegistrationPanel.setLayer(jScrollPane2, javax.swing.JLayeredPane.DEFAULT_LAYER);
         luggageRegistrationPanel.setLayer(rbStatus, javax.swing.JLayeredPane.DEFAULT_LAYER);
         luggageRegistrationPanel.setLayer(rbDone, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        luggageRegistrationPanel.setLayer(editLuggageInfo, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 415, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(luggageRegistrationPanel)
-                    .addContainerGap()))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(luggageRegistrationPanel)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 349, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(2, 2, 2)
-                    .addComponent(luggageRegistrationPanel)
-                    .addContainerGap()))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(luggageRegistrationPanel)
+                .addContainerGap())
         );
 
         pack();
@@ -257,6 +264,7 @@ public class ChangeLuggage extends javax.swing.JFrame {
     private javax.swing.JButton btCancel;
     private javax.swing.JButton btUpdateLuggage;
     private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.JLabel editLuggageInfo;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblCustomerID5;
     private javax.swing.JLabel lblCustomerID6;
