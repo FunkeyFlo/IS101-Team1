@@ -5,40 +5,48 @@ import connectivity.Luggage.*;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
 import main.Main;
 import org.jfree.chart.ChartFactory;
-//import org.jfree.chart.ChartFrame;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
 
+/**
+ * @author IS101 Team 1
+ */
+
 public class Manager extends javax.swing.JFrame {
 
-    private Component ErrorPopUp;
-    private List<Luggage> luggage = new ArrayList<>();
-    private final Luggage luggageModel = new Luggage();
-    private DefaultCategoryDataset allDataGraph = new DefaultCategoryDataset();
-    private DefaultCategoryDataset lostBaggageGraph = new DefaultCategoryDataset();
-    private DefaultCategoryDataset foundBaggageGraph = new DefaultCategoryDataset();
-    private DefaultCategoryDataset handledBaggageGraph = new DefaultCategoryDataset();
-    private final Color trans = new Color(0xFF, 0xFF, 0xFF, 0);
-    private final int CURRENT_YEAR = getCurrentYear();
+    private static final String ALL_LUGGAGE_DATA_GRAPH_NAME = 
+            "Verloren, gevonden en afgehandelde baggage per maand";
+    private static final String LOST_LUGGAGE_GRAPH_NAME = 
+            "Verloren baggage";
+    private static final String FOUND_LUGGAGE_GRAPH_NAME = 
+            "Gevonden baggage";
+    private static final String HANDLED_LUGGAGE_GRAPH_NAME = 
+            "Afgehandelde baggage";
+    private static final String X_AXIS_NAME = "Maand/Jaar";
+    private static final String Y_AXIS_NAME = "Aantal";
+    private static final int LOST_LUGGAGE_DBFIELD = 6;
+    private static final int FOUND_LUGGAGE_DBFIELD = 7;
+    private static final int HANDLED_LUGGAGE_DBFIELD = 8;
+    private static final int BEGIN_YEAR = 2010;
+    private static final Color TRANS = new Color(0xFF, 0xFF, 0xFF, 0);
+
     
     public Manager() {
-        initComponents();        
+        initComponents();
+        int CURRENT_YEAR = getCurrentYear();
         setAllDataGraph(CURRENT_YEAR, CURRENT_YEAR, 1, 12);
-        setLostGraph(CURRENT_YEAR, CURRENT_YEAR, 1, 12);
-        setFoundGraph(CURRENT_YEAR, CURRENT_YEAR, 1, 12);
-        setHandledGraph(CURRENT_YEAR, CURRENT_YEAR, 1, 12);
+        setLostLuggageGraph(CURRENT_YEAR, CURRENT_YEAR, 1, 12);
+        setFoundLuggageGraph(CURRENT_YEAR, CURRENT_YEAR, 1, 12);
+        setHandledLuggageGraph(CURRENT_YEAR, CURRENT_YEAR, 1, 12);
     }
 
     /**
@@ -342,143 +350,93 @@ public class Manager extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Creates the graph containing all luggage data
+     * @param beginYear the year where the graph starts, as specified by the user
+     * @param endYear the year where the graph ends
+     * @param beginMonth the month in the year where the graph starts
+     * @param endMonth the month in the year where the graph ends
+     */
     private void setAllDataGraph(int beginYear, int endYear,
             int beginMonth, int endMonth) {
+        DefaultCategoryDataset allDataGraph = 
+                new DefaultCategoryDataset();
         allDataGraph.clear();
         
-        List<Integer> numTimesLost = new ArrayList<>();
-        List<Integer> numTimesFound = new ArrayList<>();
-        List<Integer> numTimesRtrnd = new ArrayList<>();
-        List<String> months = new ArrayList<>();
-        List<String> yyyyMM = new ArrayList<>();
-        String yyyy;
-        String mm;
-        String insertZero;
-        int currentYear = beginYear;
-        boolean nextYear = false;
-        int month = beginMonth - 1;
+        int numMonths = giveNumMonths(beginYear, endYear, 
+                beginMonth, endMonth);
+        List<String> yearsAndMonths = generateDates(beginYear, endYear, 
+                beginMonth, endMonth);
         
-        int numYears = endYear - beginYear == 0 ? 1 : (endYear - beginYear) + 1;
-        int numMonths = ((numYears * 12) - beginMonth) - (12 - endMonth) + 1;
-        
-        for (int i = 0; i < numMonths; i++) {
-            month = month == 12 ? 1 : month + 1;
-            currentYear = nextYear ? currentYear + 1 : currentYear;
-            nextYear = month == 12;
-            if (month<=9) {
-                insertZero = "0";
-            } else insertZero = "";
-            yyyyMM.add(Integer.toString(currentYear) + "-" 
-                    + insertZero + Integer.toString(month));
-            System.out.println(yyyyMM.get(i));
-        }
-        
-        //Value for lost luggage
-        for (int i = 0; i < numMonths; i++) {
-            luggage.clear();
-            luggage = luggageModel.searchLuggageList(6, yyyyMM.get(i), 0);
-            numTimesLost.add(0);
-            while (numTimesLost.get(i) < luggage.size()) {
-                numTimesLost.set(i, numTimesLost.get(i) + 1);
-            }
-        }
-        
-        //Value for found luggage
-        for (int i = 0; i < numMonths; i++) {
-            luggage.clear();
-            luggage = luggageModel.searchLuggageList(7, yyyyMM.get(i), 0);
-            numTimesFound.add(0);
-            while (numTimesFound.get(i) < luggage.size()) {
-                numTimesFound.set(i, numTimesFound.get(i) + 1);
-            }
-        }
-
-        //Value for handled luggage
-        for (int i = 0; i < numMonths; i++) {
-            luggage.clear();
-            luggage = luggageModel.searchLuggageList(8, yyyyMM.get(i), 0);
-            numTimesRtrnd.add(0);
-            while (numTimesRtrnd.get(i) < luggage.size()) {
-                numTimesRtrnd.set(i, numTimesRtrnd.get(i) + 1);
-            }
-        }
+        List<Integer> numTimesLost = getAmountLuggage(numMonths, 
+                LOST_LUGGAGE_DBFIELD, yearsAndMonths);
+        List<Integer> numTimesFound = getAmountLuggage(numMonths, 
+                FOUND_LUGGAGE_DBFIELD, yearsAndMonths);
+        List<Integer> numTimesHandled = getAmountLuggage(numMonths, 
+                HANDLED_LUGGAGE_DBFIELD, yearsAndMonths);
         
         for (int i = 0; i < numMonths; i++) {
             //all graphs
-            allDataGraph.setValue(numTimesLost.get(i), "Verloren", yyyyMM.get(i));
-            allDataGraph.setValue(numTimesFound.get(i), "Gevonden", yyyyMM.get(i));
-            allDataGraph.setValue(numTimesRtrnd.get(i), "Afgehandeld", yyyyMM.get(i));
+            allDataGraph.setValue(numTimesLost.get(i), 
+                    LOST_LUGGAGE_GRAPH_NAME, yearsAndMonths.get(i));
+            allDataGraph.setValue(numTimesFound.get(i), 
+                    FOUND_LUGGAGE_GRAPH_NAME, yearsAndMonths.get(i));
+            allDataGraph.setValue(numTimesHandled.get(i), 
+                    HANDLED_LUGGAGE_GRAPH_NAME, yearsAndMonths.get(i));
         }
 
-        /**
-         * ALL DATA GRAPH
-         */
-        final String CHART_NAME = "Verloren, gevonden en afgehandelde baggage per maand";
-        final String X_AXIS_NAME = "Maand";
-        final String Y_AXIS_NAME = "Aantal";
-        JFreeChart allGraphsChart = ChartFactory.createBarChart(CHART_NAME, X_AXIS_NAME, Y_AXIS_NAME, allDataGraph, PlotOrientation.VERTICAL, false, true, false);
+        //creates the graph
+        JFreeChart allGraphsChart = ChartFactory.createBarChart(
+                ALL_LUGGAGE_DATA_GRAPH_NAME, X_AXIS_NAME, Y_AXIS_NAME, 
+                allDataGraph, PlotOrientation.VERTICAL, 
+                false, true, false);
         CategoryPlot allGraphsPlot = allGraphsChart.getCategoryPlot();
         allGraphsPlot.setRangeGridlinePaint(Color.BLACK);
         ChartPanel lostBaggagePanel = new ChartPanel(allGraphsChart);
-        allGraphsChart.setBackgroundPaint(trans);
+        allGraphsChart.setBackgroundPaint(TRANS);
         
+        //applies the graph to the panel
         allGraphs.setLayout(new BorderLayout());
         allGraphs.add(lostBaggagePanel, BorderLayout.CENTER);
         allGraphs.validate();
         
     }
     
-    private void setLostGraph(int beginYear, int endYear, 
+    /**
+     * Creates the graph for all lost luggage data
+     * @param beginYear the year where the graph starts, as specified by the user
+     * @param endYear the year where the graph ends
+     * @param beginMonth the month in the year where the graph starts
+     * @param endMonth  the month in the year where the graph ends
+     */
+    private void setLostLuggageGraph(int beginYear, int endYear, 
             int beginMonth, int endMonth) {
+        DefaultCategoryDataset lostBaggageGraph = 
+                new DefaultCategoryDataset();
         lostBaggageGraph.clear();
-        List<Integer> numLostPerMonth = new ArrayList<>();
-        List<String> months = new ArrayList<>();
-        List<String> yyyyMM = new ArrayList<>();
-        String yyyy;
-        String mm;
-        String insertZero;
-        int currentYear = beginYear;
-        int month = beginMonth - 1;
-        int numYears, numMonths;
-        boolean isNextYear = false;
         
-        numYears = endYear - beginYear == 0 ? 1 : (endYear - beginYear) + 1;
-        numMonths = ((numYears * 12) - beginMonth) - (12 - endMonth) + 1;
+        int numMonths = giveNumMonths(beginYear, endYear, 
+                beginMonth, endMonth);
+        List<String> yearsAndMonths = generateDates(beginYear, endYear, 
+                beginMonth, endMonth);
+        
+        List<Integer> numLostPerMonth = getAmountLuggage(numMonths, 
+                LOST_LUGGAGE_DBFIELD, yearsAndMonths);
+        
         
         for (int i = 0; i < numMonths; i++) {
-            month = month == 12 ? 1 : month + 1;
-            currentYear = isNextYear ? currentYear + 1 : currentYear;
-            isNextYear = month == 12;
-            if (month<=9) {
-                insertZero = "0";
-            } else insertZero = "";
-            yyyyMM.add(Integer.toString(currentYear) + "-" 
-                    + insertZero + Integer.toString(month));
-            System.out.println(yyyyMM.get(i));
+            lostBaggageGraph.setValue(numLostPerMonth.get(i), 
+                    LOST_LUGGAGE_GRAPH_NAME, yearsAndMonths.get(i));
         }
         
-        //Value for lost luggage
-        for (int i = 0; i < numMonths; i++) {
-            luggage.clear();
-            luggage = luggageModel.searchLuggageList(6, yyyyMM.get(i), 0);
-            numLostPerMonth.add(0);
-            while (numLostPerMonth.get(i) < luggage.size()) {
-                numLostPerMonth.set(i, numLostPerMonth.get(i) + 1);
-            }
-        }
-        
-        for (int i = 0; i < numMonths; i++) {
-            lostBaggageGraph.setValue(numLostPerMonth.get(i), "Verloren", yyyyMM.get(i));
-        }
-        
-        final String CHART_NAME = "Verloren baggage";
-        final String X_AXIS_NAME = "Maand/Jaar";
-        final String Y_AXIS_NAME = "Aantal";
-        JFreeChart lostBaggageChart = ChartFactory.createBarChart(CHART_NAME, X_AXIS_NAME, Y_AXIS_NAME, lostBaggageGraph, PlotOrientation.VERTICAL, false, true, false);
+        JFreeChart lostBaggageChart = ChartFactory.createBarChart(
+                LOST_LUGGAGE_GRAPH_NAME, X_AXIS_NAME, Y_AXIS_NAME, 
+                lostBaggageGraph, PlotOrientation.VERTICAL, 
+                false, true, false);
         CategoryPlot lostBaggagePlot = lostBaggageChart.getCategoryPlot();
         lostBaggagePlot.setRangeGridlinePaint(Color.BLACK);
         ChartPanel lostBaggagePanel = new ChartPanel(lostBaggageChart);
-        lostBaggageChart.setBackgroundPaint(trans);
+        lostBaggageChart.setBackgroundPaint(TRANS);
         
         lostBaggage.setLayout(new BorderLayout());
         lostBaggage.add(lostBaggagePanel, BorderLayout.CENTER);
@@ -487,61 +445,41 @@ public class Manager extends javax.swing.JFrame {
   
     }
     
-    private void setFoundGraph(int beginYear, int endYear, 
+    /**
+     * Creates the graph for all found luggage data
+     * @param beginYear the year where the graph begins, as specified by the user
+     * @param endYear the year where the graph ends
+     * @param beginMonth the month in the year where the graph begins
+     * @param endMonth the month in the year where the graph ends
+     */
+    private void setFoundLuggageGraph(int beginYear, int endYear, 
             int beginMonth, int endMonth) {
+        DefaultCategoryDataset foundBaggageGraph = 
+                new DefaultCategoryDataset();
         foundBaggageGraph.clear();
-        List<Integer> numFoundPerMonth = new ArrayList<>();
-        List<String> months = new ArrayList<>();
-        List<String> yyyyMM = new ArrayList<>();
-        String yyyy;
-        String mm;
-        String insertZero;
-        int currentYear = beginYear;
-        int month = beginMonth - 1;
-        int numYears, numMonths;
-        boolean isNextYear = false;
         
-        //calculates amount of months given
-        numYears = endYear - beginYear == 0 ? 1 : (endYear - beginYear) + 1;
-        numMonths = ((numYears * 12) - beginMonth) - (12 - endMonth) + 1;
-        
-        //creates array containing Year-Month (yyyy-mm) strings
-        for (int i = 0; i < numMonths; i++) {
-            month = month == 12 ? 1 : month + 1;
-            currentYear = isNextYear ? currentYear + 1 : currentYear;
-            isNextYear = month == 12;
-            if (month<=9) {
-                insertZero = "0";
-            } else insertZero = "";
-            yyyyMM.add(Integer.toString(currentYear) + "-" 
-                    + insertZero + Integer.toString(month));
-        }
-        
-        //gets luggage data
-        for (int i = 0; i < numMonths; i++) {
-            luggage.clear();
-            luggage = luggageModel.searchLuggageList(7, yyyyMM.get(i), 0);
-            numFoundPerMonth.add(0);
-            while (numFoundPerMonth.get(i) < luggage.size()) {
-                numFoundPerMonth.set(i, numFoundPerMonth.get(i) + 1);
-            }
-        }
+        int numMonths = giveNumMonths(beginYear, endYear, beginMonth, endMonth);
+        List<String> yearsAndMonths = 
+                generateDates(beginYear, endYear, beginMonth, endMonth);        
+        List<Integer> numFoundPerMonth = getAmountLuggage(numMonths, 
+                FOUND_LUGGAGE_DBFIELD, yearsAndMonths);
         
         //sets data
         for (int i = 0; i < numMonths; i++) {
-            foundBaggageGraph.setValue(numFoundPerMonth.get(i), "Verloren", yyyyMM.get(i));
+            foundBaggageGraph.setValue(numFoundPerMonth.get(i), 
+                    FOUND_LUGGAGE_GRAPH_NAME, yearsAndMonths.get(i));
         }
         
         //creates graph
-        final String CHART_NAME = "Gevonden baggage";
-        final String X_AXIS_NAME = "Maand/Jaar";
-        final String Y_AXIS_NAME = "Aantal";
-        JFreeChart foundBaggageChart = ChartFactory.createBarChart(CHART_NAME, X_AXIS_NAME, Y_AXIS_NAME, foundBaggageGraph, PlotOrientation.VERTICAL, false, true, false);
+        JFreeChart foundBaggageChart = ChartFactory.createBarChart(
+                FOUND_LUGGAGE_GRAPH_NAME, X_AXIS_NAME, Y_AXIS_NAME, 
+                foundBaggageGraph, PlotOrientation.VERTICAL, 
+                false, true, false);
         CategoryPlot foundBaggagePlot = foundBaggageChart.getCategoryPlot();
         foundBaggagePlot.setRangeGridlinePaint(Color.BLACK);
         ChartPanel foundBaggagePanel = new ChartPanel(foundBaggageChart);
         foundBaggageChart.setBackgroundPaint(new Color(0xFF, 0xFF, 0xFF, 0));
-        foundBaggageChart.setBackgroundPaint(trans);
+        foundBaggageChart.setBackgroundPaint(TRANS);
         
         //applies graph to panel
         foundBaggage.setLayout(new BorderLayout());
@@ -549,59 +487,41 @@ public class Manager extends javax.swing.JFrame {
         foundBaggage.validate();
     }
     
-    private void setHandledGraph(int beginYear, int endYear, 
+    /**
+     * Creates the graph for all handled luggage data
+     * @param beginYear the year where the graph starts, as specified by the user
+     * @param endYear the year where the graph ends
+     * @param beginMonth the month in the year where the graph begins
+     * @param endMonth the month in the year where the graph ends
+     */
+    private void setHandledLuggageGraph(int beginYear, int endYear, 
             int beginMonth, int endMonth) {
+        DefaultCategoryDataset handledBaggageGraph = 
+                new DefaultCategoryDataset();
         handledBaggageGraph.clear();
-        List<Integer> numHandledPerMonth = new ArrayList<>();
-        List<String> months = new ArrayList<>();
-        List<String> yyyyMM = new ArrayList<>();
-        String yyyy;
-        String mm;
-        String insertZero;
-        int currentYear = beginYear;
-        int month = beginMonth - 1;
-        int numYears, numMonths;
-        boolean isNextYear = false;
         
-        //calculates amount of months given
-        numYears = endYear - beginYear == 0 ? 1 : (endYear - beginYear) + 1;
-        numMonths = ((numYears * 12) - beginMonth) - (12 - endMonth) + 1;
-        
-        //creates array containing Year-Month (yyyy-mm) strings
-        for (int i = 0; i < numMonths; i++) {
-            month = month == 12 ? 1 : month + 1;
-            currentYear = isNextYear ? currentYear + 1 : currentYear;
-            isNextYear = month == 12;
-            if (month<=9) {
-                insertZero = "0";
-            } else insertZero = "";
-            yyyyMM.add(Integer.toString(currentYear) + "-" 
-                    + insertZero + Integer.toString(month));
-        }
-        
-        //gets luggage data
-        for (int i = 0; i < numMonths; i++) {
-            luggage.clear();
-            luggage = luggageModel.searchLuggageList(8, yyyyMM.get(i), 0);
-            numHandledPerMonth.add(0);
-            while (numHandledPerMonth.get(i) < luggage.size()) {
-                numHandledPerMonth.set(i, numHandledPerMonth.get(i) + 1);
-            }
-        }
+        List<String> yearsAndMonths = generateDates(beginYear, endYear,
+                beginMonth, endMonth);
+        int numMonths = giveNumMonths(beginYear, endYear,
+                beginMonth, endMonth);
+        List<Integer> numHandledPerMonth = getAmountLuggage(numMonths, 
+                HANDLED_LUGGAGE_DBFIELD, yearsAndMonths);
         
         //sets data
         for (int i = 0; i < numMonths; i++) {
-            handledBaggageGraph.setValue(numHandledPerMonth.get(i), "Afgehandeld", yyyyMM.get(i));
+            handledBaggageGraph.setValue(numHandledPerMonth.get(i), 
+                    HANDLED_LUGGAGE_GRAPH_NAME, yearsAndMonths.get(i));
         }
         
         //creates graph
-        final String CHART_NAME = "Afgehandelde baggage";
-        final String X_AXIS_NAME = "Maand/Jaar";
-        final String Y_AXIS_NAME = "Aantal";
-        JFreeChart handledBaggageChart = ChartFactory.createBarChart(CHART_NAME, X_AXIS_NAME, Y_AXIS_NAME, handledBaggageGraph, PlotOrientation.VERTICAL, false, true, false);
+        JFreeChart handledBaggageChart = ChartFactory.createBarChart(
+                HANDLED_LUGGAGE_GRAPH_NAME, X_AXIS_NAME, Y_AXIS_NAME, 
+                handledBaggageGraph, PlotOrientation.VERTICAL, 
+                false, true, false);
         CategoryPlot handledBaggagePlot = handledBaggageChart.getCategoryPlot();
+        handledBaggagePlot.setRangeGridlinePaint(Color.BLACK);
         ChartPanel handledBaggagePanel = new ChartPanel(handledBaggageChart);
-        handledBaggageChart.setBackgroundPaint(trans);
+        handledBaggageChart.setBackgroundPaint(TRANS);
         
         //applies graph to panel
         handledBaggage.setLayout(new BorderLayout());
@@ -621,63 +541,112 @@ public class Manager extends javax.swing.JFrame {
     private void cbYearToActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbYearToActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbYearToActionPerformed
-
+    
+    /**
+     * Gets months and years the user would like to view luggage data in,
+     * and gives them as parameters to all set graph methods.
+     * @param evt 
+     */
     private void buttonUpdateAllDataGraphActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonUpdateAllDataGraphActionPerformed
-        //        System.out.println(tfYear.getText());
-        //        System.out.println(tfMonth.getSelectedItem());
-
-        int yearFrom = cbYearFrom.getSelectedIndex() + 2010,
-        yearTo = cbYearTo.getSelectedIndex() + 2010,
+        int yearFrom = cbYearFrom.getSelectedIndex() + BEGIN_YEAR,
+        yearTo = cbYearTo.getSelectedIndex() + BEGIN_YEAR,
         monthFrom = cbMonthFrom.getSelectedIndex() + 1,
         monthTo = cbMonthTo.getSelectedIndex() + 1;
-        if (yearFrom > yearTo) {
+        if (yearFrom > yearTo) { 
             errorPopUp("Begindatum kan niet groter zijn dan einddatum.");
         } else {
             setAllDataGraph(yearFrom, yearTo, monthFrom, monthTo);
-            setLostGraph(yearFrom, yearTo, monthFrom, monthTo);
-            setFoundGraph(yearFrom, yearTo, monthFrom, monthTo);
-            setHandledGraph(yearFrom, yearTo, monthFrom, monthTo);
+            setLostLuggageGraph(yearFrom, yearTo, monthFrom, monthTo);
+            setFoundLuggageGraph(yearFrom, yearTo, monthFrom, monthTo);
+            setHandledLuggageGraph(yearFrom, yearTo, monthFrom, monthTo);
         }
     }//GEN-LAST:event_buttonUpdateAllDataGraphActionPerformed
-
-   private int getCurrentYear() {
-        return Calendar.getInstance().get(Calendar.YEAR);
-    }
- 
- 
-    private void errorPopUp(String errorMessage) {
-        JOptionPane.showMessageDialog(ErrorPopUp, errorMessage);
+    
+    /**
+     * @return amount of months between begin year and month and end year and month.
+     */
+    private static int giveNumMonths(int beginYear, int endYear,
+            int beginMonth, int endMonth) {
+        int numYears = endYear - beginYear == 0 ? 
+                1 : (endYear - beginYear) + 1;
+        int numMonths = ((numYears * 12) - beginMonth) - (12 - endMonth) + 1;
+        return numMonths;
     }
     
     /**
-     * @param args the command line arguments
+     * Generates array of strings that will be used in sql statements and
+     * shown under the X axis of the graph.
+     * @param beginYear the first year the graph will show
+     * @param endYear the last year the graph will show
+     * @param beginMonth the first month in the first year the graph will show
+     * @param endMonth the last month in the last year the graph will show
+     * @return String array of format 'yyyy-mm'
+     * @see getAmountLuggage
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Manager.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    private static List<String> generateDates(int beginYear, int endYear,
+            int beginMonth, int endMonth) {
+        List<String> yearsAndMonths = new ArrayList<>();
+        int currentMonth = beginMonth - 1;
+        int currentYear = beginYear;
+        boolean isNextYear = false;
+        String insertZero;
+        
+        int numMonths = giveNumMonths(beginYear, endYear, 
+                beginMonth, endMonth);
+        
+        for (int i = 0; i < numMonths; i++) {
+            currentMonth = currentMonth == 12 ? 1 : currentMonth + 1;
+            currentYear = isNextYear ? currentYear + 1 : currentYear;
+            isNextYear = currentMonth == 12;
+            if (currentMonth<=9) {
+                insertZero = "0";
+            } else insertZero = "";
+            yearsAndMonths.add(Integer.toString(currentYear) + "-" 
+                    + insertZero + Integer.toString(currentMonth));
         }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new Manager().setVisible(true);
-            }
-        });
+        
+        return yearsAndMonths;
+    }   
+    
+    /**
+     * Used in the graphs to display information of the current year at
+     * startup.
+     * @return the current year.
+     */
+    private static int getCurrentYear() {
+        return Calendar.getInstance().get(Calendar.YEAR);
     }
+ 
+    /**
+     * gets an amount of luggage for the specified months
+     * @param numMonths how many months worth of data should be returned
+     * @param dbField parameter for searchLuggageList method
+     * @param yearsAndMonths String array passed on as searchArg parameter
+     * in the searchLuggageList method
+     * @return amount of luggage
+     */
+    private List<Integer> getAmountLuggage(int numMonths, int dbField, 
+            List<String> yearsAndMonths) {
+        List<Luggage> luggage = new ArrayList<>();
+        final Luggage LUGGAGE_MODEL = new Luggage();
+        List<Integer> numTimesLost = new ArrayList<>();
+        for (int i = 0; i < numMonths; i++) {
+            luggage.clear();
+            luggage = LUGGAGE_MODEL.searchLuggageList(dbField, 
+                    yearsAndMonths.get(i), 0);
+            numTimesLost.add(0);
+            while (numTimesLost.get(i) < luggage.size()) {
+                numTimesLost.set(i, numTimesLost.get(i) + 1);
+            }
+        }
+        return numTimesLost;
+    }
+    
+    private void errorPopUp(String errorMessage) {
+        Component errorPopUp = null;
+        JOptionPane.showMessageDialog(errorPopUp, errorMessage);
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel allGraphs;
     private javax.swing.JPanel allGraphsTab;
@@ -708,5 +677,6 @@ public class Manager extends javax.swing.JFrame {
     private javax.swing.JTabbedPane overviewPane;
     private javax.swing.JMenu userMenu;
     // End of variables declaration//GEN-END:variables
+
 
 }
