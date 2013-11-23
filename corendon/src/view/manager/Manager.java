@@ -34,8 +34,8 @@ public class Manager extends javax.swing.JFrame {
     private static final String X_AXIS_NAME = "Maand/Jaar";
     private static final String Y_AXIS_NAME = "Aantal";
     private static final int LOST_LUGGAGE_DBFIELD = 6;
-    private static final int FOUND_LUGGAGE_DBFIELD = 7;
-    private static final int HANDLED_LUGGAGE_DBFIELD = 8;
+    private static final int FOUND_LUGGAGE_DBFIELD = 8;
+    private static final int HANDLED_LUGGAGE_DBFIELD = 10;
     private static final int BEGIN_YEAR = 2010;
     private static final Color TRANS = new Color(0xFF, 0xFF, 0xFF, 0);
 
@@ -43,9 +43,9 @@ public class Manager extends javax.swing.JFrame {
     public Manager() {
         initComponents();
         int CURRENT_YEAR = getCurrentYear();
-        setAllDataGraph(CURRENT_YEAR, CURRENT_YEAR, 1, 12);
-        setLostLuggageGraph(CURRENT_YEAR, CURRENT_YEAR, 1, 12);
-        setFoundLuggageGraph(CURRENT_YEAR, CURRENT_YEAR, 1, 12);
+        setAllDataGraph(CURRENT_YEAR, CURRENT_YEAR, 1, 12, 0);
+        setLostLuggageGraph(CURRENT_YEAR, CURRENT_YEAR, 1, 12, 0);
+        setFoundLuggageGraph(CURRENT_YEAR, CURRENT_YEAR, 1, 12, 0);
         setHandledLuggageGraph(CURRENT_YEAR, CURRENT_YEAR, 1, 12);
     }
 
@@ -82,6 +82,8 @@ public class Manager extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         cbYearTo = new javax.swing.JComboBox();
         labelError = new javax.swing.JLabel();
+        cbShowAll = new javax.swing.JCheckBox();
+        jLabel6 = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         userMenu = new javax.swing.JMenu();
         changePassword = new javax.swing.JMenuItem();
@@ -100,7 +102,7 @@ public class Manager extends javax.swing.JFrame {
             allGraphsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(allGraphsTabLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(allGraphs, javax.swing.GroupLayout.DEFAULT_SIZE, 537, Short.MAX_VALUE)
+                .addComponent(allGraphs, javax.swing.GroupLayout.DEFAULT_SIZE, 704, Short.MAX_VALUE)
                 .addContainerGap())
         );
         allGraphsTabLayout.setVerticalGroup(
@@ -122,7 +124,7 @@ public class Manager extends javax.swing.JFrame {
             lostBaggageTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(lostBaggageTabLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lostBaggage, javax.swing.GroupLayout.DEFAULT_SIZE, 537, Short.MAX_VALUE)
+                .addComponent(lostBaggage, javax.swing.GroupLayout.DEFAULT_SIZE, 704, Short.MAX_VALUE)
                 .addContainerGap())
         );
         lostBaggageTabLayout.setVerticalGroup(
@@ -144,7 +146,7 @@ public class Manager extends javax.swing.JFrame {
             foundBaggageTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(foundBaggageTabLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(foundBaggage, javax.swing.GroupLayout.DEFAULT_SIZE, 537, Short.MAX_VALUE)
+                .addComponent(foundBaggage, javax.swing.GroupLayout.DEFAULT_SIZE, 704, Short.MAX_VALUE)
                 .addContainerGap())
         );
         foundBaggageTabLayout.setVerticalGroup(
@@ -166,7 +168,7 @@ public class Manager extends javax.swing.JFrame {
             handledBaggageTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(handledBaggageTabLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(handledBaggage, javax.swing.GroupLayout.DEFAULT_SIZE, 537, Short.MAX_VALUE)
+                .addComponent(handledBaggage, javax.swing.GroupLayout.DEFAULT_SIZE, 704, Short.MAX_VALUE)
                 .addContainerGap())
         );
         handledBaggageTabLayout.setVerticalGroup(
@@ -282,6 +284,15 @@ public class Manager extends javax.swing.JFrame {
                     .addComponent(labelError, javax.swing.GroupLayout.Alignment.TRAILING)))
         );
 
+        cbShowAll.setText("Baggage wordt alleen meegeteld in de");
+        cbShowAll.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbShowAllActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setText("grafiek als de status klopt.");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -293,16 +304,30 @@ public class Manager extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(21, 21, 21)
+                                .addComponent(jLabel6))
+                            .addComponent(cbShowAll))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(cbShowAll)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(errorLabel))
         );
 
@@ -350,15 +375,8 @@ public class Manager extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * Creates the graph containing all luggage data
-     * @param beginYear the year where the graph starts, as specified by the user
-     * @param endYear the year where the graph ends
-     * @param beginMonth the month in the year where the graph starts
-     * @param endMonth the month in the year where the graph ends
-     */
     private void setAllDataGraph(int beginYear, int endYear,
-            int beginMonth, int endMonth) {
+            int beginMonth, int endMonth, int showIfAttributeNotTrue) {
         DefaultCategoryDataset allDataGraph = 
                 new DefaultCategoryDataset();
         allDataGraph.clear();
@@ -369,9 +387,9 @@ public class Manager extends javax.swing.JFrame {
                 beginMonth, endMonth);
         
         List<Integer> numTimesLost = getAmountLuggage(numMonths, 
-                LOST_LUGGAGE_DBFIELD, yearsAndMonths);
+                LOST_LUGGAGE_DBFIELD + showIfAttributeNotTrue, yearsAndMonths);
         List<Integer> numTimesFound = getAmountLuggage(numMonths, 
-                FOUND_LUGGAGE_DBFIELD, yearsAndMonths);
+                FOUND_LUGGAGE_DBFIELD + showIfAttributeNotTrue, yearsAndMonths);
         List<Integer> numTimesHandled = getAmountLuggage(numMonths, 
                 HANDLED_LUGGAGE_DBFIELD, yearsAndMonths);
         
@@ -410,7 +428,7 @@ public class Manager extends javax.swing.JFrame {
      * @param endMonth  the month in the year where the graph ends
      */
     private void setLostLuggageGraph(int beginYear, int endYear, 
-            int beginMonth, int endMonth) {
+            int beginMonth, int endMonth, int showIfAttributeNotTrue) {
         DefaultCategoryDataset lostBaggageGraph = 
                 new DefaultCategoryDataset();
         lostBaggageGraph.clear();
@@ -421,7 +439,7 @@ public class Manager extends javax.swing.JFrame {
                 beginMonth, endMonth);
         
         List<Integer> numLostPerMonth = getAmountLuggage(numMonths, 
-                LOST_LUGGAGE_DBFIELD, yearsAndMonths);
+                LOST_LUGGAGE_DBFIELD + showIfAttributeNotTrue, yearsAndMonths);
         
         
         for (int i = 0; i < numMonths; i++) {
@@ -453,7 +471,7 @@ public class Manager extends javax.swing.JFrame {
      * @param endMonth the month in the year where the graph ends
      */
     private void setFoundLuggageGraph(int beginYear, int endYear, 
-            int beginMonth, int endMonth) {
+            int beginMonth, int endMonth, int showIfAttributeNotTrue) {
         DefaultCategoryDataset foundBaggageGraph = 
                 new DefaultCategoryDataset();
         foundBaggageGraph.clear();
@@ -462,7 +480,7 @@ public class Manager extends javax.swing.JFrame {
         List<String> yearsAndMonths = 
                 generateDates(beginYear, endYear, beginMonth, endMonth);        
         List<Integer> numFoundPerMonth = getAmountLuggage(numMonths, 
-                FOUND_LUGGAGE_DBFIELD, yearsAndMonths);
+                FOUND_LUGGAGE_DBFIELD + showIfAttributeNotTrue, yearsAndMonths);
         
         //sets data
         for (int i = 0; i < numMonths; i++) {
@@ -528,6 +546,7 @@ public class Manager extends javax.swing.JFrame {
         handledBaggage.add(handledBaggagePanel, BorderLayout.CENTER);
         handledBaggage.validate();
     }
+
     
     private void changePasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changePasswordActionPerformed
         Main.displayChangeMyPassword();
@@ -552,15 +571,23 @@ public class Manager extends javax.swing.JFrame {
         yearTo = cbYearTo.getSelectedIndex() + BEGIN_YEAR,
         monthFrom = cbMonthFrom.getSelectedIndex() + 1,
         monthTo = cbMonthTo.getSelectedIndex() + 1;
+        int showIfAttributeNotTrue = cbShowAll.isSelected() ? 1 : 0;
         if (yearFrom > yearTo) { 
             errorPopUp("Begindatum kan niet groter zijn dan einddatum.");
         } else {
-            setAllDataGraph(yearFrom, yearTo, monthFrom, monthTo);
-            setLostLuggageGraph(yearFrom, yearTo, monthFrom, monthTo);
-            setFoundLuggageGraph(yearFrom, yearTo, monthFrom, monthTo);
+            setAllDataGraph(yearFrom, yearTo, monthFrom, monthTo, 
+                    showIfAttributeNotTrue);
+            setLostLuggageGraph(yearFrom, yearTo, monthFrom, monthTo, 
+                    showIfAttributeNotTrue);
+            setFoundLuggageGraph(yearFrom, yearTo, monthFrom, monthTo, 
+                    showIfAttributeNotTrue);
             setHandledLuggageGraph(yearFrom, yearTo, monthFrom, monthTo);
         }
     }//GEN-LAST:event_buttonUpdateAllDataGraphActionPerformed
+
+    private void cbShowAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbShowAllActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbShowAllActionPerformed
     
     /**
      * @return amount of months between begin year and month and end year and month.
@@ -653,6 +680,7 @@ public class Manager extends javax.swing.JFrame {
     private javax.swing.JButton buttonUpdateAllDataGraph;
     private javax.swing.JComboBox cbMonthFrom;
     private javax.swing.JComboBox cbMonthTo;
+    private javax.swing.JCheckBox cbShowAll;
     private javax.swing.JComboBox cbYearFrom;
     private javax.swing.JComboBox cbYearTo;
     private javax.swing.JMenuItem changePassword;
@@ -666,6 +694,7 @@ public class Manager extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
