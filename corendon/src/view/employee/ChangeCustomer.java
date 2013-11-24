@@ -1,6 +1,8 @@
 package view.employee;
 
 import connectivity.*;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
 import main.Session;
 
 /**
@@ -8,9 +10,12 @@ import main.Session;
  * @author Team AwesomeSauce
  */
 public class ChangeCustomer extends javax.swing.JFrame {
-
-    Customer customer = new Customer();
-    User user = new User();
+    
+    private Luggage luggageModel = new Luggage();
+    private List<Luggage> luggages;
+    private DefaultTableModel modelLuggage;
+    private Customer customer = new Customer();
+    private User user = new User();
 
     public ChangeCustomer() {
         customer.getCustomerData(Session.storedCustomerId, "customer_id");
@@ -18,7 +23,6 @@ public class ChangeCustomer extends javax.swing.JFrame {
         
         String[] email = seperateString(customer.getEmail(), "@");
         String[] address = seperateString(customer.getAddress(), " ");
-
 
         initComponents();
 
@@ -33,6 +37,25 @@ public class ChangeCustomer extends javax.swing.JFrame {
         tfEmail2.setText(email[1]);
         tfPhoneHome.setText(customer.getPhoneHome());
         tfPhoneMobile.setText(customer.getPhoneMobile());
+        
+        modelLuggage = (DefaultTableModel) this.luggageTable.getModel();
+        searchLuggage(2, Integer.toString(customer.getCustomerId()), 0);
+    }
+    
+    private void searchLuggage(int dbField, String searchArg, int showHandled) {
+//        modelLuggage.setRowCount(0); //nodig voor 
+        luggages = luggageModel.searchLuggageList(dbField, searchArg, showHandled);
+        for(Luggage luggage : luggages) {
+            modelLuggage.addRow(new Object[] {new Integer(luggage.getLuggageId()),
+                luggage.getCustomerId(),
+                luggage.getDescription(),
+                luggage.getLocation(),
+                luggage.getDateLost(),
+                luggage.isIsLost(),
+                luggage.isIsHandled()});
+
+            //System.out.println(user.getFirstName());
+        }
     }
     
     public String[] seperateString(String itemToSeperate, String sepChar) {
@@ -87,6 +110,10 @@ public class ChangeCustomer extends javax.swing.JFrame {
         warningLabel1 = new javax.swing.JLabel();
         tfPostalCode = new javax.swing.JTextField();
         editInfoLabel = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        luggageTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Gegevens van " + customer.getFirstName() + " " + customer.getLastName());
@@ -215,14 +242,14 @@ public class ChangeCustomer extends javax.swing.JFrame {
                                 .addGroup(customerRegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(cbCountry, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(tfEmail1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 174, Short.MAX_VALUE)))))
+                                .addGap(0, 175, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         customerRegistrationPanelLayout.setVerticalGroup(
             customerRegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(customerRegistrationPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(editInfoLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 21, Short.MAX_VALUE)
+                .addComponent(editInfoLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(customerRegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tfFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -274,20 +301,88 @@ public class ChangeCustomer extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Opties"));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 338, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Bagage van " + customer.getFirstName() + " " + customer.getLastName()));
+
+        luggageTable.setAutoCreateRowSorter(true);
+        luggageTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Bagage ID", "Klant ID", "Omschrijving", "Locatie", "Datum Vermist", "Vermist", "Afgehandeld"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Boolean.class, java.lang.Boolean.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        luggageTable.setVerifyInputWhenFocusTarget(false);
+        jScrollPane7.setViewportView(luggageTable);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane7)
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(customerRegistrationPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(customerRegistrationPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(customerRegistrationPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(customerRegistrationPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -368,6 +463,10 @@ public class ChangeCustomer extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JTable luggageTable;
     private javax.swing.JTextField tfAddress1;
     private javax.swing.JTextField tfAddress2;
     private javax.swing.JTextField tfCity;

@@ -50,9 +50,6 @@ public class ChangeUser extends javax.swing.JFrame {
         String lastName = tfLastName.getText().trim();
         int permissionId = permissionSelector.getSelectedIndex() + 1;
         user.updateUser(Session.tempUsername, firstName, lastName, permissionId);
-
-        // maakt alle textakken leeg
-        clearFields();
     }
 
     private boolean createPopUp(String message) {
@@ -82,11 +79,6 @@ public class ChangeUser extends javax.swing.JFrame {
             createConfirm = true;
         }
         return createConfirm;
-    }
-
-    private void clearFields() {
-        tfFirstName.setText("");
-        tfLastName.setText("");
     }
 
     private void errorPopUp(String errorMessage) {
@@ -136,7 +128,7 @@ public class ChangeUser extends javax.swing.JFrame {
         lastNameLabel = new javax.swing.JLabel();
         permissionLabel = new javax.swing.JLabel();
         permissionSelector = new javax.swing.JComboBox();
-        clearFields = new javax.swing.JButton();
+        btCancel = new javax.swing.JButton();
         createUser = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -184,10 +176,10 @@ public class ChangeUser extends javax.swing.JFrame {
             }
         });
 
-        clearFields.setText("Reset");
-        clearFields.addActionListener(new java.awt.event.ActionListener() {
+        btCancel.setText("Annuleren");
+        btCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                clearFieldsActionPerformed(evt);
+                btCancelActionPerformed(evt);
             }
         });
 
@@ -208,8 +200,8 @@ public class ChangeUser extends javax.swing.JFrame {
                     .addComponent(tfFirstName)
                     .addComponent(tfLastName)
                     .addGroup(userCreationPanelLayout.createSequentialGroup()
-                        .addGap(0, 122, Short.MAX_VALUE)
-                        .addComponent(clearFields)
+                        .addGap(0, 100, Short.MAX_VALUE)
+                        .addComponent(btCancel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(createUser))
                     .addGroup(userCreationPanelLayout.createSequentialGroup()
@@ -237,7 +229,7 @@ public class ChangeUser extends javax.swing.JFrame {
                 .addComponent(permissionSelector, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(userCreationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(clearFields)
+                    .addComponent(btCancel)
                     .addComponent(createUser))
                 .addGap(99, 99, 99))
         );
@@ -260,6 +252,7 @@ public class ChangeUser extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void tfFirstNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfFirstNameActionPerformed
@@ -325,10 +318,9 @@ public class ChangeUser extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_permissionSelectorKeyPressed
 
-    private void clearFieldsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearFieldsActionPerformed
-        // maakt alle textakken leeg
-        clearFields();
-    }//GEN-LAST:event_clearFieldsActionPerformed
+    private void btCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelActionPerformed
+        dispose();
+    }//GEN-LAST:event_btCancelActionPerformed
 
     private void createUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createUserActionPerformed
 
@@ -347,7 +339,7 @@ public class ChangeUser extends javax.swing.JFrame {
     }//GEN-LAST:event_createUserActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton clearFields;
+    private javax.swing.JButton btCancel;
     private javax.swing.JButton createUser;
     private javax.swing.JLabel firstNameLabel;
     private javax.swing.JLabel lastNameLabel;

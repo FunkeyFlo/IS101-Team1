@@ -9,7 +9,7 @@
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
-    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="true"/>
   </SyntheticProperties>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
@@ -62,8 +62,8 @@
                       <Component id="tfFirstName" alignment="0" max="32767" attributes="0"/>
                       <Component id="tfLastName" alignment="0" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="0" pref="122" max="32767" attributes="0"/>
-                          <Component id="clearFields" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="100" max="32767" attributes="0"/>
+                          <Component id="btCancel" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="createUser" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -97,7 +97,7 @@
                   <Component id="permissionSelector" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="clearFields" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btCancel" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="createUser" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="99" max="-2" attributes="0"/>
@@ -148,12 +148,12 @@
             <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="permissionSelectorKeyPressed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="clearFields">
+        <Component class="javax.swing.JButton" name="btCancel">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Reset"/>
+            <Property name="text" type="java.lang.String" value="Annuleren"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="clearFieldsActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btCancelActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="createUser">
