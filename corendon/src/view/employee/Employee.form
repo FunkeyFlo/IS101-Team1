@@ -964,6 +964,9 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Bewijs voor klant printen"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btPrintReceiptActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="btDeleteLuggage">
                   <Properties>

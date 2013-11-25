@@ -2,6 +2,7 @@ package view.employee;
 
 import connectivity.*;
 import java.util.List;
+import javax.swing.DefaultListModel;
 import javax.swing.table.DefaultTableModel;
 import main.Session;
 
@@ -16,6 +17,8 @@ public class ChangeCustomer extends javax.swing.JFrame {
     private DefaultTableModel modelLuggage;
     private Customer customer = new Customer();
     private User user = new User();
+    private DefaultListModel model = new DefaultListModel();
+//    private DefaultListModel toPrintListModel = new DefaultListModel();
 
     public ChangeCustomer() {
         customer.getCustomerData(Session.storedCustomerId, "customer_id");
@@ -52,6 +55,7 @@ public class ChangeCustomer extends javax.swing.JFrame {
         
         modelLuggage = (DefaultTableModel) this.luggageTable.getModel();
         searchLuggage(11, Integer.toString(customer.getCustomerId()), 0);
+        listBagageToPrint.setModel(model); 
     }
     
     private void searchLuggage(int dbField, String searchArg, int showHandled) {
@@ -70,7 +74,6 @@ public class ChangeCustomer extends javax.swing.JFrame {
         String[] seperatedItems = {"", ""};
 
         String[] temp = itemToSeperate.split(sepChar);
-
 
         for (int i = 0; i < temp.length-1; i++) {
             seperatedItems[0] += (temp[i] + " ");
@@ -117,13 +120,22 @@ public class ChangeCustomer extends javax.swing.JFrame {
         editInfoLabel = new javax.swing.JLabel();
         chbUnlockFields = new javax.swing.JCheckBox();
         jPanel1 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        listBagageToPrint = new javax.swing.JList();
+        btDeleteListItem = new javax.swing.JButton();
+        btClearList = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        btCreatePdf = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane7 = new javax.swing.JScrollPane();
         luggageTable = new javax.swing.JTable();
+        btAddToList = new javax.swing.JButton();
+        chbHideHandled = new javax.swing.JCheckBox();
+        chbHideLost = new javax.swing.JCheckBox();
+        chbHideFound = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Gegevens van " + customer.getFirstName() + " " + customer.getLastName());
-        setResizable(false);
 
         customerRegistrationPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Klant gegevens aanpassen"));
 
@@ -318,15 +330,60 @@ public class ChangeCustomer extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Opties"));
 
+        listBagageToPrint.setLayoutOrientation(javax.swing.JList.HORIZONTAL_WRAP);
+        jScrollPane1.setViewportView(listBagageToPrint);
+
+        btDeleteListItem.setText("Uit lijst verwijderen");
+        btDeleteListItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btDeleteListItemActionPerformed(evt);
+            }
+        });
+
+        btClearList.setText("Lijst leegmaken");
+        btClearList.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btClearListActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Bagagelijst voor bon");
+
+        btCreatePdf.setText("Bewijs voor klant printen");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 340, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btCreatePdf))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(btDeleteListItem)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btClearList)
+                        .addGap(86, 86, 86))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btClearList)
+                    .addComponent(btDeleteListItem))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btCreatePdf)
+                .addContainerGap())
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Bagage van " + customer.getFirstName() + " " + customer.getLastName()));
@@ -358,20 +415,49 @@ public class ChangeCustomer extends javax.swing.JFrame {
         luggageTable.setVerifyInputWhenFocusTarget(false);
         jScrollPane7.setViewportView(luggageTable);
 
+        btAddToList.setText("Toevoegen aan printlijst");
+        btAddToList.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAddToListActionPerformed(evt);
+            }
+        });
+
+        chbHideHandled.setText("Afgehandelde bagage verbergen");
+
+        chbHideLost.setText("Vermist bagage verbergen");
+
+        chbHideFound.setText("Gevonde bagage verbergen");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane7)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 837, Short.MAX_VALUE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(btAddToList)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(chbHideHandled)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(chbHideLost)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(chbHideFound)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btAddToList)
+                    .addComponent(chbHideHandled)
+                    .addComponent(chbHideLost)
+                    .addComponent(chbHideFound))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -386,7 +472,8 @@ public class ChangeCustomer extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(customerRegistrationPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -397,7 +484,7 @@ public class ChangeCustomer extends javax.swing.JFrame {
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(customerRegistrationPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -417,11 +504,13 @@ public class ChangeCustomer extends javax.swing.JFrame {
     }//GEN-LAST:event_tfEmail2ActionPerformed
 
     private void btEditCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditCustomerActionPerformed
-        customer.updateCustomer(tfFirstName.getText().trim(), tfLastName.getText().trim(),
+        customer.updateCustomer(tfFirstName.getText().trim(),
+        tfLastName.getText().trim(),
         tfAddress1.getText().trim() + " " + tfAddress2.getText().trim(),
-        tfPostalCode.getText().trim(), tfCity.getText().trim(),
-        cbCountry.getSelectedItem().toString(), tfEmail1.getText() + "@"
-        + tfEmail2.getText(), tfPhoneHome.getText().trim(),
+        tfPostalCode.getText().trim(),
+        tfCity.getText().trim(),
+        cbCountry.getSelectedItem().toString(),
+        tfEmail1.getText() + "@" + tfEmail2.getText(), tfPhoneHome.getText().trim(),
         tfPhoneMobile.getText().trim());
     }//GEN-LAST:event_btEditCustomerActionPerformed
 
@@ -447,13 +536,33 @@ public class ChangeCustomer extends javax.swing.JFrame {
         tfLastName.setEditable(chbUnlockFields.isSelected());        
     }//GEN-LAST:event_chbUnlockFieldsActionPerformed
 
+    private void btDeleteListItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDeleteListItemActionPerformed
+        model.removeElement(listBagageToPrint.getSelectedValue());
+    }//GEN-LAST:event_btDeleteListItemActionPerformed
+
+    private void btAddToListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddToListActionPerformed
+        model.addElement(luggageTable.getValueAt(luggageTable.getSelectedRow(), 0).toString());
+    }//GEN-LAST:event_btAddToListActionPerformed
+
+    private void btClearListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btClearListActionPerformed
+        model.removeAllElements();
+    }//GEN-LAST:event_btClearListActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btAddToList;
+    private javax.swing.JButton btClearList;
+    private javax.swing.JButton btCreatePdf;
+    private javax.swing.JButton btDeleteListItem;
     private javax.swing.JButton btEditCustomer;
     private javax.swing.JComboBox cbCountry;
+    private javax.swing.JCheckBox chbHideFound;
+    private javax.swing.JCheckBox chbHideHandled;
+    private javax.swing.JCheckBox chbHideLost;
     private javax.swing.JCheckBox chbUnlockFields;
     private javax.swing.JPanel customerRegistrationPanel;
     private javax.swing.JLabel editInfoLabel;
     private javax.swing.JButton jButton4;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
@@ -466,7 +575,9 @@ public class ChangeCustomer extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JList listBagageToPrint;
     private javax.swing.JTable luggageTable;
     private javax.swing.JTextField tfAddress1;
     private javax.swing.JTextField tfAddress2;

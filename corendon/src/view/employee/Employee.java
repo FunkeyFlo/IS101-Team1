@@ -54,11 +54,13 @@ public class Employee extends javax.swing.JFrame {
         luggages = luggageModel.searchLuggageList(dbField, searchArg, showHandled);
         for(Luggage luggage : luggages) {
             modelLuggage1.addRow(new Object[] {new Integer(luggage.getLuggageId()),
-                (luggage.getCustomerId() == 0) ? "Nog niet toegewezen" : luggage.getCustomerId(),
+                (luggage.getCustomerId() == 0) ? "Nog niet toegewezen" : 
+                        luggage.getCustomerId(),
                 luggage.getDescription(),
                 luggage.getLocation(),
                 luggage.getDateLost(),
-                luggage.getStatus()});
+                (luggage.getStatus() == 2) ? "Gevonden" : 
+                        (luggage.getStatus() == 1) ? "Vermist" : "Adgehandeld"});
 
             //System.out.println(user.getFirstName());
         }
@@ -69,11 +71,13 @@ public class Employee extends javax.swing.JFrame {
         luggages = luggageModel.searchLuggageList(dbField, searchArg, showHandled);
         for(Luggage luggage : luggages) {
             modelLuggage2.addRow(new Object[] {new Integer(luggage.getLuggageId()),
-                (luggage.getCustomerId() == 0) ? "Nog niet toegewezen" : luggage.getCustomerId(),
+                (luggage.getCustomerId() == 0) ? "Nog niet toegewezen" :
+                        luggage.getCustomerId(),
                 luggage.getDescription(),
                 luggage.getLocation(),
                 luggage.getDateLost(),
-                luggage.getStatus()});
+                (luggage.getStatus() == 2) ? "Gevonden" : 
+                        (luggage.getStatus() == 1) ? "Vermist" : "Adgehandeld"});
 
             //System.out.println(user.getFirstName());
         }
@@ -987,6 +991,11 @@ public class Employee extends javax.swing.JFrame {
         });
 
         btPrintReceipt.setText("Bewijs voor klant printen");
+        btPrintReceipt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btPrintReceiptActionPerformed(evt);
+            }
+        });
 
         btDeleteLuggage.setText("Bagage verwijderen");
         btDeleteLuggage.addActionListener(new java.awt.event.ActionListener() {
@@ -1733,6 +1742,10 @@ public class Employee extends javax.swing.JFrame {
             tfDescription.setText("");
             tfLocation1.setText("");
     }//GEN-LAST:event_btCancelActionPerformed
+
+    private void btPrintReceiptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPrintReceiptActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btPrintReceiptActionPerformed
 
     /**
      * @param args the command line arguments
