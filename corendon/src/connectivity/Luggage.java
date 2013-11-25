@@ -15,7 +15,8 @@ public class Luggage {
     private DbManager db = new DbManager();
 
     private int luggageId, customerId, status;
-    private String description, location, dateLost, dateChanged, dateHandled, lastChangedBy;
+    private String description, location, dateLost, dateChanged,
+            dateHandled, dateFound, lastChangedBy;
 
     public Luggage() {
         db.openConnection();
@@ -23,7 +24,7 @@ public class Luggage {
 
     public Luggage(int luggageId, int customerId, String description,
             String location, String dateLost, int status, String dateChanged,
-            String dateHandled, String lastChangedBy) {
+            String dateHandled, String dateFound, String lastChangedBy) {
         this.luggageId = luggageId;
         this.customerId = customerId;
         this.description = description;
@@ -32,6 +33,7 @@ public class Luggage {
         this.status = status;
         this.dateChanged = dateChanged;
         this.dateHandled = dateHandled;
+        this.dateFound = dateFound;
         this.lastChangedBy = lastChangedBy;
     }
 
@@ -50,6 +52,7 @@ public class Luggage {
                     this.setStatus(result.getInt("status"));
                     this.setDateChanged(result.getString("date_changed"));
                     this.setDateHandled(result.getString("date_handled"));
+                    this.setDateFound(result.getString("date_found"));
                     this.setLastChangedBy(result.getString("last_changed_by"));
                 } else {
                     System.out.println("SOMETHING WENT WRONG");
@@ -112,7 +115,7 @@ public class Luggage {
         //lost luggage
         else if (dbField == 6) {
             sql = sqlSelect + " WHERE `date_lost` LIKE '%" + searchArg + "%'"
-                    + " AND is_lost = 1 AND is_handled = 0";
+                    + " AND status = 1";
         }
         
         //lost luggage, regardless if it is still lost or not
@@ -123,7 +126,7 @@ public class Luggage {
         //found luggage
         else if (dbField == 8) {
             sql = sqlSelect + " WHERE `date_found` LIKE '%" + searchArg + "%'"
-                    + " AND is_lost = 0 AND is_handled = 0";
+                    + " AND status = 2";
         }
         
         //found luggage, regardless if it is still found or not
@@ -161,6 +164,7 @@ public class Luggage {
                         result.getInt("status"),
                         result.getString("date_changed"),
                         result.getString("date_handled"),
+                        result.getString("date_found"),
                         result.getString("last_changed_by")));
             }
         } catch (SQLException e) {
@@ -295,5 +299,19 @@ public class Luggage {
 
     public void setLastChangedBy(String lastChangedBy) {
         this.lastChangedBy = lastChangedBy;
+    }
+
+    /**
+     * @return the dateFound
+     */
+    public String getDateFound() {
+        return dateFound;
+    }
+
+    /**
+     * @param dateFound the dateFound to set
+     */
+    public void setDateFound(String dateFound) {
+        this.dateFound = dateFound;
     }
 }
