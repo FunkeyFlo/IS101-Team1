@@ -117,21 +117,27 @@ public class Luggage {
             sql = sqlSelect + " WHERE `date_lost` LIKE '%" + searchArg + "%'"
                     + " AND is_lost = 1 AND is_handled = 0";
         }
+        
+        //lost luggage, regardless if it is still lost or not
+        else if (dbField == 7) {
+            sql = sqlSelect + " WHERE `date_lost` LIKE '%" + searchArg + "%'";
+        }
 
         //found luggage
-        else if (dbField == 7) {
-            sql = sqlSelect + " WHERE `date_lost` LIKE '%" + searchArg + "%'"
+        else if (dbField == 8) {
+            sql = sqlSelect + " WHERE `date_found` LIKE '%" + searchArg + "%'"
                     + " AND is_lost = 0 AND is_handled = 0";
+        }
+        
+        //found luggage, regardless if it is still found or not
+        else if (dbField == 9) {
+            sql = sqlSelect + " WHERE `date_found` LIKE '%" + searchArg + "%'";
         }
 
         //handled luggage
-        else if (dbField == 8) {
+        else if (dbField == 10) {
             sql = sqlSelect + " WHERE `date_handled` LIKE '%" + searchArg + "%'"
                     + " AND is_lost = 0 AND is_handled = 1";
-        }
-        
-        else if (dbField == 9) {
-            sql = sqlSelect + " WHERE `customer_id` = '" + searchArg + "'";
         }
 
         // Else statement is used to fill the table with all users
