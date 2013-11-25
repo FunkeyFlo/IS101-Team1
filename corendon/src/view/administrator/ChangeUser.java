@@ -42,6 +42,10 @@ public class ChangeUser extends javax.swing.JFrame {
         tfFirstName.setText(user.getFirstName());
         tfLastName.setText(user.getLastName());
         permissionSelector.setSelectedIndex(user.getPermissionId()-1);
+        
+        tfFirstName.setEditable(false);
+        tfLastName.setEditable(false);
+        permissionSelector.setEditable(false);
     }
 
     private void doChangeUser() {
@@ -130,6 +134,7 @@ public class ChangeUser extends javax.swing.JFrame {
         permissionSelector = new javax.swing.JComboBox();
         btCancel = new javax.swing.JButton();
         createUser = new javax.swing.JButton();
+        chbUnlockFields = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Gegevens aanpassen van gebruiker " + Session.tempUsername );
@@ -190,6 +195,13 @@ public class ChangeUser extends javax.swing.JFrame {
             }
         });
 
+        chbUnlockFields.setText("Velden ontgrendelen");
+        chbUnlockFields.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chbUnlockFieldsActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout userCreationPanelLayout = new javax.swing.GroupLayout(userCreationPanel);
         userCreationPanel.setLayout(userCreationPanelLayout);
         userCreationPanelLayout.setHorizontalGroup(
@@ -200,7 +212,8 @@ public class ChangeUser extends javax.swing.JFrame {
                     .addComponent(tfFirstName)
                     .addComponent(tfLastName)
                     .addGroup(userCreationPanelLayout.createSequentialGroup()
-                        .addGap(0, 100, Short.MAX_VALUE)
+                        .addComponent(chbUnlockFields)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                         .addComponent(btCancel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(createUser))
@@ -230,7 +243,8 @@ public class ChangeUser extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(userCreationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btCancel)
-                    .addComponent(createUser))
+                    .addComponent(createUser)
+                    .addComponent(chbUnlockFields))
                 .addGap(99, 99, 99))
         );
 
@@ -338,8 +352,15 @@ public class ChangeUser extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_createUserActionPerformed
 
+    private void chbUnlockFieldsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chbUnlockFieldsActionPerformed
+        tfFirstName.setEditable(chbUnlockFields.isSelected());
+        tfLastName.setEditable(chbUnlockFields.isSelected());
+        permissionSelector.setEditable(chbUnlockFields.isSelected());
+    }//GEN-LAST:event_chbUnlockFieldsActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btCancel;
+    private javax.swing.JCheckBox chbUnlockFields;
     private javax.swing.JButton createUser;
     private javax.swing.JLabel firstNameLabel;
     private javax.swing.JLabel lastNameLabel;

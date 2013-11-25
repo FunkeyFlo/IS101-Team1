@@ -62,7 +62,8 @@
                       <Component id="tfFirstName" alignment="0" max="32767" attributes="0"/>
                       <Component id="tfLastName" alignment="0" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="0" pref="100" max="32767" attributes="0"/>
+                          <Component id="chbUnlockFields" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace pref="36" max="32767" attributes="0"/>
                           <Component id="btCancel" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="createUser" min="-2" max="-2" attributes="0"/>
@@ -99,6 +100,7 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="btCancel" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="createUser" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="chbUnlockFields" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="99" max="-2" attributes="0"/>
               </Group>
@@ -162,6 +164,14 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="createUserActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="chbUnlockFields">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Velden ontgrendelen"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="chbUnlockFieldsActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

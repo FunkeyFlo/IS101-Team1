@@ -9,7 +9,6 @@ import java.awt.Component;
 import java.awt.Frame;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.sql.Date;
 import java.util.List;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
