@@ -163,14 +163,14 @@ public class Customer {
         db.insertQuery(sql);
     }
     
-    public void deleteCustomer(String tfCustomerID) {
-        String sql = "DELETE FROM `customer` WHERE `customer_id` = '" + tfCustomerID + "'";
+    public void deleteCustomer(String tfCustomerId) {
+        String sql = "DELETE FROM `customer` WHERE `customer_id` = '" + tfCustomerId + "'";
         db.insertQuery(sql);
     }
     
     public void updateCustomer(String firstName, String lastName, String address,
             String postalCode, String city, String country, String email,
-            String phoneHome, String phoneMobile, int luggageId) {
+            String phoneHome, String phoneMobile) {
         
         String sql = "UPDATE `customer` SET `first_name` = '" + firstName + "'"
                 + ", `last_name` = '" + lastName + "'"
@@ -182,7 +182,8 @@ public class Customer {
                 + ", `phone_home` = '" + phoneHome + "'"
                 + ", `last_changed_by` = '" + Session.storedUsername + "'"
                 + ", `phone_mobile` = '" + phoneMobile + "'"
-                + " WHERE `luggage_id` = " + luggageId;
+                + ", `date_changed` = CURRENT_TIMESTAMP"
+                + " WHERE `customer_id` = " + Session.storedCustomerId;
         
         db.insertQuery(sql);
     }

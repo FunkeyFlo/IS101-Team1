@@ -116,11 +116,11 @@ public class User {
     }
 
     // User to change desired user information (STRINGS)
-    public void changeUserStringData(String inputUsername, String dbField,
+    public void changeUserStringData(String username, String dbField,
             String newValue) {
         
         String sql = "UPDATE `user` SET `" + dbField + "` = '" + newValue
-                + "' WHERE `username` = '" + inputUsername + "'";
+                + "' WHERE `username` = '" + username + "'";
         db.insertQuery(sql);
     }
 

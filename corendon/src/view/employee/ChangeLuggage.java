@@ -21,6 +21,11 @@ public class ChangeLuggage extends javax.swing.JFrame {
         tfLocation.setText(luggage.getLocation());
         rbStatus.setSelected(luggage.isIsLost());
         rbDone.setSelected(luggage.isIsHandled());
+        
+        tfDescription.setEditable(false);
+        tfLocation.setEditable(false);
+        
+        //ER MOET NOG WAT KOMEN VOOR rbDone en rbStatus
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -44,6 +49,7 @@ public class ChangeLuggage extends javax.swing.JFrame {
         rbStatus = new javax.swing.JRadioButton();
         rbDone = new javax.swing.JRadioButton();
         editLuggageInfo = new javax.swing.JLabel();
+        chbUnlockFields = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Gegevens van baggage artikel: " + luggage.getLuggageId());
@@ -97,7 +103,14 @@ public class ChangeLuggage extends javax.swing.JFrame {
         });
 
         editLuggageInfo.setForeground(new java.awt.Color(102, 102, 102));
-        editLuggageInfo.setText("Laatst gewijzigd door " + user.getFirstName() + " " + user.getLastName() + " op " + luggage.getDateChanged());
+        editLuggageInfo.setText("Laatst gewijzigd door " + user.getFirstName() + " " + user.getLastName() + " op " + luggage.getDateChanged().substring(0, luggage.getDateChanged().length()-5));
+
+        chbUnlockFields.setText("Velden ontgrendelen");
+        chbUnlockFields.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chbUnlockFieldsActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout luggageRegistrationPanelLayout = new javax.swing.GroupLayout(luggageRegistrationPanel);
         luggageRegistrationPanel.setLayout(luggageRegistrationPanelLayout);
@@ -108,7 +121,8 @@ public class ChangeLuggage extends javax.swing.JFrame {
                 .addGroup(luggageRegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(editLuggageInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(luggageRegistrationPanelLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(chbUnlockFields)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btCancel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btUpdateLuggage))
@@ -152,7 +166,8 @@ public class ChangeLuggage extends javax.swing.JFrame {
                 .addGap(25, 25, 25)
                 .addGroup(luggageRegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btUpdateLuggage)
-                    .addComponent(btCancel))
+                    .addComponent(btCancel)
+                    .addComponent(chbUnlockFields))
                 .addContainerGap())
         );
         luggageRegistrationPanel.setLayer(lblCustomerID5, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -165,6 +180,7 @@ public class ChangeLuggage extends javax.swing.JFrame {
         luggageRegistrationPanel.setLayer(rbStatus, javax.swing.JLayeredPane.DEFAULT_LAYER);
         luggageRegistrationPanel.setLayer(rbDone, javax.swing.JLayeredPane.DEFAULT_LAYER);
         luggageRegistrationPanel.setLayer(editLuggageInfo, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        luggageRegistrationPanel.setLayer(chbUnlockFields, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -225,6 +241,11 @@ public class ChangeLuggage extends javax.swing.JFrame {
 
     }//GEN-LAST:event_rbStatusActionPerformed
 
+    private void chbUnlockFieldsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chbUnlockFieldsActionPerformed
+        tfDescription.setEditable(chbUnlockFields.isSelected());
+        tfLocation.setEditable(chbUnlockFields.isSelected());
+    }//GEN-LAST:event_chbUnlockFieldsActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -263,6 +284,7 @@ public class ChangeLuggage extends javax.swing.JFrame {
     private javax.swing.JButton btCancel;
     private javax.swing.JButton btUpdateLuggage;
     private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.JCheckBox chbUnlockFields;
     private javax.swing.JLabel editLuggageInfo;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblCustomerID5;

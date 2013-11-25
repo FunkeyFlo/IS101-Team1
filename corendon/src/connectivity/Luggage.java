@@ -129,6 +129,10 @@ public class Luggage {
             sql = sqlSelect + " WHERE `date_handled` LIKE '%" + searchArg + "%'"
                     + " AND is_lost = 0 AND is_handled = 1";
         }
+        
+        else if (dbField == 9) {
+            sql = sqlSelect + " WHERE `customer_id` = '" + searchArg + "'";
+        }
 
         // Else statement is used to fill the table with all users
         else {

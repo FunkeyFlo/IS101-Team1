@@ -38,8 +38,20 @@ public class ChangeCustomer extends javax.swing.JFrame {
         tfPhoneHome.setText(customer.getPhoneHome());
         tfPhoneMobile.setText(customer.getPhoneMobile());
         
+        tfAddress1.setEditable(false);
+        tfAddress2.setEditable(false);
+        tfFirstName.setEditable(false);
+        tfLastName.setEditable(false);
+        tfPostalCode.setEditable(false);
+        tfCity.setEditable(false);
+        cbCountry.setEditable(false);
+        tfEmail1.setEditable(false);
+        tfEmail2.setEditable(false);
+        tfPhoneHome.setEditable(false);
+        tfPhoneMobile.setEditable(false);
+        
         modelLuggage = (DefaultTableModel) this.luggageTable.getModel();
-        searchLuggage(2, Integer.toString(customer.getCustomerId()), 0);
+        searchLuggage(9, Integer.toString(customer.getCustomerId()), 0);
     }
     
     private void searchLuggage(int dbField, String searchArg, int showHandled) {
@@ -101,7 +113,7 @@ public class ChangeCustomer extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         tfPhoneMobile = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
-        createCustomer1 = new javax.swing.JButton();
+        btEditCustomer = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
@@ -110,6 +122,7 @@ public class ChangeCustomer extends javax.swing.JFrame {
         warningLabel1 = new javax.swing.JLabel();
         tfPostalCode = new javax.swing.JTextField();
         editInfoLabel = new javax.swing.JLabel();
+        chbUnlockFields = new javax.swing.JCheckBox();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane7 = new javax.swing.JScrollPane();
@@ -155,10 +168,10 @@ public class ChangeCustomer extends javax.swing.JFrame {
 
         jLabel18.setText("Mobiel tel.");
 
-        createCustomer1.setText("Aanpassen");
-        createCustomer1.addActionListener(new java.awt.event.ActionListener() {
+        btEditCustomer.setText("Aanpassen");
+        btEditCustomer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                createCustomer1ActionPerformed(evt);
+                btEditCustomerActionPerformed(evt);
             }
         });
 
@@ -183,7 +196,14 @@ public class ChangeCustomer extends javax.swing.JFrame {
         warningLabel1.setForeground(new java.awt.Color(255, 0, 0));
 
         editInfoLabel.setForeground(new java.awt.Color(102, 102, 102));
-        editInfoLabel.setText("Gegevens laatst gewijzigd door " + user.getFirstName() + " " + user.getLastName() + " op " + customer.getDateChanged());
+        editInfoLabel.setText("Gegevens laatst gewijzigd door " + user.getFirstName() + " " + user.getLastName() + " op " + customer.getDateChanged().substring(0, customer.getDateChanged().length()-5));
+
+        chbUnlockFields.setText("Velden ontgrendelen");
+        chbUnlockFields.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chbUnlockFieldsActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout customerRegistrationPanelLayout = new javax.swing.GroupLayout(customerRegistrationPanel);
         customerRegistrationPanel.setLayout(customerRegistrationPanelLayout);
@@ -195,10 +215,11 @@ public class ChangeCustomer extends javax.swing.JFrame {
                     .addComponent(editInfoLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(warningLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, customerRegistrationPanelLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(chbUnlockFields)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(createCustomer1))
+                        .addComponent(btEditCustomer))
                     .addGroup(customerRegistrationPanelLayout.createSequentialGroup()
                         .addGroup(customerRegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel15)
@@ -242,7 +263,7 @@ public class ChangeCustomer extends javax.swing.JFrame {
                                 .addGroup(customerRegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(cbCountry, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(tfEmail1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 175, Short.MAX_VALUE)))))
+                                .addGap(0, 173, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         customerRegistrationPanelLayout.setVerticalGroup(
@@ -296,8 +317,9 @@ public class ChangeCustomer extends javax.swing.JFrame {
                 .addComponent(warningLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(customerRegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(createCustomer1)
-                    .addComponent(jButton4))
+                    .addComponent(btEditCustomer)
+                    .addComponent(jButton4)
+                    .addComponent(chbUnlockFields))
                 .addContainerGap())
         );
 
@@ -307,7 +329,7 @@ public class ChangeCustomer extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 338, Short.MAX_VALUE)
+            .addGap(0, 340, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -382,7 +404,7 @@ public class ChangeCustomer extends javax.swing.JFrame {
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(customerRegistrationPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -401,9 +423,14 @@ public class ChangeCustomer extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tfEmail2ActionPerformed
 
-    private void createCustomer1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createCustomer1ActionPerformed
-     
-    }//GEN-LAST:event_createCustomer1ActionPerformed
+    private void btEditCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditCustomerActionPerformed
+        customer.updateCustomer(tfFirstName.getText().trim(), tfLastName.getText().trim(),
+        tfAddress1.getText().trim() + " " + tfAddress2.getText().trim(),
+        tfPostalCode.getText().trim(), tfCity.getText().trim(),
+        cbCountry.getSelectedItem().toString(), tfEmail1.getText() + "@"
+        + tfEmail2.getText(), tfPhoneHome.getText().trim(),
+        tfPhoneMobile.getText().trim());
+    }//GEN-LAST:event_btEditCustomerActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         dispose();
@@ -412,6 +439,20 @@ public class ChangeCustomer extends javax.swing.JFrame {
     private void cbCountryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbCountryActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbCountryActionPerformed
+
+    private void chbUnlockFieldsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chbUnlockFieldsActionPerformed
+        tfAddress1.setEditable(chbUnlockFields.isSelected());
+        tfAddress2.setEditable(chbUnlockFields.isSelected());
+        tfEmail1.setEditable(chbUnlockFields.isSelected());
+        tfEmail2.setEditable(chbUnlockFields.isSelected());
+        tfPostalCode.setEditable(chbUnlockFields.isSelected());
+        tfCity.setEditable(chbUnlockFields.isSelected());
+        cbCountry.setEditable(chbUnlockFields.isSelected());
+        tfPhoneHome.setEditable(chbUnlockFields.isSelected());
+        tfPhoneMobile.setEditable(chbUnlockFields.isSelected());
+        tfFirstName.setEditable(chbUnlockFields.isSelected());
+        tfLastName.setEditable(chbUnlockFields.isSelected());        
+    }//GEN-LAST:event_chbUnlockFieldsActionPerformed
 
     /**
      * @param args the command line arguments
@@ -448,8 +489,9 @@ public class ChangeCustomer extends javax.swing.JFrame {
 //        });
 //    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btEditCustomer;
     private javax.swing.JComboBox cbCountry;
-    private javax.swing.JButton createCustomer1;
+    private javax.swing.JCheckBox chbUnlockFields;
     private javax.swing.JPanel customerRegistrationPanel;
     private javax.swing.JLabel editInfoLabel;
     private javax.swing.JButton jButton4;

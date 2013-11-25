@@ -969,7 +969,7 @@
               <SubComponents>
                 <Component class="javax.swing.JButton" name="btChangeLuggage">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Bagage gegevens aanpassen"/>
+                    <Property name="text" type="java.lang.String" value="Uigebreide klantgegevens"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btChangeLuggageActionPerformed"/>

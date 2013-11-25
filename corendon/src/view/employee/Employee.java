@@ -998,7 +998,7 @@ public class Employee extends javax.swing.JFrame {
 
         luggageOptionsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Opties"));
 
-        btChangeLuggage.setText("Bagage gegevens aanpassen");
+        btChangeLuggage.setText("Uigebreide klantgegevens");
         btChangeLuggage.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btChangeLuggageActionPerformed(evt);

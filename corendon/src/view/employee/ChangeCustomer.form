@@ -50,7 +50,7 @@
                   <Component id="customerRegistrationPanel" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jPanel2" max="32767" attributes="0"/>
+              <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -75,10 +75,11 @@
                       <Component id="editInfoLabel" max="32767" attributes="0"/>
                       <Component id="warningLabel1" alignment="0" max="32767" attributes="0"/>
                       <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <Component id="chbUnlockFields" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                           <Component id="jButton4" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="createCustomer1" min="-2" max="-2" attributes="0"/>
+                          <Component id="btEditCustomer" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -135,7 +136,7 @@
                                       <Component id="cbCountry" min="-2" pref="116" max="-2" attributes="0"/>
                                       <Component id="tfEmail1" min="-2" pref="210" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace min="0" pref="175" max="32767" attributes="0"/>
+                                  <EmptySpace min="0" pref="173" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -205,8 +206,9 @@
                   <Component id="warningLabel1" min="-2" pref="27" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="createCustomer1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btEditCustomer" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jButton4" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="chbUnlockFields" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -279,12 +281,12 @@
             <Property name="text" type="java.lang.String" value="Mobiel tel."/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="createCustomer1">
+        <Component class="javax.swing.JButton" name="btEditCustomer">
           <Properties>
             <Property name="text" type="java.lang.String" value="Aanpassen"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="createCustomer1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btEditCustomerActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButton4">
@@ -336,9 +338,17 @@
               <Color blue="66" green="66" red="66" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="&quot;Gegevens laatst gewijzigd door &quot; + user.getFirstName() + &quot; &quot; + user.getLastName() + &quot; op &quot; + customer.getDateChanged()" type="code"/>
+              <Connection code="&quot;Gegevens laatst gewijzigd door &quot; + user.getFirstName() + &quot; &quot; + user.getLastName() + &quot; op &quot; + customer.getDateChanged().substring(0, customer.getDateChanged().length()-5)" type="code"/>
             </Property>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="chbUnlockFields">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Velden ontgrendelen"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="chbUnlockFieldsActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -354,7 +364,7 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="338" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="340" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">

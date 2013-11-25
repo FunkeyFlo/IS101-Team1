@@ -65,7 +65,8 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="editLuggageInfo" max="32767" attributes="0"/>
                       <Group type="102" attributes="0">
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <Component id="chbUnlockFields" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                           <Component id="btCancel" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="btUpdateLuggage" min="-2" max="-2" attributes="0"/>
@@ -123,6 +124,7 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="btUpdateLuggage" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btCancel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="chbUnlockFields" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -183,9 +185,6 @@
         </Container>
         <Component class="javax.swing.JRadioButton" name="rbStatus">
           <Properties>
-            <Property name="model" type="javax.swing.ButtonModel" editor="org.netbeans.modules.form.ComponentChooserEditor">
-              <ComponentRef name="default"/>
-            </Property>
             <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
               <ComponentRef name="buttonGroup2"/>
             </Property>
@@ -197,9 +196,6 @@
         </Component>
         <Component class="javax.swing.JRadioButton" name="rbDone">
           <Properties>
-            <Property name="model" type="javax.swing.ButtonModel" editor="org.netbeans.modules.form.ComponentChooserEditor">
-              <ComponentRef name="default"/>
-            </Property>
             <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
               <ComponentRef name="buttonGroup2"/>
             </Property>
@@ -215,9 +211,17 @@
               <Color blue="66" green="66" red="66" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="&quot;Laatst gewijzigd door &quot; + user.getFirstName() + &quot; &quot; + user.getLastName() + &quot; op &quot; + luggage.getDateChanged()" type="code"/>
+              <Connection code="&quot;Laatst gewijzigd door &quot; + user.getFirstName() + &quot; &quot; + user.getLastName() + &quot; op &quot; + luggage.getDateChanged().substring(0, luggage.getDateChanged().length()-5)" type="code"/>
             </Property>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="chbUnlockFields">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Velden ontgrendelen"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="chbUnlockFieldsActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
