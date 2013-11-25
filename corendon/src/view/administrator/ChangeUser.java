@@ -21,8 +21,8 @@ import main.Session;
  */
 public class ChangeUser extends javax.swing.JFrame {
 
-    User user = new User();
-    Administrator admin = new Administrator();
+    private User user = new User();
+    private Administrator admin = new Administrator();
     
     private Component Succes;
     private Component deleteUserPopup;
@@ -31,6 +31,7 @@ public class ChangeUser extends javax.swing.JFrame {
     public static String nameTypeToChange;
     public static String accountToChange;
     private Component ErrorPopUp;
+    
     /**
      * Creates new form ChangeUser
      */

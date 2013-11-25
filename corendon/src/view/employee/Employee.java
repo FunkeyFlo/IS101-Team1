@@ -28,8 +28,8 @@ public class Employee extends javax.swing.JFrame {
     private DefaultTableModel modelLuggage1, modelCustomer1, modelLuggage2, modelCustomer2;
     public static int customerId;
     public static int luggageId;
-    String customerToLink = null;
-    String luggageToLink = null;
+    private String customerToLink = null;
+    private String luggageToLink = null;
     public boolean isLinked = false;
     public static String customerFullName;
     private Component ErrorPopUp;
@@ -58,8 +58,7 @@ public class Employee extends javax.swing.JFrame {
                 luggage.getDescription(),
                 luggage.getLocation(),
                 luggage.getDateLost(),
-                luggage.isIsLost(),
-                luggage.isIsHandled()});
+                luggage.getStatus()});
 
             //System.out.println(user.getFirstName());
         }
@@ -74,8 +73,7 @@ public class Employee extends javax.swing.JFrame {
                 luggage.getDescription(),
                 luggage.getLocation(),
                 luggage.getDateLost(),
-                luggage.isIsLost(),
-                luggage.isIsHandled()});
+                luggage.getStatus()});
 
             //System.out.println(user.getFirstName());
         }
@@ -355,8 +353,7 @@ public class Employee extends javax.swing.JFrame {
         btCancel = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tfDescription = new javax.swing.JTextArea();
-        rbFound = new javax.swing.JRadioButton();
-        rbLost = new javax.swing.JRadioButton();
+        cbStatus = new javax.swing.JComboBox();
         luggageTablePanel = new javax.swing.JPanel();
         luggageSearchField1 = new javax.swing.JTextField();
         luggageSearchButton2 = new javax.swing.JButton();
@@ -806,16 +803,7 @@ public class Employee extends javax.swing.JFrame {
         tfDescription.setRows(5);
         jScrollPane2.setViewportView(tfDescription);
 
-        buttonGroup1.add(rbFound);
-        rbFound.setText("Gevonden");
-        rbFound.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbFoundActionPerformed(evt);
-            }
-        });
-
-        buttonGroup1.add(rbLost);
-        rbLost.setText("Vermist");
+        cbStatus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Vermist", "Gevonden", "Afgehandeld" }));
 
         javax.swing.GroupLayout luggageRegistrationPanelLayout = new javax.swing.GroupLayout(luggageRegistrationPanel);
         luggageRegistrationPanel.setLayout(luggageRegistrationPanelLayout);
@@ -840,11 +828,11 @@ public class Employee extends javax.swing.JFrame {
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 287, Short.MAX_VALUE)
                             .addGroup(luggageRegistrationPanelLayout.createSequentialGroup()
                                 .addGroup(luggageRegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(tfLocation1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(tfCustomerID1, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(rbFound)
-                                    .addComponent(rbLost))
-                                .addGap(0, 110, Short.MAX_VALUE)))))
+                                    .addGroup(luggageRegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(cbStatus, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(tfLocation1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE)))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         luggageRegistrationPanelLayout.setVerticalGroup(
@@ -864,16 +852,11 @@ public class Employee extends javax.swing.JFrame {
                 .addGroup(luggageRegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCustomerID6)
                     .addComponent(tfLocation1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(luggageRegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(luggageRegistrationPanelLayout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(lblCustomerID7))
-                    .addGroup(luggageRegistrationPanelLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(rbLost)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(rbFound)
-                .addGap(24, 24, 24)
+                .addGap(9, 9, 9)
+                .addGroup(luggageRegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblCustomerID7)
+                    .addComponent(cbStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(55, 55, 55)
                 .addGroup(luggageRegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btCreateLuggage)
                     .addComponent(btCancel))
@@ -888,8 +871,7 @@ public class Employee extends javax.swing.JFrame {
         luggageRegistrationPanel.setLayer(btCreateLuggage, javax.swing.JLayeredPane.DEFAULT_LAYER);
         luggageRegistrationPanel.setLayer(btCancel, javax.swing.JLayeredPane.DEFAULT_LAYER);
         luggageRegistrationPanel.setLayer(jScrollPane2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        luggageRegistrationPanel.setLayer(rbFound, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        luggageRegistrationPanel.setLayer(rbLost, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        luggageRegistrationPanel.setLayer(cbStatus, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         luggageTablePanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Bagage"));
 
@@ -917,14 +899,14 @@ public class Employee extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Bagage ID", "Klant ID", "Omschrijving", "Locatie", "Datum Vermist", "Vermist", "Afgehandeld"
+                "Bagage ID", "Klant ID", "Omschrijving", "Locatie", "Datum Vermist", "Status"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Boolean.class, java.lang.Boolean.class
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -974,7 +956,7 @@ public class Employee extends javax.swing.JFrame {
                         .addComponent(cbSearchLuggage1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(showHandledLuggage2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 6, Short.MAX_VALUE)
                         .addComponent(refreshLuggageTable2))
                     .addComponent(jScrollPane7))
                 .addContainerGap())
@@ -1096,14 +1078,14 @@ public class Employee extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Bagage ID", "Klant ID", "Omschrijving", "Locatie", "Datum Vermist", "Vermist", "Afgehandeld"
+                "Bagage ID", "Klant ID", "Omschrijving", "Locatie", "Datum Vermist", "Status"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Boolean.class, java.lang.Boolean.class
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -1426,7 +1408,6 @@ public class Employee extends javax.swing.JFrame {
             isLinked = false;
         }
 
-
         customerId = Integer.parseInt(customerToLink);
         luggageId = Integer.parseInt(luggageToLink);
         String message = "Weet u zeker dat u klant: " + customerFullName + "\n"
@@ -1440,7 +1421,6 @@ public class Employee extends javax.swing.JFrame {
             searchCustomerTable1(cbSearchLuggage.getSelectedIndex(), customerSearchField.getText());
             searchLuggageTable1(cbSearchCustomer.getSelectedIndex(), luggageSearchField.getText(), getShowHandled1());
         }
-    
     
     }//GEN-LAST:event_linkButtonActionPerformed
 
@@ -1468,8 +1448,7 @@ public class Employee extends javax.swing.JFrame {
         Luggage luggage = new Luggage();
         boolean[] correctInput = new boolean[3];
         boolean totalCorrectInput = false;
-        int isLost;
-        int isFound;       
+        int status;      
         String customerId;
         int storedUserId;
         
@@ -1487,28 +1466,19 @@ public class Employee extends javax.swing.JFrame {
             errorPopUp("Voer een locatie in en probeer het nog eens.");
             correctInput[1] = false;
         }
-        else 
+        else
             correctInput[1] = true;
         
         customerId = tfCustomerID1.getText().trim();
-        if(!customerId.matches("[0-9]+"))
+        if(!customerId.matches("[0-9]") && !customerId.equals(""))
         {
-           errorPopUp("Klant ID kan alleen nummers bevatten!");
-           correctInput[2] = false;
+            errorPopUp("Klant ID kan alleen nummers bevatten!");
+            correctInput[2] = false;
         }
         else
             correctInput[2] = true;
         
-                    
-        if(rbLost.isSelected())
-            isLost = 1;
-        else
-            isLost = 0;
-        
-        if(rbFound.isSelected())
-            isFound = 1;
-        else
-            isFound = 0;        
+        status = cbStatus.getSelectedIndex()+1;
       
         for (int i = 0; i < correctInput.length; i++) {
             if (correctInput[i] == false) {
@@ -1519,21 +1489,15 @@ public class Employee extends javax.swing.JFrame {
                 totalCorrectInput = true;
             }
         }
+        
         System.out.println(totalCorrectInput);
         if (totalCorrectInput) {                   
-            luggage.createLuggage(customerId, description, location, isLost, isFound);
+            luggage.createLuggage(customerId, description, location, status);
             tfCustomerID1.setText("");
             tfDescription.setText("");
             tfLocation1.setText("");
             searchLuggageTable2(9999, "", getShowHandled2());
-        }        
-
-        
-        
-        
-       
-      
-     
+        }
       // TODO add your handling code here:
     }//GEN-LAST:event_btCreateLuggageActionPerformed
 
@@ -1738,10 +1702,6 @@ public class Employee extends javax.swing.JFrame {
         Main.displayChangeCustomer();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void rbFoundActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbFoundActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rbFoundActionPerformed
-
     private void btDeleteLuggageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDeleteLuggageActionPerformed
        boolean isError = false;
        boolean confirmation = false;
@@ -1820,6 +1780,7 @@ public class Employee extends javax.swing.JFrame {
     private javax.swing.JComboBox cbSearchCustomer1;
     private javax.swing.JComboBox cbSearchLuggage;
     private javax.swing.JComboBox cbSearchLuggage1;
+    private javax.swing.JComboBox cbStatus;
     private javax.swing.JMenuItem changePassword;
     private javax.swing.JButton createCustomer1;
     private javax.swing.JPanel customer;
@@ -1873,8 +1834,6 @@ public class Employee extends javax.swing.JFrame {
     private javax.swing.JPanel luggageTablePanel;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JTabbedPane overviewPane;
-    private javax.swing.JRadioButton rbFound;
-    private javax.swing.JRadioButton rbLost;
     private javax.swing.JButton refreshCustomerTable2;
     private javax.swing.JButton refreshLuggageTable2;
     private javax.swing.JButton refreshTables1;

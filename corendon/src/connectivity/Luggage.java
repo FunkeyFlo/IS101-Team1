@@ -14,24 +14,22 @@ public class Luggage {
 
     private DbManager db = new DbManager();
 
-    private int luggageId, customerId;
+    private int luggageId, customerId, status;
     private String description, location, dateLost, dateChanged, dateHandled, lastChangedBy;
-    private boolean isLost, isHandled;
 
     public Luggage() {
         db.openConnection();
     }
 
     public Luggage(int luggageId, int customerId, String description,
-            String location, String dateLost, boolean isLost, boolean isHandled,
-            String dateChanged, String dateHandled, String lastChangedBy) {
+            String location, String dateLost, int status, String dateChanged,
+            String dateHandled, String lastChangedBy) {
         this.luggageId = luggageId;
         this.customerId = customerId;
         this.description = description;
         this.location = location;
         this.dateLost = dateLost;
-        this.isLost = isLost;
-        this.isHandled = isHandled;
+        this.status = status;
         this.dateChanged = dateChanged;
         this.dateHandled = dateHandled;
         this.lastChangedBy = lastChangedBy;
@@ -49,8 +47,7 @@ public class Luggage {
                     this.setDescription(result.getString("description"));
                     this.setLocation(result.getString("location"));
                     this.setDateLost(result.getString("date_lost"));
-                    this.setIsLost(result.getBoolean("is_lost"));
-                    this.setIsHandled(result.getBoolean("is_handled"));
+                    this.setStatus(result.getInt("status"));
                     this.setDateChanged(result.getString("date_changed"));
                     this.setDateHandled(result.getString("date_handled"));
                     this.setLastChangedBy(result.getString("last_changed_by"));
@@ -68,7 +65,7 @@ public class Luggage {
         String showHandled, sql, sqlSelect = "SELECT * FROM `luggage`";
 
         if (handled == 1) {
-            showHandled = " AND `is_handled` = 0";
+            showHandled = " AND `status` = 3";
         } else {
             showHandled = "";
         }
@@ -137,13 +134,17 @@ public class Luggage {
         //handled luggage
         else if (dbField == 10) {
             sql = sqlSelect + " WHERE `date_handled` LIKE '%" + searchArg + "%'"
-                    + " AND is_lost = 0 AND is_handled = 1";
+                    + " AND `status` = 3";
+        }
+        
+        else if (dbField == 11) {
+            sql = sqlSelect + " WHERE `customer_id` = '" + searchArg + "'";
         }
 
         // Else statement is used to fill the table with all users
         else {
             if (handled == 1) {
-                sql = sqlSelect + " WHERE `is_handled` = 0";
+                sql = sqlSelect + " WHERE `status` != 3";
             } else {
                 sql = sqlSelect;
             }
@@ -157,8 +158,7 @@ public class Luggage {
                         result.getString("description"),
                         result.getString("location"),
                         result.getString("date_lost"),
-                        result.getBoolean("is_lost"),
-                        result.getBoolean("is_handled"),
+                        result.getInt("status"),
                         result.getString("date_changed"),
                         result.getString("date_handled"),
                         result.getString("last_changed_by")));
@@ -171,34 +171,32 @@ public class Luggage {
 
     // Method to create new luggage
     public void createLuggage(String customerId, String description, 
-            String location, int isLost, int isHandled) {
+            String location, int status) {
         if (customerId.equals("")) {
             customerId = "NULL";
         }
         String sql = "INSERT INTO `luggage` (customer_id, description, location, "
-                + "is_lost, is_handled, last_changed_by , date_changed) VALUES ("
+                + "status, last_changed_by , date_changed) VALUES ("
                 + customerId + ", '" 
                 + description + "', '" 
                 + location + "', '"
-                + isLost + "', '"
-                + isHandled + "', '"
+                + status + "', '"
                 + Session.storedUsername + "', "
                 + "CURRENT_TIMESTAMP)";
         db.insertQuery(sql);
     }
     
     public void updateLuggage(int luggageId, String description, 
-            String location, int isLost, int isHandled) {
+            String location, int status) {
         String dateHandled = "";
         
-        if(isHandled == 1) {
+        if(status == 3) {
             dateHandled = ", `date_handled` = CURRENT_TIMESTAMP";
         }
         
         String sql = "UPDATE `luggage` SET `description` = '" + description + "'"
                 + ", `location` = '" + location + "'"
-                + ", `is_lost` = " + isLost + ""
-                + ", `is_handled` = " + isHandled + ""
+                + ", `status` = " + status + ""
                 + ", `date_changed` = CURRENT_TIMESTAMP"
                 + dateHandled
                 + ", `last_changed_by` = '" + Session.storedUsername + "'"
@@ -229,6 +227,14 @@ public class Luggage {
 
     public int getLuggageId() {
         return luggageId;
+    }
+    
+    public int getStatus() {
+        return status;
+    }
+    
+    public void setStatus(int status) {
+        this.status = status;
     }
 
     public void setLuggageId(int luggageId) {
@@ -265,22 +271,6 @@ public class Luggage {
 
     public void setDateLost(String dateLost) {
         this.dateLost = dateLost;
-    }
-
-    public boolean isIsLost() {
-        return isLost;
-    }
-
-    public void setIsLost(boolean isLost) {
-        this.isLost = isLost;
-    }
-
-    public boolean isIsHandled() {
-        return isHandled;
-    }
-
-    public void setIsHandled(boolean isHandled) {
-        this.isHandled = isHandled;
     }
 
     public String getDateChanged() {

@@ -51,11 +51,10 @@ public class ChangeCustomer extends javax.swing.JFrame {
         tfPhoneMobile.setEditable(false);
         
         modelLuggage = (DefaultTableModel) this.luggageTable.getModel();
-        searchLuggage(9, Integer.toString(customer.getCustomerId()), 0);
+        searchLuggage(11, Integer.toString(customer.getCustomerId()), 0);
     }
     
     private void searchLuggage(int dbField, String searchArg, int showHandled) {
-//        modelLuggage.setRowCount(0); //nodig voor 
         luggages = luggageModel.searchLuggageList(dbField, searchArg, showHandled);
         for(Luggage luggage : luggages) {
             modelLuggage.addRow(new Object[] {new Integer(luggage.getLuggageId()),
@@ -63,10 +62,7 @@ public class ChangeCustomer extends javax.swing.JFrame {
                 luggage.getDescription(),
                 luggage.getLocation(),
                 luggage.getDateLost(),
-                luggage.isIsLost(),
-                luggage.isIsHandled()});
-
-            //System.out.println(user.getFirstName());
+                luggage.getStatus()});
         }
     }
     
@@ -81,9 +77,6 @@ public class ChangeCustomer extends javax.swing.JFrame {
         }
 
         seperatedItems[1] = temp[temp.length-1];
-
-        System.out.println(seperatedItems[1]);
-        System.out.println(seperatedItems[0]);
 
         return seperatedItems;
     }
@@ -344,14 +337,14 @@ public class ChangeCustomer extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Bagage ID", "Klant ID", "Omschrijving", "Locatie", "Datum Vermist", "Vermist", "Afgehandeld"
+                "Bagage ID", "Klant ID", "Omschrijving", "Locatie", "Datum Vermist", "Status"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Boolean.class, java.lang.Boolean.class
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -454,40 +447,6 @@ public class ChangeCustomer extends javax.swing.JFrame {
         tfLastName.setEditable(chbUnlockFields.isSelected());        
     }//GEN-LAST:event_chbUnlockFieldsActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(ChangeCustomer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(ChangeCustomer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(ChangeCustomer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(ChangeCustomer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new ChangeCustomer().setVisible(true);
-//            }
-//        });
-//    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btEditCustomer;
     private javax.swing.JComboBox cbCountry;

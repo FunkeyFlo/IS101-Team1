@@ -17,8 +17,8 @@ public class ChangeLuggage extends javax.swing.JFrame {
 
     private Component ErrorPopUp;
     private Component confirmationPopUp;
-    Luggage luggage = new Luggage();
-    User user = new User();
+    private Luggage luggage = new Luggage();
+    private User user = new User();
 
     public ChangeLuggage() {
         luggage.getLuggageData(Session.storedLuggageId, "luggage_id");
@@ -27,8 +27,7 @@ public class ChangeLuggage extends javax.swing.JFrame {
         initComponents();
         tfDescription.setText(luggage.getDescription());
         tfLocation.setText(luggage.getLocation());
-        rbStatus.setSelected(luggage.isIsLost());
-        rbDone.setSelected(luggage.isIsHandled());
+        cbStatus.setSelectedIndex(luggage.getStatus()-1);
         
         tfDescription.setEditable(false);
         tfLocation.setEditable(false);
@@ -88,10 +87,9 @@ public class ChangeLuggage extends javax.swing.JFrame {
         btCancel = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tfDescription = new javax.swing.JTextArea();
-        rbStatus = new javax.swing.JRadioButton();
-        rbDone = new javax.swing.JRadioButton();
         editLuggageInfo = new javax.swing.JLabel();
         chbUnlockFields = new javax.swing.JCheckBox();
+        cbStatus = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Gegevens van baggage artikel: " + luggage.getLuggageId());
@@ -128,22 +126,6 @@ public class ChangeLuggage extends javax.swing.JFrame {
         tfDescription.setRows(5);
         jScrollPane2.setViewportView(tfDescription);
 
-        buttonGroup2.add(rbStatus);
-        rbStatus.setText("Vermist");
-        rbStatus.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbStatusActionPerformed(evt);
-            }
-        });
-
-        buttonGroup2.add(rbDone);
-        rbDone.setText("Afgehandeld");
-        rbDone.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbDoneActionPerformed(evt);
-            }
-        });
-
         editLuggageInfo.setForeground(new java.awt.Color(102, 102, 102));
         editLuggageInfo.setText("Laatst gewijzigd door " + user.getFirstName() + " " + user.getLastName() + " op " + luggage.getDateChanged().substring(0, luggage.getDateChanged().length()-5));
 
@@ -153,6 +135,8 @@ public class ChangeLuggage extends javax.swing.JFrame {
                 chbUnlockFieldsActionPerformed(evt);
             }
         });
+
+        cbStatus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Vermist", "Gevonden", "Afgehandeld" }));
 
         javax.swing.GroupLayout luggageRegistrationPanelLayout = new javax.swing.GroupLayout(luggageRegistrationPanel);
         luggageRegistrationPanel.setLayout(luggageRegistrationPanelLayout);
@@ -178,9 +162,8 @@ public class ChangeLuggage extends javax.swing.JFrame {
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 390, Short.MAX_VALUE)
                             .addGroup(luggageRegistrationPanelLayout.createSequentialGroup()
                                 .addGroup(luggageRegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(rbStatus)
-                                    .addComponent(rbDone)
-                                    .addComponent(tfLocation, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(tfLocation, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cbStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
@@ -199,13 +182,11 @@ public class ChangeLuggage extends javax.swing.JFrame {
                 .addGroup(luggageRegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCustomerID6)
                     .addComponent(tfLocation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
+                .addGap(9, 9, 9)
                 .addGroup(luggageRegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCustomerID7)
-                    .addComponent(rbStatus))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(rbDone)
-                .addGap(25, 25, 25)
+                    .addComponent(cbStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(52, 52, 52)
                 .addGroup(luggageRegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btUpdateLuggage)
                     .addComponent(btCancel)
@@ -219,10 +200,9 @@ public class ChangeLuggage extends javax.swing.JFrame {
         luggageRegistrationPanel.setLayer(btUpdateLuggage, javax.swing.JLayeredPane.DEFAULT_LAYER);
         luggageRegistrationPanel.setLayer(btCancel, javax.swing.JLayeredPane.DEFAULT_LAYER);
         luggageRegistrationPanel.setLayer(jScrollPane2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        luggageRegistrationPanel.setLayer(rbStatus, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        luggageRegistrationPanel.setLayer(rbDone, javax.swing.JLayeredPane.DEFAULT_LAYER);
         luggageRegistrationPanel.setLayer(editLuggageInfo, javax.swing.JLayeredPane.DEFAULT_LAYER);
         luggageRegistrationPanel.setLayer(chbUnlockFields, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        luggageRegistrationPanel.setLayer(cbStatus, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -258,8 +238,10 @@ public class ChangeLuggage extends javax.swing.JFrame {
         boolean correctInput[] = new boolean[2];
         boolean totalCorrectInput = false;
         boolean finalCheck = false;
+        
         String description = tfDescription.getText();
         String location = tfLocation.getText();
+        
         if (description.equals("")) {
             errorPopUp("Vul een omschrijving in en probeer het nog eens.");
             correctInput[0] = false;
@@ -287,41 +269,22 @@ public class ChangeLuggage extends javax.swing.JFrame {
                 totalCorrectInput = true;
             }
         }
-
-        if (rbStatus.isSelected()) {
-            isLost = 1;
-        } else {
-            isLost = 0;
-        }
-
-        if (rbDone.isSelected()) {
-            isDone = 1;
-        } else {
-            isDone = 0;
-        }
+        
         if (totalCorrectInput == true) {
 
             finalCheck = confirmationPopUp("Nieuwe baggagegegevens:" + "\n" + "Omschrinving: " + description + "\n"
                     + "Locatie: " + location);
         }
+        
         if (finalCheck == true) {
             luggage.updateLuggage(luggage.getLuggageId(),
                     tfDescription.getText().trim(),
                     tfLocation.getText().trim(),
-                    isLost,
-                    isDone);
+                    cbStatus.getSelectedIndex());
         }
         dispose();
 
     }//GEN-LAST:event_btUpdateLuggageActionPerformed
-
-    private void rbDoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbDoneActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rbDoneActionPerformed
-
-    private void rbStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbStatusActionPerformed
-
-    }//GEN-LAST:event_rbStatusActionPerformed
 
     private void chbUnlockFieldsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chbUnlockFieldsActionPerformed
         tfDescription.setEditable(chbUnlockFields.isSelected());
@@ -366,6 +329,7 @@ public class ChangeLuggage extends javax.swing.JFrame {
     private javax.swing.JButton btCancel;
     private javax.swing.JButton btUpdateLuggage;
     private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.JComboBox cbStatus;
     private javax.swing.JCheckBox chbUnlockFields;
     private javax.swing.JLabel editLuggageInfo;
     private javax.swing.JScrollPane jScrollPane2;
@@ -373,8 +337,6 @@ public class ChangeLuggage extends javax.swing.JFrame {
     private javax.swing.JLabel lblCustomerID6;
     private javax.swing.JLabel lblCustomerID7;
     private javax.swing.JLayeredPane luggageRegistrationPanel;
-    private javax.swing.JRadioButton rbDone;
-    private javax.swing.JRadioButton rbStatus;
     private javax.swing.JTextArea tfDescription;
     private javax.swing.JTextField tfLocation;
     // End of variables declaration//GEN-END:variables

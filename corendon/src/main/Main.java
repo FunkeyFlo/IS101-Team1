@@ -16,7 +16,6 @@ import javax.swing.UIManager;
 import view.*;
 import view.administrator.ChangePassword;
 import view.administrator.ChangePermission;
-import view.popUps.*;
 
 /**
  *
@@ -35,17 +34,17 @@ public class Main {
         frameLogin.setVisible(true);
     }
 
-    public static void displayEmployee() { //permissionId = 1
+    public static void displayEmployee() { // permissionId = 1
         Employee frameEmployee = new Employee();
         frameEmployee.setVisible(true);
     }
 
-    public static void displayManager() { //permissionId = 2
+    public static void displayManager() { // permissionId = 2
         Manager frameManager = new Manager();
         frameManager.setVisible(true);
     }
 
-    public static void displayBeheerder() { //permissionId = 3
+    public static void displayBeheerder() { // permissionId = 3
         Administrator frameBeheerder = new Administrator();
         frameBeheerder.setVisible(true);
     }

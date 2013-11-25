@@ -664,12 +664,13 @@
                                       <Component id="jScrollPane2" pref="287" max="32767" attributes="0"/>
                                       <Group type="102" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="tfLocation1" min="-2" pref="134" max="-2" attributes="0"/>
                                               <Component id="tfCustomerID1" min="-2" pref="168" max="-2" attributes="0"/>
-                                              <Component id="rbFound" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              <Component id="rbLost" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                                  <Component id="cbStatus" alignment="0" max="32767" attributes="0"/>
+                                                  <Component id="tfLocation1" alignment="0" pref="134" max="32767" attributes="0"/>
+                                              </Group>
                                           </Group>
-                                          <EmptySpace min="0" pref="110" max="32767" attributes="0"/>
+                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -699,19 +700,12 @@
                               <Component id="lblCustomerID6" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="tfLocation1" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
-                                  <Component id="lblCustomerID7" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="rbLost" min="-2" max="-2" attributes="0"/>
-                              </Group>
+                          <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lblCustomerID7" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="cbStatus" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="rbFound" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="btCreateLuggage" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="btCancel" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -780,23 +774,15 @@
                     </Component>
                   </SubComponents>
                 </Container>
-                <Component class="javax.swing.JRadioButton" name="rbFound">
+                <Component class="javax.swing.JComboBox" name="cbStatus">
                   <Properties>
-                    <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-                      <ComponentRef name="buttonGroup1"/>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                      <StringArray count="3">
+                        <StringItem index="0" value="Vermist"/>
+                        <StringItem index="1" value="Gevonden"/>
+                        <StringItem index="2" value="Afgehandeld"/>
+                      </StringArray>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Gevonden"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rbFoundActionPerformed"/>
-                  </Events>
-                </Component>
-                <Component class="javax.swing.JRadioButton" name="rbLost">
-                  <Properties>
-                    <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-                      <ComponentRef name="buttonGroup1"/>
-                    </Property>
-                    <Property name="text" type="java.lang.String" value="Vermist"/>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -824,7 +810,7 @@
                                   <Component id="cbSearchLuggage1" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="showHandledLuggage2" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
+                                  <EmptySpace pref="6" max="32767" attributes="0"/>
                                   <Component id="refreshLuggageTable2" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Component id="jScrollPane7" alignment="0" max="32767" attributes="0"/>
@@ -879,14 +865,13 @@
                       <Properties>
                         <Property name="autoCreateRowSorter" type="boolean" value="true"/>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                          <Table columnCount="7" rowCount="0">
+                          <Table columnCount="6" rowCount="0">
                             <Column editable="false" title="Bagage ID" type="java.lang.Integer"/>
                             <Column editable="false" title="Klant ID" type="java.lang.Integer"/>
                             <Column editable="false" title="Omschrijving" type="java.lang.String"/>
                             <Column editable="false" title="Locatie" type="java.lang.String"/>
                             <Column editable="false" title="Datum Vermist" type="java.lang.String"/>
-                            <Column editable="false" title="Vermist" type="java.lang.Boolean"/>
-                            <Column editable="false" title="Afgehandeld" type="java.lang.Boolean"/>
+                            <Column editable="false" title="Status" type="java.lang.Integer"/>
                           </Table>
                         </Property>
                         <Property name="verifyInputWhenFocusTarget" type="boolean" value="false"/>
@@ -1123,14 +1108,13 @@
                           <Properties>
                             <Property name="autoCreateRowSorter" type="boolean" value="true"/>
                             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                              <Table columnCount="7" rowCount="0">
+                              <Table columnCount="6" rowCount="0">
                                 <Column editable="false" title="Bagage ID" type="java.lang.Integer"/>
                                 <Column editable="false" title="Klant ID" type="java.lang.Integer"/>
                                 <Column editable="false" title="Omschrijving" type="java.lang.String"/>
                                 <Column editable="false" title="Locatie" type="java.lang.String"/>
                                 <Column editable="false" title="Datum Vermist" type="java.lang.String"/>
-                                <Column editable="false" title="Vermist" type="java.lang.Boolean"/>
-                                <Column editable="false" title="Afgehandeld" type="java.lang.Boolean"/>
+                                <Column editable="false" title="Status" type="java.lang.Integer"/>
                               </Table>
                             </Property>
                             <Property name="verifyInputWhenFocusTarget" type="boolean" value="false"/>
