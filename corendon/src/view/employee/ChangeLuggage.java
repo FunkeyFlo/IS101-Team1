@@ -1,21 +1,29 @@
 package view.employee;
 
 import connectivity.*;
+import java.awt.Component;
+import java.awt.Frame;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import main.Session;
 
 /**
- * 
+ *
  * @author Team AwesomeSauce
  */
 public class ChangeLuggage extends javax.swing.JFrame {
 
+    private Component ErrorPopUp;
+    private Component confirmationPopUp;
     Luggage luggage = new Luggage();
     User user = new User();
-    
+
     public ChangeLuggage() {
         luggage.getLuggageData(Session.storedLuggageId, "luggage_id");
         user.getUserData(luggage.getLastChangedBy());
-        
+
         initComponents();
         tfDescription.setText(luggage.getDescription());
         tfLocation.setText(luggage.getLocation());
@@ -27,6 +35,40 @@ public class ChangeLuggage extends javax.swing.JFrame {
         
         //ER MOET NOG WAT KOMEN VOOR rbDone en rbStatus
     }
+
+    private void errorPopUp(String errorMessage) {
+        JOptionPane.showMessageDialog(ErrorPopUp, errorMessage);
+    }
+
+    private boolean confirmationPopUp(String message) {
+        boolean confirm = false;
+        final JOptionPane createUserPopPane = new JOptionPane(message,
+                JOptionPane.QUESTION_MESSAGE,
+                JOptionPane.YES_NO_OPTION);
+        final JDialog dialog = new JDialog((Frame) confirmationPopUp, "Click a button", true);
+        dialog.setContentPane(createUserPopPane);
+        createUserPopPane.addPropertyChangeListener(
+                new PropertyChangeListener() {
+                    public void propertyChange(PropertyChangeEvent e) {
+                        String prop = e.getPropertyName();
+
+                        if (dialog.isVisible()
+                        && (e.getSource() == createUserPopPane)
+                        && (prop.equals(JOptionPane.VALUE_PROPERTY))) {
+                            dialog.setVisible(false);
+                        }
+                    }
+                });
+        dialog.pack();
+        dialog.setVisible(true);
+
+        int value = ((Integer) createUserPopPane.getValue()).intValue();
+        if (value == JOptionPane.YES_OPTION) {
+            confirm = true;
+        }
+        return confirm;
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -213,24 +255,64 @@ public class ChangeLuggage extends javax.swing.JFrame {
     private void btUpdateLuggageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btUpdateLuggageActionPerformed
         int isLost;
         int isDone;
-        
-        if(rbStatus.isSelected()) {
+        boolean correctInput[] = new boolean[2];
+        boolean totalCorrectInput = false;
+        boolean finalCheck = false;
+        String description = tfDescription.getText();
+        String location = tfLocation.getText();
+        if (description.equals("")) {
+            errorPopUp("Vul een omschrijving in en probeer het nog eens.");
+            correctInput[0] = false;
+        } else if (description.length() > 200) {
+            errorPopUp("Het karakterlimiet voor de omschrijving is overschreden.");
+            correctInput[0] = false;
+        } else {
+            correctInput[0] = true;
+        }
+
+        if (location.equals("")) {
+            errorPopUp("Vul een locatie in en probeer het nog eens.");
+            correctInput[1] = false;
+        } else if (location.length() > 50) {
+            errorPopUp("Het karakterlimiet voor de locatie is overschreden.");
+            correctInput[0] = false;
+        } else {
+            correctInput[1] = true;
+        }
+
+        for (int counter = 0; counter < correctInput.length; counter++) {
+            if (correctInput[counter] == false) {
+                totalCorrectInput = false;
+            } else {
+                totalCorrectInput = true;
+            }
+        }
+
+        if (rbStatus.isSelected()) {
             isLost = 1;
         } else {
             isLost = 0;
         }
-        
-        if(rbDone.isSelected()) {
+
+        if (rbDone.isSelected()) {
             isDone = 1;
         } else {
             isDone = 0;
         }
-        
-        luggage.updateLuggage(luggage.getLuggageId(),
-                tfDescription.getText().trim(),
-                tfLocation.getText().trim(),
-                isLost,
-                isDone);
+        if (totalCorrectInput == true) {
+
+            finalCheck = confirmationPopUp("Nieuwe baggagegegevens:" + "\n" + "Omschrinving: " + description + "\n"
+                    + "Locatie: " + location);
+        }
+        if (finalCheck == true) {
+            luggage.updateLuggage(luggage.getLuggageId(),
+                    tfDescription.getText().trim(),
+                    tfLocation.getText().trim(),
+                    isLost,
+                    isDone);
+        }
+        dispose();
+
     }//GEN-LAST:event_btUpdateLuggageActionPerformed
 
     private void rbDoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbDoneActionPerformed
