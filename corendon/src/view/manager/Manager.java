@@ -284,14 +284,14 @@ public class Manager extends javax.swing.JFrame {
                     .addComponent(labelError, javax.swing.GroupLayout.Alignment.TRAILING)))
         );
 
-        cbShowAll.setText("Baggage wordt alleen meegeteld in de");
+        cbShowAll.setText("Zie alle data, zelfs als de status van de");
         cbShowAll.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbShowAllActionPerformed(evt);
             }
         });
 
-        jLabel6.setText("grafiek als de status klopt.");
+        jLabel6.setText("baggage niet meer van toepassing is.");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -422,7 +422,8 @@ public class Manager extends javax.swing.JFrame {
     
     /**
      * Creates the graph for all lost luggage data
-     * @param beginYear the year where the graph starts, as specified by the user
+     * @param beginYear the year where the graph starts, as specified by 
+     * the user
      * @param endYear the year where the graph ends
      * @param beginMonth the month in the year where the graph starts
      * @param endMonth  the month in the year where the graph ends

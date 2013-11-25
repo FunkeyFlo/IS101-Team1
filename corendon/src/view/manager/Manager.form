@@ -528,7 +528,7 @@
         </Container>
         <Component class="javax.swing.JCheckBox" name="cbShowAll">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Baggage wordt alleen meegeteld in de"/>
+            <Property name="text" type="java.lang.String" value="Zie alle data, zelfs als de status van de"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbShowAllActionPerformed"/>
@@ -536,7 +536,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel6">
           <Properties>
-            <Property name="text" type="java.lang.String" value="grafiek als de status klopt."/>
+            <Property name="text" type="java.lang.String" value="baggage niet meer van toepassing is."/>
           </Properties>
         </Component>
       </SubComponents>
