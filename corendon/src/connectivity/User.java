@@ -4,6 +4,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author Team AwesomeSauce
@@ -143,17 +145,24 @@ public class User {
     /**
      * Checks if the username is in use in de tabel User
      * @param username
-     * @return true if username is in use.
+     * @return true if username is in use
      */
     public boolean checkUsernameInUse(String username) {
-        String sql = "SELECT * FROM `users` WHERE `username` LIKE '%" + username + "%'";
+        boolean usernameInUse = true;
+        try {
+        String sql = "SELECT * FROM `user` WHERE `username` LIKE '%" + username + "%'";
         ResultSet result = db.doQuery(sql);
-
-        if (result == null) {
-            return true;
+        
+        if (result.next()) {
+            usernameInUse = true;
         } else {
-            return false;
+            usernameInUse = false;
         }
+        }catch(SQLException e) {
+            System.out.println(db.SQL_EXCEPTION + e.getMessage());
+        }
+        
+        return usernameInUse;
 
     }
     
