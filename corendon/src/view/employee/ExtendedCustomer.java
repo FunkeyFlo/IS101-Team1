@@ -19,6 +19,7 @@ import main.Session;
  */
 public class ExtendedCustomer extends javax.swing.JFrame {
     
+    private OverviewPrint print = new OverviewPrint();
     private Luggage luggageModel = new Luggage();
     private List<Luggage> luggages;
     private DefaultTableModel modelLuggage;
@@ -700,6 +701,7 @@ public class ExtendedCustomer extends javax.swing.JFrame {
         for(int i = 0; i < listBagageToPrint.getModel().getSize(); i++) {
             session.addToList((Integer) listBagageToPrint.getModel().getElementAt(i));
         }
+        print.create("/home/egbert/Documents/OverviewPrint.pdf");
     }//GEN-LAST:event_btCreatePdfActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
