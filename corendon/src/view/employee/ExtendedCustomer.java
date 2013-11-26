@@ -6,6 +6,7 @@ import java.awt.Frame;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JDialog;
@@ -701,7 +702,11 @@ public class ExtendedCustomer extends javax.swing.JFrame {
         for(int i = 0; i < listBagageToPrint.getModel().getSize(); i++) {
             session.addToList((Integer) listBagageToPrint.getModel().getElementAt(i));
         }
-        print.create("/home/egbert/Documents/OverviewPrint.pdf");
+        print.create("/home/egbert/Documents/OverviewPrint"
+                + user.getFirstName() + user.getLastName()
+                + Calendar.getInstance().get(Calendar.DATE)
+                + Calendar.getInstance().get(Calendar.MONTH)
+                + Calendar.getInstance().get(Calendar.YEAR) + ".pdf");
     }//GEN-LAST:event_btCreatePdfActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

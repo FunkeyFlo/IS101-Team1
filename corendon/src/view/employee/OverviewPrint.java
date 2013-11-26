@@ -12,6 +12,7 @@ import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import main.*;
 import connectivity.Luggage;
 import connectivity.User;
+import java.util.Calendar;
 
 /**
  *
@@ -28,7 +29,9 @@ public class OverviewPrint {
         luggage.getLuggageData(Session.itemsToPrint.get(0).toString(), "luggage_id");
         customer.getCustomerData(Session.storedCustomerId, "customer_id");
         user.getUserData(Session.storedUsername);
+
         System.out.println(Session.itemsToPrint);
+
         PDDocument document = null;
         try {
             document = new PDDocument();
@@ -100,8 +103,12 @@ public class OverviewPrint {
             contentStream.beginText();
             contentStream.setFont(font, 12);
             contentStream.moveTextPositionByAmount(100, 485);
-            contentStream.drawString("Datum afgehandeld: " + "      "
-                    + luggage.getDateHandled().substring(0, luggage.getDateHandled().length() - 10));
+            contentStream.drawString("Datum afgehandeld: " + "      " 
+                    + Calendar.getInstance().get(Calendar.DATE)
+                    + "-" + Calendar.getInstance().get(Calendar.MONTH) + "-" 
+                    + Calendar.getInstance().get(Calendar.YEAR) + " " 
+                    + Calendar.getInstance().get(Calendar.HOUR)
+                    + ":" + Calendar.getInstance().get(Calendar.MINUTE));
             contentStream.endText();
 
             contentStream.close();
