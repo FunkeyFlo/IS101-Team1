@@ -64,15 +64,7 @@ show create table `HierTableNaam` 				//om met commando een script commando op t
 alter table `user` change group_id permission_id int ; 		//voor mensen die nog de collumn group_id hebben
 
 
-CREATE TABLE `user` ( 
-	`user_id` int(11) NOT NULL AUTO_INCREMENT, 
-	`permission_id` int(11) NOT NULL DEFAULT '1',
-	`username` varchar(20) NOT NULL UNIQUE,
-	`first_name` varchar(50) NOT NULL,
-	`last_name`varchar(50) NOT NULL,
-	`password` varchar(100) NOT NULL,
-	`incorrect_login` int(11) NOT NULL DEFAULT '0',
-	PRIMARY KEY (user_id) ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8
+CREATE TABLE `user` (user_id INT NOT NULL AUTO_INCREMENT, permission_id INT DEFAULT 1  NOT NULL, username VARCHAR(20) NOT NULL, first_name VARCHAR(50) NOT NULL, last_name VARCHAR(50) NOT NULL, incorrect_login INT DEFAULT 0  NOT NULL, password VARCHAR(10000) NOT NULL, PRIMARY KEY (user_id));
 
 CREATE TABLE `customer` (
   `customer_id` int(11) NOT NULL AUTO_INCREMENT,
@@ -90,16 +82,4 @@ CREATE TABLE `customer` (
 
 
 
-CREATE TABLE `luggage` (
- `luggage_id` int(11) NOT NULL AUTO_INCREMENT,
- `customer_id` int(11) DEFAULT NULL,
- `description` varchar(200) DEFAULT NULL,
- `location` varchar(50) NOT NULL,
- `is_lost` tinyint(4) NOT NULL DEFAULT '1',
- `is_handled` tinyint(4) NOT NULL DEFAULT '0',
- `date_changed` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
- `date_lost` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
- `last_changed_by` int(50) NOT NULL,
- `date_handled` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
- PRIMARY KEY (`luggage_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8
+CREATE TABLE luggage (luggage_id INT NOT NULL AUTO_INCREMENT, customer_id INT, description VARCHAR(200), location VARCHAR(50) NOT NULL, is_lost TINYINT DEFAULT 1  NOT NULL, is_handled TINYINT DEFAULT 0  NOT NULL, date_changed TIMESTAMP DEFAULT CURRENT_TIMESTAMP  NOT NULL, date_lost TIMESTAMP DEFAULT CURRENT_TIMESTAMP  NOT NULL, date_handled TIMESTAMP DEFAULT 0000-00-00 00:00:00  NOT NULL, date_found TIMESTAMP DEFAULT 0000-00-00 00:00:00  NOT NULL, status INT NOT NULL, last_changed_by INT DEFAULT 1  NOT NULL, PRIMARY KEY (luggage_id));
