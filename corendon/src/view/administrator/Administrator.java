@@ -617,7 +617,7 @@ public class Administrator extends javax.swing.JFrame {
         try {
             accountToChange = userTable.getValueAt(userTable.getSelectedRow(), 0).toString();
         } catch (IndexOutOfBoundsException e) {
-            errorPopUp("Please make a selection in the table before trying again.");
+            errorPopUp("Maak een selectie in de tabel en probeer het nog eens.");
             isError = true;
         }
         if (isError == false) {
@@ -631,12 +631,12 @@ public class Administrator extends javax.swing.JFrame {
             user.changeUserIntData(userTable.getValueAt(userTable.getSelectedRow(),
                     3).toString(), "incorrect_login", user.MAX_INCORRECT_LOGINS);
         } catch (IndexOutOfBoundsException e) {
-            errorPopUp("Please make a selection in the table before trying again.");
+            errorPopUp("Maak een selectie in de tabel en probeer het nog eens.");
             isError = true;
         }
         if (isError == false) {
             searchUserTable(9999, "");
-            JOptionPane.showMessageDialog(Succes, "Account has been succesfully locked");
+            JOptionPane.showMessageDialog(Succes, "Account is succesvol gelockt");
         }
     }//GEN-LAST:event_lockAccountActionPerformed
 
@@ -645,7 +645,7 @@ public class Administrator extends javax.swing.JFrame {
             boolean totalCorrectInput = errorCheckCreateUser();
             boolean isConfirm = false;
             if (totalCorrectInput == false) {
-                errorPopUp("Please fill in all the fields before trying again.");
+                errorPopUp("Vul alle velden in en probeer het nogmaals.");
             } else {
                 isConfirm = createPopUp("Weet u zeker dat u deze gebruiker wilt aanmaken?");
                 if (isConfirm == true) {
@@ -660,7 +660,7 @@ public class Administrator extends javax.swing.JFrame {
             boolean totalCorrectInput = errorCheckCreateUser();
             boolean isConfirm = false;
             if (totalCorrectInput == false) {
-                errorPopUp("Please fill in all the fields before trying again.");
+                errorPopUp("Vul alle velden in en probeer het nogmaals.");
             } else {
                 isConfirm = createPopUp("Weet u zeker dat u deze gebruiker wilt aanmaken?");
                 if (isConfirm == true) {
@@ -676,7 +676,7 @@ public class Administrator extends javax.swing.JFrame {
             boolean totalCorrectInput = errorCheckCreateUser();
             boolean isConfirm = false;
             if (totalCorrectInput == false) {
-                errorPopUp("Please fill in all the fields before trying again.");
+                errorPopUp("Vul alle velden in en probeer het nogmaals.");
             } else {
                 isConfirm = createPopUp("Weet u zeker dat u deze gebruiker wilt aanmaken?");
                 if (isConfirm == true) {
@@ -691,7 +691,7 @@ public class Administrator extends javax.swing.JFrame {
             boolean totalCorrectInput = errorCheckCreateUser();
             boolean isConfirm = false;
             if (totalCorrectInput == false) {
-                errorPopUp("Please fill in all the fields before trying again.");
+                errorPopUp("Vul alle velden in en probeer het nogmaals.");
             } else {
                 isConfirm = createPopUp("Weet u zeker dat u deze gebruiker wilt aanmaken?");
                 if (isConfirm == true) {
@@ -707,7 +707,7 @@ public class Administrator extends javax.swing.JFrame {
             boolean totalCorrectInput = errorCheckCreateUser();
             boolean isConfirm = false;
             if (totalCorrectInput == false) {
-                errorPopUp("Please fill in all the fields before trying again.");
+                errorPopUp("Vul alle velden in en probeer het nogmaals.");
             } else {
                 isConfirm = createPopUp("Weet u zeker dat u deze gebruiker wilt aanmaken?");
                 if (isConfirm == true) {
@@ -727,12 +727,12 @@ public class Administrator extends javax.swing.JFrame {
             user.changeUserStringData(userTable.getValueAt(userTable.getSelectedRow(),
                     3).toString(), "incorrect_login", "0");
         } catch (IndexOutOfBoundsException e) {
-            errorPopUp("Please make a selection in the table before trying again.");
+            errorPopUp("Maak een selectie in de tabel en probeer het nog eens.");
             isError = true;
         }
         if (isError == false) {
             searchUserTable(9999, "");
-            JOptionPane.showMessageDialog(Succes, "Account has been succesfully unlocked");
+            JOptionPane.showMessageDialog(Succes, "Account is succesvol unlocked");
         }
     }//GEN-LAST:event_unlockAccountActionPerformed
 
@@ -741,7 +741,7 @@ public class Administrator extends javax.swing.JFrame {
         try {
             String check = userTable.getValueAt(userTable.getSelectedRow(), 3).toString();
         } catch (IndexOutOfBoundsException e) {
-            errorPopUp("Please make a selection in the table before trying again.");
+            errorPopUp("Maak een selectie in de tabel en probeer het nog eens.");
             isError = true;
         }
         if (isError == false) {
