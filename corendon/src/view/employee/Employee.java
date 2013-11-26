@@ -16,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
 import main.*;
 
 /**
- * 
+ *
  * @author Team AwesomeSauce
  */
 public class Employee extends javax.swing.JFrame {
@@ -35,59 +35,90 @@ public class Employee extends javax.swing.JFrame {
     private Component ErrorPopUp;
     private Component LuggagePopUp;
     private Component confirmationPopUp;
-    
+
     public Employee() {
         initComponents();
         modelLuggage1 = (DefaultTableModel) this.luggageTable1.getModel();
         modelCustomer1 = (DefaultTableModel) this.customerTable1.getModel();
         modelLuggage2 = (DefaultTableModel) this.luggageTable2.getModel();
         modelCustomer2 = (DefaultTableModel) this.customerTable2.getModel();
-        
+
         searchCustomerTable1(9999, "");
         searchLuggageTable1(9999, "", 1);
         searchCustomerTable2(9999, "");
         searchLuggageTable2(9999, "", 1);
     }
-    
+
+    /**
+     * Searches through the luggage database and loads the results into the
+     * first luggage table. This method takes the parameters and calls upon the
+     * searchLuggageList method to produce the intended result.
+     *
+     * @param dbField specifies the field to search in. Setting this parameter
+     * to 0 searches all fields.
+     * @param searchArg argument used to search the database.
+     * @param showHandled when this parameter is 1 it will show luggage that has
+     * already been handled
+     */
     public void searchLuggageTable1(int dbField, String searchArg, int showHandled) {
         modelLuggage1.setRowCount(0); //nodig voor 
         luggages = luggageModel.searchLuggageList(dbField, searchArg, showHandled);
-        for(Luggage luggage : luggages) {
-            modelLuggage1.addRow(new Object[] {new Integer(luggage.getLuggageId()),
-                (luggage.getCustomerId() == 0) ? "Nog niet toegewezen" : 
-                        luggage.getCustomerId(),
+        for (Luggage luggage : luggages) {
+            modelLuggage1.addRow(new Object[]{new Integer(luggage.getLuggageId()),
+                (luggage.getCustomerId() == 0) ? "Nog niet toegewezen"
+                : luggage.getCustomerId(),
                 luggage.getDescription(),
                 luggage.getLocation(),
                 luggage.getDateLost(),
-                (luggage.getStatus() == 2) ? "Gevonden" : 
-                        (luggage.getStatus() == 1) ? "Vermist" : "Adgehandeld"});
+                (luggage.getStatus() == 2) ? "Gevonden"
+                : (luggage.getStatus() == 1) ? "Vermist" : "Adgehandeld"});
 
             //System.out.println(user.getFirstName());
         }
     }
-    
+
+    /**
+     * Searches through the luggage database and loads the results into the
+     * second luggage table. This method takes the parameters and calls upon the
+     * searchLuggageList method to produce the intended result.
+     *
+     * @param dbField specifies the field to search in. Setting this parameter
+     * to 0 searches all fields.
+     * @param searchArg argument used to search the database.
+     * @param showHandled when this parameter is 1 it will show luggage that has
+     * already been handled
+     */
     private void searchLuggageTable2(int dbField, String searchArg, int showHandled) {
         modelLuggage2.setRowCount(0); //nodig voor 
         luggages = luggageModel.searchLuggageList(dbField, searchArg, showHandled);
-        for(Luggage luggage : luggages) {
-            modelLuggage2.addRow(new Object[] {new Integer(luggage.getLuggageId()),
-                (luggage.getCustomerId() == 0) ? "Nog niet toegewezen" :
-                        luggage.getCustomerId(),
+        for (Luggage luggage : luggages) {
+            modelLuggage2.addRow(new Object[]{new Integer(luggage.getLuggageId()),
+                (luggage.getCustomerId() == 0) ? "Nog niet toegewezen"
+                : luggage.getCustomerId(),
                 luggage.getDescription(),
                 luggage.getLocation(),
                 luggage.getDateLost(),
-                (luggage.getStatus() == 2) ? "Gevonden" : 
-                        (luggage.getStatus() == 1) ? "Vermist" : "Adgehandeld"});
+                (luggage.getStatus() == 2) ? "Gevonden"
+                : (luggage.getStatus() == 1) ? "Vermist" : "Adgehandeld"});
 
             //System.out.println(user.getFirstName());
         }
     }
-    
+
+    /**
+     * Searches through the customer database and loads the result into the
+     * first customer table. This method takes the parameters and calls upon the
+     * searchCustomerList method.
+     *
+     * @param dbField specifies the field to search in. Setting this parameter
+     * to 0 searches all fields.
+     * @param searchArg argument used to search the database.
+     */
     public void searchCustomerTable1(int dbField, String searchArg) {
         modelCustomer1.setRowCount(0); //nodig voor 
         customers = customerModel.searchCustomerList(dbField, searchArg);
-        for(Customer customer : customers) {
-            modelCustomer1.addRow(new Object[] {new Integer(customer.getCustomerId()),
+        for (Customer customer : customers) {
+            modelCustomer1.addRow(new Object[]{new Integer(customer.getCustomerId()),
                 customer.getFirstName(),
                 customer.getLastName(),
                 customer.getAddress(),
@@ -101,12 +132,21 @@ public class Employee extends javax.swing.JFrame {
             //System.out.println(user.getFirstName());
         }
     }
-    
+
+    /**
+     * Searches through the customer database and loads the result into the
+     * first customer table. This method takes the parameters and calls upon the
+     * searchCustomerList method.
+     *
+     * @param dbField specifies the field to search in. Setting this parameter
+     * to 0 searches all fields.
+     * @param searchArg argument used to search the database.
+     */
     private void searchCustomerTable2(int dbField, String searchArg) {
         modelCustomer2.setRowCount(0); //nodig voor 
         customers = customerModel.searchCustomerList(dbField, searchArg);
-        for(Customer customer : customers) {
-            modelCustomer2.addRow(new Object[] {new Integer(customer.getCustomerId()),
+        for (Customer customer : customers) {
+            modelCustomer2.addRow(new Object[]{new Integer(customer.getCustomerId()),
                 customer.getFirstName(),
                 customer.getLastName(),
                 customer.getAddress(),
@@ -118,7 +158,10 @@ public class Employee extends javax.swing.JFrame {
                 customer.getPhoneMobile()});
         }
     }
-    
+
+    /**
+     * Method used to quickly clear all the text fields.
+     */
     private void clearFields() {
         tfAddress1.setText("");
         tfAddress2.setText("");
@@ -131,39 +174,56 @@ public class Employee extends javax.swing.JFrame {
         tfPhoneMobile.setText("");
         tfPostalCode.setText("");
     }
-    
+
+    /**
+     * Method that shows or hides handled luggage depending on the state of the
+     * check box showHandledLuggage1
+     * @return int returns 0 when the checkbox is selected, otherwise returns 1
+     */
     public int getShowHandled1() {
-        if(showHandledLuggage1.isSelected()){
+        if (showHandledLuggage1.isSelected()) {
             return 0;
         } else {
             return 1;
         }
     }
     
+    /**
+     * Method that shows or hides handled luggage depending on the state of the
+     * check box showHandledLuggage1
+     * @return int returns 0 when the checkbox is selected, otherwise returns 1
+     */
     public int getShowHandled2() {
-        if(showHandledLuggage2.isSelected()){
+        if (showHandledLuggage2.isSelected()) {
             return 0;
         } else {
             return 1;
         }
     }
-            
-    public void refreshLink()
-    {
+    /**
+     * Method used to refresh the tables in the link luggage section
+     */
+    public void refreshLink() {
         searchCustomerTable1(cbSearchLuggage.getSelectedIndex(), customerSearchField.getText());
         searchLuggageTable1(cbSearchCustomer.getSelectedIndex(), luggageSearchField.getText(), getShowHandled1());
     }
-    
-    private void errorPopUp(String errorMessage)
-    {
-            JOptionPane.showMessageDialog(ErrorPopUp, errorMessage);
+    /**
+     * Method used to create and display an error message used for error-handling.
+     * @param errorMessage String message displayed on the pop-up.
+     */
+    private void errorPopUp(String errorMessage) {
+        JOptionPane.showMessageDialog(ErrorPopUp, errorMessage);
     }
     
-    private boolean errorCheckCreateCustomer()
-    {
+    /**
+     * Method for checking input errors, will return a boolean if all fields are
+     * filled in correctly.
+     * @return boolean returns true if the user has made no errors
+     */
+    private boolean errorCheckCreateCustomer() {
         boolean[] correctInput = new boolean[6];
         boolean totalCorrectInput = false;
-        
+
         String newFirstName = tfFirstName.getText().trim();
         String newLastName = tfLastName.getText().trim();
         String newAddress = tfAddress1.getText().trim() + " " + tfAddress2.getText().trim();
@@ -171,87 +231,64 @@ public class Employee extends javax.swing.JFrame {
         String newCity = tfCity.getText().trim();
         String newEmail = tfEmail1.getText().trim() + "@" + tfEmail2.getText().trim();
 
-
-        if (newFirstName.equals("") || newFirstName.length() > 50) 
-        {
+        if (newFirstName.equals("") || newFirstName.length() > 50) {
             correctInput[0] = false;
-        } 
-        else 
-        {
+        } else {
             correctInput[0] = true;
         }
-        
-        
-        if (newLastName.equals("") || newLastName.length() > 50) 
-        {
+
+        if (newLastName.equals("") || newLastName.length() > 50) {
             correctInput[1] = false;
-        } 
-        else 
-        {
+        } else {
             correctInput[1] = true;
         }
-        
-        
-        if (newAddress.equals(" ") || tfAddress1.getText().equals("") || tfAddress2.getText().equals("")) 
-        {
+
+        if (newAddress.equals(" ") || tfAddress1.getText().equals("") || tfAddress2.getText().equals("")) {
             correctInput[2] = false;
-        }
-        else 
-        {
+        } else {
             correctInput[2] = true;
         }
-            
-        if (newPostalCode.equals("")) 
-        {
+
+        if (newPostalCode.equals("")) {
             correctInput[3] = false;
-        }
-        else if (!tfPostalCode.getText().matches("[0-9]+")) 
-        {
+        } else if (!tfPostalCode.getText().matches("[0-9]+")) {
             correctInput[3] = false;
-        }
-        else 
-        {
+        } else {
             correctInput[3] = true;
         }
 
-        if (newCity.equals("")) 
-        {
+        if (newCity.equals("")) {
             correctInput[4] = false;
-        }
-        else 
-        {
+        } else {
             correctInput[4] = true;
         }
-        
-        
-        if (newEmail.length() > 75) 
-        {
+
+        if (newEmail.length() > 75) {
             correctInput[5] = false;
-        }
-        else if (!tfEmail2.getText().contains(".")) 
-        {
+        } else if (!tfEmail2.getText().contains(".")) {
             correctInput[5] = false;
-        }
-        else 
-        {
+        } else {
             correctInput[5] = true;
         }
 
         for (int i = 0; i < correctInput.length; i++) {
             if (correctInput[i] == false) {
                 totalCorrectInput = false;
-            }
-            else {
+            } else {
                 totalCorrectInput = true;
             }
-            
-        }   
+
+        }
         return totalCorrectInput;
     }
-    
-    private boolean confirmationPopUp(String message)        
-    {
-        boolean confirm = false ;
+    /**
+     * Method to display a yes-no pop-up that prompts the user to confirm their earlier
+     * choice.
+     * @param message String the message the user will see.
+     * @return 
+     */
+    private boolean confirmationPopUp(String message) {
+        boolean confirm = false;
         final JOptionPane createUserPopPane = new JOptionPane(message,
                 JOptionPane.QUESTION_MESSAGE,
                 JOptionPane.YES_NO_OPTION);
@@ -278,9 +315,8 @@ public class Employee extends javax.swing.JFrame {
         }
         return confirm;
     }
-    
-    private void doCreateCustomer()
-    {
+
+    private void doCreateCustomer() {
         Customer customer = new Customer();
         String newFirstName = tfFirstName.getText().trim();
         String newLastName = tfLastName.getText().trim();
@@ -291,9 +327,9 @@ public class Employee extends javax.swing.JFrame {
         String newEmail = tfEmail1.getText().trim() + "@" + tfEmail2.getText().trim();
         String newPhoneHome = tfPhoneHome.getText().trim();
         String newPhoneMobile = tfPhoneMobile.getText().trim();
-        customer.setNewCustomer(newFirstName , newLastName,
-                 newAddress, newPostalCode, newCity, newCountry, newEmail,
-                 newPhoneHome, newPhoneMobile);
+        customer.setNewCustomer(newFirstName, newLastName,
+                newAddress, newPostalCode, newCity, newCountry, newEmail,
+                newPhoneHome, newPhoneMobile);
         clearFields();
         searchCustomerTable2(9999, "");
     }
@@ -1375,12 +1411,11 @@ public class Employee extends javax.swing.JFrame {
 
     private void createCustomer1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createCustomer1ActionPerformed
         boolean totalCorrectInput = errorCheckCreateCustomer();
-        if (totalCorrectInput == true) 
-        {
+        if (totalCorrectInput == true) {
             doCreateCustomer();
-        }
-        else
+        } else {
             errorPopUp("Vul alle velden volledig in en probeer het nog eens.");
+        }
     }//GEN-LAST:event_createCustomer1ActionPerformed
 
     private void refreshCustomerTable2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshCustomerTable2ActionPerformed
@@ -1397,48 +1432,45 @@ public class Employee extends javax.swing.JFrame {
 
     private void btChangeLuggageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btChangeLuggageActionPerformed
         boolean isError = false;
-        try{
-        Session.storedLuggageId = luggageTable2.getValueAt(luggageTable2.getSelectedRow(), 0).toString();
-        }catch(IndexOutOfBoundsException e){
+        try {
+            Session.storedLuggageId = luggageTable2.getValueAt(luggageTable2.getSelectedRow(), 0).toString();
+        } catch (IndexOutOfBoundsException e) {
             errorPopUp("Maak een selectie in de tabel en probeer het nog eens.");
             isError = true;
         }
-        if(isError == false)
-        Main.displayChangeLuggage();
+        if (isError == false) {
+            Main.displayChangeLuggage();
+        }
     }//GEN-LAST:event_btChangeLuggageActionPerformed
 
     private void linkButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_linkButtonActionPerformed
         boolean confirmation;
         isLinked = true;
-        try
-        {
+        try {
             customerToLink = customerTable1.getValueAt(customerTable1.getSelectedRow(), 0).toString();
             luggageToLink = luggageTable1.getValueAt(luggageTable1.getSelectedRow(), 0).toString();
             String customerFirstName = customerTable1.getValueAt(customerTable1.getSelectedRow(), 1).toString() + " ";
             String customerLastName = customerTable1.getValueAt(customerTable1.getSelectedRow(), 2).toString();
             customerFullName = customerFirstName + customerLastName;
-        }
-        catch(IndexOutOfBoundsException e)
-        {
+        } catch (IndexOutOfBoundsException e) {
             JOptionPane.showMessageDialog(ErrorPopUp,
-            "Please make a selection in both tables and try again.");
+                    "Please make a selection in both tables and try again.");
             isLinked = false;
         }
 
         customerId = Integer.parseInt(customerToLink);
         luggageId = Integer.parseInt(luggageToLink);
         String message = "Weet u zeker dat u klant: " + customerFullName + "\n"
-        + "Wilt koppelen aan baggagestuk: " + luggageId ;
-        
+                + "Wilt koppelen aan baggagestuk: " + luggageId;
+
         confirmation = confirmationPopUp(message);
-        if (confirmation == true)
-        {
+        if (confirmation == true) {
             Luggage luggage = new Luggage();
             luggage.linkCustomerId(customerId, luggageId);
             searchCustomerTable1(cbSearchLuggage.getSelectedIndex(), customerSearchField.getText());
             searchLuggageTable1(cbSearchCustomer.getSelectedIndex(), luggageSearchField.getText(), getShowHandled1());
         }
-    
+
     }//GEN-LAST:event_linkButtonActionPerformed
 
     private void customerSearchButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customerSearchButton2ActionPerformed
@@ -1465,38 +1497,36 @@ public class Employee extends javax.swing.JFrame {
         Luggage luggage = new Luggage();
         boolean[] correctInput = new boolean[3];
         boolean totalCorrectInput = false;
-        int status;      
+        int status;
         String customerId;
         int storedUserId;
-        
+
         String description = tfDescription.getText().trim();
         if (description.equals("")) {
             errorPopUp("Voer een omschrijving in en probeer het nog eens.");
             correctInput[0] = false;
-        }
-        else 
+        } else {
             correctInput[0] = true;
-        
-       
+        }
+
         String location = tfLocation1.getText().trim();
-        if( location.equals("")){
+        if (location.equals("")) {
             errorPopUp("Voer een locatie in en probeer het nog eens.");
             correctInput[1] = false;
-        }
-        else
+        } else {
             correctInput[1] = true;
-        
+        }
+
         customerId = tfCustomerID1.getText().trim();
-        if(!customerId.matches("[0-9]") && !customerId.equals(""))
-        {
+        if (!customerId.matches("[0-9]") && !customerId.equals("")) {
             errorPopUp("Klant ID kan alleen nummers bevatten!");
             correctInput[2] = false;
-        }
-        else
+        } else {
             correctInput[2] = true;
-        
-        status = cbStatus.getSelectedIndex()+1;
-      
+        }
+
+        status = cbStatus.getSelectedIndex() + 1;
+
         for (int i = 0; i < correctInput.length; i++) {
             if (correctInput[i] == false) {
                 totalCorrectInput = false;
@@ -1506,45 +1536,45 @@ public class Employee extends javax.swing.JFrame {
                 totalCorrectInput = true;
             }
         }
-        
+
         System.out.println(totalCorrectInput);
-        if (totalCorrectInput) {                   
+        if (totalCorrectInput) {
             luggage.createLuggage(customerId, description, location, status);
             tfCustomerID1.setText("");
             tfDescription.setText("");
             tfLocation1.setText("");
             searchLuggageTable2(9999, "", getShowHandled2());
         }
-      // TODO add your handling code here:
+        // TODO add your handling code here:
     }//GEN-LAST:event_btCreateLuggageActionPerformed
 
     private void customerSearchField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_customerSearchField1KeyPressed
-        if(evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
             System.out.println("Enter pressed");
-        int searchField = cbSearchCustomer1.getSelectedIndex();
-        searchCustomerTable2(searchField, customerSearchField1.getText().trim());
+            int searchField = cbSearchCustomer1.getSelectedIndex();
+            searchCustomerTable2(searchField, customerSearchField1.getText().trim());
         }
     }//GEN-LAST:event_customerSearchField1KeyPressed
 
     private void luggageSearchField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_luggageSearchField1KeyPressed
-        if(evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
             int searchField = cbSearchLuggage1.getSelectedIndex();
             searchLuggageTable2(searchField, luggageSearchField1.getText().trim(), getShowHandled2());
         }
     }//GEN-LAST:event_luggageSearchField1KeyPressed
 
     private void luggageSearchFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_luggageSearchFieldKeyPressed
-    if(evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
             int searchField = cbSearchLuggage.getSelectedIndex();
             searchLuggageTable1(searchField, luggageSearchField.getText().trim(), getShowHandled1());
-    }
+        }
     }//GEN-LAST:event_luggageSearchFieldKeyPressed
 
     private void customerSearchFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_customerSearchFieldKeyPressed
-    if(evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
-        int searchField = cbSearchCustomer.getSelectedIndex();
-        searchCustomerTable1(searchField, customerSearchField.getText().trim());
-    }
+        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+            int searchField = cbSearchCustomer.getSelectedIndex();
+            searchCustomerTable1(searchField, customerSearchField.getText().trim());
+        }
     }//GEN-LAST:event_customerSearchFieldKeyPressed
 
     private void luggageSearchField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_luggageSearchField1ActionPerformed
@@ -1568,145 +1598,131 @@ public class Employee extends javax.swing.JFrame {
     }//GEN-LAST:event_showHandledLuggage1ActionPerformed
 
     private void tfFirstNameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfFirstNameKeyPressed
-    if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
-        boolean totalCorrectInput = errorCheckCreateCustomer();
-        if (totalCorrectInput == true) 
-        {
-            doCreateCustomer();
+        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+            boolean totalCorrectInput = errorCheckCreateCustomer();
+            if (totalCorrectInput == true) {
+                doCreateCustomer();
+            } else {
+                errorPopUp("Vul alle velden volledig in en probeer het nog eens.");
+            }
         }
-        else
-            errorPopUp("Vul alle velden volledig in en probeer het nog eens.");
-        }                                                 
     }//GEN-LAST:event_tfFirstNameKeyPressed
 
     private void tfLastNameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfLastNameKeyPressed
-    if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
-        boolean totalCorrectInput = errorCheckCreateCustomer();
-        if (totalCorrectInput == true) 
-        {
-            doCreateCustomer();
+        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+            boolean totalCorrectInput = errorCheckCreateCustomer();
+            if (totalCorrectInput == true) {
+                doCreateCustomer();
+            } else {
+                errorPopUp("Vul alle velden volledig in en probeer het nog eens.");
+            }
         }
-        else
-            errorPopUp("Vul alle velden volledig in en probeer het nog eens.");
-        }                                                 
     }//GEN-LAST:event_tfLastNameKeyPressed
 
     private void tfAddress1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfAddress1KeyPressed
-    if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
-        boolean totalCorrectInput = errorCheckCreateCustomer();
-        if (totalCorrectInput == true) 
-        {
-            doCreateCustomer();
+        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+            boolean totalCorrectInput = errorCheckCreateCustomer();
+            if (totalCorrectInput == true) {
+                doCreateCustomer();
+            } else {
+                errorPopUp("Vul alle velden volledig in en probeer het nog eens.");
+            }
         }
-        else
-            errorPopUp("Vul alle velden volledig in en probeer het nog eens.");
-        }                                                 
     }//GEN-LAST:event_tfAddress1KeyPressed
 
     private void tfAddress2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfAddress2KeyPressed
-    if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
-        boolean totalCorrectInput = errorCheckCreateCustomer();
-        if (totalCorrectInput == true) 
-        {
-            doCreateCustomer();
+        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+            boolean totalCorrectInput = errorCheckCreateCustomer();
+            if (totalCorrectInput == true) {
+                doCreateCustomer();
+            } else {
+                errorPopUp("Vul alle velden volledig in en probeer het nog eens.");
+            }
         }
-        else
-            errorPopUp("Vul alle velden volledig in en probeer het nog eens.");
-        }                                                 
     }//GEN-LAST:event_tfAddress2KeyPressed
 
     private void tfPostalCodeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfPostalCodeKeyPressed
-    if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
-        boolean totalCorrectInput = errorCheckCreateCustomer();
-        if (totalCorrectInput == true) 
-        {
-            doCreateCustomer();
+        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+            boolean totalCorrectInput = errorCheckCreateCustomer();
+            if (totalCorrectInput == true) {
+                doCreateCustomer();
+            } else {
+                errorPopUp("Vul alle velden volledig in en probeer het nog eens.");
+            }
         }
-        else
-            errorPopUp("Vul alle velden volledig in en probeer het nog eens.");
-        }                                                 
     }//GEN-LAST:event_tfPostalCodeKeyPressed
 
     private void tfCityKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfCityKeyPressed
-    if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
-        boolean totalCorrectInput = errorCheckCreateCustomer();
-        if (totalCorrectInput == true) 
-        {
-            doCreateCustomer();
+        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+            boolean totalCorrectInput = errorCheckCreateCustomer();
+            if (totalCorrectInput == true) {
+                doCreateCustomer();
+            } else {
+                errorPopUp("Vul alle velden volledig in en probeer het nog eens.");
+            }
         }
-        else
-            errorPopUp("Vul alle velden volledig in en probeer het nog eens.");
-        }                                                 
     }//GEN-LAST:event_tfCityKeyPressed
 
     private void tfEmail1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfEmail1KeyPressed
-    if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
-        boolean totalCorrectInput = errorCheckCreateCustomer();
-        if (totalCorrectInput == true) 
-        {
-            doCreateCustomer();
+        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+            boolean totalCorrectInput = errorCheckCreateCustomer();
+            if (totalCorrectInput == true) {
+                doCreateCustomer();
+            } else {
+                errorPopUp("Vul alle velden volledig in en probeer het nog eens.");
+            }
         }
-        else
-            errorPopUp("Vul alle velden volledig in en probeer het nog eens.");
-        }                                                 
     }//GEN-LAST:event_tfEmail1KeyPressed
 
     private void tfEmail2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfEmail2KeyPressed
-    if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
-        boolean totalCorrectInput = errorCheckCreateCustomer();
-        if (totalCorrectInput == true) 
-        {
-            doCreateCustomer();
+        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+            boolean totalCorrectInput = errorCheckCreateCustomer();
+            if (totalCorrectInput == true) {
+                doCreateCustomer();
+            } else {
+                errorPopUp("Vul alle velden volledig in en probeer het nog eens.");
+            }
         }
-        else
-            errorPopUp("Vul alle velden volledig in en probeer het nog eens.");
-        }                                                 
     }//GEN-LAST:event_tfEmail2KeyPressed
 
     private void tfPhoneHomeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfPhoneHomeKeyPressed
-    if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
-        boolean totalCorrectInput = errorCheckCreateCustomer();
-        if (totalCorrectInput == true) 
-        {
-            doCreateCustomer();
+        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+            boolean totalCorrectInput = errorCheckCreateCustomer();
+            if (totalCorrectInput == true) {
+                doCreateCustomer();
+            } else {
+                errorPopUp("Vul alle velden volledig in en probeer het nog eens.");
+            }
         }
-        else
-            errorPopUp("Vul alle velden volledig in en probeer het nog eens.");
-        }                                                 
     }//GEN-LAST:event_tfPhoneHomeKeyPressed
 
     private void tfPhoneMobileKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfPhoneMobileKeyPressed
-    if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
-        boolean totalCorrectInput = errorCheckCreateCustomer();
-        if (totalCorrectInput == true) 
-        {
-            doCreateCustomer();
+        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+            boolean totalCorrectInput = errorCheckCreateCustomer();
+            if (totalCorrectInput == true) {
+                doCreateCustomer();
+            } else {
+                errorPopUp("Vul alle velden volledig in en probeer het nog eens.");
+            }
         }
-        else
-            errorPopUp("Vul alle velden volledig in en probeer het nog eens.");
-        }                                                 
     }//GEN-LAST:event_tfPhoneMobileKeyPressed
 
     private void customerDeleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customerDeleteButtonActionPerformed
         boolean isError = false;
         boolean confirmation = false;
         Customer customer = new Customer();
-        try
-        {
-        String customerFirstName = customerTable2.getValueAt(customerTable2.getSelectedRow(), 1).toString() + " ";
-        String customerLastName = customerTable2.getValueAt(customerTable2.getSelectedRow(), 2).toString();
-        customerFullName = customerFirstName + customerLastName;
-        }catch(IndexOutOfBoundsException e)
-        {
+        try {
+            String customerFirstName = customerTable2.getValueAt(customerTable2.getSelectedRow(), 1).toString() + " ";
+            String customerLastName = customerTable2.getValueAt(customerTable2.getSelectedRow(), 2).toString();
+            customerFullName = customerFirstName + customerLastName;
+        } catch (IndexOutOfBoundsException e) {
             errorPopUp("Maak een selectie in de tabel en probeer het nog eens.");
             isError = true;
         }
-        if(isError == false)
-        {
-            String message = "Weet u zeker dat u klant: " + customerFullName +  " wilt verwijderen?"; 
+        if (isError == false) {
+            String message = "Weet u zeker dat u klant: " + customerFullName + " wilt verwijderen?";
             confirmation = confirmationPopUp(message);
-            if(confirmation == true)
-            {
+            if (confirmation == true) {
                 String customerID = customerTable2.getValueAt(customerTable2.getSelectedRow(), 0).toString();
                 customer.deleteCustomer(customerID);
                 searchCustomerTable2(9999, "");
@@ -1716,46 +1732,43 @@ public class Employee extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         boolean isError = false;
-        try{
-        Session.storedCustomerId = customerTable2.getValueAt(customerTable2.getSelectedRow(), 0).toString();
-        }catch(IndexOutOfBoundsException e){
+        try {
+            Session.storedCustomerId = customerTable2.getValueAt(customerTable2.getSelectedRow(), 0).toString();
+        } catch (IndexOutOfBoundsException e) {
             errorPopUp("Maak een selectie in de tabel en probeer het nog eens.");
             isError = true;
         }
-        if(isError == false)
-        Main.displayExtendedCustomer();
+        if (isError == false) {
+            Main.displayExtendedCustomer();
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btDeleteLuggageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDeleteLuggageActionPerformed
-       boolean isError = false;
-       boolean confirmation = false;
-       Luggage luggage = new Luggage();
-       
-       try
-       {
+        boolean isError = false;
+        boolean confirmation = false;
+        Luggage luggage = new Luggage();
+
+        try {
             String luggageId = luggageTable2.getValueAt(luggageTable2.getSelectedRow(), 0).toString();
-       }catch(IndexOutOfBoundsException e)
-       {
+        } catch (IndexOutOfBoundsException e) {
             errorPopUp("Maak een selectie in de tabel en probeer het nog eens.");
             isError = true;
-       }
-       if(isError == false)
-       {
-           String message = "Weet u zeker dat u baggagestuk: " + luggageId + " Wilt verwijderen?";
-           confirmation = confirmationPopUp(message);
-       }
-       if(confirmation == true)
-       {
-           String luggageId = luggageTable2.getValueAt(luggageTable2.getSelectedRow(), 0).toString();
-           luggage.deleteLuggage(luggageId);
-           searchCustomerTable2(9999, "");
-       }
+        }
+        if (isError == false) {
+            String message = "Weet u zeker dat u baggagestuk: " + luggageId + " Wilt verwijderen?";
+            confirmation = confirmationPopUp(message);
+        }
+        if (confirmation == true) {
+            String luggageId = luggageTable2.getValueAt(luggageTable2.getSelectedRow(), 0).toString();
+            luggage.deleteLuggage(luggageId);
+            searchCustomerTable2(9999, "");
+        }
     }//GEN-LAST:event_btDeleteLuggageActionPerformed
 
     private void btCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelActionPerformed
-            tfCustomerID1.setText("");
-            tfDescription.setText("");
-            tfLocation1.setText("");
+        tfCustomerID1.setText("");
+        tfDescription.setText("");
+        tfLocation1.setText("");
     }//GEN-LAST:event_btCancelActionPerformed
 
     private void btPrintReceiptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPrintReceiptActionPerformed
