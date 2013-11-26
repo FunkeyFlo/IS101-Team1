@@ -13,9 +13,10 @@ public class Customer {
 
     private DbManager db = new DbManager();
 
-    private int customerId;
+    private int customerId, lastChangedBy;
+    private final int garbage = 0;
     private String phoneHome, phoneMobile, firstName, lastName, email,
-            postalCode, address, city, country, dateChanged, lastChangedBy;
+            postalCode, address, city, country, dateChanged;
 
     public Customer() {
         db.openConnection();
@@ -24,7 +25,7 @@ public class Customer {
     // Constructor used to initiate the customer object
     public Customer(int customerId, String firstName, String lastName, String address,
             String postalCode, String city, String country, String email,
-            String phoneHome, String phoneMobile, String dateChanged, String lastChangedBy) {
+            String phoneHome, String phoneMobile, String dateChanged, int lastChangedBy) {
         this.customerId = customerId;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -58,7 +59,7 @@ public class Customer {
                     this.city = (result.getString("city"));
                     this.country = (result.getString("country"));
                     this.setDateChanged(result.getString("date_changed"));
-                    this.setLastChangedBy(result.getString("last_changed_by"));
+                    this.setLastChangedBy(result.getInt("last_changed_by"));
                 } else {
                     System.out.println("SOMETHING WENT WRONG");
                 }
@@ -85,37 +86,58 @@ public class Customer {
                     + "OR `email` LIKE '%" + searchArg + "%'"
                     + "OR `phone_home` LIKE '%" + searchArg + "%'"
                     + "OR `phone_mobile` LIKE '%" + searchArg + "%'";
+            
         } // for searching customerId
         else if (dbField == 1) {
             sql = sqlSelect + " WHERE `customer_id` LIKE '%" + searchArg + "%'";
-        } // firstName
+        } 
+        
+        // firstName
         else if (dbField == 2) {
             sql = sqlSelect + " WHERE `first_name` LIKE '%" + searchArg + "%'";
-        } //lastName
+        } 
+        
+        //lastName
         else if (dbField == 3) {
             sql = sqlSelect + " WHERE `last_name` LIKE '%" + searchArg + "%'";
-        } // address
+        }
+
+        // address
         else if (dbField == 4) {
             sql = sqlSelect + " WHERE `address` LIKE '%" + searchArg + "%'";
-        } // postalCode
+        }
+
+        // postalCode
         else if (dbField == 5) {
             sql = sqlSelect + " WHERE `postal_code` LIKE '%" + searchArg + "%'";
-        } // city
+        }
+
+        // city
         else if (dbField == 6) {
             sql = sqlSelect + " WHERE `city` LIKE '%" + searchArg + "%'";
-        } // country
+        }
+
+        // country
         else if (dbField == 7) {
             sql = sqlSelect + " WHERE `country` LIKE '%" + searchArg + "%'";
-        } // email
+        }
+
+        // email
         else if (dbField == 8) {
             sql = sqlSelect + " WHERE `email` LIKE '%" + searchArg + "%'";
-        } // phoneHome
+        }
+
+        // phoneHome
         else if (dbField == 9) {
             sql = sqlSelect + " WHERE `phone_home` LIKE '%" + searchArg + "%'";
-        } // phoneMobile
+        }
+
+        // phoneMobile
         else if (dbField == 10) {
             sql = sqlSelect + " WHERE `phone_mobile` LIKE '%" + searchArg + "%'";
-        } // Else statement is used to fill the table with all users
+        }
+
+        // Else statement is used to fill the table with all users
         else {
             sql = sqlSelect;
         }
@@ -134,7 +156,7 @@ public class Customer {
                         result.getString("phone_home"),
                         result.getString("phone_mobile"),
                         result.getString("date_changed"),
-                        result.getString("last_changed_by")));
+                        result.getInt("last_changed_by")));
             }
         } catch (SQLException e) {
             System.out.println(getDb().SQL_EXCEPTION + e.getMessage());
@@ -159,7 +181,7 @@ public class Customer {
                 + tfPhoneHome + "', '"
                 + tfPhoneMobile + "', "
                 + "CURRENT_TIMESTAMP, '"
-                + Session.storedUsername + "')";
+                + Session.storedUserId + "')";
         db.insertQuery(sql);
     }
     
@@ -180,7 +202,7 @@ public class Customer {
                 + ", `country` = '" + country + "'"
                 + ", `email` = '" + email + "'"
                 + ", `phone_home` = '" + phoneHome + "'"
-                + ", `last_changed_by` = '" + Session.storedUsername + "'"
+                + ", `last_changed_by` = '" + Session.storedUserId + "'"
                 + ", `phone_mobile` = '" + phoneMobile + "'"
                 + ", `date_changed` = CURRENT_TIMESTAMP"
                 + " WHERE `customer_id` = " + Session.storedCustomerId;
@@ -284,11 +306,12 @@ public class Customer {
         this.dateChanged = dateChanged;
     }
 
-    public String getLastChangedBy() {
+    public int getLastChangedBy() {
         return lastChangedBy;
     }
 
-    public void setLastChangedBy(String lastChangedBy) {
+    public void setLastChangedBy(int lastChangedBy) {
         this.lastChangedBy = lastChangedBy;
     }
+    //commentaar
 }

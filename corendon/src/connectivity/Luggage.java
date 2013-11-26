@@ -14,9 +14,10 @@ public class Luggage {
 
     private DbManager db = new DbManager();
 
-    private int luggageId, customerId, status;
+    private int luggageId, customerId, status, lastChangedBy;
+    private final int garbage = 0;
     private String description, location, dateLost, dateChanged,
-            dateHandled, dateFound, lastChangedBy;
+            dateHandled, dateFound;
 
     public Luggage() {
         db.openConnection();
@@ -24,7 +25,7 @@ public class Luggage {
 
     public Luggage(int luggageId, int customerId, String description,
             String location, String dateLost, int status, String dateChanged,
-            String dateHandled, String dateFound, String lastChangedBy) {
+            String dateHandled, String dateFound, int lastChangedBy) {
         this.luggageId = luggageId;
         this.customerId = customerId;
         this.description = description;
@@ -53,7 +54,7 @@ public class Luggage {
                     this.setDateChanged(result.getString("date_changed"));
                     this.setDateHandled(result.getString("date_handled"));
                     this.setDateFound(result.getString("date_found"));
-                    this.setLastChangedBy(result.getString("last_changed_by"));
+                    this.setLastChangedBy(result.getInt("last_changed_by"));
                 } else {
                     System.out.println("SOMETHING WENT WRONG");
                 }
@@ -165,7 +166,7 @@ public class Luggage {
                         result.getString("date_changed"),
                         result.getString("date_handled"),
                         result.getString("date_found"),
-                        result.getString("last_changed_by")));
+                        result.getInt("last_changed_by")));
             }
         } catch (SQLException e) {
             System.out.println(getDb().SQL_EXCEPTION + e.getMessage());
@@ -185,7 +186,7 @@ public class Luggage {
                 + description + "', '" 
                 + location + "', '"
                 + status + "', '"
-                + Session.storedUsername + "', "
+                + Session.storedUserId + "', "
                 + "CURRENT_TIMESTAMP)";
         db.insertQuery(sql);
     }
@@ -203,7 +204,7 @@ public class Luggage {
                 + ", `status` = " + status + ""
                 + ", `date_changed` = CURRENT_TIMESTAMP"
                 + dateHandled
-                + ", `last_changed_by` = '" + Session.storedUsername + "'"
+                + ", `last_changed_by` = '" + Session.storedUserId + "'"
                 + " WHERE `luggage_id` =" + luggageId + "";
         db.insertQuery(sql);
     }
@@ -293,11 +294,11 @@ public class Luggage {
         this.dateHandled = dateHandled;
     }
 
-    public String getLastChangedBy() {
+    public int getLastChangedBy() {
         return lastChangedBy;
     }
 
-    public void setLastChangedBy(String lastChangedBy) {
+    public void setLastChangedBy(int lastChangedBy) {
         this.lastChangedBy = lastChangedBy;
     }
 
@@ -314,4 +315,5 @@ public class Luggage {
     public void setDateFound(String dateFound) {
         this.dateFound = dateFound;
     }
+    //commentaar
 }

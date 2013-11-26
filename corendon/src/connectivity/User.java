@@ -15,8 +15,9 @@ public class User {
     // Variable that sets the maximum ammount of incorrect login attempts
     public final int MAX_INCORRECT_LOGINS = 3;
     private final int STANDARD_INCORRECT_LOGINS = 0;
+    private final int garbage = 0;
     
-    private int permissionId, incorrectLogin;
+    private int permissionId, incorrectLogin, userId;
     private String username, firstName, lastName, password;
     private boolean isLoggedIn = false;
 
@@ -27,7 +28,8 @@ public class User {
     // Constructor for the user object (used with the arraylist that is created 
     // by the search method
     public User(String firstName, String lastName, String username,
-            int permissionId, int incorrectLogin) {
+            int permissionId, int incorrectLogin, int userId) {
+        this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
@@ -62,12 +64,35 @@ public class User {
     }
 
     // Gets all data of one selected user
-    public void getUserData(String tfUsername) {
+    public void getUserData(String username) {
         try {
-            String sql = "SELECT *, COUNT(*) as `rows` FROM `user` WHERE `username`='" + tfUsername + "'";
+            String sql = "SELECT *, COUNT(*) as `rows` FROM `user` WHERE `username`='" + username + "'";
             ResultSet result = db.doQuery(sql);
             if (result.next()) {
                 if (result.getInt("rows") >= 1) {
+                    this.setUserId(result.getInt("user_id"));
+                    this.setUsername(result.getString("username"));
+                    this.setFirstName(result.getString("first_name"));
+                    this.setLastName(result.getString("last_name"));
+                    this.setPermissionId(result.getInt("permission_id"));
+                    this.setPassword(result.getString("password"));
+                    this.setIncorrectLogin(result.getInt("incorrect_login"));
+                } else {
+                    this.setUsername("INVALID");
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println(db.SQL_EXCEPTION + e.getMessage());
+        }
+    }
+    
+    public void getUserDataInt(int userId) {
+        try {
+            String sql = "SELECT *, COUNT(*) as `rows` FROM `user` WHERE `user_id`='" + userId + "'";
+            ResultSet result = db.doQuery(sql);
+            if (result.next()) {
+                if (result.getInt("rows") >= 1) {
+                    this.setUserId(result.getInt("user_id"));
                     this.setUsername(result.getString("username"));
                     this.setFirstName(result.getString("first_name"));
                     this.setLastName(result.getString("last_name"));
@@ -199,7 +224,8 @@ public class User {
                         result.getString("last_name"),
                         result.getString("username"),
                         result.getInt("permission_id"),
-                        result.getInt("incorrect_login")));
+                        result.getInt("incorrect_login"),
+                        result.getInt("user_id")));
             }
         } catch (SQLException e) {
             System.out.println(db.SQL_EXCEPTION + e.getMessage());
@@ -262,4 +288,13 @@ public class User {
     public void setIsLoggedIn(boolean isLoggedIn) {
         this.isLoggedIn = isLoggedIn;
     }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+    //commentaar
 }
