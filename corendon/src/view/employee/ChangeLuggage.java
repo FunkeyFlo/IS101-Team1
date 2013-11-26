@@ -44,7 +44,7 @@ public class ChangeLuggage extends javax.swing.JFrame {
         final JOptionPane createUserPopPane = new JOptionPane(message,
                 JOptionPane.QUESTION_MESSAGE,
                 JOptionPane.YES_NO_OPTION);
-        final JDialog dialog = new JDialog((Frame) confirmationPopUp, "Click a button", true);
+        final JDialog dialog = new JDialog((Frame) confirmationPopUp, "Druk op een knop", true);
         dialog.setContentPane(createUserPopPane);
         createUserPopPane.addPropertyChangeListener(
                 new PropertyChangeListener() {

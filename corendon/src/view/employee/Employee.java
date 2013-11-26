@@ -292,7 +292,7 @@ public class Employee extends javax.swing.JFrame {
         final JOptionPane createUserPopPane = new JOptionPane(message,
                 JOptionPane.QUESTION_MESSAGE,
                 JOptionPane.YES_NO_OPTION);
-        final JDialog dialog = new JDialog((Frame) confirmationPopUp, "Click a button", true);
+        final JDialog dialog = new JDialog((Frame) confirmationPopUp, "Druk op een knop", true);
         dialog.setContentPane(createUserPopPane);
         createUserPopPane.addPropertyChangeListener(
                 new PropertyChangeListener() {
@@ -1454,7 +1454,7 @@ public class Employee extends javax.swing.JFrame {
             customerFullName = customerFirstName + customerLastName;
         } catch (IndexOutOfBoundsException e) {
             JOptionPane.showMessageDialog(ErrorPopUp,
-                    "Please make a selection in both tables and try again.");
+                    "Maak een selectie in de tabel en probeer het nog eens.");
             isLinked = false;
         }
 
