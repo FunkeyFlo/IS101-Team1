@@ -33,7 +33,7 @@ public class ExtendedCustomer extends javax.swing.JFrame {
 
     public ExtendedCustomer() {
         customer.getCustomerData(Session.storedCustomerId, "customer_id");
-        user.getUserData(customer.getLastChangedBy());
+        user.getUserDataInt(customer.getLastChangedBy());
         
         String[] email = seperateString(customer.getEmail(), "@");
         String[] address = seperateString(customer.getAddress(), " ");
@@ -66,7 +66,7 @@ public class ExtendedCustomer extends javax.swing.JFrame {
         
         modelLuggage = (DefaultTableModel) this.luggageTable.getModel();
         searchLuggage(11, Integer.toString(customer.getCustomerId()), 0);
-        listBagageToPrint.setModel(model); 
+        listBagageToPrint.setModel(model);
     }
     
     private void searchLuggage(int dbField, String searchArg, int showHandled) {
@@ -702,11 +702,6 @@ public class ExtendedCustomer extends javax.swing.JFrame {
         for(int i = 0; i < listBagageToPrint.getModel().getSize(); i++) {
             session.addToList((Integer) listBagageToPrint.getModel().getElementAt(i));
         }
-        print.create("/home/egbert/Documents/OverviewPrint"
-                + user.getFirstName() + user.getLastName()
-                + Calendar.getInstance().get(Calendar.DATE)
-                + Calendar.getInstance().get(Calendar.MONTH)
-                + Calendar.getInstance().get(Calendar.YEAR) + ".pdf");
     }//GEN-LAST:event_btCreatePdfActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

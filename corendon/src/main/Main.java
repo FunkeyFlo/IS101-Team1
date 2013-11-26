@@ -4,18 +4,13 @@
  */
 package main;
 
-import view.employee.ChangeLuggage;
-import view.employee.ExtendedCustomer;
-import view.administrator.*;
-import view.employee.RegisterCustomer;
-import view.employee.Employee;
+import view.employee.*;
 import view.manager.Manager;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import view.*;
-import view.administrator.ChangePassword;
-import view.administrator.ChangePermission;
+import view.administrator.*;
 
 /**
  *
@@ -47,16 +42,6 @@ public class Main {
     public static void displayBeheerder() { // permissionId = 3
         Administrator frameBeheerder = new Administrator();
         frameBeheerder.setVisible(true);
-    }
-
-    public static void displayLinkLuggage() {
-        //LinkLuggagePopUp frameLinkLuggage = new LinkLuggagePopUp();
-        //frameLinkLuggage.setVisible(true);
-    }
-
-    public static void displayRegisterCustomer() {
-        RegisterCustomer frameRegisterCustomer = new RegisterCustomer();
-        frameRegisterCustomer.setVisible(true);
     }
 
     public static void displayChangeMyPassword() {

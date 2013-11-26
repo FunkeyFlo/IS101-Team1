@@ -22,7 +22,7 @@ public class ChangeLuggage extends javax.swing.JFrame {
 
     public ChangeLuggage() {
         luggage.getLuggageData(Session.storedLuggageId, "luggage_id");
-        user.getUserData(luggage.getLastChangedBy());
+        user.getUserDataInt(luggage.getLastChangedBy());
 
         initComponents();
         tfDescription.setText(luggage.getDescription());

@@ -11,6 +11,7 @@ import java.util.List;
  */
 public class Session {
     
+    public static Integer storedUserId;
     public static String storedUsername;
     public static String storedFirstName;
     public static String storedLastName;
@@ -25,7 +26,7 @@ public class Session {
         user.getUserData(inputUsername);
         storedFirstName = user.getFirstName();
         storedLastName = user.getLastName();
-        storedUsername = user.getUsername();
+        storedUserId = user.getUserId();
     }
     
     public void addToList(int value) {
