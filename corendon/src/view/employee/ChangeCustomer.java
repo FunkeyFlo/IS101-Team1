@@ -1,6 +1,7 @@
 package view.employee;
 
 import connectivity.*;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.table.DefaultTableModel;
@@ -16,6 +17,7 @@ public class ChangeCustomer extends javax.swing.JFrame {
     private List<Luggage> luggages;
     private DefaultTableModel modelLuggage;
     private Customer customer = new Customer();
+    private Session session = new Session();
     private User user = new User();
     private DefaultListModel model = new DefaultListModel();
 //    private DefaultListModel toPrintListModel = new DefaultListModel();
@@ -350,6 +352,11 @@ public class ChangeCustomer extends javax.swing.JFrame {
         jLabel1.setText("Bagagelijst voor bon");
 
         btCreatePdf.setText("Bewijs voor klant printen");
+        btCreatePdf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCreatePdfActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -541,12 +548,18 @@ public class ChangeCustomer extends javax.swing.JFrame {
     }//GEN-LAST:event_btDeleteListItemActionPerformed
 
     private void btAddToListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddToListActionPerformed
-        model.addElement(luggageTable.getValueAt(luggageTable.getSelectedRow(), 0).toString());
+        model.addElement((Integer) luggageTable.getValueAt(luggageTable.getSelectedRow(), 0));
     }//GEN-LAST:event_btAddToListActionPerformed
 
     private void btClearListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btClearListActionPerformed
         model.removeAllElements();
     }//GEN-LAST:event_btClearListActionPerformed
+
+    private void btCreatePdfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCreatePdfActionPerformed
+        for(int i = 0; i < listBagageToPrint.getModel().getSize(); i++) {
+            session.addToList((Integer) listBagageToPrint.getModel().getElementAt(i));
+        }
+    }//GEN-LAST:event_btCreatePdfActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAddToList;

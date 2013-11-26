@@ -447,6 +447,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Bewijs voor klant printen"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btCreatePdfActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

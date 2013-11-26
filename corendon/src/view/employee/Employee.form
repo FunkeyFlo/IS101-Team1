@@ -571,7 +571,7 @@
               <SubComponents>
                 <Component class="javax.swing.JButton" name="jButton1">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Klant gegevens aanpassen"/>
+                    <Property name="text" type="java.lang.String" value="Uitgebreide klantgegevens"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
@@ -622,7 +622,8 @@
                           <Group type="102" attributes="0">
                               <Component id="luggageRegistrationPanel" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="luggageOptionsPanel" max="32767" attributes="0"/>
+                              <Component id="luggageOptionsPanel" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -833,7 +834,7 @@
                               <Component id="luggageSearchButton2" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jScrollPane7" pref="0" max="32767" attributes="0"/>
+                          <Component id="jScrollPane7" pref="432" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -954,7 +955,7 @@
               <SubComponents>
                 <Component class="javax.swing.JButton" name="btChangeLuggage">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Uigebreide klantgegevens"/>
+                    <Property name="text" type="java.lang.String" value="Bagage wijzigen"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btChangeLuggageActionPerformed"/>

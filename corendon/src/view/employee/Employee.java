@@ -709,7 +709,7 @@ public class Employee extends javax.swing.JFrame {
 
         customerOptionsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Opties"));
 
-        jButton1.setText("Klant gegevens aanpassen");
+        jButton1.setText("Uitgebreide klantgegevens");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -977,13 +977,13 @@ public class Employee extends javax.swing.JFrame {
                         .addComponent(showHandledLuggage2))
                     .addComponent(luggageSearchButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 432, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         luggageOptionsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Opties"));
 
-        btChangeLuggage.setText("Uigebreide klantgegevens");
+        btChangeLuggage.setText("Bagage wijzigen");
         btChangeLuggage.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btChangeLuggageActionPerformed(evt);
@@ -1050,7 +1050,8 @@ public class Employee extends javax.swing.JFrame {
                     .addGroup(luggageLayout.createSequentialGroup()
                         .addComponent(luggageRegistrationPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(luggageOptionsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(luggageOptionsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 

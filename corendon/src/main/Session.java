@@ -1,6 +1,9 @@
 package main;
 
+import connectivity.Luggage;
 import connectivity.User;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 
@@ -14,6 +17,7 @@ public class Session {
     public static String storedCustomerId;
     public static String tempUsername;
     public static String storedLuggageId;
+    public static List<Integer> itemsToPrint = new ArrayList<>();
     
     public static void storeNames(String inputUsername) {
         User user = new User();
@@ -22,5 +26,9 @@ public class Session {
         storedFirstName = user.getFirstName();
         storedLastName = user.getLastName();
         storedUsername = user.getUsername();
+    }
+    
+    public void addToList(int value) {
+        itemsToPrint.add(value);
     }
 }
