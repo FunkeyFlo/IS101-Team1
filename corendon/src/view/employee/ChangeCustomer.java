@@ -1,9 +1,15 @@
 package view.employee;
 
 import connectivity.*;
+import java.awt.Component;
+import java.awt.Frame;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultListModel;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import main.Session;
 
@@ -20,6 +26,7 @@ public class ChangeCustomer extends javax.swing.JFrame {
     private Session session = new Session();
     private User user = new User();
     private DefaultListModel model = new DefaultListModel();
+    private Component errorPopUp, confirmationPopUp;
 //    private DefaultListModel toPrintListModel = new DefaultListModel();
 
     public ChangeCustomer() {
@@ -84,6 +91,38 @@ public class ChangeCustomer extends javax.swing.JFrame {
         seperatedItems[1] = temp[temp.length-1];
 
         return seperatedItems;
+    }
+    
+        private void errorPopUp(String errorMessage) {
+        JOptionPane.showMessageDialog(errorPopUp, errorMessage);
+    }
+        
+        private boolean confirmationPopUp(String message) {
+        boolean confirm = false;
+        final JOptionPane createUserPopPane = new JOptionPane(message,
+                JOptionPane.QUESTION_MESSAGE,
+                JOptionPane.YES_NO_OPTION);
+        final JDialog dialog = new JDialog((Frame) confirmationPopUp, "Click a button", true);
+        dialog.setContentPane(createUserPopPane);
+        createUserPopPane.addPropertyChangeListener(
+                new PropertyChangeListener() {
+                    public void propertyChange(PropertyChangeEvent e) {
+                        String prop = e.getPropertyName();
+
+                        if (dialog.isVisible()
+                        && (e.getSource() == createUserPopPane)
+                        && (prop.equals(JOptionPane.VALUE_PROPERTY))) {
+                            dialog.setVisible(false);
+                        }
+                    }
+                });
+        dialog.pack();
+        dialog.setVisible(true);
+        int value = ((Integer) createUserPopPane.getValue()).intValue();
+        if (value == JOptionPane.YES_OPTION) {
+            confirm = true;
+        }
+        return confirm;
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -511,6 +550,107 @@ public class ChangeCustomer extends javax.swing.JFrame {
     }//GEN-LAST:event_tfEmail2ActionPerformed
 
     private void btEditCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditCustomerActionPerformed
+        String firstName = tfFirstName.getText().trim();
+        String lastName = tfLastName.getText().trim();
+        String address1 = tfAddress1.getText().trim();
+        String address2 = tfAddress2.getText().trim();
+        String postalCode = tfPostalCode.getText().trim();
+        String city = tfCity.getText().trim();
+        String country = cbCountry.getSelectedItem().toString();
+        String email1 = tfEmail1.getText().trim();
+        String email2 = tfEmail2.getText().trim();
+        String phoneHome = tfPhoneHome.getText().trim();
+        String phoneMobile = tfPhoneMobile.getText().trim();
+        
+        boolean correctInput[] = new boolean [8];
+        boolean totalCorrectInput = true;
+        boolean finalCheck;
+        
+        if(firstName.equals("")){
+            errorPopUp("Vul een voornaam in en probeer het nog eens.");
+            correctInput[0] = false;
+        }
+        else
+            correctInput[0] = true;
+        
+        if(lastName.equals("")){
+            errorPopUp("Vul een achternaam in en probeer het nog eens.");
+            correctInput[1] = false;
+        }
+        else
+            correctInput[1] = true;
+        
+        if(address1.equals("") || address2.equals("")){
+            errorPopUp("Vul een adress in en probeer het nog eens.");
+            correctInput[2] = false;
+        }
+        else
+            correctInput[2] = true;
+        
+        if(postalCode.equals("")){
+            errorPopUp("Vul een postcode in en probeer het nog eens.");
+            correctInput[3] = false;
+        }
+        else
+            correctInput[3] = true;
+        
+        if(city.equals("")){
+            errorPopUp("Vul een woonplaats in en probeer het nog eens.");
+            correctInput[4] = false;
+        }
+        else
+            correctInput[4] = true;
+        
+        if(email1.equals("") || email2.equals("")){
+            errorPopUp("Vul een email in en probeer het nog eens.");
+            correctInput[5] = false;
+        }
+        else
+            correctInput[5] = true;
+        
+        if(phoneHome.equals(""))
+            correctInput[6] = true;
+            else if(phoneHome.matches("[0-9]+"))
+            correctInput[6] = true;
+        else {
+            errorPopUp("Vul een geldig thuisnummer in en probeer het nog eens.");
+            correctInput[6] = false;
+        }
+        
+        if(phoneMobile.equals(""))
+                correctInput[7] = true;
+            else if(phoneMobile.matches("[0-9]+")){
+                errorPopUp("Vul een geldig  mobiel nummer in en probeer het nog eens.");
+                correctInput[7] = false;
+            }
+            else
+                correctInput[7] = true;
+        
+        for(int i = 0; i < correctInput.length; i++)
+        {
+            if(correctInput[i] == false){
+                totalCorrectInput = false;
+                break;
+            }
+            else{
+                totalCorrectInput = true;
+            }
+            System.out.println(correctInput[i]);
+        }
+        System.out.println(totalCorrectInput);
+        if(totalCorrectInput == true){
+            finalCheck = confirmationPopUp("Nieuwe klantgegevens:         " + "   \n" 
+            + "Voornaam: " + firstName + "   \n" + "Achternaam: " + lastName + "   \n" 
+            + "Adress: " + address1 + " " + address2 + "   \n" + "Postcode: " + postalCode 
+            + "   \n" + "Woonplaats: " + city + "   \n" + "Land: " + country +"   \n" + "Email: " 
+            + email1 + "@" + email2 + "   \n" + "Telefoon: " + phoneHome + "   \n"
+            + "Mobiel: " + phoneMobile);
+        }
+        else
+            finalCheck = false;
+        
+       
+        if(finalCheck == true){
         customer.updateCustomer(tfFirstName.getText().trim(),
         tfLastName.getText().trim(),
         tfAddress1.getText().trim() + " " + tfAddress2.getText().trim(),
@@ -519,6 +659,7 @@ public class ChangeCustomer extends javax.swing.JFrame {
         cbCountry.getSelectedItem().toString(),
         tfEmail1.getText() + "@" + tfEmail2.getText(), tfPhoneHome.getText().trim(),
         tfPhoneMobile.getText().trim());
+        }
     }//GEN-LAST:event_btEditCustomerActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed

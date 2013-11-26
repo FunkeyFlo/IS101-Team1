@@ -1396,7 +1396,14 @@ public class Employee extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void btChangeLuggageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btChangeLuggageActionPerformed
+        boolean isError = false;
+        try{
         Session.storedLuggageId = luggageTable2.getValueAt(luggageTable2.getSelectedRow(), 0).toString();
+        }catch(IndexOutOfBoundsException e){
+            errorPopUp("Maak een selectie in de tabel en probeer het nog eens.");
+            isError = true;
+        }
+        if(isError == false)
         Main.displayChangeLuggage();
     }//GEN-LAST:event_btChangeLuggageActionPerformed
 
@@ -1708,7 +1715,14 @@ public class Employee extends javax.swing.JFrame {
     }//GEN-LAST:event_customerDeleteButtonActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        boolean isError = false;
+        try{
         Session.storedCustomerId = customerTable2.getValueAt(customerTable2.getSelectedRow(), 0).toString();
+        }catch(IndexOutOfBoundsException e){
+            errorPopUp("Maak een selectie in de tabel en probeer het nog eens.");
+            isError = true;
+        }
+        if(isError == false)
         Main.displayChangeCustomer();
     }//GEN-LAST:event_jButton1ActionPerformed
 
