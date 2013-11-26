@@ -17,7 +17,7 @@ import main.Session;
  *
  * @author Team AwesomeSauce
  */
-public class ChangeCustomer extends javax.swing.JFrame {
+public class ExtendedCustomer extends javax.swing.JFrame {
     
     private Luggage luggageModel = new Luggage();
     private List<Luggage> luggages;
@@ -29,7 +29,7 @@ public class ChangeCustomer extends javax.swing.JFrame {
     private Component errorPopUp, confirmationPopUp;
 //    private DefaultListModel toPrintListModel = new DefaultListModel();
 
-    public ChangeCustomer() {
+    public ExtendedCustomer() {
         customer.getCustomerData(Session.storedCustomerId, "customer_id");
         user.getUserData(customer.getLastChangedBy());
         
@@ -481,7 +481,7 @@ public class ChangeCustomer extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 837, Short.MAX_VALUE)
+                    .addComponent(jScrollPane7)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(btAddToList)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)

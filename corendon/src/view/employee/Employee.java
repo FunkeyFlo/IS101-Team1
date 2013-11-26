@@ -1723,7 +1723,7 @@ public class Employee extends javax.swing.JFrame {
             isError = true;
         }
         if(isError == false)
-        Main.displayChangeCustomer();
+        Main.displayExtendedCustomer();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btDeleteLuggageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDeleteLuggageActionPerformed

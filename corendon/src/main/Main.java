@@ -5,7 +5,7 @@
 package main;
 
 import view.employee.ChangeLuggage;
-import view.employee.ChangeCustomer;
+import view.employee.ExtendedCustomer;
 import view.administrator.*;
 import view.employee.RegisterCustomer;
 import view.employee.Employee;
@@ -79,9 +79,9 @@ public class Main {
         frameChangePermission.setVisible(true);
     }
     
-    public static void displayChangeCustomer() {
-        ChangeCustomer frameChangeCustomer = new ChangeCustomer();
-        frameChangeCustomer.setVisible(true);
+    public static void displayExtendedCustomer() {
+        ExtendedCustomer frameExtendedCustomer = new ExtendedCustomer();
+        frameExtendedCustomer.setVisible(true);
     }
     
     public static void displayChangeLuggage() {
