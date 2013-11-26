@@ -139,6 +139,24 @@ public class User {
         String sql = "DELETE FROM `user` WHERE `username` = '" + tfUsername + "'";
         db.insertQuery(sql);
     }
+    
+    /**
+     * Checks if the username is in use in de tabel User
+     * @param username
+     * @return true if username is in use.
+     */
+    public boolean checkUsernameInUse(String username) {
+        String sql = "SELECT * FROM `users` WHERE `username` LIKE '%" + username + "%'";
+        ResultSet result = db.doQuery(sql);
+
+        if (result == null) {
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+    
 
     // User to change desired user information (STRINGS)
     public void changeUserStringData(String username, String dbField,

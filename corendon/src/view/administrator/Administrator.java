@@ -575,14 +575,18 @@ public class Administrator extends javax.swing.JFrame {
 
     @SuppressWarnings("empty-statement")
     private void createUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createUserActionPerformed
-
+        boolean usernameInUse = user.checkUsernameInUse(tfUsername.getText().trim());
         boolean totalCorrectInput = errorCheckCreateUser();
         boolean isConfirm = false;
         if (totalCorrectInput == false) {
-            errorPopUp("Please fill in all the fields before trying again.");
-        } else {
+            errorPopUp("Vul alle velden in en probeer het nogmaals.");
+        }
+        if ( usernameInUse == true){
+            errorPopUp("Username is al in gebruik.");
+        }
+        else {
             isConfirm = createPopUp("Weet u zeker dat u deze gebruiker wilt aanmaken?");
-            if (isConfirm == true) {
+            if (isConfirm == true && usernameInUse == false  ) {
                 doCreateUser();
             }
         }
