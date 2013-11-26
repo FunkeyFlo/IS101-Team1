@@ -64,15 +64,15 @@ show create table `HierTableNaam` 				//om met commando een script commando op t
 alter table `user` change group_id permission_id int ; 		//voor mensen die nog de collumn group_id hebben
 
 
-!!!!!!!NIEUW!!!!!!!!!!!
-CREATE TABLE `user` (
-username VARCHAR(50) NOT NULL, 
-first_name VARCHAR(50) NOT NULL, 
-last_name VARCHAR(50) NOT NULL, 
-permission_id INT, 
-incorrect_login INT DEFAULT 0  NOT NULL, 
-password VARCHAR(5000), 
-PRIMARY KEY (username));
+CREATE TABLE `user` ( 
+	`user_id` int(11) NOT NULL AUTO_INCREMENT, 
+	`permission_id` int(11) NOT NULL DEFAULT '1',
+	`username` varchar(20) NOT NULL UNIQUE,
+	`first_name` varchar(50) NOT NULL,
+	`last_name`varchar(50) NOT NULL,
+	`password` varchar(100) NOT NULL,
+	`incorrect_login` int(11) NOT NULL DEFAULT '0',
+	PRIMARY KEY (user_id) ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8
 
 CREATE TABLE `customer` (
   `customer_id` int(11) NOT NULL AUTO_INCREMENT,
