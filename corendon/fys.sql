@@ -50,14 +50,14 @@ CREATE TABLE IF NOT EXISTS `customer` (
 --
 
 INSERT INTO `customer` (`first_name`, `last_name`, `email`, `postal_code`, `address`, `country`, `city`, `phone_home`, `phone_mobile`, `date_changed`, `last_changed_by`) VALUES 
-('Barack', 'Obama', 'me    @yeswecan.gov', '9989US', 'Whitehouselane 1', 'Nederland', 'Washington D.C.', '02015427315', '0612435678', '2013-11-25 02:10:13.0', 'jesspin'),
-('Saddam', 'Hoessein', 'peaceandlove@irak.co.uk', '1234AK', 'Bagdadlaan 2', 'Irak', 'Bagdad', '012 - DICTATOR', '0612437586', '2013-11-20 14:56:19.0', 'saulgoo'),
-('Dennis', 'Barhorst', 'Dennis@spaceengineers.com', '1826BB', 'Alkmaarlaan 12', 'Nederland', 'Alkmaar', '07215473546', '06341572864', '2013-11-20 14:56:19.0', 'saulgoo'),
-('Jesse', 'Baas', 'wdawd@awdawd.com', '1826JC', 'Lalalaan 2', 'Nederland', 'Alkmaar', 'awdawdawd', 'cawdawdawd', '2013-11-20 14:56:19.0', 'saulgoo'),
-('habiboela', 'aapje', 'awdawd@awdaw.dawd', '1826AWDAWD', 'awpjoiawd 16', 'Australië', 'awdawdawd', 'awdawdawd', 'awdawdawd', '2013-11-20 14:56:19.0', 'saulgoo'),
-('Persoontje', 'awdawd', 'awdawd @wadawda.wd', '15155DAWD', 'dawdawd dwad', 'Nederland', 'awdawdawd', 'awdawdawd', 'awdawdawd', '2013-11-25 10:15:06.0', 'jesspin'),
-('Hendrik', 'Henselman', 'hensel @hensel.com', '1899AD', 'Henselweg 15', 'Turkije', 'Henselstad', '06-Hensel', '072-Hopjesdag', '2013-11-25 14:29:09.0', 'jesspin'),
-('Poerer', 'Poer', 'poer@poer.tu', '12387NUAWD', 'Poerlaan 18E', 'Turkije', 'Istanbul', '0678945612', '0152468978', '2013-11-20 14:56:19.0', 'saulgoo');
+('Barack', 'Obama', 'me    @yeswecan.gov', '9989US', 'Whitehouselane 1', 'Nederland', 'Washington D.C.', '02015427315', '0612435678', '2013-11-25 02:10:13.0', '1'),
+('Saddam', 'Hoessein', 'peaceandlove@irak.co.uk', '1234AK', 'Bagdadlaan 2', 'Irak', 'Bagdad', '012 - DICTATOR', '0612437586', '2013-11-20 14:56:19.0', '2'),
+('Dennis', 'Barhorst', 'Dennis@spaceengineers.com', '1826BB', 'Alkmaarlaan 12', 'Nederland', 'Alkmaar', '07215473546', '06341572864', '2013-11-20 14:56:19.0', '2'),
+('Jesse', 'Baas', 'wdawd@awdawd.com', '1826JC', 'Lalalaan 2', 'Nederland', 'Alkmaar', 'awdawdawd', 'cawdawdawd', '2013-11-20 14:56:19.0', '2'),
+('habiboela', 'aapje', 'awdawd@awdaw.dawd', '1826AWDAWD', 'awpjoiawd 16', 'Australië', 'awdawdawd', 'awdawdawd', 'awdawdawd', '2013-11-20 14:56:19.0', '2'),
+('Persoontje', 'awdawd', 'awdawd @wadawda.wd', '15155DAWD', 'dawdawd dwad', 'Nederland', 'awdawdawd', 'awdawdawd', 'awdawdawd', '2013-11-25 10:15:06.0', '2'),
+('Hendrik', 'Henselman', 'hensel @hensel.com', '1899AD', 'Henselweg 15', 'Turkije', 'Henselstad', '06-Hensel', '072-Hopjesdag', '2013-11-25 14:29:09.0', '1'),
+('Poerer', 'Poer', 'poer@poer.tu', '12387NUAWD', 'Poerlaan 18E', 'Turkije', 'Istanbul', '0678945612', '0152468978', '2013-11-20 14:56:19.0', '1');
 
 -- --------------------------------------------------------
 
@@ -74,7 +74,7 @@ CREATE TABLE IF NOT EXISTS `luggage` (
   `date_lost` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `date_handled` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `status` int(11) NOT NULL,
-  `date_found` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `date_found` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `last_changed_by` int(50) NOT NULL,
 PRIMARY KEY (`luggage_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
@@ -83,8 +83,8 @@ PRIMARY KEY (`luggage_id`)
 -- Gegevens worden uitgevoerd voor tabel `luggage`
 --
 
-INSERT INTO `luggage` (`customer_id`, `description`, `location`, `date_changed`, `date_lost`, `last_changed_by`, `date_handled`, `status`, `date_found`) VALUES 
-(1, 'Krat bierblikjesmetsoep', 'F1.14', '2013-11-25 14:04:05.0', '2013-11-18 09:36:59.0', 'jesspin', '2013-11-20 13:33:49.0', 3, '2013-11-26 15:30:38.556');
+INSERT INTO `luggage` (`customer_id`, `description`, `location`, `date_changed`, `date_lost`, `date_handled`, `status`, `date_found`, `last_changed_by`) VALUES 
+(1, 'Krat bierblikjesmetsoep', 'F1.14', '2013-11-25 14:04:05.0', '2013-11-18 09:36:59.0', '2013-11-20 13:33:49.0', 3, '2013-11-26 15:30:38.556', '1');
 
 -- --------------------------------------------------------
 
