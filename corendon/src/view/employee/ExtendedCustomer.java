@@ -448,7 +448,7 @@ public class ExtendedCustomer extends javax.swing.JFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false, false
@@ -573,62 +573,62 @@ public class ExtendedCustomer extends javax.swing.JFrame {
         if(firstName.equals("")){
             errorPopUp("Vul een voornaam in en probeer het nog eens.");
             correctInput[0] = false;
-        }
-        else
+        } else {
             correctInput[0] = true;
+        }
         
         if(lastName.equals("")){
             errorPopUp("Vul een achternaam in en probeer het nog eens.");
             correctInput[1] = false;
-        }
-        else
+        } else {
             correctInput[1] = true;
+        }
         
-        if(address1.equals("") || address2.equals("")){
+        if(address1.equals("") || address2.equals("")) {
             errorPopUp("Vul een adress in en probeer het nog eens.");
             correctInput[2] = false;
-        }
-        else
+        } else {
             correctInput[2] = true;
+        }
         
-        if(postalCode.equals("")){
+        if(postalCode.equals("")) {
             errorPopUp("Vul een postcode in en probeer het nog eens.");
             correctInput[3] = false;
-        }
-        else
+        } else {
             correctInput[3] = true;
+        }
         
         if(city.equals("")){
             errorPopUp("Vul een woonplaats in en probeer het nog eens.");
             correctInput[4] = false;
-        }
-        else
+        } else {
             correctInput[4] = true;
+        }
         
-        if(email1.equals("") || email2.equals("")){
+        if(email1.equals("") || email2.equals("")) {
             errorPopUp("Vul een email in en probeer het nog eens.");
             correctInput[5] = false;
-        }
-        else
+        } else {
             correctInput[5] = true;
+        }
         
-        if(phoneHome.equals(""))
+        if(phoneHome.equals("")) {
             correctInput[6] = true;
-            else if(phoneHome.matches("[0-9]+"))
+        } else if(phoneHome.matches("[0-9]+")) {
             correctInput[6] = true;
-        else {
+        } else {
             errorPopUp("Vul een geldig thuisnummer in en probeer het nog eens.");
             correctInput[6] = false;
         }
         
-        if(phoneMobile.equals(""))
-                correctInput[7] = true;
-            else if(phoneMobile.matches("[0-9]+")){
-                errorPopUp("Vul een geldig  mobiel nummer in en probeer het nog eens.");
-                correctInput[7] = false;
-            }
-            else
-                correctInput[7] = true;
+        if(phoneMobile.equals("")) {
+            correctInput[7] = true;
+        } else if(phoneMobile.matches("[0-9]+")) {
+            correctInput[7] = true;
+        } else {
+            errorPopUp("Vul een geldig  mobiel nummer in en probeer het nog eens.");
+            correctInput[7] = false;
+        }
         
         for(int i = 0; i < correctInput.length; i++)
         {

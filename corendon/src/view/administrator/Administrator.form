@@ -410,8 +410,8 @@
                     <Column editable="false" title="Gebruikersnaam" type="java.lang.String"/>
                     <Column editable="false" title="Voornaam" type="java.lang.String"/>
                     <Column editable="false" title="Achternaam" type="java.lang.String"/>
-                    <Column editable="false" title="Rechten ID" type="java.lang.Integer"/>
-                    <Column editable="false" title="Account Status" type="java.lang.Integer"/>
+                    <Column editable="false" title="Gebruikersgroep" type="java.lang.String"/>
+                    <Column editable="false" title="Account Status" type="java.lang.String"/>
                   </Table>
                 </Property>
                 <Property name="verifyInputWhenFocusTarget" type="boolean" value="false"/>

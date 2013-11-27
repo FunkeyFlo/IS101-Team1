@@ -872,7 +872,7 @@
                             <Column editable="false" title="Omschrijving" type="java.lang.String"/>
                             <Column editable="false" title="Locatie" type="java.lang.String"/>
                             <Column editable="false" title="Datum Vermist" type="java.lang.String"/>
-                            <Column editable="false" title="Status" type="java.lang.Integer"/>
+                            <Column editable="false" title="Status" type="java.lang.String"/>
                           </Table>
                         </Property>
                         <Property name="verifyInputWhenFocusTarget" type="boolean" value="false"/>
@@ -1118,7 +1118,7 @@
                                 <Column editable="false" title="Omschrijving" type="java.lang.String"/>
                                 <Column editable="false" title="Locatie" type="java.lang.String"/>
                                 <Column editable="false" title="Datum Vermist" type="java.lang.String"/>
-                                <Column editable="false" title="Status" type="java.lang.Integer"/>
+                                <Column editable="false" title="Status" type="java.lang.String"/>
                               </Table>
                             </Property>
                             <Property name="verifyInputWhenFocusTarget" type="boolean" value="false"/>
