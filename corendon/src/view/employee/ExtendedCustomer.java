@@ -12,6 +12,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import main.Main;
 import main.Session;
 
 /**
@@ -703,6 +704,7 @@ public class ExtendedCustomer extends javax.swing.JFrame {
         for(int i = 0; i < listBagageToPrint.getModel().getSize(); i++) {
             session.addToList((Integer) listBagageToPrint.getModel().getElementAt(i));
         }
+        Main.displaySaveDocument();
     }//GEN-LAST:event_btCreatePdfActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

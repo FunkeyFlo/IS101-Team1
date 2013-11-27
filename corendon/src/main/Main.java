@@ -78,6 +78,10 @@ public class Main {
         ChangeUser frameChangeUser = new ChangeUser();
         frameChangeUser.setVisible(true);
     }
+    public static void displaySaveDocument(){
+        SaveDocument frameSaveDocument = new SaveDocument();
+        frameSaveDocument.setVisible(true);
+    }
     
     public static void main(String args[]) {
 

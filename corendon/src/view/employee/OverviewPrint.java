@@ -24,6 +24,8 @@ public class OverviewPrint {
     private Customer customer = new Customer();
     private User user = new User();
 
+    private String drawLine = "_____________________________________________________________";
+    
     public void create(String file) {
 
         luggage.getLuggageData(Session.itemsToPrint.get(0).toString(), "luggage_id");
@@ -50,7 +52,7 @@ public class OverviewPrint {
             contentStream.beginText();
             contentStream.setFont(font, 12);
             contentStream.moveTextPositionByAmount(100, 728);
-            contentStream.drawString("_____________________________________________________________");
+            contentStream.drawString(drawLine);
             contentStream.endText();
 
             contentStream.beginText();
@@ -97,7 +99,7 @@ public class OverviewPrint {
             contentStream.beginText();
             contentStream.setFont(font, 12);
             contentStream.moveTextPositionByAmount(100, 500);
-            contentStream.drawString("_____________________________________________________________");
+            contentStream.drawString(drawLine);
             contentStream.endText();
 
             contentStream.beginText();
