@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package view.employee;
+
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -12,6 +14,9 @@ package view.employee;
  */
 public class SaveDocument extends javax.swing.JFrame {
 
+    private JFileChooser fileChooser;
+    private FileNameExtensionFilter filter = new FileNameExtensionFilter("PDF Documents", "pdf");
+    private OverviewPrint pdfPrint = new OverviewPrint();
     /**
      * Creates new form SaveDocument
      */
@@ -29,31 +34,50 @@ public class SaveDocument extends javax.swing.JFrame {
     private void initComponents() {
 
         jFileChooser1 = new javax.swing.JFileChooser();
+        jSave = new javax.swing.JFileChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jFileChooser1.setDialogType(javax.swing.JFileChooser.SAVE_DIALOG);
-        jFileChooser1.setFileSelectionMode(javax.swing.JFileChooser.DIRECTORIES_ONLY);
+        jSave.setAcceptAllFileFilterUsed(false);
+        jSave.setDialogType(javax.swing.JFileChooser.SAVE_DIALOG);
+        jSave.setApproveButtonText("Save");
+        jSave.setCurrentDirectory(new java.io.File("."));
+        jSave.setDialogTitle("Save");
+        jSave.setFileFilter(filter);
+        jSave.setFileSelectionMode(javax.swing.JFileChooser.FILES_AND_DIRECTORIES);
+        jSave.setToolTipText("");
+        jSave.setFocusCycleRoot(true);
+        jSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jSaveActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jFileChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jSave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jFileChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jSave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSaveActionPerformed
+        pdfPrint.create(jSave.getSelectedFile().getAbsolutePath() + "/overview.pdf");
+        System.out.println(jSave.getCurrentDirectory());
+        System.out.println(jSave.getSelectedFile());
+        dispose();
+    }//GEN-LAST:event_jSaveActionPerformed
 
     /**
      * @param args the command line arguments
@@ -92,5 +116,6 @@ public class SaveDocument extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JFileChooser jFileChooser1;
+    private javax.swing.JFileChooser jSave;
     // End of variables declaration//GEN-END:variables
 }
