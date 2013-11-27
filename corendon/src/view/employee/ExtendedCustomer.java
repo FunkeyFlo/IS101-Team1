@@ -30,16 +30,22 @@ public class ExtendedCustomer extends javax.swing.JFrame {
     private User user = new User();
     private DefaultListModel model = new DefaultListModel();
     private Component errorPopUp, confirmationPopUp;
+    private String[] email;
+    private String[] address;
 //    private DefaultListModel toPrintListModel = new DefaultListModel();
 
     public ExtendedCustomer() {
         customer.getCustomerData(Session.storedCustomerId, "customer_id");
         user.getUserDataInt(customer.getLastChangedBy());
         
-        String[] email = seperateString(customer.getEmail(), "@");
-        String[] address = seperateString(customer.getAddress(), " ");
+        email = seperateString(customer.getEmail(), "@");
+        address = seperateString(customer.getAddress(), " ");
 
         initComponents();
+        
+        editInfoLabel.setText("Gegevens laatst gewijzigd door "
+                + user.getFirstName() + " " + user.getLastName()
+                + " op " + customer.getDateChanged().substring(0, customer.getDateChanged().length()-5));
 
         tfAddress1.setText(address[0]);
         tfAddress2.setText(address[1]);
@@ -65,12 +71,26 @@ public class ExtendedCustomer extends javax.swing.JFrame {
         tfPhoneHome.setEditable(false);
         tfPhoneMobile.setEditable(false);
         
+        listBagageToPrint.setModel(model);
         modelLuggage = (DefaultTableModel) this.luggageTable.getModel();
         searchLuggage(11, Integer.toString(customer.getCustomerId()), 0);
-        listBagageToPrint.setModel(model);
+    }
+    
+    private void initFields() {
+        customer.getCustomerData(Session.storedCustomerId, "customer_id");
+        user.getUserDataInt(customer.getLastChangedBy());
+        
+        editInfoLabel.setText("Gegevens laatst gewijzigd door "
+                + user.getFirstName() + " " + user.getLastName()
+                + " op " + customer.getDateChanged().substring(0,
+                        customer.getDateChanged().length()-5));
+        
+        modelLuggage = (DefaultTableModel) this.luggageTable.getModel();
+        searchLuggage(11, Integer.toString(customer.getCustomerId()), 0);
     }
     
     private void searchLuggage(int dbField, String searchArg, int showHandled) {
+        modelLuggage.setRowCount(0);
         luggages = luggageModel.searchLuggageList(dbField, searchArg, showHandled);
         for(Luggage luggage : luggages) {
             modelLuggage.addRow(new Object[] {new Integer(luggage.getLuggageId()),
@@ -162,8 +182,8 @@ public class ExtendedCustomer extends javax.swing.JFrame {
         cbCountry = new javax.swing.JComboBox();
         warningLabel1 = new javax.swing.JLabel();
         tfPostalCode = new javax.swing.JTextField();
-        editInfoLabel = new javax.swing.JLabel();
         chbUnlockFields = new javax.swing.JCheckBox();
+        editInfoLabel = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         listBagageToPrint = new javax.swing.JList();
@@ -245,15 +265,14 @@ public class ExtendedCustomer extends javax.swing.JFrame {
 
         warningLabel1.setForeground(new java.awt.Color(255, 0, 0));
 
-        editInfoLabel.setForeground(new java.awt.Color(102, 102, 102));
-        editInfoLabel.setText("Gegevens laatst gewijzigd door " + user.getFirstName() + " " + user.getLastName() + " op " + customer.getDateChanged().substring(0, customer.getDateChanged().length()-5));
-
         chbUnlockFields.setText("Velden ontgrendelen");
         chbUnlockFields.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 chbUnlockFieldsActionPerformed(evt);
             }
         });
+
+        editInfoLabel.setForeground(new java.awt.Color(204, 204, 204));
 
         javax.swing.GroupLayout customerRegistrationPanelLayout = new javax.swing.GroupLayout(customerRegistrationPanel);
         customerRegistrationPanel.setLayout(customerRegistrationPanelLayout);
@@ -320,8 +339,8 @@ public class ExtendedCustomer extends javax.swing.JFrame {
             customerRegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(customerRegistrationPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(editInfoLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addComponent(editInfoLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 21, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(customerRegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tfFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel13))
@@ -652,17 +671,30 @@ public class ExtendedCustomer extends javax.swing.JFrame {
         }
         else
             finalCheck = false;
-        
        
         if(finalCheck == true){
-        customer.updateCustomer(tfFirstName.getText().trim(),
-        tfLastName.getText().trim(),
-        tfAddress1.getText().trim() + " " + tfAddress2.getText().trim(),
-        tfPostalCode.getText().trim(),
-        tfCity.getText().trim(),
-        cbCountry.getSelectedItem().toString(),
-        tfEmail1.getText() + "@" + tfEmail2.getText(), tfPhoneHome.getText().trim(),
-        tfPhoneMobile.getText().trim());
+            customer.updateCustomer(tfFirstName.getText().trim(),
+                tfLastName.getText().trim(),
+                tfAddress1.getText().trim() + " " + tfAddress2.getText().trim(),
+                tfPostalCode.getText().trim(),
+                tfCity.getText().trim(),
+                cbCountry.getSelectedItem().toString(),
+                tfEmail1.getText() + "@" + tfEmail2.getText(), tfPhoneHome.getText().trim(),
+                tfPhoneMobile.getText().trim());
+            
+            tfAddress1.setEditable(false);
+            tfAddress2.setEditable(false);
+            tfFirstName.setEditable(false);
+            tfLastName.setEditable(false);
+            tfPostalCode.setEditable(false);
+            tfCity.setEditable(false);
+            cbCountry.setEditable(false);
+            tfEmail1.setEditable(false);
+            tfEmail2.setEditable(false);
+            tfPhoneHome.setEditable(false);
+            tfPhoneMobile.setEditable(false);
+            chbUnlockFields.setSelected(false);
+            initFields();
         }
     }//GEN-LAST:event_btEditCustomerActionPerformed
 
