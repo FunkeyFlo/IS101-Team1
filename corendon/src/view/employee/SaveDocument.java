@@ -16,7 +16,7 @@ import main.Session;
  * @author egbert
  */
 public class SaveDocument extends javax.swing.JFrame {
-    
+
     private FileNameExtensionFilter filter = new FileNameExtensionFilter("PDF Documents", "pdf");
     private OverviewPrint pdfPrint = new OverviewPrint();
     private Customer customer = new Customer();
@@ -84,10 +84,14 @@ public class SaveDocument extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSaveActionPerformed
-        pdfPrint.create(jSave.getSelectedFile().getAbsolutePath() + FILE);
-        System.out.println(jSave.getCurrentDirectory());
-        System.out.println(jSave.getSelectedFile());
-        dispose();
+        jSave = (JFileChooser) evt.getSource();
+        if (JFileChooser.APPROVE_SELECTION.equals(evt.getActionCommand())) {
+            pdfPrint.create(jSave.getSelectedFile().getAbsolutePath() + FILE);
+            dispose();
+
+        } else if (JFileChooser.CANCEL_SELECTION.equals(evt.getActionCommand())) {
+            dispose();
+        }
     }//GEN-LAST:event_jSaveActionPerformed
 
     /**
