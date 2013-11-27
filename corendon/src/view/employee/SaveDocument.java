@@ -5,22 +5,33 @@
  */
 package view.employee;
 
+import connectivity.Customer;
+import java.util.Calendar;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import main.Session;
 
 /**
  *
  * @author egbert
  */
 public class SaveDocument extends javax.swing.JFrame {
-
-    private JFileChooser fileChooser;
+    
     private FileNameExtensionFilter filter = new FileNameExtensionFilter("PDF Documents", "pdf");
     private OverviewPrint pdfPrint = new OverviewPrint();
+    private Customer customer = new Customer();
+
+    private final String FILE = "/"
+            + customer.getFirstName() + customer.getLastName()
+            + Calendar.getInstance().get(Calendar.DATE)
+            + "_" + Calendar.getInstance().get(Calendar.MONTH) + "_"
+            + Calendar.getInstance().get(Calendar.YEAR) + ".pdf";
+
     /**
      * Creates new form SaveDocument
      */
     public SaveDocument() {
+        customer.getCustomerData(Session.storedCustomerId, "customer_id");
         initComponents();
     }
 
@@ -73,7 +84,7 @@ public class SaveDocument extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSaveActionPerformed
-        pdfPrint.create(jSave.getSelectedFile().getAbsolutePath() + "/overview.pdf");
+        pdfPrint.create(jSave.getSelectedFile().getAbsolutePath() + FILE);
         System.out.println(jSave.getCurrentDirectory());
         System.out.println(jSave.getSelectedFile());
         dispose();
