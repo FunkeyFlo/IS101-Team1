@@ -63,6 +63,7 @@ public class ChangeMyPassword extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Verander Wachtwoord");
         setAlwaysOnTop(true);
+        setIconImage(getToolkit().getImage(getClass().getResource("/img/corendon.png")));
 
         jLabel1.setText("Typ huidig wachtwoord");
 

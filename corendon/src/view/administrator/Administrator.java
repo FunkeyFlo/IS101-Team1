@@ -196,6 +196,7 @@ public class Administrator extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Beheerder - " + Session.storedFirstName + " " + Session.storedLastName);
+        setIconImage(getToolkit().getImage(getClass().getResource("/img/corendon.png")));
         setMinimumSize(new java.awt.Dimension(720, 534));
 
         userOptionsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Opties voor gebruiker"));
@@ -417,11 +418,11 @@ public class Administrator extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Gebruikersnaam", "Voornaam", "Achternaam", "Rechten ID", "Account Status"
+                "Gebruikersnaam", "Voornaam", "Achternaam", "Gebruikersgroep", "Account Status"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false

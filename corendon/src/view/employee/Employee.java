@@ -432,6 +432,7 @@ public class Employee extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Medewerker - " + Session.storedFirstName + " " + Session.storedLastName);
+        setIconImage(getToolkit().getImage(getClass().getResource("/img/corendon.png")));
         setMinimumSize(new java.awt.Dimension(820, 460));
 
         overviewPane.setToolTipText("tooltip");
@@ -1337,6 +1338,7 @@ public class Employee extends javax.swing.JFrame {
 
         userMenu.setText("Gebruiker");
 
+        changePassword.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/changePassword.png"))); // NOI18N
         changePassword.setText("Wachtwoord wijzigen..");
         changePassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1345,6 +1347,7 @@ public class Employee extends javax.swing.JFrame {
         });
         userMenu.add(changePassword);
 
+        logout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logout.png"))); // NOI18N
         logout.setText("Uitloggen");
         logout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
