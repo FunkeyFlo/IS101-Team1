@@ -33,4 +33,8 @@ public class Session {
     public void addToList(int value) {
         itemsToPrint.add(value);
     }
+    
+    public void clearPrintList() {
+        itemsToPrint.removeAll(itemsToPrint);
+    }
 }

@@ -629,7 +629,7 @@ public class Administrator extends javax.swing.JFrame {
         boolean isError = false;
         try {
             user.changeUserIntData(userTable.getValueAt(userTable.getSelectedRow(),
-                    3).toString(), "incorrect_login", user.MAX_INCORRECT_LOGINS);
+                    0).toString(), "incorrect_login", user.MAX_INCORRECT_LOGINS);
         } catch (IndexOutOfBoundsException e) {
             errorPopUp("Maak een selectie in de tabel en probeer het nog eens.");
             isError = true;
@@ -725,7 +725,7 @@ public class Administrator extends javax.swing.JFrame {
         boolean isError = false;
         try {
             user.changeUserStringData(userTable.getValueAt(userTable.getSelectedRow(),
-                    3).toString(), "incorrect_login", "0");
+                    0).toString(), "incorrect_login", "0");
         } catch (IndexOutOfBoundsException e) {
             errorPopUp("Maak een selectie in de tabel en probeer het nog eens.");
             isError = true;

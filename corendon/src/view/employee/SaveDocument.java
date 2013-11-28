@@ -17,6 +17,7 @@ import main.Session;
  */
 public class SaveDocument extends javax.swing.JFrame {
 
+    private Session session = new Session();
     private FileNameExtensionFilter filter = new FileNameExtensionFilter("PDF Documents", "pdf");
     private OverviewPrint pdfPrint = new OverviewPrint();
     private Customer customer = new Customer();
@@ -94,6 +95,8 @@ public class SaveDocument extends javax.swing.JFrame {
         } else if (JFileChooser.CANCEL_SELECTION.equals(evt.getActionCommand())) {
             dispose();
         }
+        session.clearPrintList();
+        System.out.println(session.itemsToPrint);
     }//GEN-LAST:event_jSaveActionPerformed
 
     /**
