@@ -194,7 +194,7 @@ public class Employee extends javax.swing.JFrame {
      * @return int returns 0 when the checkbox is selected, otherwise returns 1
      */
     public int getShowHandled2() {
-        if (showHandledLuggage2.isSelected()) {
+        if (chbShowHandledLuggage2.isSelected()) {
             return 0;
         } else {
             return 1;
@@ -401,7 +401,7 @@ public class Employee extends javax.swing.JFrame {
         luggageTable2 = new javax.swing.JTable();
         cbSearchLuggage1 = new javax.swing.JComboBox();
         refreshLuggageTable2 = new javax.swing.JButton();
-        showHandledLuggage2 = new javax.swing.JCheckBox();
+        chbShowHandledLuggage2 = new javax.swing.JCheckBox();
         luggageOptionsPanel = new javax.swing.JPanel();
         btChangeLuggage = new javax.swing.JButton();
         btPrintReceipt = new javax.swing.JButton();
@@ -975,10 +975,10 @@ public class Employee extends javax.swing.JFrame {
             }
         });
 
-        showHandledLuggage2.setText("Toon afgehandelde bagage");
-        showHandledLuggage2.addActionListener(new java.awt.event.ActionListener() {
+        chbShowHandledLuggage2.setText("Toon afgehandelde bagage");
+        chbShowHandledLuggage2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                showHandledLuggage2ActionPerformed(evt);
+                chbShowHandledLuggage2ActionPerformed(evt);
             }
         });
 
@@ -996,7 +996,7 @@ public class Employee extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cbSearchLuggage1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(showHandledLuggage2)
+                        .addComponent(chbShowHandledLuggage2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 6, Short.MAX_VALUE)
                         .addComponent(refreshLuggageTable2))
                     .addComponent(jScrollPane7))
@@ -1011,7 +1011,7 @@ public class Employee extends javax.swing.JFrame {
                         .addComponent(luggageSearchField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(cbSearchLuggage1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(refreshLuggageTable2)
-                        .addComponent(showHandledLuggage2))
+                        .addComponent(chbShowHandledLuggage2))
                     .addComponent(luggageSearchButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 432, Short.MAX_VALUE)
@@ -1592,9 +1592,9 @@ public class Employee extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cbSearchLuggage1ActionPerformed
 
-    private void showHandledLuggage2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showHandledLuggage2ActionPerformed
+    private void chbShowHandledLuggage2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chbShowHandledLuggage2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_showHandledLuggage2ActionPerformed
+    }//GEN-LAST:event_chbShowHandledLuggage2ActionPerformed
 
     private void showHandledLuggage1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showHandledLuggage1ActionPerformed
         // TODO add your handling code here:
@@ -1758,13 +1758,15 @@ public class Employee extends javax.swing.JFrame {
             isError = true;
         }
         if (isError == false) {
-            String message = "Weet u zeker dat u baggagestuk: " + luggageId + " Wilt verwijderen?";
+            String message = "Weet u zeker dat u baggagestuk: " 
+                    + luggageTable2.getValueAt(luggageTable2.getSelectedRow(), 
+                            0).toString() + " wilt verwijderen?";
             confirmation = confirmationPopUp(message);
         }
         if (confirmation == true) {
             String luggageId = luggageTable2.getValueAt(luggageTable2.getSelectedRow(), 0).toString();
             luggage.deleteLuggage(luggageId);
-            searchCustomerTable2(9999, "");
+            searchLuggageTable2(9999, "", getShowHandled2());
         }
     }//GEN-LAST:event_btDeleteLuggageActionPerformed
 
@@ -1826,6 +1828,7 @@ public class Employee extends javax.swing.JFrame {
     private javax.swing.JComboBox cbSearchLuggage1;
     private javax.swing.JComboBox cbStatus;
     private javax.swing.JMenuItem changePassword;
+    private javax.swing.JCheckBox chbShowHandledLuggage2;
     private javax.swing.JButton createCustomer1;
     private javax.swing.JPanel customer;
     private javax.swing.JButton customerDeleteButton;
@@ -1882,7 +1885,6 @@ public class Employee extends javax.swing.JFrame {
     private javax.swing.JButton refreshLuggageTable2;
     private javax.swing.JButton refreshTables1;
     private javax.swing.JCheckBox showHandledLuggage1;
-    private javax.swing.JCheckBox showHandledLuggage2;
     private javax.swing.JTextField tfAddress1;
     private javax.swing.JTextField tfAddress2;
     private javax.swing.JTextField tfCity;

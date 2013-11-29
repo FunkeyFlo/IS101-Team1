@@ -819,7 +819,7 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="cbSearchLuggage1" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="showHandledLuggage2" min="-2" max="-2" attributes="0"/>
+                                  <Component id="chbShowHandledLuggage2" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace pref="6" max="32767" attributes="0"/>
                                   <Component id="refreshLuggageTable2" min="-2" max="-2" attributes="0"/>
                               </Group>
@@ -838,7 +838,7 @@
                                   <Component id="luggageSearchField1" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="cbSearchLuggage1" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="refreshLuggageTable2" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="showHandledLuggage2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="chbShowHandledLuggage2" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Component id="luggageSearchButton2" max="32767" attributes="0"/>
                           </Group>
@@ -914,12 +914,12 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="refreshLuggageTable2ActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JCheckBox" name="showHandledLuggage2">
+                <Component class="javax.swing.JCheckBox" name="chbShowHandledLuggage2">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Toon afgehandelde bagage"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="showHandledLuggage2ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="chbShowHandledLuggage2ActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>

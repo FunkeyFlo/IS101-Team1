@@ -58,7 +58,7 @@
                       <Component id="lbWarning" max="32767" attributes="0"/>
                       <Component id="tfPassword" alignment="1" max="32767" attributes="0"/>
                       <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace min="0" pref="40" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           <Component id="btCancel" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="btLogin" min="-2" max="-2" attributes="0"/>

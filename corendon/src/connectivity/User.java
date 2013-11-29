@@ -161,7 +161,6 @@ public class User {
         }
         
         return usernameInUse;
-
     }
     
 
