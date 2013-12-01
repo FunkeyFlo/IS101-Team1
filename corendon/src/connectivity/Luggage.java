@@ -14,8 +14,8 @@ public class Luggage {
 
     private DbManager db = new DbManager();
 
+    // Variable declaration.
     private int luggageId, customerId, status, lastChangedBy;
-    private final int garbage = 0;
     private String description, location, dateLost, dateChanged,
             dateHandled, dateFound;
 
@@ -23,6 +23,7 @@ public class Luggage {
         db.openConnection();
     }
 
+    // Constructor used to initiate the Luggage object.
     public Luggage(int luggageId, int customerId, String description,
             String location, String dateLost, int status, String dateChanged,
             String dateHandled, String dateFound, int lastChangedBy) {
@@ -38,9 +39,10 @@ public class Luggage {
         this.lastChangedBy = lastChangedBy;
     }
 
+    // Get all Luggage data from DB.
     public void getLuggageData(String tfInput, String databaseVariable) {
         try {
-            String sql = "SELECT *, COUNT(*) as `rows` FROM `luggage` WHERE `" 
+            String sql = "SELECT *, COUNT(*) as `rows` FROM `luggage` WHERE `"
                     + databaseVariable + "`='" + tfInput + "'";
             ResultSet result = getDb().doQuery(sql);
             if (result.next()) {
@@ -64,6 +66,7 @@ public class Luggage {
         }
     }
 
+    // Used to populate jTables and search database for Luggage.
     public List<Luggage> searchLuggageList(int dbField, String searchArg, int handled) {
         List<Luggage> luggages = new ArrayList<>();
         String showHandled, sql, sqlSelect = "SELECT * FROM `luggage`";
@@ -81,71 +84,47 @@ public class Luggage {
                     + " OR `description` LIKE '%" + searchArg + "%'" + showHandled
                     + " OR `location` LIKE '%" + searchArg + "%'" + showHandled
                     + " OR `date_lost` LIKE '%" + searchArg + "%'" + showHandled;
-        }
-
-        // for searching luggageId
+        } // for searching luggageId
         else if (dbField == 1) {
             sql = sqlSelect + " WHERE `luggage_id` LIKE '%" + searchArg + "%'"
                     + showHandled;
-        }
-
-        // customerId
+        } // customerId
         else if (dbField == 2) {
             sql = sqlSelect + " WHERE `customer_id` LIKE '%" + searchArg + "%'"
                     + showHandled;
-        }
-
-        // description
+        } // description
         else if (dbField == 3) {
             sql = sqlSelect + " WHERE `description` LIKE '%" + searchArg + "%'"
                     + showHandled;
-        }
-
-        // location
+        } // location
         else if (dbField == 4) {
             sql = sqlSelect + " WHERE `location` LIKE '%" + searchArg + "%'"
                     + showHandled;
-        }
-
-        // date
+        } // date
         else if (dbField == 5) {
             sql = sqlSelect + " WHERE `date_lost` LIKE '%" + searchArg + "%'"
                     + showHandled;
-        }
-
-        //lost luggage
+        } //lost luggage
         else if (dbField == 6) {
             sql = sqlSelect + " WHERE `date_lost` LIKE '%" + searchArg + "%'"
                     + " AND status = 1";
-        }
-        
-        //lost luggage, regardless if it is still lost or not
+        } //lost luggage, regardless if it is still lost or not
         else if (dbField == 7) {
             sql = sqlSelect + " WHERE `date_lost` LIKE '%" + searchArg + "%'";
-        }
-
-        //found luggage
+        } //found luggage
         else if (dbField == 8) {
             sql = sqlSelect + " WHERE `date_found` LIKE '%" + searchArg + "%'"
                     + " AND status = 2";
-        }
-        
-        //found luggage, regardless if it is still found or not
+        } //found luggage, regardless if it is still found or not
         else if (dbField == 9) {
             sql = sqlSelect + " WHERE `date_found` LIKE '%" + searchArg + "%'";
-        }
-
-        //handled luggage
+        } //handled luggage
         else if (dbField == 10) {
             sql = sqlSelect + " WHERE `date_handled` LIKE '%" + searchArg + "%'"
                     + " AND `status` = 3";
-        }
-        
-        else if (dbField == 11) {
+        } else if (dbField == 11) {
             sql = sqlSelect + " WHERE `customer_id` = '" + searchArg + "'";
-        }
-
-        // Else statement is used to fill the table with all users
+        } // Else statement is used to fill the table with all users
         else {
             if (handled == 1) {
                 sql = sqlSelect + " WHERE `status` != 3";
@@ -175,30 +154,31 @@ public class Luggage {
     }
 
     // Method to create new luggage
-    public void createLuggage(String customerId, String description, 
+    public void createLuggage(String customerId, String description,
             String location, int status) {
         if (customerId.equals("")) {
             customerId = "NULL";
         }
         String sql = "INSERT INTO `luggage` (customer_id, description, location, "
                 + "status, last_changed_by , date_changed) VALUES ("
-                + customerId + ", '" 
-                + description + "', '" 
+                + customerId + ", '"
+                + description + "', '"
                 + location + "', '"
                 + status + "', '"
                 + Session.storedUserId + "', "
                 + "CURRENT_TIMESTAMP)";
         db.insertQuery(sql);
     }
-    
-    public void updateLuggage(int luggageId, String description, 
+
+    // Used to update already existing luggage.
+    public void updateLuggage(int luggageId, String description,
             String location, int status) {
         String dateHandled = "";
-        
-        if(status == 3) {
+
+        if (status == 3) {
             dateHandled = ", `date_handled` = CURRENT_TIMESTAMP";
         }
-        
+
         String sql = "UPDATE `luggage` SET `description` = '" + description + "'"
                 + ", `location` = '" + location + "'"
                 + ", `status` = " + status + ""
@@ -211,17 +191,17 @@ public class Luggage {
 
     // Method to link luggage
     public void linkCustomerId(int customerId, int luggageId) {
-        String sql = "UPDATE `luggage` SET `customer_id` = " + customerId 
+        String sql = "UPDATE `luggage` SET `customer_id` = " + customerId
                 + " WHERE `luggage_id` = " + luggageId;
         db.insertQuery(sql);
     }
-    
-    public void deleteLuggage(String luggageId)
-    {
+
+    // Deletes luggage from database.
+    public void deleteLuggage(String luggageId) {
         String sql = "DELETE FROM `luggage` WHERE `luggage_id` = '" + luggageId + "'";
         db.insertQuery(sql);
     }
-    
+
     public DbManager getDb() {
         return db;
     }
@@ -233,11 +213,11 @@ public class Luggage {
     public int getLuggageId() {
         return luggageId;
     }
-    
+
     public int getStatus() {
         return status;
     }
-    
+
     public void setStatus(int status) {
         this.status = status;
     }
@@ -315,5 +295,4 @@ public class Luggage {
     public void setDateFound(String dateFound) {
         this.dateFound = dateFound;
     }
-    //commentaar
 }

@@ -15,8 +15,8 @@ public class User {
     // Variable that sets the maximum ammount of incorrect login attempts
     public final int MAX_INCORRECT_LOGINS = 3;
     private final int STANDARD_INCORRECT_LOGINS = 0;
-    private final int garbage = 0;
-    
+
+    // Variable Declaration.
     private int permissionId, incorrectLogin, userId;
     private String username, firstName, lastName, password;
     private boolean isLoggedIn = false;
@@ -63,7 +63,7 @@ public class User {
         return this.incorrectLogin >= MAX_INCORRECT_LOGINS;
     }
 
-    // Gets all data of one selected user
+    // Gets all data of one selected user(STRINGS).
     public void getUserData(String username) {
         try {
             String sql = "SELECT *, COUNT(*) as `rows` FROM `user` WHERE `username`='" + username + "'";
@@ -85,7 +85,8 @@ public class User {
             System.out.println(db.SQL_EXCEPTION + e.getMessage());
         }
     }
-    
+
+    // Gets all data of one selected user(INTERGERS).
     public void getUserDataInt(int userId) {
         try {
             String sql = "SELECT *, COUNT(*) as `rows` FROM `user` WHERE `user_id`='" + userId + "'";
@@ -112,7 +113,7 @@ public class User {
     public void createUser(String tfUsername, String tfFirstName, String tfLastName,
             String tfPassword, int inputPermissionId) {
         tfPassword = BCrypt.hashpw(tfPassword, BCrypt.gensalt());
-        
+
         String sql = "INSERT INTO `user` (username, first_name, last_name,"
                 + "password, permission_id, incorrect_login) VALUES ('"
                 + tfUsername + "', '"
@@ -123,10 +124,11 @@ public class User {
                 + STANDARD_INCORRECT_LOGINS + ")";
         db.insertQuery(sql);
     }
-    
+
+    // Update already existing user data.
     public void updateUser(String username, String firstName, String lastName,
             int permissionId) {
-        
+
         String sql = "UPDATE `user` SET `first_name` = '" + firstName + "', "
                 + "`last_name` = '" + lastName + "', "
                 + "`permission_id` = " + permissionId
@@ -139,35 +141,35 @@ public class User {
         String sql = "DELETE FROM `user` WHERE `username` = '" + tfUsername + "'";
         db.insertQuery(sql);
     }
-    
+
     /**
      * Checks if the username is in use in de tabel User
+     *
      * @param username
      * @return true if username is in use
      */
     public boolean checkUsernameInUse(String username) {
         boolean usernameInUse = true;
         try {
-        String sql = "SELECT * FROM `user` WHERE `username` LIKE '%" + username + "%'";
-        ResultSet result = db.doQuery(sql);
-        
-        if (result.next()) {
-            usernameInUse = true;
-        } else {
-            usernameInUse = false;
-        }
-        }catch(SQLException e) {
+            String sql = "SELECT * FROM `user` WHERE `username` LIKE '%" + username + "%'";
+            ResultSet result = db.doQuery(sql);
+
+            if (result.next()) {
+                usernameInUse = true;
+            } else {
+                usernameInUse = false;
+            }
+        } catch (SQLException e) {
             System.out.println(db.SQL_EXCEPTION + e.getMessage());
         }
-        
+
         return usernameInUse;
     }
-    
 
     // User to change desired user information (STRINGS)
     public void changeUserStringData(String username, String dbField,
             String newValue) {
-        
+
         String sql = "UPDATE `user` SET `" + dbField + "` = '" + newValue
                 + "' WHERE `username` = '" + username + "'";
         db.insertQuery(sql);
@@ -197,7 +199,7 @@ public class User {
     // Password update method
     public void updatePassword(String tfPassword, String tfUsername) {
         tfPassword = BCrypt.hashpw(tfPassword, BCrypt.gensalt());
-        
+
         String sql = "UPDATE `user` SET `password` = '" + tfPassword
                 + "' WHERE `username`='" + tfUsername + "'";
         db.insertQuery(sql);
@@ -214,33 +216,23 @@ public class User {
                     + "OR `first_name` LIKE '%" + searchArg + "%'"
                     + "OR `username` LIKE '%" + searchArg + "%'"
                     + "OR `permission_id` LIKE '%" + searchArg + "%'";
-        }
-        
-        // firstName collumns
+        } // firstName collumns
         else if (dbField == 1) {
             sql = sqlSelect + " WHERE `first_name` LIKE '%" + searchArg + "%'";
-        }
-
-        // lastName collumns
+        } // lastName collumns
         else if (dbField == 2) {
             sql = sqlSelect + " WHERE `last_name` LIKE '%" + searchArg + "%'";
-        }
-
-        // username collumns
+        } // username collumns
         else if (dbField == 3) {
             sql = sqlSelect + " WHERE `username` LIKE '%" + searchArg + "%'";
-        }
-
-        // permissionId collumns
+        } // permissionId collumns
         else if (dbField == 4) {
             sql = sqlSelect + " WHERE `permission_id` LIKE '%" + searchArg + "%'";
-        }
-
-        // Else statement is used to fill the table with all users
+        } // Else statement is used to fill the table with all users
         else {
             sql = sqlSelect;
         }
-        
+
         try {
             ResultSet result = db.doQuery(sql);
             while (result.next()) {
@@ -308,7 +300,7 @@ public class User {
     public boolean isIsLoggedIn() {
         return isLoggedIn;
     }
-    
+
     public void setIsLoggedIn(boolean isLoggedIn) {
         this.isLoggedIn = isLoggedIn;
     }

@@ -13,8 +13,8 @@ public class Customer {
 
     private DbManager db = new DbManager();
 
+    // Variable declaration.
     private int customerId, lastChangedBy;
-    private final int garbage = 0;
     private String phoneHome, phoneMobile, firstName, lastName, email,
             postalCode, address, city, country, dateChanged;
 
@@ -86,58 +86,38 @@ public class Customer {
                     + "OR `email` LIKE '%" + searchArg + "%'"
                     + "OR `phone_home` LIKE '%" + searchArg + "%'"
                     + "OR `phone_mobile` LIKE '%" + searchArg + "%'";
-            
+
         } // for searching customerId
         else if (dbField == 1) {
             sql = sqlSelect + " WHERE `customer_id` LIKE '%" + searchArg + "%'";
-        } 
-        
-        // firstName
+        } // firstName
         else if (dbField == 2) {
             sql = sqlSelect + " WHERE `first_name` LIKE '%" + searchArg + "%'";
-        } 
-        
-        //lastName
+        } //lastName
         else if (dbField == 3) {
             sql = sqlSelect + " WHERE `last_name` LIKE '%" + searchArg + "%'";
-        }
-
-        // address
+        } // address
         else if (dbField == 4) {
             sql = sqlSelect + " WHERE `address` LIKE '%" + searchArg + "%'";
-        }
-
-        // postalCode
+        } // postalCode
         else if (dbField == 5) {
             sql = sqlSelect + " WHERE `postal_code` LIKE '%" + searchArg + "%'";
-        }
-
-        // city
+        } // city
         else if (dbField == 6) {
             sql = sqlSelect + " WHERE `city` LIKE '%" + searchArg + "%'";
-        }
-
-        // country
+        } // country
         else if (dbField == 7) {
             sql = sqlSelect + " WHERE `country` LIKE '%" + searchArg + "%'";
-        }
-
-        // email
+        } // email
         else if (dbField == 8) {
             sql = sqlSelect + " WHERE `email` LIKE '%" + searchArg + "%'";
-        }
-
-        // phoneHome
+        } // phoneHome
         else if (dbField == 9) {
             sql = sqlSelect + " WHERE `phone_home` LIKE '%" + searchArg + "%'";
-        }
-
-        // phoneMobile
+        } // phoneMobile
         else if (dbField == 10) {
             sql = sqlSelect + " WHERE `phone_mobile` LIKE '%" + searchArg + "%'";
-        }
-
-        // Else statement is used to fill the table with all users
+        } // Else statement is used to fill the table with all users
         else {
             sql = sqlSelect;
         }
@@ -164,10 +144,11 @@ public class Customer {
         return customers;
     }
 
+    // Creates a new customer.
     public void setNewCustomer(String tfFirstName, String tfLastName,
             String tfAddress, String tfPostalCode, String tfCity, String tfCountry,
             String tfEmail, String tfPhoneHome, String tfPhoneMobile) {
-        
+
         String sql = "INSERT INTO `customer` (first_name, last_name, address,"
                 + "postal_code, city, country, email, phone_home, phone_mobile,"
                 + "date_changed, last_changed_by)"
@@ -184,16 +165,17 @@ public class Customer {
                 + Session.storedUserId + "')";
         db.insertQuery(sql);
     }
-    
+
+    // Deletes a customer with CustomerID.
     public void deleteCustomer(String tfCustomerId) {
         String sql = "DELETE FROM `customer` WHERE `customer_id` = '" + tfCustomerId + "'";
         db.insertQuery(sql);
     }
-    
+
     public void updateCustomer(String firstName, String lastName, String address,
             String postalCode, String city, String country, String email,
             String phoneHome, String phoneMobile) {
-        
+
         String sql = "UPDATE `customer` SET `first_name` = '" + firstName + "'"
                 + ", `last_name` = '" + lastName + "'"
                 + ", `address` = '" + address + "'"
@@ -206,7 +188,7 @@ public class Customer {
                 + ", `phone_mobile` = '" + phoneMobile + "'"
                 + ", `date_changed` = CURRENT_TIMESTAMP"
                 + " WHERE `customer_id` = " + Session.storedCustomerId;
-        
+
         db.insertQuery(sql);
     }
 
