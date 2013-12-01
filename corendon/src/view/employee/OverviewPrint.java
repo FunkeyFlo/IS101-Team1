@@ -24,8 +24,13 @@ public class OverviewPrint {
     private Customer customer = new Customer();
     private User user = new User();
 
-    private String drawLine = "_____________________________________________________________";
-    
+    private final String DRAW_LINE = "_____________________________________________________________";
+
+    /**
+     * Creates a pdf document that is used as receipt for the customers
+     * luggage.
+     * @param file folder where the file is saved to.
+     */
     public void create(String file) {
 
         luggage.getLuggageData(Session.itemsToPrint.get(0).toString(), "luggage_id");
@@ -52,7 +57,7 @@ public class OverviewPrint {
             contentStream.beginText();
             contentStream.setFont(font, 12);
             contentStream.moveTextPositionByAmount(100, 728);
-            contentStream.drawString(drawLine);
+            contentStream.drawString(DRAW_LINE);
             contentStream.endText();
 
             contentStream.beginText();
@@ -99,7 +104,7 @@ public class OverviewPrint {
             contentStream.beginText();
             contentStream.setFont(font, 12);
             contentStream.moveTextPositionByAmount(100, 500);
-            contentStream.drawString(drawLine);
+            contentStream.drawString(DRAW_LINE);
             contentStream.endText();
 
             contentStream.beginText();
