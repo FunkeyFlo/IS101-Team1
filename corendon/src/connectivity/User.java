@@ -25,8 +25,7 @@ public class User {
         db.openConnection();
     }
 
-    // Constructor for the user object (used with the arraylist that is created 
-    // by the search method
+   // Constructor.
     public User(String firstName, String lastName, String username,
             int permissionId, int incorrectLogin, int userId) {
         this.userId = userId;
@@ -37,7 +36,12 @@ public class User {
         this.incorrectLogin = incorrectLogin;
     }
 
-    // determines whether a user is logging in with the correct information
+    /**
+     * determines whether a user is logging in with the correct information
+     * @param tfUsername
+     * @param tfPassword
+     * @return 
+     */
     public String login(String tfUsername, String tfPassword) {
         this.getUserData(tfUsername);
         if (this.username.equals(tfUsername)) {
@@ -52,18 +56,29 @@ public class User {
         }
     }
 
-    // Checks whether the old password is correct (USED IN COMBINATION WITH updatePassword METHOD)
+    /**
+     * Checks whether the old password is correct (USED IN COMBINATION WITH updatePassword METHOD)
+     * @param oldPassword
+     * @param storedUsername
+     * @return 
+     */
     public boolean checkOldPassword(String oldPassword, String storedUsername) {
         this.getUserData(storedUsername);
         return BCrypt.checkpw(oldPassword, this.getPassword());
     }
 
-    // Determines whether a user's account has been locked
+    /**
+     * Determines whether a user's account has been locked
+     * @return 
+     */
     public boolean getLockState() {
         return this.incorrectLogin >= MAX_INCORRECT_LOGINS;
     }
 
-    // Gets all data of one selected user(STRINGS).
+    /**
+     * Gets all data of one selected user(STRINGS).
+     * @param username 
+     */
     public void getUserData(String username) {
         try {
             String sql = "SELECT *, COUNT(*) as `rows` FROM `user` WHERE `username`='" + username + "'";
@@ -86,7 +101,10 @@ public class User {
         }
     }
 
-    // Gets all data of one selected user(INTERGERS).
+    /**
+     * Gets all data of one selected user(INTERGERS).
+     * @param userId 
+     */
     public void getUserDataInt(int userId) {
         try {
             String sql = "SELECT *, COUNT(*) as `rows` FROM `user` WHERE `user_id`='" + userId + "'";
@@ -109,7 +127,14 @@ public class User {
         }
     }
 
-    // Used to create a new user, User ID is auto increment
+    /**
+     * Used to create a new user, User ID is auto increment
+     * @param tfUsername
+     * @param tfFirstName
+     * @param tfLastName
+     * @param tfPassword
+     * @param inputPermissionId 
+     */
     public void createUser(String tfUsername, String tfFirstName, String tfLastName,
             String tfPassword, int inputPermissionId) {
         tfPassword = BCrypt.hashpw(tfPassword, BCrypt.gensalt());
@@ -125,7 +150,13 @@ public class User {
         db.insertQuery(sql);
     }
 
-    // Update already existing user data.
+    /**
+     * Update already existing user data.
+     * @param username
+     * @param firstName
+     * @param lastName
+     * @param permissionId 
+     */
     public void updateUser(String username, String firstName, String lastName,
             int permissionId) {
 
@@ -136,7 +167,10 @@ public class User {
         db.insertQuery(sql);
     }
 
-    // Deletes user in database
+    /**
+     * Deletes user in database
+     * @param tfUsername 
+     */
     public void deleteUser(String tfUsername) {
         String sql = "DELETE FROM `user` WHERE `username` = '" + tfUsername + "'";
         db.insertQuery(sql);
@@ -166,7 +200,12 @@ public class User {
         return usernameInUse;
     }
 
-    // User to change desired user information (STRINGS)
+    /**
+     * User to change desired user information (STRINGS)
+     * @param username
+     * @param dbField
+     * @param newValue 
+     */
     public void changeUserStringData(String username, String dbField,
             String newValue) {
 
@@ -175,28 +214,41 @@ public class User {
         db.insertQuery(sql);
     }
 
-    // Used to change desired user information (INTEGERS)
+    /**
+     * Used to change desired user information (INTEGERS)
+     * @param inputUsername
+     * @param dbField
+     * @param newValue 
+     */
     public void changeUserIntData(String inputUsername, String dbField, int newValue) {
         String sql = "UPDATE `user` SET `" + dbField + "` = '" + newValue
                 + "' WHERE `username` = '" + inputUsername + "'";
         db.insertQuery(sql);
     }
 
-    // Increases incorrect login count by one on incorrect login attempt
+    /**
+     * Increases incorrect login count by one on incorrect login attempt
+     */
     public void setIncorrectLogin() {
         String sql = "UPDATE `user` SET `incorrect_login` = `incorrect_login`"
                 + "+ 1 WHERE `username` = '" + this.username + "'";
         db.insertQuery(sql);
     }
 
-    // Sets incorrect login count to 0
+    /**
+     * Sets incorrect login count to 0
+     */
     public void resetIncorrectLogin() {
         String sql = "UPDATE `user` SET `incorrect_login` = 0 WHERE `username` = '"
                 + this.username + "'";
         db.insertQuery(sql);
     }
 
-    // Password update method
+    /**
+     * Password update method
+     * @param tfPassword
+     * @param tfUsername 
+     */
     public void updatePassword(String tfPassword, String tfUsername) {
         tfPassword = BCrypt.hashpw(tfPassword, BCrypt.gensalt());
 
@@ -205,7 +257,12 @@ public class User {
         db.insertQuery(sql);
     }
 
-    // Method for filling jTable and searching database
+    /**
+     * Method for filling jTable and searching database
+     * @param dbField
+     * @param searchArg
+     * @return 
+     */
     public List<User> searchUserList(int dbField, String searchArg) {
         List<User> users = new ArrayList<>();
         String sql, sqlSelect = "SELECT * FROM `user`";
