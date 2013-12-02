@@ -48,7 +48,9 @@ public class ChangeUser extends javax.swing.JFrame {
         tfLastName.setEditable(false);
         permissionSelector.setEditable(false);
     }
-
+    /**
+     * doChangeUser updates the users first name and last name.
+     */
     private void doChangeUser() {
 
         String firstName = tfFirstName.getText().trim();
@@ -90,7 +92,10 @@ public class ChangeUser extends javax.swing.JFrame {
     private void errorPopUp(String errorMessage) {
         JOptionPane.showMessageDialog(ErrorPopUp, errorMessage);
     }
-
+    /**
+     * Checks if the input is not empty.
+     * @return correct output firsts and lastname. 
+     */
     private boolean errorCheckCreateUser() {
         boolean isError[] = new boolean[2];
         boolean totalCorrectInput = true;
@@ -274,6 +279,11 @@ public class ChangeUser extends javax.swing.JFrame {
     private void tfFirstNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfFirstNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tfFirstNameActionPerformed
+    /**
+     * calls upon the errorCheckCreateUser method to check if the user input is not
+     * empty. then changes user.
+     * @param evt 
+     */
 
     private void tfFirstNameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfFirstNameKeyPressed
         if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
