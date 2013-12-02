@@ -22,7 +22,6 @@ public class Customer {
         db.openConnection();
     }
 
-    // Constructor used to initiate the customer object
     public Customer(int customerId, String firstName, String lastName, String address,
             String postalCode, String city, String country, String email,
             String phoneHome, String phoneMobile, String dateChanged, int lastChangedBy) {
@@ -42,8 +41,9 @@ public class Customer {
 
     /**
      * Gets customer data for one specific user
-     * @param tfInput
-     * @param databaseVariable 
+     * @param tfInput the value databaseVariable has to be.
+     * @param databaseVariable the column in the table that will be
+     * searched in.
      */
     public void getCustomerData(String tfInput, String databaseVariable) {
         try {
@@ -75,8 +75,8 @@ public class Customer {
 
     /**
      * Used to populate jTables and search database for customers
-     * @param dbField
-     * @param searchArg
+     * @param dbField can be 0-10, specifies different columns.
+     * @param searchArg the data that will be searched for.
      * @return 
      */
     public List<Customer> searchCustomerList(int dbField, String searchArg) {
@@ -155,6 +155,7 @@ public class Customer {
 
     /**
      * Creates a new customer.
+     * All parameters below are attributes of the customer.
      * @param tfFirstName
      * @param tfLastName
      * @param tfAddress
@@ -188,13 +189,25 @@ public class Customer {
 
     /**
      * Deletes a customer with CustomerID.
-     * @param tfCustomerId 
+     * @param tfCustomerId id of the customer that will be deleted.
      */
     public void deleteCustomer(String tfCustomerId) {
         String sql = "DELETE FROM `customer` WHERE `customer_id` = '" + tfCustomerId + "'";
         db.insertQuery(sql);
     }
 
+    /**
+     * Updates the following attributes of a customer.
+     * @param firstName
+     * @param lastName
+     * @param address
+     * @param postalCode
+     * @param city
+     * @param country
+     * @param email
+     * @param phoneHome
+     * @param phoneMobile 
+     */
     public void updateCustomer(String firstName, String lastName, String address,
             String postalCode, String city, String country, String email,
             String phoneHome, String phoneMobile) {
@@ -318,5 +331,4 @@ public class Customer {
     public void setLastChangedBy(int lastChangedBy) {
         this.lastChangedBy = lastChangedBy;
     }
-    //commentaar
 }
