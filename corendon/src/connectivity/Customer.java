@@ -40,7 +40,11 @@ public class Customer {
         this.lastChangedBy = lastChangedBy;
     }
 
-    // Gets customer data for one specific user
+    /**
+     * Gets customer data for one specific user
+     * @param tfInput
+     * @param databaseVariable 
+     */
     public void getCustomerData(String tfInput, String databaseVariable) {
         try {
             String sql = "SELECT *, COUNT(*) as `rows` FROM `customer` WHERE `"
@@ -69,7 +73,12 @@ public class Customer {
         }
     }
 
-    // Used to populate jTables and search database for customers
+    /**
+     * Used to populate jTables and search database for customers
+     * @param dbField
+     * @param searchArg
+     * @return 
+     */
     public List<Customer> searchCustomerList(int dbField, String searchArg) {
         List<Customer> customers = new ArrayList<>();
         String sql, sqlSelect = "SELECT * FROM `customer`";
@@ -144,7 +153,18 @@ public class Customer {
         return customers;
     }
 
-    // Creates a new customer.
+    /**
+     * Creates a new customer.
+     * @param tfFirstName
+     * @param tfLastName
+     * @param tfAddress
+     * @param tfPostalCode
+     * @param tfCity
+     * @param tfCountry
+     * @param tfEmail
+     * @param tfPhoneHome
+     * @param tfPhoneMobile 
+     */
     public void setNewCustomer(String tfFirstName, String tfLastName,
             String tfAddress, String tfPostalCode, String tfCity, String tfCountry,
             String tfEmail, String tfPhoneHome, String tfPhoneMobile) {
@@ -166,7 +186,10 @@ public class Customer {
         db.insertQuery(sql);
     }
 
-    // Deletes a customer with CustomerID.
+    /**
+     * Deletes a customer with CustomerID.
+     * @param tfCustomerId 
+     */
     public void deleteCustomer(String tfCustomerId) {
         String sql = "DELETE FROM `customer` WHERE `customer_id` = '" + tfCustomerId + "'";
         db.insertQuery(sql);
