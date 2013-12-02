@@ -14,7 +14,17 @@ public class Luggage {
 
     private DbManager db = new DbManager();
 
-    // Variable declaration.
+    /**
+     * luggageId : Unique ID of the luggaga item ( PRIMARY_KEY).
+     * customerId: Unique ID of the customer linked to the luggage.
+     * lastChangedBy : The username of the user who last changed the item.
+     * description : How the luggage item(s) looks. 
+     * location : Location of the luggage item.
+     * dateLost : The date of the day the item got lost.
+     * dateChanged : De date of when the item has been changed.
+     * dateHandled : The day of when the item got handled.
+     * dateFound : The date of when the item was found. 
+     */
     private int luggageId, customerId, status, lastChangedBy;
     private String description, location, dateLost, dateChanged,
             dateHandled, dateFound;
@@ -41,7 +51,7 @@ public class Luggage {
 
     /**
      * Get all Luggage data from DB.
-     * @param tfInput
+     * @param tfInput 
      * @param databaseVariable 
      */
     public void getLuggageData(String tfInput, String databaseVariable) {
@@ -72,10 +82,10 @@ public class Luggage {
 
     /**
      * Used to populate jTables and search database for Luggage.
-     * @param dbField
-     * @param searchArg
-     * @param handled
-     * @return 
+     * @param dbField the row given by a textfield
+     * @param searchArg the search parameter.
+     * @param handled searchs for handled items if 1 else it searches for 0.
+     * @return a list of items. 
      */
     public List<Luggage> searchLuggageList(int dbField, String searchArg, int handled) {
         List<Luggage> luggages = new ArrayList<>();
@@ -164,11 +174,11 @@ public class Luggage {
     }
 
     /**
-     * Method to create new luggage
-     * @param customerId
-     * @param description
-     * @param location
-     * @param status 
+     * Method to create new luggage with data given by textfields. 
+     * @param customerId textfield Input.
+     * @param description textfield Input.
+     * @param location textfield Input.
+     * @param status textfield Input.
      */
     public void createLuggage(String customerId, String description,
             String location, int status) {
@@ -188,7 +198,7 @@ public class Luggage {
 
     /**
      *  Used to update already existing luggage.
-     * @param luggageId
+     * @param luggageId 
      * @param description
      * @param location
      * @param status 
@@ -212,8 +222,9 @@ public class Luggage {
     }
 
     /**
-     * Method to link luggage
-     * @param customerId
+     * Method to link luggage so a relation is created between the luggage
+     * and the customer. 
+     * @param customerId  
      * @param luggageId 
      */
     public void linkCustomerId(int customerId, int luggageId) {
