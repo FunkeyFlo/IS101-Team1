@@ -34,6 +34,10 @@ public class ExtendedCustomer extends javax.swing.JFrame {
     private String[] address;
 //    private DefaultListModel toPrintListModel = new DefaultListModel();
 
+    /**
+     * Method to show the old information of the customer and can be replaced by
+     * new information if the user wants too. Also the information can be edited.
+     */
     public ExtendedCustomer() {
         customer.getCustomerData(Session.storedCustomerId, "customer_id");
         user.getUserDataInt(customer.getLastChangedBy());
@@ -76,6 +80,9 @@ public class ExtendedCustomer extends javax.swing.JFrame {
         searchLuggage(11, Integer.toString(customer.getCustomerId()), 0);
     }
     
+    /**
+     * Method to show when the customer information is edited.
+     */
     private void initFields() {
         customer.getCustomerData(Session.storedCustomerId, "customer_id");
         user.getUserDataInt(customer.getLastChangedBy());
@@ -89,6 +96,16 @@ public class ExtendedCustomer extends javax.swing.JFrame {
         searchLuggage(11, Integer.toString(customer.getCustomerId()), 0);
     }
     
+    /**
+     * Searches through the luggage database and loads the results into the
+     * luggage table. 
+     * 
+     * @param dbField specifies the field to search in. Setting this parameter
+     * to 0 searches all fields.
+     * @param searchArg argument used to search the database.
+     * @param showHandled when this parameter is 1 it will show luggage that has
+     * already been handled.
+     */
     private void searchLuggage(int dbField, String searchArg, int showHandled) {
         modelLuggage.setRowCount(0);
         luggages = luggageModel.searchLuggageList(dbField, searchArg, showHandled);
@@ -102,6 +119,17 @@ public class ExtendedCustomer extends javax.swing.JFrame {
         }
     }
     
+    /**
+     * Method to seperate specific information in different parts, so the error 
+     * handling wouldn't be stuck on one specific information part if the 
+     * information was incorrect.
+     * 
+     * @param itemToSeperate Is used to seperate information so the error
+     * handling can check specific on one part of the information.
+     * @param sepChar Is the character what determines when information should
+     * be seperated.
+     * @return
+     */
     public String[] seperateString(String itemToSeperate, String sepChar) {
         String[] seperatedItems = {"", ""};
 
@@ -116,10 +144,23 @@ public class ExtendedCustomer extends javax.swing.JFrame {
         return seperatedItems;
     }
     
+        /**
+         * Method used to create and display an error message and is used for error-
+         * handling.
+         * 
+         * @param errorMessage The message that will be displayed as a pop-up.
+         */
         private void errorPopUp(String errorMessage) {
         JOptionPane.showMessageDialog(errorPopUp, errorMessage);
     }
         
+        /**
+         * Method to display a yes-or no pop-up that confirms the user's choice.
+         * 
+         * @param message The message you get for clicking the create button and
+         * will be displayed a pop-up.
+         * @return The confirmation for creating.
+         */
         private boolean confirmationPopUp(String message) {
         boolean confirm = false;
         final JOptionPane createUserPopPane = new JOptionPane(message,
