@@ -16,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
 import main.*;
 
 /**
- *
+ * 
  * @author Team AwesomeSauce
  */
 public class Employee extends javax.swing.JFrame {
@@ -315,7 +315,10 @@ public class Employee extends javax.swing.JFrame {
         }
         return confirm;
     }
-
+/**
+ * Method pulls all the data from the textfields to create and insert a new user
+ * into the database.
+ */
     private void doCreateCustomer() {
         Customer customer = new Customer();
         String newFirstName = tfFirstName.getText().trim();

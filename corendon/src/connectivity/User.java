@@ -37,10 +37,11 @@ public class User {
     }
 
     /**
-     * determines whether a user is logging in with the correct information
-     * @param tfUsername
-     * @param tfPassword
-     * @return 
+     * Compares username and password to database entries, denies or grants access
+     * depending on the result.
+     * @param tfUsername username to be checked by this method.
+     * @param tfPassword password to match the username.
+     * @return String returns specific string depending on the result of the method.
      */
     public String login(String tfUsername, String tfPassword) {
         this.getUserData(tfUsername);
@@ -58,8 +59,8 @@ public class User {
 
     /**
      * Checks whether the old password is correct (USED IN COMBINATION WITH updatePassword METHOD)
-     * @param oldPassword
-     * @param storedUsername
+     * @param oldPassword 'old' password to be checked.
+     * @param storedUsername Username data pulled from current session.
      * @return 
      */
     public boolean checkOldPassword(String oldPassword, String storedUsername) {
@@ -68,16 +69,18 @@ public class User {
     }
 
     /**
-     * Determines whether a user's account has been locked
-     * @return 
+     * Determines whether a user's account has been locked.
+     * @return boolean returns true if the amount of incorrect logins 
+     * has exceeded the maximum allowed amount.
      */
     public boolean getLockState() {
         return this.incorrectLogin >= MAX_INCORRECT_LOGINS;
     }
 
     /**
-     * Gets all data of one selected user(STRINGS).
-     * @param username 
+     * Method that pulls data entries for one specific user.
+     * @param username String parameter to determine which user data is pulled
+     * from the database.
      */
     public void getUserData(String username) {
         try {
@@ -102,8 +105,9 @@ public class User {
     }
 
     /**
-     * Gets all data of one selected user(INTERGERS).
-     * @param userId 
+     * Method that pulls data entries for one specific user.
+     * @param userId integer parameter to determine which user data is pulled
+     * from the database.
      */
     public void getUserDataInt(int userId) {
         try {
@@ -128,12 +132,13 @@ public class User {
     }
 
     /**
-     * Used to create a new user, User ID is auto increment
-     * @param tfUsername
-     * @param tfFirstName
-     * @param tfLastName
-     * @param tfPassword
-     * @param inputPermissionId 
+     * Method used to create and insert a new user into the database.
+     * @param tfUsername parameter to specify the new username.
+     * @param tfFirstName parameter to specify the new user's first name.
+     * @param tfLastName parameter to specify the new user's last name.
+     * @param tfPassword parameter to specify the new user's password.
+     * @param inputPermissionId parameter to specify the role of the new user
+     * 1 = Employee, 2 = Manager, 3 = Administrator.
      */
     public void createUser(String tfUsername, String tfFirstName, String tfLastName,
             String tfPassword, int inputPermissionId) {
@@ -151,11 +156,12 @@ public class User {
     }
 
     /**
-     * Update already existing user data.
-     * @param username
-     * @param firstName
-     * @param lastName
-     * @param permissionId 
+     * Method used to update already existing user data.
+     * @param username parameter to specify the new username.
+     * @param firstName parameter to specify the new first name.
+     * @param lastName parameter to specify the new last name.
+     * @param permissionId parameter to specify the new role.
+     * 1 = Employee, 2 = Manager, 3 = Administrator.
      */
     public void updateUser(String username, String firstName, String lastName,
             int permissionId) {
@@ -168,8 +174,8 @@ public class User {
     }
 
     /**
-     * Deletes user in database
-     * @param tfUsername 
+     * Method called to remove user database entry.
+     * @param tfUsername parameter to specify which user entry should be removed.
      */
     public void deleteUser(String tfUsername) {
         String sql = "DELETE FROM `user` WHERE `username` = '" + tfUsername + "'";
@@ -177,10 +183,9 @@ public class User {
     }
 
     /**
-     * Checks if the username is in use in de tabel User
-     *
-     * @param username
-     * @return true if username is in use
+     * Method that checks whether or not a specific username already exists or not.
+     * @param username username to check.
+     * @return true if username already exists.
      */
     public boolean checkUsernameInUse(String username) {
         boolean usernameInUse = true;
@@ -201,10 +206,10 @@ public class User {
     }
 
     /**
-     * User to change desired user information (STRINGS)
-     * @param username
-     * @param dbField
-     * @param newValue 
+     * Method that changes specific user data depending on the dbField parameter.
+     * @param username parameter to specify user to be altered.
+     * @param dbField parameter that specifies the field to be altered.
+     * @param newValue String value to be inputted into the specific database field.
      */
     public void changeUserStringData(String username, String dbField,
             String newValue) {
@@ -215,10 +220,10 @@ public class User {
     }
 
     /**
-     * Used to change desired user information (INTEGERS)
-     * @param inputUsername
-     * @param dbField
-     * @param newValue 
+     * Method that changes specific user data depending on the dbField parameter.
+     * @param inputUsername parameter to specify user to be altered.
+     * @param dbField parameter that specifies the field to be altered.
+     * @param newValue Integer value to be inputted into the specific database field.
      */
     public void changeUserIntData(String inputUsername, String dbField, int newValue) {
         String sql = "UPDATE `user` SET `" + dbField + "` = '" + newValue
@@ -227,7 +232,7 @@ public class User {
     }
 
     /**
-     * Increases incorrect login count by one on incorrect login attempt
+     * Increases incorrect login count by one on incorrect login attempt.
      */
     public void setIncorrectLogin() {
         String sql = "UPDATE `user` SET `incorrect_login` = `incorrect_login`"
@@ -236,7 +241,7 @@ public class User {
     }
 
     /**
-     * Sets incorrect login count to 0
+     * Sets incorrect login count to 0.
      */
     public void resetIncorrectLogin() {
         String sql = "UPDATE `user` SET `incorrect_login` = 0 WHERE `username` = '"
@@ -245,9 +250,9 @@ public class User {
     }
 
     /**
-     * Password update method
-     * @param tfPassword
-     * @param tfUsername 
+     * Method used to update a specific user's password.
+     * @param tfPassword parameter that determines the new password.
+     * @param tfUsername parameter to specify the user to be altered.
      */
     public void updatePassword(String tfPassword, String tfUsername) {
         tfPassword = BCrypt.hashpw(tfPassword, BCrypt.gensalt());
@@ -259,9 +264,10 @@ public class User {
 
     /**
      * Method for filling jTable and searching database
-     * @param dbField
-     * @param searchArg
-     * @return 
+     * @param dbField parameter to specify which field to search in, if this
+     * parameter is set to 0 this method will search in all fields.
+     * @param searchArg argument used to search in the database.
+     * @return users that match the search argument.
      */
     public List<User> searchUserList(int dbField, String searchArg) {
         List<User> users = new ArrayList<>();

@@ -20,7 +20,12 @@ public class Login extends javax.swing.JFrame {
     public Login() {
         initComponents();
     }
-    
+    /**
+     * Checks if login and password matches database entries, provides/denies
+     * access depending on the result.
+     * Calls the setIncorrectLogin method if password is false.
+     * 
+     */
     public void doLogin() {
         User user = new User();
         Session session = new Session();
