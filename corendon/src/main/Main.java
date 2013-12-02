@@ -49,19 +49,9 @@ public class Main {
         frameChangeMyPassword.setVisible(true);
     }
 
-    public static void displayChangeName() {
-        ChangeName frameChangeName = new ChangeName();
-        frameChangeName.setVisible(true);
-    }
-
     public static void displayChangePassword() {
         ChangePassword frameChangePassword = new ChangePassword();
         frameChangePassword.setVisible(true);
-    }
-
-    public static void displayChangePermission() {
-        ChangePermission frameChangePermission = new ChangePermission();
-        frameChangePermission.setVisible(true);
     }
     
     public static void displayExtendedCustomer() {
