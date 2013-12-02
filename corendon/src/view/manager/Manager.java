@@ -427,6 +427,14 @@ public class Manager extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+   /**
+     * Creates the graph for that will display all the luggage.
+     * @param beginYear the year where the graph starts, as specified by 
+     * the user
+     * @param endYear the year where the graph ends
+     * @param beginMonth the month in the year where the graph starts
+     * @param endMonth  the month in the year where the graph ends
+     */
     private void setAllDataGraph(int beginYear, int endYear,
             int beginMonth, int endMonth, int showIfAttributeNotTrue) {
         DefaultCategoryDataset allDataGraph = 
