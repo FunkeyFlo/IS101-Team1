@@ -20,17 +20,23 @@ public class ChangeMyPassword extends javax.swing.JFrame {
         initComponents();
     }
     
+    /**
+     * Updates the password of a user.
+     */
     public void doChangePassword() {
         User user = new User();
         Session session = new Session();
         
-        boolean oldPasswordCorrect = user.checkOldPassword(oldPassword.getText().trim(), session.storedUsername);
+        boolean oldPasswordCorrect = user.checkOldPassword(
+                oldPassword.getText().trim(), session.storedUsername);
         
         if(oldPasswordCorrect == true){
             
-            if(newPassword.getText().trim().equals(newPasswordRepeat.getText().trim())){
+            if(newPassword.getText().trim().equals(
+                    newPasswordRepeat.getText().trim())){
                 //System.out.println("cool man");
-                user.updatePassword(newPassword.getText().trim(), session.storedUsername);
+                user.updatePassword(
+                        newPassword.getText().trim(), session.storedUsername);
                 dispose();
             } else {
                 warningLabel.setText("New password doesn't match");
