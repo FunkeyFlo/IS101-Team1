@@ -41,6 +41,15 @@ public class Administrator extends javax.swing.JFrame {
         searchUserTable(9999, "");
     }
 
+    /**
+     * Searches through the user database and loads the results into the
+     * first user table. This method calls upon the searchUserList
+     * method to produce the intended result.
+     * 
+     * @param dbField specifies the field to search in. Setting this parameter
+     * to 0 searches all fields.
+     * @param searchArg argument used to search the database.
+     */
     public void searchUserTable(int dbField, String searchArg) {
         model.setRowCount(0); //nodig voor 
         users = userModel.searchUserList(dbField, searchArg);
@@ -55,6 +64,9 @@ public class Administrator extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * Creates a new User with the info supplied by the textFields and comboBox.
+     */
     private void doCreateUser() {
 
         String newUsername = tfUsername.getText().trim();
@@ -70,6 +82,13 @@ public class Administrator extends javax.swing.JFrame {
         searchUserTable(9999, "");
     }
 
+    /**
+     * Method to display a yes-or no pop-up that confirms the user's choice.
+     * 
+     * @param message The message you get for clicking the create button and
+     * will be displayed a pop-up.
+     * @return The confirmation for creating.
+     */
     private boolean createPopUp(String message) {
         boolean createConfirm = false;
         final JOptionPane createUserPopPane = new JOptionPane(message,
@@ -99,6 +118,9 @@ public class Administrator extends javax.swing.JFrame {
         return createConfirm;
     }
 
+    /**
+     * Method used to clear all the text fields.
+     */
     private void clearFields() {
         tfUsername.setText("");
         tfFirstName.setText("");
@@ -106,10 +128,22 @@ public class Administrator extends javax.swing.JFrame {
         tfPassword.setText("");
     }
 
+    /**
+     * Method used to create and display an error message and is used for error-
+     * handling.
+     * 
+     * @param errorMessage The message that will be displayed as a pop-up.
+     */
     private void errorPopUp(String errorMessage) {
         JOptionPane.showMessageDialog(ErrorPopUp, errorMessage);
     }
 
+    /**
+     * Method for checking input errors, will return a boolean if all fields are
+     * filled in correctly.
+     * 
+     * @return The correct input the user has filled in.
+     */
     private boolean errorCheckCreateUser() {
         boolean isError[] = new boolean[4];
         boolean totalCorrectInput = true;

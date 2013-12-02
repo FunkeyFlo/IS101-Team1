@@ -39,6 +39,11 @@ public class ChangeLuggage extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(ErrorPopUp, errorMessage);
     }
 
+    /**
+    * A pop up with an error message.
+    * @param message the message it should show. 
+    * @return  returns a boolean to see if the error should pop up.
+    */
     private boolean confirmationPopUp(String message) {
         boolean confirm = false;
         final JOptionPane createUserPopPane = new JOptionPane(message,
@@ -237,6 +242,11 @@ public class ChangeLuggage extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btCancelActionPerformed
 
+    /**
+     * Updates Luggage with the textfieldinputs. 
+     * Its also uses error handling showing message when input is incorrect. 
+     * @param evt 
+     */
     private void btUpdateLuggageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btUpdateLuggageActionPerformed
         boolean correctInput[] = new boolean[2];
         boolean totalCorrectInput = false;
