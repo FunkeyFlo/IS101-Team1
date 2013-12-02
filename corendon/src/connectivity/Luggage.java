@@ -39,7 +39,11 @@ public class Luggage {
         this.lastChangedBy = lastChangedBy;
     }
 
-    // Get all Luggage data from DB.
+    /**
+     * Get all Luggage data from DB.
+     * @param tfInput
+     * @param databaseVariable 
+     */
     public void getLuggageData(String tfInput, String databaseVariable) {
         try {
             String sql = "SELECT *, COUNT(*) as `rows` FROM `luggage` WHERE `"
@@ -66,7 +70,13 @@ public class Luggage {
         }
     }
 
-    // Used to populate jTables and search database for Luggage.
+    /**
+     * Used to populate jTables and search database for Luggage.
+     * @param dbField
+     * @param searchArg
+     * @param handled
+     * @return 
+     */
     public List<Luggage> searchLuggageList(int dbField, String searchArg, int handled) {
         List<Luggage> luggages = new ArrayList<>();
         String showHandled, sql, sqlSelect = "SELECT * FROM `luggage`";
@@ -153,7 +163,13 @@ public class Luggage {
         return luggages;
     }
 
-    // Method to create new luggage
+    /**
+     * Method to create new luggage
+     * @param customerId
+     * @param description
+     * @param location
+     * @param status 
+     */
     public void createLuggage(String customerId, String description,
             String location, int status) {
         if (customerId.equals("")) {
@@ -170,7 +186,13 @@ public class Luggage {
         db.insertQuery(sql);
     }
 
-    // Used to update already existing luggage.
+    /**
+     *  Used to update already existing luggage.
+     * @param luggageId
+     * @param description
+     * @param location
+     * @param status 
+     */
     public void updateLuggage(int luggageId, String description,
             String location, int status) {
         String dateHandled = "";
@@ -189,14 +211,21 @@ public class Luggage {
         db.insertQuery(sql);
     }
 
-    // Method to link luggage
+    /**
+     * Method to link luggage
+     * @param customerId
+     * @param luggageId 
+     */
     public void linkCustomerId(int customerId, int luggageId) {
         String sql = "UPDATE `luggage` SET `customer_id` = " + customerId
                 + " WHERE `luggage_id` = " + luggageId;
         db.insertQuery(sql);
     }
 
-    // Deletes luggage from database.
+    /**
+     * Deletes luggage from database.
+     * @param luggageId 
+     */
     public void deleteLuggage(String luggageId) {
         String sql = "DELETE FROM `luggage` WHERE `luggage_id` = '" + luggageId + "'";
         db.insertQuery(sql);
@@ -282,16 +311,12 @@ public class Luggage {
         this.lastChangedBy = lastChangedBy;
     }
 
-    /**
-     * @return the dateFound
-     */
+    
     public String getDateFound() {
         return dateFound;
     }
 
-    /**
-     * @param dateFound the dateFound to set
-     */
+   
     public void setDateFound(String dateFound) {
         this.dateFound = dateFound;
     }
