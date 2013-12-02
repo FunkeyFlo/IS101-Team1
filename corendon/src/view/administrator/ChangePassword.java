@@ -133,7 +133,11 @@ public class ChangePassword extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+/**
+ * OkButton checks if the old password and new password are not the same 
+ * then updates the password.
+ * @param evt 
+ */
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
         User user = new User();
 
