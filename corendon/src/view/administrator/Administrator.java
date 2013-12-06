@@ -25,7 +25,6 @@ public class Administrator extends javax.swing.JFrame {
     private List<User> users;
     private DefaultTableModel model;
     private User user = new User();
-    private final int garbage = 0;
 
     private Component Succes;
     private Component deleteUserPopup;

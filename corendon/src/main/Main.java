@@ -4,6 +4,7 @@
  */
 package main;
 
+import java.util.ResourceBundle;
 import view.employee.*;
 import view.manager.Manager;
 import javax.swing.JFrame;

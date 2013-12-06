@@ -2,6 +2,7 @@ package view;
 
 import connectivity.User;
 import java.awt.Component;
+import java.util.ResourceBundle;
 import javax.swing.JOptionPane;
 import main.Main;
 import main.Session;
@@ -15,6 +16,8 @@ import main.Session;
  */
 public class Login extends javax.swing.JFrame {
     private Component errorPopUp;
+    private final ResourceBundle BUNDLE = ResourceBundle.getBundle("languages.ResourceBundle");
+    
     /**
      * Creates new form Login
      */
@@ -89,19 +92,20 @@ public class Login extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Inloggen");
+        setTitle(BUNDLE.getString("login"));
         setAlwaysOnTop(true);
         setIconImage(getToolkit().getImage(getClass().getResource("/img/corendon.png")));
+        setMinimumSize(new java.awt.Dimension(227, 194));
         setResizable(false);
 
-        btLogin.setText("Inloggen");
+        btLogin.setText(BUNDLE.getString("login"));
         btLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btLoginActionPerformed(evt);
             }
         });
 
-        btCancel.setText("Afsluiten");
+        btCancel.setText(BUNDLE.getString("exit"));
         btCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btCancelActionPerformed(evt);
@@ -122,9 +126,9 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("Wachtwoord");
+        jLabel1.setText(BUNDLE.getString("password"));
 
-        jLabel2.setText("Gebruikersnaam");
+        jLabel2.setText(BUNDLE.getString("username"));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

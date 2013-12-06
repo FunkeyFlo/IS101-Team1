@@ -55,6 +55,9 @@
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
     <SyntheticProperty name="generateCenter" type="boolean" value="true"/>
   </SyntheticProperties>
+  <Events>
+    <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="formKeyPressed"/>
+  </Events>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -122,7 +125,10 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="customerTablePanel" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="customerTablePanel" max="32767" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                          </Group>
                           <Group type="102" attributes="0">
                               <Component id="customerRegistrationPanel" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
@@ -130,7 +136,6 @@
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -200,12 +205,12 @@
                                               <Component id="tfEmail1" alignment="0" min="-2" pref="94" max="-2" attributes="0"/>
                                               <Component id="tfPostalCode" alignment="0" max="32767" attributes="0"/>
                                           </Group>
-                                          <EmptySpace min="0" pref="102" max="32767" attributes="0"/>
+                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Component id="tfAddress1" min="-2" pref="155" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="tfAddress2" max="32767" attributes="0"/>
+                                          <Component id="tfAddress2" pref="57" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -429,6 +434,9 @@
                   </Border>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="customerTablePanelKeyPressed"/>
+              </Events>
 
               <Layout>
                 <DimensionLayout dim="0">
@@ -462,7 +470,7 @@
                               <Component id="refreshCustomerTable2" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jScrollPane3" pref="420" max="32767" attributes="0"/>
+                          <Component id="jScrollPane3" pref="432" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>

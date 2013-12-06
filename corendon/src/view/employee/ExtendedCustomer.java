@@ -242,6 +242,7 @@ public class ExtendedCustomer extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Gegevens van " + customer.getFirstName() + " " + customer.getLastName());
+        setIconImage(getToolkit().getImage(getClass().getResource("/img/corendon.png")));
 
         customerRegistrationPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Klant gegevens aanpassen"));
 
@@ -313,7 +314,7 @@ public class ExtendedCustomer extends javax.swing.JFrame {
             }
         });
 
-        editInfoLabel.setForeground(new java.awt.Color(204, 204, 204));
+        editInfoLabel.setForeground(new java.awt.Color(102, 102, 102));
 
         javax.swing.GroupLayout customerRegistrationPanelLayout = new javax.swing.GroupLayout(customerRegistrationPanel);
         customerRegistrationPanel.setLayout(customerRegistrationPanelLayout);
@@ -454,6 +455,7 @@ public class ExtendedCustomer extends javax.swing.JFrame {
 
         jLabel1.setText("Bagagelijst voor bon");
 
+        btCreatePdf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/121.png"))); // NOI18N
         btCreatePdf.setText("Bewijs voor klant printen");
         btCreatePdf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
