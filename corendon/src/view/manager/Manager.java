@@ -82,10 +82,6 @@ public class Manager extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         cbYearTo = new javax.swing.JComboBox();
         labelError = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         cbShowAll = new javax.swing.JCheckBox();
         jLabel6 = new javax.swing.JLabel();
@@ -289,37 +285,6 @@ public class Manager extends javax.swing.JFrame {
                     .addComponent(labelError, javax.swing.GroupLayout.Alignment.TRAILING)))
         );
 
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Legenda"));
-
-        jLabel7.setText("Groen is afgehandelde baggage.");
-
-        jLabel8.setText("Blauw is gevonden baggage.");
-
-        jLabel9.setText("Rood is vermiste baggage.");
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel9))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel9)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Overige Opties"));
 
         cbShowAll.setText("Zie alle data, zelfs als de status van de");
@@ -356,18 +321,14 @@ public class Manager extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(errorLabel)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(errorLabel)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -377,8 +338,7 @@ public class Manager extends javax.swing.JFrame {
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(errorLabel))
         );
@@ -464,10 +424,13 @@ public class Manager extends javax.swing.JFrame {
         }
 
         //creates the graph
-        JFreeChart allGraphsChart = ChartFactory.createBarChart(
+        JFreeChart allGraphsChart = ChartFactory.createLineChart(
                 ALL_LUGGAGE_DATA_GRAPH_NAME, X_AXIS_NAME, Y_AXIS_NAME, 
-                allDataGraph, PlotOrientation.VERTICAL, 
-                false, true, false);
+                allDataGraph);
+//        JFreeChart allGraphsChart = ChartFactory.createBarChart(
+//                ALL_LUGGAGE_DATA_GRAPH_NAME, X_AXIS_NAME, Y_AXIS_NAME, 
+//                allDataGraph, PlotOrientation.VERTICAL, 
+//                false, true, false);
         CategoryPlot allGraphsPlot = allGraphsChart.getCategoryPlot();
         allGraphsPlot.setRangeGridlinePaint(Color.BLACK);
         ChartPanel lostBaggagePanel = new ChartPanel(allGraphsChart);
@@ -508,10 +471,13 @@ public class Manager extends javax.swing.JFrame {
                     LOST_LUGGAGE_GRAPH_NAME, yearsAndMonths.get(i));
         }
         
-        JFreeChart lostBaggageChart = ChartFactory.createBarChart(
+        JFreeChart lostBaggageChart = ChartFactory.createLineChart(
                 LOST_LUGGAGE_GRAPH_NAME, X_AXIS_NAME, Y_AXIS_NAME, 
-                lostBaggageGraph, PlotOrientation.VERTICAL, 
-                false, true, false);
+                lostBaggageGraph);
+//        JFreeChart lostBaggageChart = ChartFactory.createBarChart(
+//                LOST_LUGGAGE_GRAPH_NAME, X_AXIS_NAME, Y_AXIS_NAME, 
+//                lostBaggageGraph, PlotOrientation.VERTICAL, 
+//                false, true, false);
         CategoryPlot lostBaggagePlot = lostBaggageChart.getCategoryPlot();
         lostBaggagePlot.setRangeGridlinePaint(Color.BLACK);
         ChartPanel lostBaggagePanel = new ChartPanel(lostBaggageChart);
@@ -550,10 +516,13 @@ public class Manager extends javax.swing.JFrame {
         }
         
         //creates graph
-        JFreeChart foundBaggageChart = ChartFactory.createBarChart(
+        JFreeChart foundBaggageChart = ChartFactory.createLineChart(
                 FOUND_LUGGAGE_GRAPH_NAME, X_AXIS_NAME, Y_AXIS_NAME, 
-                foundBaggageGraph, PlotOrientation.VERTICAL, 
-                false, true, false);
+                foundBaggageGraph);
+//        JFreeChart foundBaggageChart = ChartFactory.createBarChart(
+//                FOUND_LUGGAGE_GRAPH_NAME, X_AXIS_NAME, Y_AXIS_NAME, 
+//                foundBaggageGraph, PlotOrientation.VERTICAL, 
+//                false, true, false);
         CategoryPlot foundBaggagePlot = foundBaggageChart.getCategoryPlot();
         foundBaggagePlot.setRangeGridlinePaint(Color.BLACK);
         ChartPanel foundBaggagePanel = new ChartPanel(foundBaggageChart);
@@ -593,10 +562,13 @@ public class Manager extends javax.swing.JFrame {
         }
         
         //creates graph
-        JFreeChart handledBaggageChart = ChartFactory.createBarChart(
+        JFreeChart handledBaggageChart = ChartFactory.createLineChart(
                 HANDLED_LUGGAGE_GRAPH_NAME, X_AXIS_NAME, Y_AXIS_NAME, 
-                handledBaggageGraph, PlotOrientation.VERTICAL, 
-                false, true, false);
+                handledBaggageGraph);
+//        JFreeChart handledBaggageChart = ChartFactory.createBarChart(
+//                HANDLED_LUGGAGE_GRAPH_NAME, X_AXIS_NAME, Y_AXIS_NAME, 
+//                handledBaggageGraph, PlotOrientation.VERTICAL, 
+//                false, true, false);
         CategoryPlot handledBaggagePlot = handledBaggageChart.getCategoryPlot();
         handledBaggagePlot.setRangeGridlinePaint(Color.BLACK);
         ChartPanel handledBaggagePanel = new ChartPanel(handledBaggageChart);
@@ -756,13 +728,9 @@ public class Manager extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JLabel labelError;
     private javax.swing.JMenuItem logout;
