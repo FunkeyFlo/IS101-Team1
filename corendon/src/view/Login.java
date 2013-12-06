@@ -1,6 +1,8 @@
 package view;
 
 import connectivity.User;
+import java.awt.Component;
+import javax.swing.JOptionPane;
 import main.Main;
 import main.Session;
 
@@ -8,23 +10,23 @@ import main.Session;
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  * @author Team AwesomeSauce
  */
 public class Login extends javax.swing.JFrame {
-
+    private Component errorPopUp;
     /**
      * Creates new form Login
      */
     public Login() {
         initComponents();
     }
+
     /**
      * Checks if login and password matches database entries, provides/denies
-     * access depending on the result.
-     * Calls the setIncorrectLogin method if password is false.
-     * 
+     * access depending on the result. Calls the setIncorrectLogin method if
+     * password is false.
+     *
      */
     public void doLogin() {
         User user = new User();
@@ -33,37 +35,40 @@ public class Login extends javax.swing.JFrame {
         userName = userName.toLowerCase();
         String loginReturn = user.login(userName, tfPassword.getText().trim());
         boolean statusLocked = user.getLockState();
-        
-        if(statusLocked == false){
+
+        if (statusLocked == false) {
             session.storeNames(userName);
             switch (loginReturn) {
                 case "Login success":
                     user.resetIncorrectLogin();
                     dispose();
                     int permissionId = user.getPermissionId();
-                    if(permissionId == 1)
+                    if (permissionId == 1) {
                         Main.displayEmployee();
-
-                    else if(permissionId == 2)
+                    } else if (permissionId == 2) {
                         Main.displayManager();
-
-                    else
+                    } else {
                         Main.displayBeheerder();
+                    }
                     break;
                 case "Password is incorrect":
-                    lbWarning.setText("Password is incorrect");
+                    errorPopUp("Wachtwoord is incorrect");
                     user.setIncorrectLogin();
                     tfPassword.setText("");
                     break;
                 default:
-                    lbWarning.setText("Username is incorrect");
+                    errorPopUp("Gebruikersnaam is incorrect");
                     tfPassword.setText("");
                     tfUsername.setText("");
                     break;
             }
         } else {
-            lbWarning.setText("Your account has been locked");
+            errorPopUp("Dit account is vergrendelt");
         }
+    }
+    
+    private void errorPopUp(String errorMessage) {
+        JOptionPane.showMessageDialog(errorPopUp, errorMessage, "Error", JOptionPane.ERROR_MESSAGE);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -104,8 +109,18 @@ public class Login extends javax.swing.JFrame {
         });
 
         tfPassword.setToolTipText("Password");
+        tfPassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tfPasswordKeyPressed(evt);
+            }
+        });
 
         tfUsername.setToolTipText("Username");
+        tfUsername.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tfUsernameKeyPressed(evt);
+            }
+        });
 
         jLabel1.setText("Wachtwoord");
 
@@ -181,6 +196,18 @@ public class Login extends javax.swing.JFrame {
     private void btCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelActionPerformed
         dispose();
     }//GEN-LAST:event_btCancelActionPerformed
+
+    private void tfUsernameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfUsernameKeyPressed
+        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+            doLogin();
+        }
+    }//GEN-LAST:event_tfUsernameKeyPressed
+
+    private void tfPasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfPasswordKeyPressed
+        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+            doLogin();
+        }
+    }//GEN-LAST:event_tfPasswordKeyPressed
 
     /**
      * @param args the command line arguments

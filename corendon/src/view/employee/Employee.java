@@ -10,10 +10,12 @@ import java.awt.Frame;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.List;
+import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import main.*;
+import static org.jfree.util.ObjectUtilities.getResource;
 
 /**
  * 
@@ -212,9 +214,9 @@ public class Employee extends javax.swing.JFrame {
      * @param errorMessage String message displayed on the pop-up.
      */
     private void errorPopUp(String errorMessage) {
-        JOptionPane.showMessageDialog(ErrorPopUp, errorMessage);
+        JOptionPane.showMessageDialog(ErrorPopUp, errorMessage, "Error", JOptionPane.ERROR_MESSAGE);
     }
-    
+     
     /**
      * Method for checking input errors, will return a boolean if all fields are
      * filled in correctly.
@@ -290,9 +292,9 @@ public class Employee extends javax.swing.JFrame {
     private boolean confirmationPopUp(String message) {
         boolean confirm = false;
         final JOptionPane createUserPopPane = new JOptionPane(message,
-                JOptionPane.QUESTION_MESSAGE,
+                JOptionPane.WARNING_MESSAGE,
                 JOptionPane.YES_NO_OPTION);
-        final JDialog dialog = new JDialog((Frame) confirmationPopUp, "Druk op een knop", true);
+        final JDialog dialog = new JDialog((Frame) confirmationPopUp, "Let op!", true);
         dialog.setContentPane(createUserPopPane);
         createUserPopPane.addPropertyChangeListener(
                 new PropertyChangeListener() {

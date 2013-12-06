@@ -92,9 +92,9 @@ public class Administrator extends javax.swing.JFrame {
     private boolean createPopUp(String message) {
         boolean createConfirm = false;
         final JOptionPane createUserPopPane = new JOptionPane(message,
-                JOptionPane.QUESTION_MESSAGE,
+                JOptionPane.WARNING_MESSAGE,
                 JOptionPane.YES_NO_OPTION);
-        final JDialog dialog = new JDialog((Frame) createUserPopup, "Click a button", true);
+        final JDialog dialog = new JDialog((Frame) createUserPopup, "Let op!", true);
         dialog.setContentPane(createUserPopPane);
         createUserPopPane.addPropertyChangeListener(
                 new PropertyChangeListener() {
@@ -135,7 +135,7 @@ public class Administrator extends javax.swing.JFrame {
      * @param errorMessage The message that will be displayed as a pop-up.
      */
     private void errorPopUp(String errorMessage) {
-        JOptionPane.showMessageDialog(ErrorPopUp, errorMessage);
+        JOptionPane.showMessageDialog(ErrorPopUp, errorMessage, "Error", JOptionPane.ERROR_MESSAGE);
     }
 
     /**
