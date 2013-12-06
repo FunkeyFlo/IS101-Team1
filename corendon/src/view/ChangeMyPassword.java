@@ -5,6 +5,7 @@
 package view;
 
 import connectivity.User;
+import java.util.ResourceBundle;
 import main.Session;
 
 /**
@@ -12,7 +13,7 @@ import main.Session;
  * @author Team AwesomeSauce
  */
 public class ChangeMyPassword extends javax.swing.JFrame {
-
+    private final ResourceBundle BUNDLE = ResourceBundle.getBundle("languages.ResourceBundle");
     /**
      * Creates new form ChangeMyPassword
      */
@@ -71,11 +72,11 @@ public class ChangeMyPassword extends javax.swing.JFrame {
         setAlwaysOnTop(true);
         setIconImage(getToolkit().getImage(getClass().getResource("/img/corendon.png")));
 
-        jLabel1.setText("Typ huidig wachtwoord");
+        jLabel1.setText(BUNDLE.getString("typeCurrentPassword"));
 
-        jLabel2.setText("Typ nieuw wachtwoord");
+        jLabel2.setText(BUNDLE.getString("typeNewPassword"));
 
-        jLabel3.setText("Herhaal nieuw wachtwoord");
+        jLabel3.setText(BUNDLE.getString("typeRepeatPassword"));
 
         newPasswordRepeat.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -122,7 +123,7 @@ public class ChangeMyPassword extends javax.swing.JFrame {
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(oldPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
+                    .addComponent(oldPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)
                     .addComponent(newPassword)
                     .addComponent(newPasswordRepeat)))
             .addGroup(jPanel1Layout.createSequentialGroup()

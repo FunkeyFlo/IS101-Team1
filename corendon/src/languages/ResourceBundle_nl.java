@@ -30,5 +30,9 @@ public class ResourceBundle_nl extends ListResourceBundle {
             { "usernameIncorrect", "Gebruikersnaam bestaat niet."},
             { "accountHasBeenLocked", "Dit account is vergrendeld. \n"
                 + "Neem contact op met uw administrator."},
+        //changeMyPassword
+            { "typeCurrentPassword", "Type het huidige wachtwoord" },
+            { "typeNewPassword", "Type het nieuwe wachtwoord" },
+            { "typeRepeatPassword", "Type het nieuwe wachtwoord opnieuw" }
     };
 }

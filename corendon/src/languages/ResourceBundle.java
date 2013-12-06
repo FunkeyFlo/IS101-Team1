@@ -30,5 +30,9 @@ public class ResourceBundle extends ListResourceBundle {
             { "usernameIncorrect", "Username does not exist."},
             { "accountHasBeenLocked", "This account has been locked. \n"
                 + "Please contact your administrator."},
+        //changeMyPassword
+            { "typeCurrentPassword", "Enter current password" },
+            { "typeNewPassword", "Enter new password" },
+            { "typeRepeatPassword", "Repeat new password" }
     };
 }
