@@ -20,9 +20,15 @@ public class ResourceBundle extends ListResourceBundle {
     }
 
     private Object[][] contents = {
+        
+        // login.java
             { "login" , "Login" },
             { "exit", "Exit" },
             { "username", "Username"},
             { "password", "Password"},
+            { "passwordIncorrect", "Password is incorrect."},
+            { "usernameIncorrect", "Username does not exist."},
+            { "accountHasBeenLocked", "This account has been locked. \n"
+                + "Please contact your administrator."},
     };
 }

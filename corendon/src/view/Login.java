@@ -55,18 +55,18 @@ public class Login extends javax.swing.JFrame {
                     }
                     break;
                 case "Password is incorrect":
-                    errorPopUp("Wachtwoord is incorrect");
+                    errorPopUp(BUNDLE.getString("passwordIncorrect"));
                     user.setIncorrectLogin();
                     tfPassword.setText("");
                     break;
                 default:
-                    errorPopUp("Gebruikersnaam is incorrect");
+                    errorPopUp(BUNDLE.getString("usernameIncorrect"));
                     tfPassword.setText("");
                     tfUsername.setText("");
                     break;
             }
         } else {
-            errorPopUp("Dit account is vergrendelt");
+            errorPopUp(BUNDLE.getString("accountHasBeenLocked"));
         }
     }
     
@@ -93,7 +93,6 @@ public class Login extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle(BUNDLE.getString("login"));
-        setAlwaysOnTop(true);
         setIconImage(getToolkit().getImage(getClass().getResource("/img/corendon.png")));
         setMinimumSize(new java.awt.Dimension(227, 194));
         setResizable(false);
