@@ -72,7 +72,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="userCreationPanel" max="32767" attributes="0"/>
-                  <Component id="userOptionsPanel" pref="244" max="32767" attributes="0"/>
+                  <Component id="userOptionsPanel" pref="291" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="userTablePanel" max="32767" attributes="0"/>
@@ -118,7 +118,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="unlockAccount" max="32767" attributes="0"/>
-                      <Component id="lockAccount" alignment="1" pref="211" max="32767" attributes="0"/>
+                      <Component id="lockAccount" alignment="1" pref="258" max="32767" attributes="0"/>
                       <Component id="resetPassword" alignment="1" max="32767" attributes="0"/>
                       <Component id="deleteUser" alignment="1" max="32767" attributes="0"/>
                       <Component id="btEditUser" alignment="0" max="32767" attributes="0"/>
@@ -147,7 +147,9 @@
       <SubComponents>
         <Component class="javax.swing.JButton" name="unlockAccount">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Account ontgrendelen"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="BUNDLE.getString(&quot;unlockAccount&quot;)" type="code"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="unlockAccountActionPerformed"/>
@@ -155,7 +157,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="resetPassword">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Reset wachtwoord"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="BUNDLE.getString(&quot;resetPassword&quot;)" type="code"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="resetPasswordActionPerformed"/>
@@ -163,7 +167,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="lockAccount">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Account vergrendelen"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="BUNDLE.getString(&quot;lockAccount&quot;)" type="code"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="lockAccountActionPerformed"/>
@@ -171,7 +177,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="deleteUser">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Gebruiker verwijderen"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="BUNDLE.getString(&quot;deleteUser&quot;)" type="code"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteUserActionPerformed"/>
@@ -179,7 +187,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="btEditUser">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Gegevens aanpassen"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="BUNDLE.getString(&quot;editInfo&quot;)" type="code"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btEditUserActionPerformed"/>
@@ -206,6 +216,11 @@
                       <Component id="tfLastName" alignment="0" max="32767" attributes="0"/>
                       <Component id="tfUsername" alignment="0" max="32767" attributes="0"/>
                       <Component id="tfPassword" alignment="0" max="32767" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="clearFields" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace pref="63" max="32767" attributes="0"/>
+                          <Component id="createUser" min="-2" max="-2" attributes="0"/>
+                      </Group>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="firstNameLabel" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -213,14 +228,9 @@
                               <Component id="usernameLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="passwordLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="permissionLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="permissionSelector" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="permissionSelector" alignment="0" min="-2" pref="97" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="clearFields" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="63" max="32767" attributes="0"/>
-                          <Component id="createUser" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -280,27 +290,37 @@
         </Component>
         <Component class="javax.swing.JLabel" name="firstNameLabel">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Voornaam"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="BUNDLE.getString(&quot;firstName&quot;)" type="code"/>
+            </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lastNameLabel">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Achternaam"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="BUNDLE.getString(&quot;lastName&quot;)" type="code"/>
+            </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="usernameLabel">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Gebruikersnaam"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="BUNDLE.getString(&quot;username&quot;)" type="code"/>
+            </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="passwordLabel">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Wachtwoord"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="BUNDLE.getString(&quot;password&quot;)" type="code"/>
+            </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="permissionLabel">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Gebruikersgroep"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="BUNDLE.getString(&quot;userGroup&quot;)" type="code"/>
+            </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JPasswordField" name="tfPassword">
@@ -311,12 +331,8 @@
         </Component>
         <Component class="javax.swing.JComboBox" name="permissionSelector">
           <Properties>
-            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="3">
-                <StringItem index="0" value="Medewerker"/>
-                <StringItem index="1" value="Manager"/>
-                <StringItem index="2" value="Beheerder"/>
-              </StringArray>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="new javax.swing.DefaultComboBoxModel(new String[] {&#xa;    BUNDLE.getString(&quot;employee&quot;), BUNDLE.getString(&quot;manager&quot;),&#xa;    BUNDLE.getString(&quot;administrator&quot;) })" type="code"/>
             </Property>
           </Properties>
           <Events>
@@ -326,7 +342,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="clearFields">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Reset"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="BUNDLE.getString(&quot;reset&quot;)" type="code"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="clearFieldsActionPerformed"/>
@@ -334,7 +352,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="createUser">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Aanmaken"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="BUNDLE.getString(&quot;create&quot;)" type="code"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="createUserActionPerformed"/>
@@ -357,7 +377,7 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jScrollPane1" pref="635" max="32767" attributes="0"/>
+                      <Component id="jScrollPane1" pref="588" max="32767" attributes="0"/>
                       <Group type="102" attributes="0">
                           <Component id="tfSearch" min="-2" pref="144" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -408,14 +428,8 @@
             <Component class="javax.swing.JTable" name="userTable">
               <Properties>
                 <Property name="autoCreateRowSorter" type="boolean" value="true"/>
-                <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="5" rowCount="0">
-                    <Column editable="false" title="Gebruikersnaam" type="java.lang.String"/>
-                    <Column editable="false" title="Voornaam" type="java.lang.String"/>
-                    <Column editable="false" title="Achternaam" type="java.lang.String"/>
-                    <Column editable="false" title="Gebruikersgroep" type="java.lang.String"/>
-                    <Column editable="false" title="Account Status" type="java.lang.String"/>
-                  </Table>
+                <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="new javax.swing.table.DefaultTableModel(&#xa;    new Object [][] {&#xa;&#xa;    },&#xa;    new String [] {&#xa;        BUNDLE.getString(&quot;username&quot;), BUNDLE.getString(&quot;firstName&quot;),&#xa;        BUNDLE.getString(&quot;lastName&quot;), BUNDLE.getString(&quot;userGroup&quot;),&#xa;        BUNDLE.getString(&quot;accountState&quot;)&#xa;    }&#xa;) {&#xa;    Class[] types = new Class [] {&#xa;        java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class&#xa;    };&#xa;    boolean[] canEdit = new boolean [] {&#xa;        false, false, false, false, false&#xa;    };&#xa;&#xa;    public Class getColumnClass(int columnIndex) {&#xa;        return types [columnIndex];&#xa;    }&#xa;&#xa;    public boolean isCellEditable(int rowIndex, int columnIndex) {&#xa;        return canEdit [columnIndex];&#xa;    }&#xa;}" type="code"/>
                 </Property>
                 <Property name="verifyInputWhenFocusTarget" type="boolean" value="false"/>
               </Properties>

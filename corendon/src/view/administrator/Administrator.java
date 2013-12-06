@@ -11,6 +11,8 @@ import connectivity.User;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.List;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import main.*;
@@ -33,6 +35,9 @@ public class Administrator extends javax.swing.JFrame {
     public static String nameTypeToChange;
     public static String accountToChange;
     private Component ErrorPopUp;
+    
+//    private Locale locale = new Locale("nl", "NL");
+    private final ResourceBundle BUNDLE = ResourceBundle.getBundle("languages.ResourceBundle"); //, locale
 
     public Administrator() {
         initComponents();
@@ -56,8 +61,11 @@ public class Administrator extends javax.swing.JFrame {
             model.addRow(new Object[]{user.getUsername(),
                 user.getFirstName(),
                 user.getLastName(),
-                user.getPermissionId(),
-                (user.getIncorrectLogin() >= userModel.MAX_INCORRECT_LOGINS) ? "VERGRENDELD" : "Actief"});
+                (user.getPermissionId() == 1) ? BUNDLE.getString("employee") :
+                        (user.getPermissionId() == 2) ? BUNDLE.getString("manager")
+                                : BUNDLE.getString("administrator"),
+                (user.getIncorrectLogin() >= userModel.MAX_INCORRECT_LOGINS)
+                        ? BUNDLE.getString("locked") : BUNDLE.getString("active")});
 
             //System.out.println(user.getFirstName());
         }
@@ -235,35 +243,35 @@ public class Administrator extends javax.swing.JFrame {
         userOptionsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Opties voor gebruiker"));
         userOptionsPanel.setPreferredSize(new java.awt.Dimension(173, 215));
 
-        unlockAccount.setText("Account ontgrendelen");
+        unlockAccount.setText(BUNDLE.getString("unlockAccount"));
         unlockAccount.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 unlockAccountActionPerformed(evt);
             }
         });
 
-        resetPassword.setText("Reset wachtwoord");
+        resetPassword.setText(BUNDLE.getString("resetPassword"));
         resetPassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 resetPasswordActionPerformed(evt);
             }
         });
 
-        lockAccount.setText("Account vergrendelen");
+        lockAccount.setText(BUNDLE.getString("lockAccount"));
         lockAccount.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 lockAccountActionPerformed(evt);
             }
         });
 
-        deleteUser.setText("Gebruiker verwijderen");
+        deleteUser.setText(BUNDLE.getString("deleteUser"));
         deleteUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deleteUserActionPerformed(evt);
             }
         });
 
-        btEditUser.setText("Gegevens aanpassen");
+        btEditUser.setText(BUNDLE.getString("editInfo"));
         btEditUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btEditUserActionPerformed(evt);
@@ -278,7 +286,7 @@ public class Administrator extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(userOptionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(unlockAccount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lockAccount, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)
+                    .addComponent(lockAccount, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE)
                     .addComponent(resetPassword, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(deleteUser, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btEditUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -334,15 +342,15 @@ public class Administrator extends javax.swing.JFrame {
             }
         });
 
-        firstNameLabel.setText("Voornaam");
+        firstNameLabel.setText(BUNDLE.getString("firstName"));
 
-        lastNameLabel.setText("Achternaam");
+        lastNameLabel.setText(BUNDLE.getString("lastName"));
 
-        usernameLabel.setText("Gebruikersnaam");
+        usernameLabel.setText(BUNDLE.getString("username"));
 
-        passwordLabel.setText("Wachtwoord");
+        passwordLabel.setText(BUNDLE.getString("password"));
 
-        permissionLabel.setText("Gebruikersgroep");
+        permissionLabel.setText(BUNDLE.getString("userGroup"));
 
         tfPassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -355,236 +363,240 @@ public class Administrator extends javax.swing.JFrame {
             }
         });
 
-        permissionSelector.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Medewerker", "Manager", "Beheerder" }));
-        permissionSelector.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                permissionSelectorActionPerformed(evt);
-            }
-        });
-        permissionSelector.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                permissionSelectorKeyPressed(evt);
-            }
-        });
+        permissionSelector.setModel(new javax.swing.DefaultComboBoxModel(new String[] {
+            BUNDLE.getString("employee"), BUNDLE.getString("manager"),
+            BUNDLE.getString("administrator") }));
+permissionSelector.addActionListener(new java.awt.event.ActionListener() {
+    public void actionPerformed(java.awt.event.ActionEvent evt) {
+        permissionSelectorActionPerformed(evt);
+    }
+    });
+    permissionSelector.addKeyListener(new java.awt.event.KeyAdapter() {
+        public void keyPressed(java.awt.event.KeyEvent evt) {
+            permissionSelectorKeyPressed(evt);
+        }
+    });
 
-        clearFields.setText("Reset");
-        clearFields.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                clearFieldsActionPerformed(evt);
-            }
-        });
+    clearFields.setText(BUNDLE.getString("reset"));
+    clearFields.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            clearFieldsActionPerformed(evt);
+        }
+    });
 
-        createUser.setText("Aanmaken");
-        createUser.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                createUserActionPerformed(evt);
-            }
-        });
+    createUser.setText(BUNDLE.getString("create"));
+    createUser.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            createUserActionPerformed(evt);
+        }
+    });
 
-        javax.swing.GroupLayout userCreationPanelLayout = new javax.swing.GroupLayout(userCreationPanel);
-        userCreationPanel.setLayout(userCreationPanelLayout);
-        userCreationPanelLayout.setHorizontalGroup(
-            userCreationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(userCreationPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(userCreationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tfFirstName)
-                    .addComponent(tfLastName)
-                    .addComponent(tfUsername)
-                    .addComponent(tfPassword)
-                    .addGroup(userCreationPanelLayout.createSequentialGroup()
-                        .addGroup(userCreationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(firstNameLabel)
-                            .addComponent(lastNameLabel)
-                            .addComponent(usernameLabel)
-                            .addComponent(passwordLabel)
-                            .addComponent(permissionLabel)
-                            .addComponent(permissionSelector, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(userCreationPanelLayout.createSequentialGroup()
-                        .addComponent(clearFields)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
-                        .addComponent(createUser)))
-                .addContainerGap())
-        );
-        userCreationPanelLayout.setVerticalGroup(
-            userCreationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(userCreationPanelLayout.createSequentialGroup()
-                .addComponent(firstNameLabel)
-                .addGap(1, 1, 1)
-                .addComponent(tfFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lastNameLabel)
-                .addGap(1, 1, 1)
-                .addComponent(tfLastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(usernameLabel)
-                .addGap(1, 1, 1)
-                .addComponent(tfUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(passwordLabel)
-                .addGap(1, 1, 1)
-                .addComponent(tfPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(permissionLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(permissionSelector, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
-                .addGroup(userCreationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+    javax.swing.GroupLayout userCreationPanelLayout = new javax.swing.GroupLayout(userCreationPanel);
+    userCreationPanel.setLayout(userCreationPanelLayout);
+    userCreationPanelLayout.setHorizontalGroup(
+        userCreationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(userCreationPanelLayout.createSequentialGroup()
+            .addContainerGap()
+            .addGroup(userCreationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(tfFirstName)
+                .addComponent(tfLastName)
+                .addComponent(tfUsername)
+                .addComponent(tfPassword)
+                .addGroup(userCreationPanelLayout.createSequentialGroup()
                     .addComponent(clearFields)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
                     .addComponent(createUser))
-                .addContainerGap())
-        );
+                .addGroup(userCreationPanelLayout.createSequentialGroup()
+                    .addGroup(userCreationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(firstNameLabel)
+                        .addComponent(lastNameLabel)
+                        .addComponent(usernameLabel)
+                        .addComponent(passwordLabel)
+                        .addComponent(permissionLabel)
+                        .addComponent(permissionSelector, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addContainerGap())
+    );
+    userCreationPanelLayout.setVerticalGroup(
+        userCreationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(userCreationPanelLayout.createSequentialGroup()
+            .addComponent(firstNameLabel)
+            .addGap(1, 1, 1)
+            .addComponent(tfFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+            .addComponent(lastNameLabel)
+            .addGap(1, 1, 1)
+            .addComponent(tfLastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+            .addComponent(usernameLabel)
+            .addGap(1, 1, 1)
+            .addComponent(tfUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+            .addComponent(passwordLabel)
+            .addGap(1, 1, 1)
+            .addComponent(tfPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+            .addComponent(permissionLabel)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(permissionSelector, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+            .addGroup(userCreationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(clearFields)
+                .addComponent(createUser))
+            .addContainerGap())
+    );
 
-        userTablePanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Gebruikersoverzicht"));
+    userTablePanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Gebruikersoverzicht"));
 
-        refreshButton1.setText("Verversen");
-        refreshButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                refreshButton1ActionPerformed(evt);
-            }
-        });
+    refreshButton1.setText("Verversen");
+    refreshButton1.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            refreshButton1ActionPerformed(evt);
+        }
+    });
 
-        userTable.setAutoCreateRowSorter(true);
-        userTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
+    userTable.setAutoCreateRowSorter(true);
+    userTable.setModel(new javax.swing.table.DefaultTableModel(
+        new Object [][] {
 
-            },
-            new String [] {
-                "Gebruikersnaam", "Voornaam", "Achternaam", "Gebruikersgroep", "Account Status"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
-            };
+        },
+        new String [] {
+            BUNDLE.getString("username"), BUNDLE.getString("firstName"),
+            BUNDLE.getString("lastName"), BUNDLE.getString("userGroup"),
+            BUNDLE.getString("accountState")
+        }
+    ) {
+        Class[] types = new Class [] {
+            java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+        };
+        boolean[] canEdit = new boolean [] {
+            false, false, false, false, false
+        };
 
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
+        public Class getColumnClass(int columnIndex) {
+            return types [columnIndex];
+        }
 
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        userTable.setVerifyInputWhenFocusTarget(false);
-        jScrollPane1.setViewportView(userTable);
+        public boolean isCellEditable(int rowIndex, int columnIndex) {
+            return canEdit [columnIndex];
+        }
+    });
+    userTable.setVerifyInputWhenFocusTarget(false);
+    jScrollPane1.setViewportView(userTable);
 
-        tfSearch.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfSearchActionPerformed(evt);
-            }
-        });
-        tfSearch.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                tfSearchKeyPressed(evt);
-            }
-        });
+    tfSearch.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            tfSearchActionPerformed(evt);
+        }
+    });
+    tfSearch.addKeyListener(new java.awt.event.KeyAdapter() {
+        public void keyPressed(java.awt.event.KeyEvent evt) {
+            tfSearchKeyPressed(evt);
+        }
+    });
 
-        searchButton.setText("Zoeken");
-        searchButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchButtonActionPerformed(evt);
-            }
-        });
-        searchButton.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                searchButtonKeyPressed(evt);
-            }
-        });
+    searchButton.setText("Zoeken");
+    searchButton.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            searchButtonActionPerformed(evt);
+        }
+    });
+    searchButton.addKeyListener(new java.awt.event.KeyAdapter() {
+        public void keyPressed(java.awt.event.KeyEvent evt) {
+            searchButtonKeyPressed(evt);
+        }
+    });
 
-        searchComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Alle velden", "Gebruikers ID", "Voornaam", "Achternaam", "Gebruikersnaam", "Rechten ID" }));
-        searchComboBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchComboBoxActionPerformed(evt);
-            }
-        });
+    searchComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Alle velden", "Gebruikers ID", "Voornaam", "Achternaam", "Gebruikersnaam", "Rechten ID" }));
+    searchComboBox.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            searchComboBoxActionPerformed(evt);
+        }
+    });
 
-        javax.swing.GroupLayout userTablePanelLayout = new javax.swing.GroupLayout(userTablePanel);
-        userTablePanel.setLayout(userTablePanelLayout);
-        userTablePanelLayout.setHorizontalGroup(
-            userTablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(userTablePanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(userTablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 635, Short.MAX_VALUE)
-                    .addGroup(userTablePanelLayout.createSequentialGroup()
-                        .addComponent(tfSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(searchButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(searchComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(refreshButton1)))
-                .addContainerGap())
-        );
-        userTablePanelLayout.setVerticalGroup(
-            userTablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(userTablePanelLayout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 561, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(userTablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(refreshButton1)
-                    .addComponent(tfSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+    javax.swing.GroupLayout userTablePanelLayout = new javax.swing.GroupLayout(userTablePanel);
+    userTablePanel.setLayout(userTablePanelLayout);
+    userTablePanelLayout.setHorizontalGroup(
+        userTablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(userTablePanelLayout.createSequentialGroup()
+            .addContainerGap()
+            .addGroup(userTablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 588, Short.MAX_VALUE)
+                .addGroup(userTablePanelLayout.createSequentialGroup()
+                    .addComponent(tfSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                     .addComponent(searchButton)
-                    .addComponent(searchComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
-        );
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(searchComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(refreshButton1)))
+            .addContainerGap())
+    );
+    userTablePanelLayout.setVerticalGroup(
+        userTablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(userTablePanelLayout.createSequentialGroup()
+            .addGap(6, 6, 6)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 561, Short.MAX_VALUE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+            .addGroup(userTablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(refreshButton1)
+                .addComponent(tfSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(searchButton)
+                .addComponent(searchComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addContainerGap())
+    );
 
-        userMenu.setText("Gebruiker");
+    userMenu.setText("Gebruiker");
 
-        changePassword.setText("Wachtwoord wijzigen..");
-        changePassword.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                changePasswordActionPerformed(evt);
-            }
-        });
-        userMenu.add(changePassword);
+    changePassword.setText("Wachtwoord wijzigen..");
+    changePassword.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            changePasswordActionPerformed(evt);
+        }
+    });
+    userMenu.add(changePassword);
 
-        logout.setText("Uitloggen");
-        logout.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                logoutActionPerformed(evt);
-            }
-        });
-        userMenu.add(logout);
+    logout.setText("Uitloggen");
+    logout.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            logoutActionPerformed(evt);
+        }
+    });
+    userMenu.add(logout);
 
-        menuBar.add(userMenu);
+    menuBar.add(userMenu);
 
-        setJMenuBar(menuBar);
+    setJMenuBar(menuBar);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(userCreationPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(userOptionsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+    javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+    getContentPane().setLayout(layout);
+    layout.setHorizontalGroup(
+        layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(layout.createSequentialGroup()
+            .addContainerGap()
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addComponent(userCreationPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(userOptionsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 291, Short.MAX_VALUE))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(userTablePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addContainerGap())
+    );
+    layout.setVerticalGroup(
+        layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(layout.createSequentialGroup()
+            .addContainerGap()
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(userTablePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(userTablePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(userOptionsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(userCreationPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
+                .addGroup(layout.createSequentialGroup()
+                    .addComponent(userOptionsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(userCreationPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addContainerGap())
+    );
 
-        pack();
-        setLocationRelativeTo(null);
+    pack();
+    setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void tfFirstNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfFirstNameActionPerformed

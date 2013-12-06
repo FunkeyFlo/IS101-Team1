@@ -21,19 +21,40 @@ public class ResourceBundle extends ListResourceBundle {
 
     private Object[][] contents = {
         
-        // login.java
-            { "login" , "Login" },
+        // Universally used strings
+            { "administrator", "Administrator" },
+            { "create", "Create" },
+            { "employee", "Employee" },
             { "exit", "Exit" },
-            { "username", "Username"},
+            { "firstName", "First name"},
+            { "lastName", "Last name"},
+            { "login" , "Login" },
+            { "manager", "Manager" },
             { "password", "Password"},
-            { "passwordIncorrect", "Password is incorrect."},
-            { "usernameIncorrect", "Username does not exist."},
+            { "reset", "Reset" },
+            { "username", "Username"},
+        
+        // Login.java
             { "accountHasBeenLocked", "This account has been locked. \n"
                 + "Please contact your administrator."},
-        //changeMyPassword
+            { "passwordIncorrect", "Password is incorrect."},
+            { "usernameIncorrect", "Username does not exist."},
+            
+        // ChangeMyPassword.java
+            { "changeMyPassword", "Change Password" },
             { "typeCurrentPassword", "Enter current password" },
             { "typeNewPassword", "Enter new password" },
             { "typeRepeatPassword", "Repeat new password" },
-            { "changeMyPassword", "Change Password" },
+            
+        // Administrator.java
+            { "accountState", "Account state"},
+            { "active", "Active" },
+            { "deleteUser", "Delete user" },
+            { "editInfo", "Edit user information" },
+            { "lockAccount", "Lock account" },
+            { "locked", "Locked" },
+            { "resetPassword", "Reset password" },
+            { "unlockAccount", "Unlock account" },
+            { "userGroup", "User group"},
     };
 }
