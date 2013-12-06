@@ -33,6 +33,7 @@ public class ResourceBundle extends ListResourceBundle {
         //changeMyPassword
             { "typeCurrentPassword", "Enter current password" },
             { "typeNewPassword", "Enter new password" },
-            { "typeRepeatPassword", "Repeat new password" }
+            { "typeRepeatPassword", "Repeat new password" },
+            { "changeMyPassword", "Change Password" },
     };
 }

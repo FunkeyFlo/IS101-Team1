@@ -33,6 +33,7 @@ public class ResourceBundle_nl extends ListResourceBundle {
         //changeMyPassword
             { "typeCurrentPassword", "Type het huidige wachtwoord" },
             { "typeNewPassword", "Type het nieuwe wachtwoord" },
-            { "typeRepeatPassword", "Type het nieuwe wachtwoord opnieuw" }
+            { "typeRepeatPassword", "Type het nieuwe wachtwoord opnieuw" },
+            { "changeMyPassword", "Wachtwoord wijzigen" },
     };
 }

@@ -68,7 +68,7 @@ public class ChangeMyPassword extends javax.swing.JFrame {
         warningLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Verander Wachtwoord");
+        setTitle(BUNDLE.getString("changeMyPassword"));
         setAlwaysOnTop(true);
         setIconImage(getToolkit().getImage(getClass().getResource("/img/corendon.png")));
 
