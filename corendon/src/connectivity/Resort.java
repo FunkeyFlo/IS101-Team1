@@ -6,14 +6,12 @@
 
 package connectivity;
 
-import java.awt.List;
+import java.util.List;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import main.Session;
+
+
 
 /**
  *
@@ -31,7 +29,7 @@ public class Resort {
     
     
     private int id;
-    private int phone;
+    private String phone;
     private String email;
     private String name;
     private String address;
@@ -39,7 +37,7 @@ public class Resort {
     private String city;
     private String postalCode;
 
-    public Resort(int id, int phone, String email, String name, String address, String country, String city, String postalCode) {
+    public Resort(int id, String phone, String email, String name, String address, String country, String city, String postalCode) {
         this.id = id;
         this.phone = phone;
         this.email = email;
@@ -58,11 +56,11 @@ public class Resort {
         this.id = id;
     }
 
-    public int getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(int phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 
@@ -133,7 +131,7 @@ public class Resort {
             String tfPhoneResort, String tfEmail, String tfpostalCode) {
         
         String sql = "INSERT INTO `resort` (resort_name, address, country, city,"
-                + "phone_resort, email, postal_cod)"
+                + "phone_resort, email, postal_code)"
                 + "VALUES ('" + tfName + "', '" 
                 + tfAddress + "', '" 
                 + tfCountry + "', '"
@@ -142,7 +140,7 @@ public class Resort {
                 + tfEmail + "', '"
                 + tfpostalCode + "')";
         
-        db.doQuery(sql);       
+        db.insertQuery(sql);       
     }
     
     
@@ -203,7 +201,7 @@ public class Resort {
                     this.setName(result.getString("resort_name"));
                     this.setAddress(result.getString("address"));
                     this.setCity(result.getString("city"));
-                    this.setPhone(result.getInt("phone_resort"));
+                    this.setPhone(result.getString("phone_resort"));
                     this.setEmail(result.getString("email"));
                     this.setPostalCode(result.getString("postal_code"));
                 } else {
@@ -215,12 +213,70 @@ public class Resort {
             System.out.println(getDb().SQL_EXCEPTION + e.getMessage());
         }
     }
+
+    /**
+     *
+     * @param dbField
+     * @param searchArg
+     * @return
+     */
+    public  List<Resort> searchResortList(int dbField, String searchArg){
+        List<Resort> resorts = new ArrayList<>();
+        String sql, sqlSelect = "SELECT * FROM `resort`";
+        
+        if (dbField == 0) {
+            sql = sqlSelect + "WHERE `resort_id` LIKE '%" + searchArg + "%'"
+                    + "OR `resort_name` LIKE '%" + searchArg + "%'"
+                    + "OR `address` LIKE '%" + searchArg + "%'"
+                    + "OR `country` LIKE '%" + searchArg + "%'"
+                    + "OR `city` LIKE '%" + searchArg + "%'"
+                    + "OR `phone_resort` LIKE '%" + searchArg + "%'"
+                    + "OR `email` LIKE '%" + searchArg + "%'"
+                    + "OR `postal_code`  LIKE '%" + searchArg + "%'";
+        } else if (dbField == 1) {
+            sql = sqlSelect + "WHERE `resort_name` LIKE '%" + searchArg + "%'";
+        } else if (dbField == 2) {
+            sql = sqlSelect + "WHERE `address` LIKE '%" + searchArg + "%'";
+        } else if (dbField == 3) {
+            sql = sqlSelect + "WHERE `country` LIKE '%" + searchArg + "%'";
+        } else if (dbField == 4) {
+            sql = sqlSelect + "WHERE `city` LIKE '%" + searchArg + "%'";
+        } else if (dbField == 5) {
+            sql = sqlSelect + "WHERE `phone_resort` LIKE '%" + searchArg + "%'";
+        } else if (dbField == 6) {
+            sql = sqlSelect + "WHERE `email` LIKE '%" + searchArg + "%'";
+        } else if (dbField == 7) {
+            sql = sqlSelect + "WHERE `postal_code` LIKE '%" + searchArg + "%'";
+        }
+        
+        else
+        {
+            sql = sqlSelect;
+        }
+        
+        
+        try{
+            ResultSet result = getDb().doQuery(sql);
+            while(result.next()){
+                resorts.add(new Resort(result.getInt("resort_id"),
+                result.getString("resort_name"),
+                result.getString("address"),
+                result.getString("country"),
+                result.getString("city"),
+                result.getString("phone_resort"),
+                result.getString("email"),
+                result.getString("postal_code")));
+            }
+            }
+            catch (SQLException e){
+            System.out.println(getDb().SQL_EXCEPTION + e.getMessage());        
+            }
+        
+        return  resorts;      
+        
+    }
     
-       
-      
-        
-        
-        
+    
     
     
 }

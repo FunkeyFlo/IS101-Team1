@@ -24,9 +24,11 @@ public class Employee extends javax.swing.JFrame {
 
     private Luggage luggageModel = new Luggage();
     private Customer customerModel = new Customer();
+    private Resort resortModel = new Resort();
     private List<Luggage> luggages;
     private List<Customer> customers;
-    private DefaultTableModel modelLuggage1, modelCustomer1, modelLuggage2, modelCustomer2;
+    private List<Resort> resorts;
+    private DefaultTableModel modelLuggage1, modelCustomer1, modelLuggage2, modelCustomer2, modelResort;
     public static int customerId;
     public static int luggageId;
     private String customerToLink = null;
@@ -46,11 +48,15 @@ public class Employee extends javax.swing.JFrame {
         modelCustomer1 = (DefaultTableModel) this.customerTable1.getModel();
         modelLuggage2 = (DefaultTableModel) this.luggageTable2.getModel();
         modelCustomer2 = (DefaultTableModel) this.customerTable2.getModel();
+        modelResort = (DefaultTableModel) this.tblResort.getModel();
+        
 
         searchCustomerTable1(9999, "");
         searchLuggageTable1(9999, "", 1);
         searchCustomerTable2(9999, "");
         searchLuggageTable2(9999, "", 1);
+        searchResortTable(9999, "");
+        
     }
 
     /**
@@ -162,6 +168,24 @@ public class Employee extends javax.swing.JFrame {
                 customer.getPhoneMobile()});
         }
     }
+    
+    private void searchResortTable(int dbField, String searchArgs)
+    {
+        modelResort.setRowCount(0);
+        resorts = resortModel.searchResortList(dbField, searchArgs);
+        for(Resort resort : resorts){
+            modelResort.addRow(new Object[]{new Integer(resort.getId()),
+                resort.getName(),
+                resort.getAddress(),
+                resort.getCity(),
+                resort.getCountry(),
+                resort.getEmail(),
+                resort.getPostalCode(),
+                resort.getPhone()});
+        }
+       
+    }
+    
 
     /**
      * Method used to quickly clear all the text fields.
@@ -351,6 +375,7 @@ public class Employee extends javax.swing.JFrame {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
+        jPanel3 = new javax.swing.JPanel();
         overviewPane = new javax.swing.JTabbedPane();
         customer = new javax.swing.JPanel();
         customerRegistrationPanel = new javax.swing.JPanel();
@@ -432,15 +457,51 @@ public class Employee extends javax.swing.JFrame {
         linkButton = new javax.swing.JButton();
         refreshTables1 = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
+        jPanel4 = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        jSplitPane1 = new javax.swing.JSplitPane();
+        jPanel2 = new javax.swing.JPanel();
+        lblNaam = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        tfResortName = new javax.swing.JTextField();
+        tfResortCountry = new javax.swing.JTextField();
+        tfResortCity = new javax.swing.JTextField();
+        tfResortAddress = new javax.swing.JTextField();
+        tfResortPostalCode = new javax.swing.JTextField();
+        tfResortPhone = new javax.swing.JTextField();
+        tfResortEmail1 = new javax.swing.JTextField();
+        tfResortEmail2 = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        btnCreateResort = new javax.swing.JButton();
+        jPanel7 = new javax.swing.JPanel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        tblResort = new javax.swing.JTable();
         menuBar = new javax.swing.JMenuBar();
         userMenu = new javax.swing.JMenu();
         changePassword = new javax.swing.JMenuItem();
         logout = new javax.swing.JMenuItem();
 
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle(BUNDLE.getString("employee") + " - " + Session.storedFirstName + " " + Session.storedLastName);
         setIconImage(getToolkit().getImage(getClass().getResource("/img/corendon.png")));
         setMinimumSize(new java.awt.Dimension(820, 460));
+        
 
         overviewPane.setToolTipText("tooltip");
         overviewPane.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -669,6 +730,7 @@ public class Employee extends javax.swing.JFrame {
         );
 
         customerTablePanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Klanten"));
+        
 
         customerSearchField1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -747,7 +809,7 @@ public class Employee extends javax.swing.JFrame {
                     .addComponent(cbSearchCustomer1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(refreshCustomerTable2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 432, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 457, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1022,7 +1084,7 @@ public class Employee extends javax.swing.JFrame {
                         .addComponent(chbShowHandledLuggage2))
                     .addComponent(luggageSearchButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 432, Short.MAX_VALUE)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 457, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1192,7 +1254,7 @@ public class Employee extends javax.swing.JFrame {
                     .addComponent(cbSearchLuggage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(showHandledLuggage1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 327, Short.MAX_VALUE)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1269,7 +1331,7 @@ public class Employee extends javax.swing.JFrame {
                     .addComponent(customerSearchButton1)
                     .addComponent(cbSearchCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 327, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1344,6 +1406,182 @@ public class Employee extends javax.swing.JFrame {
 
         overviewPane.addTab("Bagage en klanten koppelen", linkLuggage);
 
+        jSplitPane1.setDividerLocation(360);
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Nieuw Resort"));
+
+        lblNaam.setText("Naam");
+
+        jLabel2.setText("Land");
+
+        jLabel3.setText("Plaats");
+
+        jLabel4.setText("Adres");
+
+        jLabel5.setText("Postcode");
+
+        jLabel6.setText("Telefoon");
+
+        jLabel8.setText("E-mail ");
+
+        jLabel1.setText("@");
+
+        btnCreateResort.setText("Voeg toe");
+        btnCreateResort.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCreateResortActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel2)
+                    .addComponent(lblNaam)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jLabel3)
+                        .addComponent(jLabel4)))
+                .addGap(20, 20, 20)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tfResortEmail1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfResortName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfResortCountry, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfResortCity, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfResortAddress, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfResortPostalCode, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfResortPhone, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1)
+                .addGap(15, 15, 15)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(btnCreateResort)
+                        .addGap(0, 22, Short.MAX_VALUE))
+                    .addComponent(tfResortEmail2))
+                .addContainerGap())
+        );
+
+        jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {tfResortAddress, tfResortCity, tfResortCountry, tfResortEmail1, tfResortName, tfResortPhone, tfResortPostalCode});
+
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblNaam)
+                    .addComponent(tfResortName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(tfResortCountry, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(tfResortCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(tfResortAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(tfResortPostalCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(tfResortPhone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(tfResortEmail1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfResortEmail2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addGap(18, 18, 18)
+                .addComponent(btnCreateResort)
+                .addContainerGap(255, Short.MAX_VALUE))
+        );
+
+        jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {tfResortAddress, tfResortCity, tfResortCountry, tfResortEmail1, tfResortName, tfResortPhone, tfResortPostalCode});
+
+        jSplitPane1.setLeftComponent(jPanel2);
+
+        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder("Lijst resorts"));
+
+        tblResort.setAutoCreateRowSorter(true);
+        tblResort.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane4.setViewportView(tblResort);
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(172, Short.MAX_VALUE))
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(51, Short.MAX_VALUE))
+        );
+
+        jSplitPane1.setRightComponent(jPanel7);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jSplitPane1)
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jSplitPane1)
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        overviewPane.addTab("Resort registratie", jPanel4);
+
         userMenu.setText(BUNDLE.getString("options"));
 
         changePassword.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/changePassword.png"))); // NOI18N
@@ -1376,7 +1614,7 @@ public class Employee extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(overviewPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 559, Short.MAX_VALUE)
+            .addComponent(overviewPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 584, Short.MAX_VALUE)
         );
 
         overviewPane.getAccessibleContext().setAccessibleName("Tabbed Pane");
@@ -1788,6 +2026,28 @@ public class Employee extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btPrintReceiptActionPerformed
 
+    private void btnCreateResortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateResortActionPerformed
+       
+        Resort resort = new Resort();
+        
+        String newName = tfResortName.getText().trim();
+        String newAddress = tfResortAddress.getText().trim();
+        String newCountry = tfResortCountry.getText().trim();
+        String newCity = tfResortCity.getText().trim();
+        String newPhone = tfResortPhone.getText().trim();
+        String newEmail = tfEmail1.getText().trim() + "@" + tfEmail2.getText().trim();
+        String newPostalCode = tfPostalCode.getText().trim();
+      
+       
+        
+        resort.setNewResort(newName, newAddress, newCountry, newCity, newPhone,
+                newEmail, newPostalCode);
+        
+        
+        
+        
+    }//GEN-LAST:event_btnCreateResortActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1828,6 +2088,7 @@ public class Employee extends javax.swing.JFrame {
     private javax.swing.JButton btCreateLuggage;
     private javax.swing.JButton btDeleteLuggage;
     private javax.swing.JButton btPrintReceipt;
+    private javax.swing.JButton btnCreateResort;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton cancelButton;
     private javax.swing.JComboBox cbSearchCustomer;
@@ -1851,6 +2112,7 @@ public class Employee extends javax.swing.JFrame {
     private javax.swing.JPanel customerTablePanel;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton4;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
@@ -1859,17 +2121,31 @@ public class Employee extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JLabel lblCustomerID4;
     private javax.swing.JLabel lblCustomerID5;
     private javax.swing.JLabel lblCustomerID6;
     private javax.swing.JLabel lblCustomerID7;
+    private javax.swing.JLabel lblNaam;
     private javax.swing.JButton linkButton;
     private javax.swing.JPanel linkCustomerTablePanel;
     private javax.swing.JPanel linkLuggage;
@@ -1893,6 +2169,7 @@ public class Employee extends javax.swing.JFrame {
     private javax.swing.JButton refreshLuggageTable2;
     private javax.swing.JButton refreshTables1;
     private javax.swing.JCheckBox showHandledLuggage1;
+    private javax.swing.JTable tblResort;
     private javax.swing.JTextField tfAddress1;
     private javax.swing.JTextField tfAddress2;
     private javax.swing.JTextField tfCity;
@@ -1907,6 +2184,14 @@ public class Employee extends javax.swing.JFrame {
     private javax.swing.JTextField tfPhoneHome;
     private javax.swing.JTextField tfPhoneMobile;
     private javax.swing.JTextField tfPostalCode;
+    private javax.swing.JTextField tfResortAddress;
+    private javax.swing.JTextField tfResortCity;
+    private javax.swing.JTextField tfResortCountry;
+    private javax.swing.JTextField tfResortEmail1;
+    private javax.swing.JTextField tfResortEmail2;
+    private javax.swing.JTextField tfResortName;
+    private javax.swing.JTextField tfResortPhone;
+    private javax.swing.JTextField tfResortPostalCode;
     private javax.swing.JMenu userMenu;
     private javax.swing.JLabel warningLabel1;
     // End of variables declaration//GEN-END:variables
