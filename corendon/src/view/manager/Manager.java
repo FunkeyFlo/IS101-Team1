@@ -105,7 +105,7 @@ public class Manager extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle(BUNDLE.getString("manager") + " - " + Session.storedFirstName + " " + Session.storedLastName);
 
-        allGraphs.setBorder(javax.swing.BorderFactory.createTitledBorder("Alle data"));
+        allGraphs.setBorder(javax.swing.BorderFactory.createTitledBorder(BUNDLE.getString("allData")));
         allGraphs.setLayout(new java.awt.GridBagLayout());
 
         javax.swing.GroupLayout allGraphsTabLayout = new javax.swing.GroupLayout(allGraphsTab);
@@ -121,13 +121,13 @@ public class Manager extends javax.swing.JFrame {
             allGraphsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(allGraphsTabLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(allGraphs, javax.swing.GroupLayout.DEFAULT_SIZE, 368, Short.MAX_VALUE)
+                .addComponent(allGraphs, javax.swing.GroupLayout.DEFAULT_SIZE, 415, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        overviewPane.addTab("Alle data", allGraphsTab);
+        overviewPane.addTab(BUNDLE.getString("allData"), allGraphsTab);
 
-        lostBaggage.setBorder(javax.swing.BorderFactory.createTitledBorder("Vermiste bagage"));
+        lostBaggage.setBorder(javax.swing.BorderFactory.createTitledBorder(BUNDLE.getString("missingLuggage")));
         lostBaggage.setLayout(new java.awt.GridBagLayout());
 
         javax.swing.GroupLayout lostBaggageTabLayout = new javax.swing.GroupLayout(lostBaggageTab);
@@ -143,13 +143,14 @@ public class Manager extends javax.swing.JFrame {
             lostBaggageTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(lostBaggageTabLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lostBaggage, javax.swing.GroupLayout.DEFAULT_SIZE, 368, Short.MAX_VALUE)
+                .addComponent(lostBaggage, javax.swing.GroupLayout.DEFAULT_SIZE, 415, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        overviewPane.addTab("Vermiste bagage", lostBaggageTab);
+        overviewPane.addTab(BUNDLE.getString("missingLuggage")
+            , lostBaggageTab);
 
-        foundBaggage.setBorder(javax.swing.BorderFactory.createTitledBorder("Gevonde bagage"));
+        foundBaggage.setBorder(javax.swing.BorderFactory.createTitledBorder(BUNDLE.getString("foundLuggage")));
         foundBaggage.setLayout(new java.awt.GridBagLayout());
 
         javax.swing.GroupLayout foundBaggageTabLayout = new javax.swing.GroupLayout(foundBaggageTab);
@@ -165,13 +166,13 @@ public class Manager extends javax.swing.JFrame {
             foundBaggageTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(foundBaggageTabLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(foundBaggage, javax.swing.GroupLayout.DEFAULT_SIZE, 368, Short.MAX_VALUE)
+                .addComponent(foundBaggage, javax.swing.GroupLayout.DEFAULT_SIZE, 415, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        overviewPane.addTab("Gevonden baggage", foundBaggageTab);
+        overviewPane.addTab(BUNDLE.getString("foundLuggage"), foundBaggageTab);
 
-        handledBaggage.setBorder(javax.swing.BorderFactory.createTitledBorder("Afgehandelde Bagage"));
+        handledBaggage.setBorder(javax.swing.BorderFactory.createTitledBorder(BUNDLE.getString("handledLuggage")));
         handledBaggage.setLayout(new java.awt.GridBagLayout());
 
         javax.swing.GroupLayout handledBaggageTabLayout = new javax.swing.GroupLayout(handledBaggageTab);
@@ -187,22 +188,27 @@ public class Manager extends javax.swing.JFrame {
             handledBaggageTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(handledBaggageTabLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(handledBaggage, javax.swing.GroupLayout.DEFAULT_SIZE, 368, Short.MAX_VALUE)
+                .addComponent(handledBaggage, javax.swing.GroupLayout.DEFAULT_SIZE, 415, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        overviewPane.addTab("Afgehandelde baggage", handledBaggageTab);
+        overviewPane.addTab(BUNDLE.getString("handledLuggage"), handledBaggageTab);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Opties"));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(BUNDLE.getString("options")));
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Van"));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(BUNDLE.getString("from")));
 
-        jLabel2.setText("Jaar");
+        jLabel2.setText(BUNDLE.getString("year"));
 
-        jLabel3.setText("Maand");
+        jLabel3.setText(BUNDLE.getString("month"));
 
         cbMonthFrom.setMaximumRowCount(12);
-        cbMonthFrom.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Januari", "Februari", "Maart", "April", "Mei", "Juni", "Juli", "Augustus", "September", "Oktober", "November", "December" }));
+        cbMonthFrom.setModel(new javax.swing.DefaultComboBoxModel(BUNDLE.getStringArray("months")));
+        cbMonthFrom.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbMonthFromActionPerformed(evt);
+            }
+        });
 
         cbYearFrom.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "2010", "2011", "2012", "2013" }));
 
@@ -215,7 +221,7 @@ public class Manager extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
                     .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(cbMonthFrom, 0, 101, Short.MAX_VALUE)
                     .addComponent(cbYearFrom, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -231,12 +237,12 @@ public class Manager extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(cbMonthFrom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Tot"));
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(BUNDLE.getString("to")));
 
-        buttonUpdateAllDataGraph.setText("Update");
+        buttonUpdateAllDataGraph.setText(BUNDLE.getString("update"));
         buttonUpdateAllDataGraph.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonUpdateAllDataGraphActionPerformed(evt);
@@ -244,11 +250,11 @@ public class Manager extends javax.swing.JFrame {
         });
 
         cbMonthTo.setMaximumRowCount(12);
-        cbMonthTo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Januari", "Februari", "Maart", "April", "Mei", "Juni", "Juli", "Augustus", "September", "Oktober", "November", "December" }));
+        cbMonthTo.setModel(new javax.swing.DefaultComboBoxModel(BUNDLE.getStringArray("months")));
 
-        jLabel4.setText("Maand");
+        jLabel4.setText(BUNDLE.getString("month"));
 
-        jLabel5.setText("Jaar");
+        jLabel5.setText(BUNDLE.getString("year"));
 
         cbYearTo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "2010", "2011", "2012", "2013" }));
         cbYearTo.addActionListener(new java.awt.event.ActionListener() {
@@ -288,7 +294,7 @@ public class Manager extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(cbMonthTo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addComponent(buttonUpdateAllDataGraph)
@@ -296,16 +302,16 @@ public class Manager extends javax.swing.JFrame {
                     .addComponent(labelError, javax.swing.GroupLayout.Alignment.TRAILING)))
         );
 
-        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Overige Opties"));
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(BUNDLE.getString("otherOptions")));
 
-        cbShowAll.setText("Zie alle data, zelfs als de status van de");
+        cbShowAll.setText(BUNDLE.getString("seeAllData1"));
         cbShowAll.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbShowAllActionPerformed(evt);
             }
         });
 
-        jLabel6.setText("baggage niet meer van toepassing is.");
+        jLabel6.setText(BUNDLE.getString("seeAllData2"));
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -346,7 +352,7 @@ public class Manager extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -634,6 +640,10 @@ public class Manager extends javax.swing.JFrame {
         dispose();
         Main.displayLogin();
     }//GEN-LAST:event_logoutActionPerformed
+
+    private void cbMonthFromActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbMonthFromActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbMonthFromActionPerformed
     
     /**
      * @return amount of months between begin year and month and end year and month.

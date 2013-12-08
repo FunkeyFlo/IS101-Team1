@@ -41,6 +41,7 @@ public class ResourceBundle extends ListResourceBundle {
             { "search", "Search" },
             { "userId", "User Id" },
             { "username", "Username" },
+            { "update", "Update" },
         
         // Toolbar
             { "changePassword", "Change Password" },
@@ -82,5 +83,22 @@ public class ResourceBundle extends ListResourceBundle {
             { "userOptions", "User options" },
             { "userOverview", "User overview" },
             { "createUser", "Create user" },
+            
+         // Manager.java
+            { "allData", "All Data" },
+            { "foundLuggage", "Found Luggage" },
+            { "from", "From" },
+            { "handledLuggage", "Handled Luggage" },
+            { "missingLuggage", "Missing Luggage" },
+            { "month", "Month" },
+            { "months", new String[] { "January", "February", "March", "April",
+                "May", "June", "July", "August", "September", "October",
+                "November", "December" } },
+            { "options", "Options" },
+            { "otherOptions", "Other Options" },
+            { "seeAllData1", "Shows all data, even if the status of the" },
+            { "seeAllData2", "luggage is no longer applicable" },
+            { "to", "To" },
+            { "year", "Year" },
     };
 }

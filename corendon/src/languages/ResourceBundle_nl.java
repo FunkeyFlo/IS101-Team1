@@ -41,6 +41,7 @@ public class ResourceBundle_nl extends ListResourceBundle {
             { "search", "Zoeken" },
             { "userId", "Gebruikers ID" },
             { "username", "Gebruikersnaam" },
+            { "update", "Update" },
         
         // Toolbar
             { "changePassword", "Wachtwoord wijzigen" },
@@ -82,5 +83,22 @@ public class ResourceBundle_nl extends ListResourceBundle {
             { "userOptions", "Opties voor gebruikers" },
             { "userOverview", "Gebruikers overzicht" },
             { "createUser", "Gebruiker aanmaken" },
+            
+        // Manager.java
+            { "allData", "Alle Data" },
+            { "foundLuggage", "Gevonden Bagage" },
+            { "from", "Van" },
+            { "handledLuggage", "Afgehandelde Bagage" },   
+            { "missingLuggage", "Vermiste Bagage" },
+            { "month", "Maand" },
+            { "months", new String[] { "Januari", "Februari", "Maart", "April",
+                "Mei", "Juni", "Juli", "Augustus", "September", "October",
+                "November", "December" } },
+            { "options", "Opties" },
+            { "otherOptions", "Overige Opties" },
+            { "seeAllData1", "Zie alle data, zelfs als de status van de" },
+            { "seeAllData2", "baggage niet meer van toepassing is." },
+            { "to", "Tot" },            
+            { "year", "Jaar" },
     };
 }
