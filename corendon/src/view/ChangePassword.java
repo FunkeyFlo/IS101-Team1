@@ -5,7 +5,7 @@
 package view;
 
 import connectivity.User;
-import java.util.Locale;
+//import java.util.Locale;
 import java.util.ResourceBundle;
 import main.Session;
 
@@ -13,13 +13,13 @@ import main.Session;
  *
  * @author Team AwesomeSauce
  */
-public class ChangeMyPassword extends javax.swing.JFrame {
+public class ChangePassword extends javax.swing.JFrame {
 //    private Locale locale = new Locale("nl", "NL");
     private final ResourceBundle BUNDLE = ResourceBundle.getBundle("languages.ResourceBundle"); // , locale
     /**
      * Creates new form ChangeMyPassword
      */
-    public ChangeMyPassword() {
+    public ChangePassword() {
         initComponents();
     }
     
@@ -70,7 +70,7 @@ public class ChangeMyPassword extends javax.swing.JFrame {
         warningLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle(BUNDLE.getString("changeMyPassword"));
+        setTitle(BUNDLE.getString("changePassword"));
         setAlwaysOnTop(true);
         setIconImage(getToolkit().getImage(getClass().getResource("/img/corendon.png")));
 
@@ -105,7 +105,7 @@ public class ChangeMyPassword extends javax.swing.JFrame {
             }
         });
 
-        okButton.setText(BUNDLE.getString("ok"));
+        okButton.setText(BUNDLE.getString("apply"));
         okButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 okButtonActionPerformed(evt);
@@ -217,20 +217,20 @@ public class ChangeMyPassword extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ChangeMyPassword.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ChangePassword.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ChangeMyPassword.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ChangePassword.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ChangeMyPassword.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ChangePassword.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ChangeMyPassword.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ChangePassword.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ChangeMyPassword().setVisible(true);
+                new ChangePassword().setVisible(true);
             }
         });
     }

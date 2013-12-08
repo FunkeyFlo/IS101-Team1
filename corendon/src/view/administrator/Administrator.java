@@ -11,7 +11,7 @@ import connectivity.User;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.List;
-import java.util.Locale;
+//import java.util.Locale;
 import java.util.ResourceBundle;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -449,7 +449,7 @@ permissionSelector.addActionListener(new java.awt.event.ActionListener() {
 
     userTablePanel.setBorder(javax.swing.BorderFactory.createTitledBorder(BUNDLE.getString("userOverview")));
 
-    refreshButton1.setText("Verversen");
+    refreshButton1.setText(BUNDLE.getString("resetOverview"));
     refreshButton1.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             refreshButton1ActionPerformed(evt);
@@ -531,7 +531,7 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
                     .addComponent(searchButton)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(searchComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 192, Short.MAX_VALUE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 181, Short.MAX_VALUE)
                     .addComponent(refreshButton1)))
             .addContainerGap())
     );
@@ -651,6 +651,8 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
 
     private void refreshButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButton1ActionPerformed
         searchUserTable(9999, "");
+        tfSearch.setText("");
+        searchComboBox.setSelectedIndex(0);
     }//GEN-LAST:event_refreshButton1ActionPerformed
 
     private void resetPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetPasswordActionPerformed
@@ -663,7 +665,7 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
             isError = true;
         }
         if (isError == false) {
-            Main.displayChangePassword();
+            Main.displayResetPassword();
         }
     }//GEN-LAST:event_resetPasswordActionPerformed
 
@@ -824,7 +826,7 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
     }//GEN-LAST:event_btEditUserActionPerformed
 
     private void changePasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changePasswordActionPerformed
-        Main.displayChangeMyPassword();
+        Main.displayChangePassword();
     }//GEN-LAST:event_changePasswordActionPerformed
 
     private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed

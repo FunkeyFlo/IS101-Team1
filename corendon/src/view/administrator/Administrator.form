@@ -391,7 +391,7 @@
                           <Component id="searchButton" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="searchComboBox" min="-2" pref="111" max="-2" attributes="0"/>
-                          <EmptySpace pref="192" max="32767" attributes="0"/>
+                          <EmptySpace pref="181" max="32767" attributes="0"/>
                           <Component id="refreshButton1" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -419,7 +419,9 @@
       <SubComponents>
         <Component class="javax.swing.JButton" name="refreshButton1">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Verversen"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="BUNDLE.getString(&quot;resetOverview&quot;)" type="code"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="refreshButton1ActionPerformed"/>

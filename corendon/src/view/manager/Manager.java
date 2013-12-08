@@ -634,7 +634,7 @@ public class Manager extends javax.swing.JFrame {
     }//GEN-LAST:event_cbShowAllActionPerformed
 
     private void changePasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changePasswordActionPerformed
-        Main.displayChangeMyPassword();
+        Main.displayChangePassword();
     }//GEN-LAST:event_changePasswordActionPerformed
 
     private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed

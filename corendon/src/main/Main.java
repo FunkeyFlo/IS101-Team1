@@ -4,6 +4,7 @@
  */
 package main;
 
+import java.util.Locale;
 import java.util.ResourceBundle;
 import view.employee.*;
 import view.manager.Manager;
@@ -45,14 +46,14 @@ public class Main {
         frameBeheerder.setVisible(true);
     }
 
-    public static void displayChangeMyPassword() {
-        ChangeMyPassword frameChangeMyPassword = new ChangeMyPassword();
-        frameChangeMyPassword.setVisible(true);
-    }
-
     public static void displayChangePassword() {
         ChangePassword frameChangePassword = new ChangePassword();
         frameChangePassword.setVisible(true);
+    }
+
+    public static void displayResetPassword() {
+        ResetPassword frameResetPassword = new ResetPassword();
+        frameResetPassword.setVisible(true);
     }
     
     public static void displayExtendedCustomer() {
