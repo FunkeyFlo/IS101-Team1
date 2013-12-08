@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 
 package connectivity;
 
@@ -17,8 +13,7 @@ import java.util.ArrayList;
  *
  * @author mark
  */
-public class Resort {
-    
+public class Resort {    
     
     DbManager db = new DbManager();
     
@@ -36,7 +31,18 @@ public class Resort {
     private String country;
     private String city;
     private String postalCode;
-
+    
+/**
+ * Constructor.
+ * @param id
+ * @param phone
+ * @param email
+ * @param name
+ * @param address
+ * @param country
+ * @param city
+ * @param postalCode 
+ */
     public Resort(int id, String phone, String email, String name, String address, String country, String city, String postalCode) {
         this.id = id;
         this.phone = phone;
@@ -118,6 +124,7 @@ public class Resort {
     }
     
     /**
+     * Create a new Resort recort.
      * Create a new resort. 
      * @param tfName
      * @param tfAddress
@@ -155,6 +162,7 @@ public class Resort {
     }
     
     /**
+     * Update a singel resort record.
      * Update a resort record.
      * @param tfId
      * @param tfName
@@ -215,10 +223,10 @@ public class Resort {
     }
 
     /**
-     *
-     * @param dbField
-     * @param searchArg
-     * @return
+     * Method to search the entity Resorts.
+     * @param dbField field to search, if null it searches al fields.
+     * @param searchArg the paramater to search with. 
+     * @return a list of resorts coresponding to the parameters. 
      */
     public  List<Resort> searchResortList(int dbField, String searchArg){
         List<Resort> resorts = new ArrayList<>();
@@ -252,8 +260,7 @@ public class Resort {
         else
         {
             sql = sqlSelect;
-        }
-        
+        }        
         
         try{
             ResultSet result = getDb().doQuery(sql);
@@ -276,9 +283,16 @@ public class Resort {
         
     }
     
-    
-    
-    
+    /**
+     * links a resort to a customer.
+     * @param customerId
+     * @param resortId 
+     */
+    public void linkCustomerIdToResort(int customerId, int resortId) {
+        String sql = "UPDATE `customer` SET `resort_id` = " + resortId
+                + "WHERE `customer_id` =" + customerId;
+        db.insertQuery(sql);
+    }   
 }
     
     
