@@ -5,6 +5,7 @@
 package view;
 
 import connectivity.User;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import main.Session;
 
@@ -13,7 +14,8 @@ import main.Session;
  * @author Team AwesomeSauce
  */
 public class ChangeMyPassword extends javax.swing.JFrame {
-    private final ResourceBundle BUNDLE = ResourceBundle.getBundle("languages.ResourceBundle");
+//    private Locale locale = new Locale("nl", "NL");
+    private final ResourceBundle BUNDLE = ResourceBundle.getBundle("languages.ResourceBundle"); // , locale
     /**
      * Creates new form ChangeMyPassword
      */
@@ -40,11 +42,11 @@ public class ChangeMyPassword extends javax.swing.JFrame {
                         newPassword.getText().trim(), session.storedUsername);
                 dispose();
             } else {
-                warningLabel.setText("New password doesn't match");
+                warningLabel.setText(BUNDLE.getString("newPasswordNoMatch"));
             }
         }
         else
-            warningLabel.setText("the current password is incorrect");
+            warningLabel.setText(BUNDLE.getString("currentPasswordIncorrect"));
     }
 
     /**
@@ -96,14 +98,14 @@ public class ChangeMyPassword extends javax.swing.JFrame {
             }
         });
 
-        cancelButton.setText("Annuleren");
+        cancelButton.setText(BUNDLE.getString("cancel"));
         cancelButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cancelButtonActionPerformed(evt);
             }
         });
 
-        okButton.setText("Ok");
+        okButton.setText(BUNDLE.getString("ok"));
         okButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 okButtonActionPerformed(evt);

@@ -24,6 +24,7 @@ public class ResourceBundle extends ListResourceBundle {
         // Universally used strings
             { "administrator", "Administrator" },
             { "allFields", "All fields" },
+            { "cancel", "Cancel" },
             { "create", "Create" },
             { "employee", "Employee" },
             { "exit", "Exit" },
@@ -34,6 +35,7 @@ public class ResourceBundle extends ListResourceBundle {
             { "manager", "Manager" },
             { "selectItemInTable", "Please select an item from the table and try again." },
             { "options", "Options" },
+            { "ok", "Ok" },
             { "password", "Password" },
             { "reset", "Reset" },
             { "search", "Search" },
@@ -52,6 +54,8 @@ public class ResourceBundle extends ListResourceBundle {
             
         // ChangeMyPassword.java
             { "changeMyPassword", "Change Password" },
+            { "currentPasswordIncorrect", "Current password is incorrect." },
+            { "newPasswordNoMatch", "New password fields do not match." },
             { "typeCurrentPassword", "Enter current password" },
             { "typeNewPassword", "Enter new password" },
             { "typeRepeatPassword", "Repeat new password" },

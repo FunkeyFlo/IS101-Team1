@@ -24,6 +24,7 @@ public class ResourceBundle_nl extends ListResourceBundle {
         // Universally used strings
             { "administrator", "Beheerder" },
             { "allFields", "Alle velden" },
+            { "cancel", "Annuleren" },
             { "create", "Aanmaken" },
             { "employee", "Medewerker" },
             { "exit", "Afsluiten" },
@@ -33,6 +34,7 @@ public class ResourceBundle_nl extends ListResourceBundle {
             { "login" , "Inloggen" },
             { "manager", "Manager" },
             { "selectItemInTable", "Selecteer een onderdeel uit de tabel en probeer het nogmaals." },
+            { "ok", "Ok" },
             { "options", "Opties" },
             { "password", "Wachtwoord" },
             { "reset", "Reset" },
@@ -52,6 +54,8 @@ public class ResourceBundle_nl extends ListResourceBundle {
             
         // ChangeMyPassword.java
             { "changeMyPassword", "Wachtwoord veranderen" },
+            { "currentPasswordIncorrect", "Het huidige wachtwoord is onjuist." },
+            { "newPasswordNoMatch", "Ingevoerde nieuwe wachtwoord velden komen niet overeen." },
             { "typeCurrentPassword", "Typ het huidige wachtwoord" },
             { "typeNewPassword", "Typ nieuw wachtwoord" },
             { "typeRepeatPassword", "Herhaal nieuw wachtwoord" },
