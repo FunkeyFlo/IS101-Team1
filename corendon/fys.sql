@@ -86,6 +86,25 @@ PRIMARY KEY (`luggage_id`)
 INSERT INTO `luggage` (`customer_id`, `description`, `location`, `date_changed`, `date_lost`, `date_handled`, `status`, `date_found`, `last_changed_by`) VALUES 
 (1, 'Krat bierblikjesmetsoep', 'F1.14', '2013-11-25 14:04:05.0', '2013-11-18 09:36:59.0', '2013-11-20 13:33:49.0', 3, '2013-11-26 15:30:38.556', '1');
 
+--
+-- Tabelstructuur voor tabel `resort`
+--
+
+
+CREATE TABLE IF NOT EXISTS  `resort` (
+ `resort_id` int(11) NOT NULL AUTO_INCREMENT,
+ `resort_name` varchar(50) DEFAULT NULL,
+ `address` varchar(75) DEFAULT NULL,
+ `country` varchar(45) DEFAULT NULL,
+ `city` varchar(45) DEFAULT NULL,
+ `phone_resort` varchar(20) DEFAULT NULL,
+ `email` varchar(100) DEFAULT NULL,
+ `postal_code` varchar(45) DEFAULT NULL,
+ PRIMARY KEY (`resort_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1
+
+
+
 -- --------------------------------------------------------
 
 --
