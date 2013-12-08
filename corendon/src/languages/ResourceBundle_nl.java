@@ -86,6 +86,8 @@ public class ResourceBundle_nl extends ListResourceBundle {
             
         // Manager.java
             { "allData", "Alle Data" },
+            { "allStatusLuggage", "Vermiste, gevonden en afgehandelde bagage per maand" },
+            { "beginDate", "Begindatum kan niet groter zijn dan einddatum." },
             { "foundLuggage", "Gevonden Bagage" },
             { "from", "Van" },
             { "handledLuggage", "Afgehandelde Bagage" },   
@@ -98,7 +100,9 @@ public class ResourceBundle_nl extends ListResourceBundle {
             { "otherOptions", "Overige Opties" },
             { "seeAllData1", "Zie alle data, zelfs als de status van de" },
             { "seeAllData2", "baggage niet meer van toepassing is." },
-            { "to", "Tot" },            
+            { "to", "Tot" },
+            { "xAxis", "Maand/Jaar" },
+            { "yAxis", "Aantal" },
             { "year", "Jaar" },
     };
 }

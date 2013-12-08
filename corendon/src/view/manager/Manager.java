@@ -24,21 +24,25 @@ import org.jfree.data.category.DefaultCategoryDataset;
  */
 
 public class Manager extends javax.swing.JFrame {
+    
+    //    private Locale locale = new Locale("nl", "NL");
+    private static final ResourceBundle BUNDLE = 
+            ResourceBundle.getBundle("languages.ResourceBundle"); //, locale
 
     private static final String ALL_LUGGAGE_DATA_GRAPH_NAME = 
-            "Verloren, gevonden en afgehandelde baggage per maand";
+            BUNDLE.getString("allStatusLuggage");
     
     private static final String LOST_LUGGAGE_GRAPH_NAME = 
-            "Verloren baggage";
+            BUNDLE.getString("missingLuggage");
     
     private static final String FOUND_LUGGAGE_GRAPH_NAME = 
-            "Gevonden baggage";
+            BUNDLE.getString("foundLuggage");
     
     private static final String HANDLED_LUGGAGE_GRAPH_NAME = 
-            "Afgehandelde baggage";
+            BUNDLE.getString("foundLuggage");
     
-    private static final String X_AXIS_NAME = "Maand/Jaar";
-    private static final String Y_AXIS_NAME = "Aantal";
+    private static final String X_AXIS_NAME = BUNDLE.getString("xAxis");
+    private static final String Y_AXIS_NAME = BUNDLE.getString("yAxis");
     
     private static final int LOST_LUGGAGE_DBFIELD = 6;
     private static final int FOUND_LUGGAGE_DBFIELD = 8;
@@ -46,9 +50,6 @@ public class Manager extends javax.swing.JFrame {
     private static final int BEGIN_YEAR = 2010;
     
     private static final Color TRANS = new Color(0xFF, 0xFF, 0xFF, 0);
-    
-    //    private Locale locale = new Locale("nl", "NL");
-    private final ResourceBundle BUNDLE = ResourceBundle.getBundle("languages.ResourceBundle"); //, locale
     
     public Manager() {
         initComponents();
@@ -616,7 +617,7 @@ public class Manager extends javax.swing.JFrame {
         monthTo = cbMonthTo.getSelectedIndex() + 1;
         int showIfAttributeNotTrue = cbShowAll.isSelected() ? 1 : 0;
         if (yearFrom > yearTo) { 
-            errorPopUp("Begindatum kan niet groter zijn dan einddatum.");
+            errorPopUp(BUNDLE.getString("beginDate"));
         } else {
             setAllDataGraph(yearFrom, yearTo, monthFrom, monthTo, 
                     showIfAttributeNotTrue);

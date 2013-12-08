@@ -84,8 +84,10 @@ public class ResourceBundle extends ListResourceBundle {
             { "userOverview", "User overview" },
             { "createUser", "Create user" },
             
-         // Manager.java
+        // Manager.java
             { "allData", "All Data" },
+            { "allStatusLuggage", "Missing, found and handled luggage per month" },
+            { "beginDate", "The first date can't be more than end date." },
             { "foundLuggage", "Found Luggage" },
             { "from", "From" },
             { "handledLuggage", "Handled Luggage" },
@@ -99,6 +101,8 @@ public class ResourceBundle extends ListResourceBundle {
             { "seeAllData1", "Shows all data, even if the status of the" },
             { "seeAllData2", "luggage is no longer applicable" },
             { "to", "To" },
+            { "xAxis", "Month/Year" },
+            { "yAxis", "Number" },
             { "year", "Year" },
     };
 }
