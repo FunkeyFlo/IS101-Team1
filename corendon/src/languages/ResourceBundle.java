@@ -23,22 +23,32 @@ public class ResourceBundle extends ListResourceBundle {
         
         // Universally used strings
             { "administrator", "Administrator" },
+            { "allFields", "All fields" },
             { "create", "Create" },
             { "employee", "Employee" },
             { "exit", "Exit" },
-            { "firstName", "First name"},
-            { "lastName", "Last name"},
+            { "fillInAllFields", "Please fill in all fields and try again."},
+            { "firstName", "First name" },
+            { "lastName", "Last name" },
             { "login" , "Login" },
             { "manager", "Manager" },
-            { "password", "Password"},
+            { "selectItemInTable", "Please select an item from the table and try again." },
+            { "options", "Options" },
+            { "password", "Password" },
             { "reset", "Reset" },
-            { "username", "Username"},
+            { "search", "Search" },
+            { "userId", "User Id" },
+            { "username", "Username" },
         
+        // Toolbar
+            { "changePassword", "Change Password" },
+            { "logout", "Logout" },
+            
         // Login.java
             { "accountHasBeenLocked", "This account has been locked. \n"
-                + "Please contact your administrator."},
-            { "passwordIncorrect", "Password is incorrect."},
-            { "usernameIncorrect", "Username does not exist."},
+                + "Please contact your administrator." },
+            { "passwordIncorrect", "Password is incorrect." },
+            { "usernameIncorrect", "Username does not exist." },
             
         // ChangeMyPassword.java
             { "changeMyPassword", "Change Password" },
@@ -47,14 +57,26 @@ public class ResourceBundle extends ListResourceBundle {
             { "typeRepeatPassword", "Repeat new password" },
             
         // Administrator.java
-            { "accountState", "Account state"},
+            { "accountState", "Account state" },
+            { "accountIsUnlocked",
+                "The account has successfully been unlocked." },
+            { "accountIsLocked",
+                "The account has successfully been locked." },
             { "active", "Active" },
+            { "createUserPrompt", 
+                "Are you sure you want to create this user account?" },
+            { "deleteUserPrompt", 
+                "Are you sure you want to delete this user account?" },
             { "deleteUser", "Delete user" },
             { "editInfo", "Edit user information" },
             { "lockAccount", "Lock account" },
             { "locked", "Locked" },
             { "resetPassword", "Reset password" },
             { "unlockAccount", "Unlock account" },
-            { "userGroup", "User group"},
+            { "userGroup", "User group" },
+            { "usernameInUse", "Username is already in use." },
+            { "userOptions", "User options" },
+            { "userOverview", "User overview" },
+            { "createUser", "Create user" },
     };
 }

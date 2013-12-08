@@ -11,12 +11,19 @@
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="userMenu">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Gebruiker"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="BUNDLE.getString(&quot;options&quot;)" type="code"/>
+            </Property>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="changePassword">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Wachtwoord wijzigen.."/>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/img/changePassword.png"/>
+                </Property>
+                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="BUNDLE.getString(&quot;changePassword&quot;)" type="code"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="changePasswordActionPerformed"/>
@@ -24,7 +31,12 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="logout">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Uitloggen"/>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/img/logout.png"/>
+                </Property>
+                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="BUNDLE.getString(&quot;logout&quot;)" type="code"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="logoutActionPerformed"/>
@@ -37,6 +49,9 @@
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="title" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+      <Connection code="BUNDLE.getString(&quot;manager&quot;) + &quot; - &quot; + Session.storedFirstName + &quot; &quot; + Session.storedLastName" type="code"/>
+    </Property>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="menuBar" type="java.lang.String" value="menuBar"/>

@@ -236,11 +236,11 @@ public class Administrator extends javax.swing.JFrame {
         logout = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Beheerder - " + Session.storedFirstName + " " + Session.storedLastName);
+        setTitle(BUNDLE.getString("administrator") + " - " + Session.storedFirstName + " " + Session.storedLastName);
         setIconImage(getToolkit().getImage(getClass().getResource("/img/corendon.png")));
         setMinimumSize(new java.awt.Dimension(720, 534));
 
-        userOptionsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Opties voor gebruiker"));
+        userOptionsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(BUNDLE.getString("userOptions")));
         userOptionsPanel.setPreferredSize(new java.awt.Dimension(173, 215));
 
         unlockAccount.setText(BUNDLE.getString("unlockAccount"));
@@ -286,7 +286,7 @@ public class Administrator extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(userOptionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(unlockAccount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lockAccount, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE)
+                    .addComponent(lockAccount, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(resetPassword, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(deleteUser, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btEditUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -304,10 +304,10 @@ public class Administrator extends javax.swing.JFrame {
                 .addComponent(deleteUser)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btEditUser)
-                .addGap(0, 5, Short.MAX_VALUE))
+                .addGap(0, 27, Short.MAX_VALUE))
         );
 
-        userCreationPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Gebruiker aanmaken"));
+        userCreationPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(BUNDLE.getString("createUser")));
 
         tfFirstName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -403,8 +403,9 @@ permissionSelector.addActionListener(new java.awt.event.ActionListener() {
                 .addComponent(tfUsername)
                 .addComponent(tfPassword)
                 .addGroup(userCreationPanelLayout.createSequentialGroup()
+                    .addGap(0, 19, Short.MAX_VALUE)
                     .addComponent(clearFields)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(createUser))
                 .addGroup(userCreationPanelLayout.createSequentialGroup()
                     .addGroup(userCreationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -446,7 +447,7 @@ permissionSelector.addActionListener(new java.awt.event.ActionListener() {
             .addContainerGap())
     );
 
-    userTablePanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Gebruikersoverzicht"));
+    userTablePanel.setBorder(javax.swing.BorderFactory.createTitledBorder(BUNDLE.getString("userOverview")));
 
     refreshButton1.setText("Verversen");
     refreshButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -495,7 +496,7 @@ permissionSelector.addActionListener(new java.awt.event.ActionListener() {
         }
     });
 
-    searchButton.setText("Zoeken");
+    searchButton.setText(BUNDLE.getString("search"));
     searchButton.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             searchButtonActionPerformed(evt);
@@ -507,11 +508,13 @@ permissionSelector.addActionListener(new java.awt.event.ActionListener() {
         }
     });
 
-    searchComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Alle velden", "Gebruikers ID", "Voornaam", "Achternaam", "Gebruikersnaam", "Rechten ID" }));
-    searchComboBox.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            searchComboBoxActionPerformed(evt);
-        }
+    searchComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] {
+        BUNDLE.getString("allFields"), BUNDLE.getString("userId"), BUNDLE.getString("firstName"),
+        BUNDLE.getString("lastName"), BUNDLE.getString("username")}));
+searchComboBox.addActionListener(new java.awt.event.ActionListener() {
+public void actionPerformed(java.awt.event.ActionEvent evt) {
+    searchComboBoxActionPerformed(evt);
+    }
     });
 
     javax.swing.GroupLayout userTablePanelLayout = new javax.swing.GroupLayout(userTablePanel);
@@ -521,14 +524,14 @@ permissionSelector.addActionListener(new java.awt.event.ActionListener() {
         .addGroup(userTablePanelLayout.createSequentialGroup()
             .addContainerGap()
             .addGroup(userTablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 588, Short.MAX_VALUE)
+                .addComponent(jScrollPane1)
                 .addGroup(userTablePanelLayout.createSequentialGroup()
                     .addComponent(tfSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                     .addComponent(searchButton)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(searchComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(searchComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 192, Short.MAX_VALUE)
                     .addComponent(refreshButton1)))
             .addContainerGap())
     );
@@ -536,7 +539,7 @@ permissionSelector.addActionListener(new java.awt.event.ActionListener() {
         userTablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(userTablePanelLayout.createSequentialGroup()
             .addGap(6, 6, 6)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 561, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 583, Short.MAX_VALUE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
             .addGroup(userTablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(refreshButton1)
@@ -546,9 +549,10 @@ permissionSelector.addActionListener(new java.awt.event.ActionListener() {
             .addContainerGap())
     );
 
-    userMenu.setText("Gebruiker");
+    userMenu.setText(BUNDLE.getString("options"));
 
-    changePassword.setText("Wachtwoord wijzigen..");
+    changePassword.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/changePassword.png"))); // NOI18N
+    changePassword.setText(BUNDLE.getString("changePassword"));
     changePassword.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             changePasswordActionPerformed(evt);
@@ -556,7 +560,8 @@ permissionSelector.addActionListener(new java.awt.event.ActionListener() {
     });
     userMenu.add(changePassword);
 
-    logout.setText("Uitloggen");
+    logout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logout.png"))); // NOI18N
+    logout.setText(BUNDLE.getString("logout"));
     logout.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             logoutActionPerformed(evt);
@@ -576,7 +581,7 @@ permissionSelector.addActionListener(new java.awt.event.ActionListener() {
             .addContainerGap()
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                 .addComponent(userCreationPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(userOptionsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 291, Short.MAX_VALUE))
+                .addComponent(userOptionsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE))
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(userTablePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addContainerGap())
@@ -625,13 +630,13 @@ permissionSelector.addActionListener(new java.awt.event.ActionListener() {
         boolean totalCorrectInput = errorCheckCreateUser();
         boolean isConfirm = false;
         if (totalCorrectInput == false) {
-            errorPopUp("Vul alle velden in en probeer het nogmaals.");
+            errorPopUp(BUNDLE.getString("fillInAllFields"));
         }
         if ( usernameInUse == true){
-            errorPopUp("Username is al in gebruik.");
+            errorPopUp(BUNDLE.getString("usernameInUse"));
         }
         else {
-            isConfirm = createPopUp("Weet u zeker dat u deze gebruiker wilt aanmaken?");
+            isConfirm = createPopUp(BUNDLE.getString("createUserPrompt"));
             if (isConfirm == true && usernameInUse == false  ) {
                 doCreateUser();
             }
@@ -648,22 +653,13 @@ permissionSelector.addActionListener(new java.awt.event.ActionListener() {
         searchUserTable(9999, "");
     }//GEN-LAST:event_refreshButton1ActionPerformed
 
-    private void changePasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changePasswordActionPerformed
-        Main.displayChangeMyPassword();
-    }//GEN-LAST:event_changePasswordActionPerformed
-
-    private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
-        dispose();
-        Main.displayLogin();
-    }//GEN-LAST:event_logoutActionPerformed
-
     private void resetPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetPasswordActionPerformed
         nameTypeToChange = "wachtwoord";
         boolean isError = false;
         try {
             accountToChange = userTable.getValueAt(userTable.getSelectedRow(), 0).toString();
         } catch (IndexOutOfBoundsException e) {
-            errorPopUp("Maak een selectie in de tabel en probeer het nog eens.");
+            errorPopUp(BUNDLE.getString("selectItemInTable"));
             isError = true;
         }
         if (isError == false) {
@@ -677,12 +673,12 @@ permissionSelector.addActionListener(new java.awt.event.ActionListener() {
             user.changeUserIntData(userTable.getValueAt(userTable.getSelectedRow(),
                     0).toString(), "incorrect_login", user.MAX_INCORRECT_LOGINS);
         } catch (IndexOutOfBoundsException e) {
-            errorPopUp("Maak een selectie in de tabel en probeer het nog eens.");
+            errorPopUp(BUNDLE.getString("selectItemInTable"));
             isError = true;
         }
         if (isError == false) {
             searchUserTable(9999, "");
-            JOptionPane.showMessageDialog(Succes, "Account is succesvol gelockt");
+            JOptionPane.showMessageDialog(Succes, BUNDLE.getString("accountIsLocked"));
         }
     }//GEN-LAST:event_lockAccountActionPerformed
 
@@ -691,9 +687,9 @@ permissionSelector.addActionListener(new java.awt.event.ActionListener() {
             boolean totalCorrectInput = errorCheckCreateUser();
             boolean isConfirm = false;
             if (totalCorrectInput == false) {
-                errorPopUp("Vul alle velden in en probeer het nogmaals.");
+                errorPopUp(BUNDLE.getString("fillInAllFields"));
             } else {
-                isConfirm = createPopUp("Weet u zeker dat u deze gebruiker wilt aanmaken?");
+                isConfirm = createPopUp(BUNDLE.getString("createUserPrompt"));
                 if (isConfirm == true) {
                     doCreateUser();
                 }
@@ -706,9 +702,9 @@ permissionSelector.addActionListener(new java.awt.event.ActionListener() {
             boolean totalCorrectInput = errorCheckCreateUser();
             boolean isConfirm = false;
             if (totalCorrectInput == false) {
-                errorPopUp("Vul alle velden in en probeer het nogmaals.");
+                errorPopUp(BUNDLE.getString("fillInAllFields"));
             } else {
-                isConfirm = createPopUp("Weet u zeker dat u deze gebruiker wilt aanmaken?");
+                isConfirm = createPopUp(BUNDLE.getString("createUserPrompt"));
                 if (isConfirm == true) {
                     doCreateUser();
                 }
@@ -722,9 +718,9 @@ permissionSelector.addActionListener(new java.awt.event.ActionListener() {
             boolean totalCorrectInput = errorCheckCreateUser();
             boolean isConfirm = false;
             if (totalCorrectInput == false) {
-                errorPopUp("Vul alle velden in en probeer het nogmaals.");
+                errorPopUp(BUNDLE.getString("fillInAllFields"));
             } else {
-                isConfirm = createPopUp("Weet u zeker dat u deze gebruiker wilt aanmaken?");
+                isConfirm = createPopUp(BUNDLE.getString("createUserPrompt"));
                 if (isConfirm == true) {
                     doCreateUser();
                 }
@@ -737,9 +733,9 @@ permissionSelector.addActionListener(new java.awt.event.ActionListener() {
             boolean totalCorrectInput = errorCheckCreateUser();
             boolean isConfirm = false;
             if (totalCorrectInput == false) {
-                errorPopUp("Vul alle velden in en probeer het nogmaals.");
+                errorPopUp(BUNDLE.getString("fillInAllFields"));
             } else {
-                isConfirm = createPopUp("Weet u zeker dat u deze gebruiker wilt aanmaken?");
+                isConfirm = createPopUp(BUNDLE.getString("createUserPrompt"));
                 if (isConfirm == true) {
                     doCreateUser();
                 }
@@ -753,9 +749,9 @@ permissionSelector.addActionListener(new java.awt.event.ActionListener() {
             boolean totalCorrectInput = errorCheckCreateUser();
             boolean isConfirm = false;
             if (totalCorrectInput == false) {
-                errorPopUp("Vul alle velden in en probeer het nogmaals.");
+                errorPopUp(BUNDLE.getString("fillInAllFields"));
             } else {
-                isConfirm = createPopUp("Weet u zeker dat u deze gebruiker wilt aanmaken?");
+                isConfirm = createPopUp(BUNDLE.getString("createUserPrompt"));
                 if (isConfirm == true) {
                     doCreateUser();
                 }
@@ -773,27 +769,27 @@ permissionSelector.addActionListener(new java.awt.event.ActionListener() {
             user.changeUserStringData(userTable.getValueAt(userTable.getSelectedRow(),
                     0).toString(), "incorrect_login", "0");
         } catch (IndexOutOfBoundsException e) {
-            errorPopUp("Maak een selectie in de tabel en probeer het nog eens.");
+            errorPopUp(BUNDLE.getString("selectItemInTable"));
             isError = true;
         }
         if (isError == false) {
             searchUserTable(9999, "");
-            JOptionPane.showMessageDialog(Succes, "Account is succesvol unlocked");
+            JOptionPane.showMessageDialog(Succes, BUNDLE.getString("accountIsUnlocked"));
         }
     }//GEN-LAST:event_unlockAccountActionPerformed
 
     private void deleteUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteUserActionPerformed
         boolean isError = false;
         try {
-            String check = userTable.getValueAt(userTable.getSelectedRow(), 3).toString();
+            String check = userTable.getValueAt(userTable.getSelectedRow(), 0).toString();
         } catch (IndexOutOfBoundsException e) {
-            errorPopUp("Maak een selectie in de tabel en probeer het nog eens.");
+            errorPopUp(BUNDLE.getString("selectItemInTable"));
             isError = true;
         }
         if (isError == false) {
-            createPopUp("Weet u zeker dat u deze gebruiker wilt verwijderen");
+            createPopUp(BUNDLE.getString("deleteUserPrompt"));
             user.deleteUser(userTable.getValueAt(userTable.getSelectedRow(),
-                    3).toString());
+                    0).toString());
             searchUserTable(9999, "");
 
         }
@@ -826,6 +822,15 @@ permissionSelector.addActionListener(new java.awt.event.ActionListener() {
         Session.tempUsername = userTable.getValueAt(userTable.getSelectedRow(), 0).toString();
         Main.displayChangeUser();
     }//GEN-LAST:event_btEditUserActionPerformed
+
+    private void changePasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changePasswordActionPerformed
+        Main.displayChangeMyPassword();
+    }//GEN-LAST:event_changePasswordActionPerformed
+
+    private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
+        dispose();
+        Main.displayLogin();
+    }//GEN-LAST:event_logoutActionPerformed
 
     /**
      * @param args the command line arguments

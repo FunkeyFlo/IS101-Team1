@@ -23,22 +23,32 @@ public class ResourceBundle_nl extends ListResourceBundle {
         
         // Universally used strings
             { "administrator", "Beheerder" },
+            { "allFields", "Alle velden" },
             { "create", "Aanmaken" },
             { "employee", "Medewerker" },
             { "exit", "Afsluiten" },
-            { "firstName", "Voornaam"},
-            { "lastName", "Achternaam"},
+            { "fillInAllFields", "Vul alle velden in en probeer het nogmaals."},
+            { "firstName", "Voornaam" },
+            { "lastName", "Achternaam" },
             { "login" , "Inloggen" },
             { "manager", "Manager" },
-            { "password", "Wachtwoord"},
+            { "selectItemInTable", "Selecteer een onderdeel uit de tabel en probeer het nogmaals." },
+            { "options", "Opties" },
+            { "password", "Wachtwoord" },
             { "reset", "Reset" },
-            { "username", "Gebruikersnaam"},
+            { "search", "Zoeken" },
+            { "userId", "Gebruikers ID" },
+            { "username", "Gebruikersnaam" },
         
+        // Toolbar
+            { "changePassword", "Wachtwoord wijzigen" },
+            { "logout", "Uitloggen" },
+            
         // Login.java
             { "accountHasBeenLocked", "Dit account is vergrendeld. \n"
-                + "Neem contact op met uw beheerder."},
-            { "passwordIncorrect", "Wachtwoord is onjuist."},
-            { "usernameIncorrect", "Gebruikersnaam is onjuist."},
+                + "Neem contact op met uw beheerder." },
+            { "passwordIncorrect", "Wachtwoord is onjuist." },
+            { "usernameIncorrect", "Gebruikersnaam is onjuist." },
             
         // ChangeMyPassword.java
             { "changeMyPassword", "Wachtwoord veranderen" },
@@ -47,8 +57,16 @@ public class ResourceBundle_nl extends ListResourceBundle {
             { "typeRepeatPassword", "Herhaal nieuw wachtwoord" },
             
         // Administrator.java
-            { "accountState", "Account status"},
+            { "accountState", "Account status" },
+            { "accountIsUnlocked",
+                "Het gebruikersaccount is succesvol ontgrendeld." },
+            { "accountIsLocked",
+                "Het gebruikersaccount is succesvol vergrendeld." },
             { "active", "Actief" },
+            { "createUserPrompt", 
+                "Weet u zeker dat u deze gebruiker wilt aanmaken?" },
+            { "deleteUserPrompt", 
+                "Weet u zeker dat u deze gebruiker wilt verwijderen?" },
             { "deleteUser", "Verwijder gebruiker" },
             { "editInfo", "Gebruikersinformatie wijzigen" },
             { "lockAccount", "Account vergrendelen" },
@@ -56,5 +74,9 @@ public class ResourceBundle_nl extends ListResourceBundle {
             { "resetPassword", "Wachtwoord resetten" },
             { "unlockAccount", "Account ontgrendelen" },
             { "userGroup", "Gebruikersgroep"},
+            { "usernameInUse", "Gebruikersnaam is al in gebruik." },
+            { "userOptions", "Opties voor gebruikers" },
+            { "userOverview", "Gebruikers overzicht" },
+            { "createUser", "Gebruiker aanmaken" },
     };
 }

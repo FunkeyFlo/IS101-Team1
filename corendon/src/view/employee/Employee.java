@@ -10,12 +10,11 @@ import java.awt.Frame;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.List;
-import javax.swing.ImageIcon;
+import java.util.ResourceBundle;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import main.*;
-import static org.jfree.util.ObjectUtilities.getResource;
 
 /**
  * 
@@ -37,6 +36,9 @@ public class Employee extends javax.swing.JFrame {
     private Component ErrorPopUp;
     private Component LuggagePopUp;
     private Component confirmationPopUp;
+    
+    //    private Locale locale = new Locale("nl", "NL");
+    private final ResourceBundle BUNDLE = ResourceBundle.getBundle("languages.ResourceBundle"); //, locale
 
     public Employee() {
         initComponents();
@@ -436,7 +438,7 @@ public class Employee extends javax.swing.JFrame {
         logout = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Medewerker - " + Session.storedFirstName + " " + Session.storedLastName);
+        setTitle(BUNDLE.getString("employee") + " - " + Session.storedFirstName + " " + Session.storedLastName);
         setIconImage(getToolkit().getImage(getClass().getResource("/img/corendon.png")));
         setMinimumSize(new java.awt.Dimension(820, 460));
 
@@ -605,11 +607,11 @@ public class Employee extends javax.swing.JFrame {
                                     .addComponent(tfCity, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
                                     .addComponent(tfEmail1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(tfPostalCode))
-                                .addGap(0, 102, Short.MAX_VALUE))
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(customerRegistrationPanelLayout.createSequentialGroup()
                                 .addComponent(tfAddress1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(tfAddress2)))))
+                                .addComponent(tfAddress2, javax.swing.GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         customerRegistrationPanelLayout.setVerticalGroup(
@@ -745,7 +747,7 @@ public class Employee extends javax.swing.JFrame {
                     .addComponent(cbSearchCustomer1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(refreshCustomerTable2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 420, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 432, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -804,13 +806,14 @@ public class Employee extends javax.swing.JFrame {
             .addGroup(customerLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(customerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(customerTablePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(customerLayout.createSequentialGroup()
+                        .addComponent(customerTablePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
                     .addGroup(customerLayout.createSequentialGroup()
                         .addComponent(customerRegistrationPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(customerOptionsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
 
         overviewPane.addTab("Klanten overzicht en registratie", customer);
@@ -1341,10 +1344,10 @@ public class Employee extends javax.swing.JFrame {
 
         overviewPane.addTab("Bagage en klanten koppelen", linkLuggage);
 
-        userMenu.setText("Gebruiker");
+        userMenu.setText(BUNDLE.getString("options"));
 
         changePassword.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/changePassword.png"))); // NOI18N
-        changePassword.setText("Wachtwoord wijzigen..");
+        changePassword.setText(BUNDLE.getString("changePassword"));
         changePassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 changePasswordActionPerformed(evt);
@@ -1353,7 +1356,7 @@ public class Employee extends javax.swing.JFrame {
         userMenu.add(changePassword);
 
         logout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logout.png"))); // NOI18N
-        logout.setText("Uitloggen");
+        logout.setText(BUNDLE.getString("logout"));
         logout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 logoutActionPerformed(evt);

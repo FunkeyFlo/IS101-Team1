@@ -8,8 +8,10 @@ import java.awt.Component;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.ResourceBundle;
 import javax.swing.JOptionPane;
 import main.Main;
+import main.Session;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -25,20 +27,28 @@ public class Manager extends javax.swing.JFrame {
 
     private static final String ALL_LUGGAGE_DATA_GRAPH_NAME = 
             "Verloren, gevonden en afgehandelde baggage per maand";
+    
     private static final String LOST_LUGGAGE_GRAPH_NAME = 
             "Verloren baggage";
+    
     private static final String FOUND_LUGGAGE_GRAPH_NAME = 
             "Gevonden baggage";
+    
     private static final String HANDLED_LUGGAGE_GRAPH_NAME = 
             "Afgehandelde baggage";
+    
     private static final String X_AXIS_NAME = "Maand/Jaar";
     private static final String Y_AXIS_NAME = "Aantal";
+    
     private static final int LOST_LUGGAGE_DBFIELD = 6;
     private static final int FOUND_LUGGAGE_DBFIELD = 8;
     private static final int HANDLED_LUGGAGE_DBFIELD = 10;
     private static final int BEGIN_YEAR = 2010;
+    
     private static final Color TRANS = new Color(0xFF, 0xFF, 0xFF, 0);
-
+    
+    //    private Locale locale = new Locale("nl", "NL");
+    private final ResourceBundle BUNDLE = ResourceBundle.getBundle("languages.ResourceBundle"); //, locale
     
     public Manager() {
         initComponents();
@@ -93,6 +103,7 @@ public class Manager extends javax.swing.JFrame {
         jLabel1.setText("ingelogd als gebruiker");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle(BUNDLE.getString("manager") + " - " + Session.storedFirstName + " " + Session.storedLastName);
 
         allGraphs.setBorder(javax.swing.BorderFactory.createTitledBorder("Alle data"));
         allGraphs.setLayout(new java.awt.GridBagLayout());
@@ -343,9 +354,10 @@ public class Manager extends javax.swing.JFrame {
                 .addComponent(errorLabel))
         );
 
-        userMenu.setText("Gebruiker");
+        userMenu.setText(BUNDLE.getString("options"));
 
-        changePassword.setText("Wachtwoord wijzigen..");
+        changePassword.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/changePassword.png"))); // NOI18N
+        changePassword.setText(BUNDLE.getString("changePassword"));
         changePassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 changePasswordActionPerformed(evt);
@@ -353,7 +365,8 @@ public class Manager extends javax.swing.JFrame {
         });
         userMenu.add(changePassword);
 
-        logout.setText("Uitloggen");
+        logout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logout.png"))); // NOI18N
+        logout.setText(BUNDLE.getString("logout"));
         logout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 logoutActionPerformed(evt);
@@ -581,15 +594,6 @@ public class Manager extends javax.swing.JFrame {
     }
 
     
-    private void changePasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changePasswordActionPerformed
-        Main.displayChangeMyPassword();
-    }//GEN-LAST:event_changePasswordActionPerformed
-
-    private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
-        dispose();
-        Main.displayLogin();
-    }//GEN-LAST:event_logoutActionPerformed
-
     private void cbYearToActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbYearToActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbYearToActionPerformed
@@ -621,6 +625,15 @@ public class Manager extends javax.swing.JFrame {
     private void cbShowAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbShowAllActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbShowAllActionPerformed
+
+    private void changePasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changePasswordActionPerformed
+        Main.displayChangeMyPassword();
+    }//GEN-LAST:event_changePasswordActionPerformed
+
+    private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
+        dispose();
+        Main.displayLogin();
+    }//GEN-LAST:event_logoutActionPerformed
     
     /**
      * @return amount of months between begin year and month and end year and month.
