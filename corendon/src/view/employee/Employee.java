@@ -15,16 +15,22 @@ import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import main.*;
+import model.Customer;
+import model.Luggage;
+import model.Resort;
 
 /**
- * 
+ *
  * @author Team AwesomeSauce
  */
 public class Employee extends javax.swing.JFrame {
 
+    private final DatabaseManager db = new DatabaseManager();
+    private final QueryManager query = new QueryManager();
     private Luggage luggageModel = new Luggage();
     private Customer customerModel = new Customer();
     private Resort resortModel = new Resort();
+
     private List<Luggage> luggages;
     private List<Customer> customers;
     private List<Resort> resorts;
@@ -38,7 +44,7 @@ public class Employee extends javax.swing.JFrame {
     private Component ErrorPopUp;
     private Component LuggagePopUp;
     private Component confirmationPopUp;
-    
+
     //    private Locale locale = new Locale("nl", "NL");
     private final ResourceBundle BUNDLE = ResourceBundle.getBundle("languages.ResourceBundle"); //, locale
 
@@ -49,14 +55,13 @@ public class Employee extends javax.swing.JFrame {
         modelLuggage2 = (DefaultTableModel) this.luggageTable2.getModel();
         modelCustomer2 = (DefaultTableModel) this.customerTable2.getModel();
         modelResort = (DefaultTableModel) this.tblResort.getModel();
-        
 
         searchCustomerTable1(9999, "");
         searchLuggageTable1(9999, "", 1);
         searchCustomerTable2(9999, "");
         searchLuggageTable2(9999, "", 1);
         searchResortTable(9999, "");
-        
+
     }
 
     /**
@@ -72,7 +77,7 @@ public class Employee extends javax.swing.JFrame {
      */
     public void searchLuggageTable1(int dbField, String searchArg, int showHandled) {
         modelLuggage1.setRowCount(0); //nodig voor 
-        luggages = luggageModel.searchLuggageList(dbField, searchArg, showHandled);
+        luggages = query.searchLuggageList(dbField, searchArg, showHandled);
         for (Luggage luggage : luggages) {
             modelLuggage1.addRow(new Object[]{new Integer(luggage.getLuggageId()),
                 (luggage.getCustomerId() == 0) ? "Nog niet toegewezen"
@@ -81,9 +86,7 @@ public class Employee extends javax.swing.JFrame {
                 luggage.getLocation(),
                 luggage.getDateLost(),
                 (luggage.getStatus() == 2) ? "Gevonden"
-                : (luggage.getStatus() == 1) ? "Vermist" : "Adgehandeld"});
-
-            //System.out.println(user.getFirstName());
+                : (luggage.getStatus() == 1) ? "Vermist" : "Afgehandeld"});
         }
     }
 
@@ -100,7 +103,7 @@ public class Employee extends javax.swing.JFrame {
      */
     private void searchLuggageTable2(int dbField, String searchArg, int showHandled) {
         modelLuggage2.setRowCount(0); //nodig voor 
-        luggages = luggageModel.searchLuggageList(dbField, searchArg, showHandled);
+        luggages = query.searchLuggageList(dbField, searchArg, showHandled);
         for (Luggage luggage : luggages) {
             modelLuggage2.addRow(new Object[]{new Integer(luggage.getLuggageId()),
                 (luggage.getCustomerId() == 0) ? "Nog niet toegewezen"
@@ -126,7 +129,7 @@ public class Employee extends javax.swing.JFrame {
      */
     public void searchCustomerTable1(int dbField, String searchArg) {
         modelCustomer1.setRowCount(0); //nodig voor 
-        customers = customerModel.searchCustomerList(dbField, searchArg);
+        customers = query.searchCustomerList(dbField, searchArg);
         for (Customer customer : customers) {
             modelCustomer1.addRow(new Object[]{new Integer(customer.getCustomerId()),
                 customer.getFirstName(),
@@ -154,7 +157,7 @@ public class Employee extends javax.swing.JFrame {
      */
     private void searchCustomerTable2(int dbField, String searchArg) {
         modelCustomer2.setRowCount(0); //nodig voor 
-        customers = customerModel.searchCustomerList(dbField, searchArg);
+        customers = query.searchCustomerList(dbField, searchArg);
         for (Customer customer : customers) {
             modelCustomer2.addRow(new Object[]{new Integer(customer.getCustomerId()),
                 customer.getFirstName(),
@@ -168,12 +171,11 @@ public class Employee extends javax.swing.JFrame {
                 customer.getPhoneMobile()});
         }
     }
-    
-    private void searchResortTable(int dbField, String searchArgs)
-    {
+
+    private void searchResortTable(int dbField, String searchArgs) {
         modelResort.setRowCount(0);
-        resorts = resortModel.searchResortList(dbField, searchArgs);
-        for(Resort resort : resorts){
+        resorts = query.searchResortList(dbField, searchArgs);
+        for (Resort resort : resorts) {
             modelResort.addRow(new Object[]{new Integer(resort.getId()),
                 resort.getName(),
                 resort.getAddress(),
@@ -183,9 +185,8 @@ public class Employee extends javax.swing.JFrame {
                 resort.getPostalCode(),
                 resort.getPhone()});
         }
-       
+
     }
-    
 
     /**
      * Method used to quickly clear all the text fields.
@@ -206,6 +207,7 @@ public class Employee extends javax.swing.JFrame {
     /**
      * Method that shows or hides handled luggage depending on the state of the
      * check box showHandledLuggage1
+     *
      * @return int returns 0 when the checkbox is selected, otherwise returns 1
      */
     public int getShowHandled1() {
@@ -215,10 +217,11 @@ public class Employee extends javax.swing.JFrame {
             return 1;
         }
     }
-    
+
     /**
      * Method that shows or hides handled luggage depending on the state of the
      * check box showHandledLuggage1
+     *
      * @return int returns 0 when the checkbox is selected, otherwise returns 1
      */
     public int getShowHandled2() {
@@ -228,6 +231,7 @@ public class Employee extends javax.swing.JFrame {
             return 1;
         }
     }
+
     /**
      * Method used to refresh the tables in the link luggage section
      */
@@ -235,17 +239,21 @@ public class Employee extends javax.swing.JFrame {
         searchCustomerTable1(cbSearchLuggage.getSelectedIndex(), customerSearchField.getText());
         searchLuggageTable1(cbSearchCustomer.getSelectedIndex(), luggageSearchField.getText(), getShowHandled1());
     }
+
     /**
-     * Method used to create and display an error message used for error-handling.
+     * Method used to create and display an error message used for
+     * error-handling.
+     *
      * @param errorMessage String message displayed on the pop-up.
      */
     private void errorPopUp(String errorMessage) {
         JOptionPane.showMessageDialog(ErrorPopUp, errorMessage, "Error", JOptionPane.ERROR_MESSAGE);
     }
-     
+
     /**
      * Method for checking input errors, will return a boolean if all fields are
      * filled in correctly.
+     *
      * @return boolean returns true if the user has made no errors
      */
     private boolean errorCheckCreateCustomer() {
@@ -309,11 +317,13 @@ public class Employee extends javax.swing.JFrame {
         }
         return totalCorrectInput;
     }
+
     /**
-     * Method to display a yes-no pop-up that prompts the user to confirm their earlier
-     * choice.
+     * Method to display a yes-no pop-up that prompts the user to confirm their
+     * earlier choice.
+     *
      * @param message String the message the user will see.
-     * @return 
+     * @return
      */
     private boolean confirmationPopUp(String message) {
         boolean confirm = false;
@@ -343,10 +353,11 @@ public class Employee extends javax.swing.JFrame {
         }
         return confirm;
     }
-/**
- * Method pulls all the data from the textfields to create and insert a new user
- * into the database.
- */
+
+    /**
+     * Method pulls all the data from the textfields to create and insert a new
+     * user into the database.
+     */
     private void doCreateCustomer() {
         Customer customer = new Customer();
         String newFirstName = tfFirstName.getText().trim();
@@ -358,7 +369,7 @@ public class Employee extends javax.swing.JFrame {
         String newEmail = tfEmail1.getText().trim() + "@" + tfEmail2.getText().trim();
         String newPhoneHome = tfPhoneHome.getText().trim();
         String newPhoneMobile = tfPhoneMobile.getText().trim();
-        customer.setNewCustomer(newFirstName, newLastName,
+        query.setNewCustomer(newFirstName, newLastName,
                 newAddress, newPostalCode, newCity, newCountry, newEmail,
                 newPhoneHome, newPhoneMobile);
         clearFields();
@@ -1715,7 +1726,7 @@ public class Employee extends javax.swing.JFrame {
         confirmation = confirmationPopUp(message);
         if (confirmation == true) {
             Luggage luggage = new Luggage();
-            luggage.linkCustomerId(customerId, luggageId);
+            query.linkCustomerId(customerId, luggageId);
             searchCustomerTable1(cbSearchLuggage.getSelectedIndex(), customerSearchField.getText());
             searchLuggageTable1(cbSearchCustomer.getSelectedIndex(), luggageSearchField.getText(), getShowHandled1());
         }
@@ -1788,7 +1799,7 @@ public class Employee extends javax.swing.JFrame {
 
         System.out.println(totalCorrectInput);
         if (totalCorrectInput) {
-            luggage.createLuggage(customerId, description, location, status);
+            query.createLuggage(customerId, description, location, status);
             tfCustomerID1.setText("");
             tfDescription.setText("");
             tfLocation1.setText("");
@@ -1973,7 +1984,7 @@ public class Employee extends javax.swing.JFrame {
             confirmation = confirmationPopUp(message);
             if (confirmation == true) {
                 String customerID = customerTable2.getValueAt(customerTable2.getSelectedRow(), 0).toString();
-                customer.deleteCustomer(customerID);
+                query.deleteCustomer(customerID);
                 searchCustomerTable2(9999, "");
             }
         }
@@ -2004,14 +2015,14 @@ public class Employee extends javax.swing.JFrame {
             isError = true;
         }
         if (isError == false) {
-            String message = "Weet u zeker dat u baggagestuk: " 
-                    + luggageTable2.getValueAt(luggageTable2.getSelectedRow(), 
+            String message = "Weet u zeker dat u baggagestuk: "
+                    + luggageTable2.getValueAt(luggageTable2.getSelectedRow(),
                             0).toString() + " wilt verwijderen?";
             confirmation = confirmationPopUp(message);
         }
         if (confirmation == true) {
             String luggageId = luggageTable2.getValueAt(luggageTable2.getSelectedRow(), 0).toString();
-            luggage.deleteLuggage(luggageId);
+            query.deleteLuggage(luggageId);
             searchLuggageTable2(9999, "", getShowHandled2());
         }
     }//GEN-LAST:event_btDeleteLuggageActionPerformed
@@ -2027,9 +2038,9 @@ public class Employee extends javax.swing.JFrame {
     }//GEN-LAST:event_btPrintReceiptActionPerformed
 
     private void btnCreateResortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateResortActionPerformed
-       
+
         Resort resort = new Resort();
-        
+
         String newName = tfResortName.getText().trim();
         String newAddress = tfResortAddress.getText().trim();
         String newCountry = tfResortCountry.getText().trim();
@@ -2037,15 +2048,11 @@ public class Employee extends javax.swing.JFrame {
         String newPhone = tfResortPhone.getText().trim();
         String newEmail = tfEmail1.getText().trim() + "@" + tfEmail2.getText().trim();
         String newPostalCode = tfPostalCode.getText().trim();
-      
-       
-        
-        resort.setNewResort(newName, newAddress, newCountry, newCity, newPhone,
+
+        query.setNewResort(newName, newAddress, newCountry, newCity, newPhone,
                 newEmail, newPostalCode);
-        
-        
-        
-        
+
+
     }//GEN-LAST:event_btnCreateResortActionPerformed
 
     /**

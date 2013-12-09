@@ -1,9 +1,9 @@
 package main;
 
-import connectivity.Luggage;
-import connectivity.User;
 import java.util.ArrayList;
 import java.util.List;
+import model.User;
+import connectivity.QueryManager;
 
 /**
  * 
@@ -22,8 +22,9 @@ public class Session {
     
     public static void storeNames(String inputUsername) {
         User user = new User();
+        QueryManager query = new QueryManager();
        
-        user.getUserData(inputUsername);
+        query.getUserData(inputUsername);
         storedFirstName = user.getFirstName();
         storedLastName = user.getLastName();
         storedUsername = inputUsername;

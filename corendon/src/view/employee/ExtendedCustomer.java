@@ -1,12 +1,10 @@
 package view.employee;
 
-import connectivity.*;
+import connectivity.QueryManager;
 import java.awt.Component;
 import java.awt.Frame;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JDialog;
@@ -14,42 +12,46 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import main.Main;
 import main.Session;
+import model.Customer;
+import model.Luggage;
+import model.User;
 
 /**
  *
  * @author Team AwesomeSauce
  */
 public class ExtendedCustomer extends javax.swing.JFrame {
-    
+
+    private final QueryManager query = new QueryManager();
+    private final User user = new User();
+    private final Customer customer = new Customer();
+    private final Session session = new Session();
+
     private OverviewPrint print = new OverviewPrint();
-    private Luggage luggageModel = new Luggage();
     private List<Luggage> luggages;
     private DefaultTableModel modelLuggage;
-    private Customer customer = new Customer();
-    private Session session = new Session();
-    private User user = new User();
+
     private DefaultListModel model = new DefaultListModel();
     private Component errorPopUp, confirmationPopUp;
-    private String[] email;
-    private String[] address;
-//    private DefaultListModel toPrintListModel = new DefaultListModel();
+    private String[] email, address;
 
     /**
      * Method to show the old information of the customer and can be replaced by
-     * new information if the user wants too. Also the information can be edited.
+     * new information if the user wants too. Also the information can be
+     * edited.
      */
     public ExtendedCustomer() {
-        customer.getCustomerData(Session.storedCustomerId, "customer_id");
-        user.getUserDataInt(customer.getLastChangedBy());
-        
+        query.getCustomerData(Session.storedCustomerId, "customer_id");
+        query.getUserDataInt(customer.getLastChangedBy());
+
         email = seperateString(customer.getEmail(), "@");
         address = seperateString(customer.getAddress(), " ");
 
         initComponents();
-        
+
         editInfoLabel.setText("Gegevens laatst gewijzigd door "
                 + user.getFirstName() + " " + user.getLastName()
-                + " op " + customer.getDateChanged().substring(0, customer.getDateChanged().length()-5));
+                + " op " + customer.getDateChanged().substring(0, customer.getDateChanged().length() - 5));
 
         tfAddress1.setText(address[0]);
         tfAddress2.setText(address[1]);
@@ -62,7 +64,7 @@ public class ExtendedCustomer extends javax.swing.JFrame {
         tfEmail2.setText(email[1]);
         tfPhoneHome.setText(customer.getPhoneHome());
         tfPhoneMobile.setText(customer.getPhoneMobile());
-        
+
         tfAddress1.setEditable(false);
         tfAddress2.setEditable(false);
         tfFirstName.setEditable(false);
@@ -74,32 +76,32 @@ public class ExtendedCustomer extends javax.swing.JFrame {
         tfEmail2.setEditable(false);
         tfPhoneHome.setEditable(false);
         tfPhoneMobile.setEditable(false);
-        
+
         listBagageToPrint.setModel(model);
         modelLuggage = (DefaultTableModel) this.luggageTable.getModel();
         searchLuggage(11, Integer.toString(customer.getCustomerId()), 0);
     }
-    
+
     /**
      * Method to show when the customer information is edited.
      */
     private void initFields() {
-        customer.getCustomerData(Session.storedCustomerId, "customer_id");
-        user.getUserDataInt(customer.getLastChangedBy());
-        
+        query.getCustomerData(Session.storedCustomerId, "customer_id");
+        query.getUserDataInt(customer.getLastChangedBy());
+
         editInfoLabel.setText("Gegevens laatst gewijzigd door "
                 + user.getFirstName() + " " + user.getLastName()
                 + " op " + customer.getDateChanged().substring(0,
-                        customer.getDateChanged().length()-5));
-        
+                        customer.getDateChanged().length() - 5));
+
         modelLuggage = (DefaultTableModel) this.luggageTable.getModel();
         searchLuggage(11, Integer.toString(customer.getCustomerId()), 0);
     }
-    
+
     /**
      * Searches through the luggage database and loads the results into the
-     * luggage table. 
-     * 
+     * luggage table.
+     *
      * @param dbField specifies the field to search in. Setting this parameter
      * to 0 searches all fields.
      * @param searchArg argument used to search the database.
@@ -108,9 +110,9 @@ public class ExtendedCustomer extends javax.swing.JFrame {
      */
     private void searchLuggage(int dbField, String searchArg, int showHandled) {
         modelLuggage.setRowCount(0);
-        luggages = luggageModel.searchLuggageList(dbField, searchArg, showHandled);
-        for(Luggage luggage : luggages) {
-            modelLuggage.addRow(new Object[] {new Integer(luggage.getLuggageId()),
+        luggages = query.searchLuggageList(dbField, searchArg, showHandled);
+        for (Luggage luggage : luggages) {
+            modelLuggage.addRow(new Object[]{new Integer(luggage.getLuggageId()),
                 luggage.getCustomerId(),
                 luggage.getDescription(),
                 luggage.getLocation(),
@@ -118,12 +120,12 @@ public class ExtendedCustomer extends javax.swing.JFrame {
                 luggage.getStatus()});
         }
     }
-    
+
     /**
-     * Method to seperate specific information in different parts, so the error 
-     * handling wouldn't be stuck on one specific information part if the 
+     * Method to seperate specific information in different parts, so the error
+     * handling wouldn't be stuck on one specific information part if the
      * information was incorrect.
-     * 
+     *
      * @param itemToSeperate Is used to seperate information so the error
      * handling can check specific on one part of the information.
      * @param sepChar Is the character what determines when information should
@@ -135,38 +137,38 @@ public class ExtendedCustomer extends javax.swing.JFrame {
 
         String[] temp = itemToSeperate.split(sepChar);
 
-        for (int i = 0; i < temp.length-1; i++) {
+        for (int i = 0; i < temp.length - 1; i++) {
             seperatedItems[0] += (temp[i] + " ");
         }
 
-        seperatedItems[1] = temp[temp.length-1];
+        seperatedItems[1] = temp[temp.length - 1];
 
         return seperatedItems;
     }
-    
-        /**
-         * Method used to create and display an error message and is used for error-
-         * handling.
-         * 
-         * @param errorMessage The message that will be displayed as a pop-up.
-         */
-        private void errorPopUp(String errorMessage) {
+
+    /**
+     * Method used to create and display an error message and is used for error-
+     * handling.
+     *
+     * @param errorMessage The message that will be displayed as a pop-up.
+     */
+    private void errorPopUp(String errorMessage) {
         JOptionPane.showMessageDialog(errorPopUp, errorMessage);
     }
-        
-        /**
-         * Method to display a yes-or no pop-up that confirms the user's choice.
-         * 
-         * @param message The message you get for clicking the create button and
-         * will be displayed a pop-up.
-         * @return The confirmation for creating.
-         */
-        private boolean confirmationPopUp(String message) {
+
+    /**
+     * Method to display a yes-or no pop-up that confirms the user's choice.
+     *
+     * @param message The message you get for clicking the create button and
+     * will be displayed a pop-up.
+     * @return The confirmation for creating.
+     */
+    private boolean confirmationPopUp(String message) {
         boolean confirm = false;
         final JOptionPane createUserPopPane = new JOptionPane(message,
                 JOptionPane.QUESTION_MESSAGE,
                 JOptionPane.YES_NO_OPTION);
-        final JDialog dialog = new JDialog((Frame) confirmationPopUp, 
+        final JDialog dialog = new JDialog((Frame) confirmationPopUp,
                 "Druk op een knop", true);
         dialog.setContentPane(createUserPopPane);
         createUserPopPane.addPropertyChangeListener(
@@ -189,6 +191,7 @@ public class ExtendedCustomer extends javax.swing.JFrame {
         }
         return confirm;
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -627,104 +630,102 @@ public class ExtendedCustomer extends javax.swing.JFrame {
         String email2 = tfEmail2.getText().trim();
         String phoneHome = tfPhoneHome.getText().trim();
         String phoneMobile = tfPhoneMobile.getText().trim();
-        
-        boolean correctInput[] = new boolean [8];
+
+        boolean correctInput[] = new boolean[8];
         boolean totalCorrectInput = true;
         boolean finalCheck;
-        
-        if(firstName.equals("")){
+
+        if (firstName.equals("")) {
             errorPopUp("Vul een voornaam in en probeer het nog eens.");
             correctInput[0] = false;
         } else {
             correctInput[0] = true;
         }
-        
-        if(lastName.equals("")){
+
+        if (lastName.equals("")) {
             errorPopUp("Vul een achternaam in en probeer het nog eens.");
             correctInput[1] = false;
         } else {
             correctInput[1] = true;
         }
-        
-        if(address1.equals("") || address2.equals("")) {
+
+        if (address1.equals("") || address2.equals("")) {
             errorPopUp("Vul een adress in en probeer het nog eens.");
             correctInput[2] = false;
         } else {
             correctInput[2] = true;
         }
-        
-        if(postalCode.equals("")) {
+
+        if (postalCode.equals("")) {
             errorPopUp("Vul een postcode in en probeer het nog eens.");
             correctInput[3] = false;
         } else {
             correctInput[3] = true;
         }
-        
-        if(city.equals("")){
+
+        if (city.equals("")) {
             errorPopUp("Vul een woonplaats in en probeer het nog eens.");
             correctInput[4] = false;
         } else {
             correctInput[4] = true;
         }
-        
-        if(email1.equals("") || email2.equals("")) {
+
+        if (email1.equals("") || email2.equals("")) {
             errorPopUp("Vul een email in en probeer het nog eens.");
             correctInput[5] = false;
         } else {
             correctInput[5] = true;
         }
-        
-        if(phoneHome.equals("")) {
+
+        if (phoneHome.equals("")) {
             correctInput[6] = true;
-        } else if(phoneHome.matches("[0-9]+")) {
+        } else if (phoneHome.matches("[0-9]+")) {
             correctInput[6] = true;
         } else {
             errorPopUp("Vul een geldig thuisnummer in en probeer het nog eens.");
             correctInput[6] = false;
         }
-        
-        if(phoneMobile.equals("")) {
+
+        if (phoneMobile.equals("")) {
             correctInput[7] = true;
-        } else if(phoneMobile.matches("[0-9]+")) {
+        } else if (phoneMobile.matches("[0-9]+")) {
             correctInput[7] = true;
         } else {
             errorPopUp("Vul een geldig  mobiel nummer in en probeer het nog eens.");
             correctInput[7] = false;
         }
-        
-        for(int i = 0; i < correctInput.length; i++)
-        {
-            if(correctInput[i] == false){
+
+        for (int i = 0; i < correctInput.length; i++) {
+            if (correctInput[i] == false) {
                 totalCorrectInput = false;
                 break;
-            }
-            else{
+            } else {
                 totalCorrectInput = true;
             }
             System.out.println(correctInput[i]);
         }
         System.out.println(totalCorrectInput);
-        if(totalCorrectInput == true){
-            finalCheck = confirmationPopUp("Nieuwe klantgegevens:         " + "   \n" 
-            + "Voornaam: " + firstName + "   \n" + "Achternaam: " + lastName + "   \n" 
-            + "Adress: " + address1 + " " + address2 + "   \n" + "Postcode: " + postalCode 
-            + "   \n" + "Woonplaats: " + city + "   \n" + "Land: " + country +"   \n" + "Email: " 
-            + email1 + "@" + email2 + "   \n" + "Telefoon: " + phoneHome + "   \n"
-            + "Mobiel: " + phoneMobile);
-        }
-        else
+        if (totalCorrectInput == true) {
+            finalCheck = confirmationPopUp("Nieuwe klantgegevens:         " + "   \n"
+                    + "Voornaam: " + firstName + "   \n" + "Achternaam: " + lastName + "   \n"
+                    + "Adress: " + address1 + " " + address2 + "   \n" + "Postcode: " + postalCode
+                    + "   \n" + "Woonplaats: " + city + "   \n" + "Land: " + country + "   \n" + "Email: "
+                    + email1 + "@" + email2 + "   \n" + "Telefoon: " + phoneHome + "   \n"
+                    + "Mobiel: " + phoneMobile);
+        } else {
             finalCheck = false;
-       
-        if(finalCheck == true){
-            customer.updateCustomer(tfFirstName.getText().trim(),
-                tfLastName.getText().trim(),
-                tfAddress1.getText().trim() + " " + tfAddress2.getText().trim(),
-                tfPostalCode.getText().trim(),
-                tfCity.getText().trim(),
-                cbCountry.getSelectedItem().toString(),
-                tfEmail1.getText() + "@" + tfEmail2.getText(), tfPhoneHome.getText().trim(),
-                tfPhoneMobile.getText().trim());
-            
+        }
+
+        if (finalCheck == true) {
+            query.updateCustomer(tfFirstName.getText().trim(),
+                    tfLastName.getText().trim(),
+                    tfAddress1.getText().trim() + " " + tfAddress2.getText().trim(),
+                    tfPostalCode.getText().trim(),
+                    tfCity.getText().trim(),
+                    cbCountry.getSelectedItem().toString(),
+                    tfEmail1.getText() + "@" + tfEmail2.getText(), tfPhoneHome.getText().trim(),
+                    tfPhoneMobile.getText().trim());
+
             tfAddress1.setEditable(false);
             tfAddress2.setEditable(false);
             tfFirstName.setEditable(false);
@@ -760,7 +761,7 @@ public class ExtendedCustomer extends javax.swing.JFrame {
         tfPhoneHome.setEditable(chbUnlockFields.isSelected());
         tfPhoneMobile.setEditable(chbUnlockFields.isSelected());
         tfFirstName.setEditable(chbUnlockFields.isSelected());
-        tfLastName.setEditable(chbUnlockFields.isSelected());        
+        tfLastName.setEditable(chbUnlockFields.isSelected());
     }//GEN-LAST:event_chbUnlockFieldsActionPerformed
 
     private void btDeleteListItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDeleteListItemActionPerformed
@@ -776,7 +777,7 @@ public class ExtendedCustomer extends javax.swing.JFrame {
     }//GEN-LAST:event_btClearListActionPerformed
 
     private void btCreatePdfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCreatePdfActionPerformed
-        for(int i = 0; i < listBagageToPrint.getModel().getSize(); i++) {
+        for (int i = 0; i < listBagageToPrint.getModel().getSize(); i++) {
             session.addToList((Integer) listBagageToPrint.getModel().getElementAt(i));
         }
         Main.displaySaveDocument();

@@ -1,15 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package view.employee;
 
-import connectivity.Customer;
+import connectivity.DatabaseManager;
+import connectivity.QueryManager;
 import java.util.Calendar;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import main.Session;
+import model.Customer;
+import model.Luggage;
+import model.Resort;
+import model.User;
 
 /**
  *
@@ -17,24 +17,30 @@ import main.Session;
  */
 public class SaveDocument extends javax.swing.JFrame {
 
+    private final DatabaseManager db = new DatabaseManager();
+    private final QueryManager query = new QueryManager();
+    private final User user = new User();
+    private final Customer customer = new Customer();
+    private final Luggage luggage = new Luggage();
+    private final Resort resort = new Resort();
     private Session session = new Session();
+    
     private FileNameExtensionFilter filter = new FileNameExtensionFilter("PDF Documents", "pdf");
     private OverviewPrint pdfPrint = new OverviewPrint();
-    private Customer customer = new Customer();
     private String file;
 
     /**
      * Creates new form SaveDocument
      */
     public SaveDocument() {
-        customer.getCustomerData(Session.storedCustomerId, "customer_id");
-        
+        query.getCustomerData(Session.storedCustomerId, "customer_id");
+
         file = "/"
-            + customer.getFirstName()  + "_" + customer.getLastName() + "_"
-            + Calendar.getInstance().get(Calendar.DATE)
-            + "_" + Calendar.getInstance().get(Calendar.MONTH) + "_"
-            + Calendar.getInstance().get(Calendar.YEAR) + ".pdf";
-        
+                + customer.getFirstName() + "_" + customer.getLastName() + "_"
+                + Calendar.getInstance().get(Calendar.DATE)
+                + "_" + Calendar.getInstance().get(Calendar.MONTH) + "_"
+                + Calendar.getInstance().get(Calendar.YEAR) + ".pdf";
+
         initComponents();
     }
 

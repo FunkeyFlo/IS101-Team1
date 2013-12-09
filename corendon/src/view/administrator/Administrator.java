@@ -1,41 +1,36 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package view.administrator;
 
+import connectivity.DatabaseManager;
+import connectivity.QueryManager;
 import javax.swing.JDialog;
 import java.awt.Frame;
 import java.awt.Component;
-import connectivity.User;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.List;
-//import java.util.Locale;
 import java.util.ResourceBundle;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import main.*;
+import model.User;
 
 /**
- * 
+ *
  * @author Team AwesomeSauce
  */
 public class Administrator extends javax.swing.JFrame {
 
-    private User userModel = new User();
+    private final DatabaseManager db = new DatabaseManager();
+    private final User user = new User();
+    private final QueryManager query = new QueryManager();
+
     private List<User> users;
     private DefaultTableModel model;
-    private User user = new User();
 
-    private Component Succes;
-    private Component deleteUserPopup;
-    private Component createUserPopup;
+    private Component succes, deleteUserPopup, createUserPopup, ErrorPopUp;
 
-    public static String nameTypeToChange;
-    public static String accountToChange;
-    private Component ErrorPopUp;
-    
+    public static String nameTypeToChange, accountToChange;
+
 //    private Locale locale = new Locale("nl", "NL");
     private final ResourceBundle BUNDLE = ResourceBundle.getBundle("languages.ResourceBundle"); //, locale
 
@@ -46,28 +41,26 @@ public class Administrator extends javax.swing.JFrame {
     }
 
     /**
-     * Searches through the user database and loads the results into the
-     * first user table. This method calls upon the searchUserList
-     * method to produce the intended result.
-     * 
+     * Searches through the user database and loads the results into the first
+     * user table. This method calls upon the searchUserList method to produce
+     * the intended result.
+     *
      * @param dbField specifies the field to search in. Setting this parameter
      * to 0 searches all fields.
      * @param searchArg argument used to search the database.
      */
     public void searchUserTable(int dbField, String searchArg) {
         model.setRowCount(0); //nodig voor 
-        users = userModel.searchUserList(dbField, searchArg);
+        users = query.searchUserList(dbField, searchArg);
         for (User user : users) {
             model.addRow(new Object[]{user.getUsername(),
                 user.getFirstName(),
                 user.getLastName(),
-                (user.getPermissionId() == 1) ? BUNDLE.getString("employee") :
-                        (user.getPermissionId() == 2) ? BUNDLE.getString("manager")
-                                : BUNDLE.getString("administrator"),
-                (user.getIncorrectLogin() >= userModel.MAX_INCORRECT_LOGINS)
-                        ? BUNDLE.getString("locked") : BUNDLE.getString("active")});
-
-            //System.out.println(user.getFirstName());
+                (user.getPermissionId() == 1) ? BUNDLE.getString("employee")
+                : (user.getPermissionId() == 2) ? BUNDLE.getString("manager")
+                : BUNDLE.getString("administrator"),
+                (user.getIncorrectLogin() >= user.MAX_INCORRECT_LOGINS)
+                ? BUNDLE.getString("locked") : BUNDLE.getString("active")});
         }
     }
 
@@ -82,7 +75,7 @@ public class Administrator extends javax.swing.JFrame {
         String newPassword = tfPassword.getText().trim();
         int newGroup = permissionSelector.getSelectedIndex() + 1;
         newUsername = newUsername.toLowerCase();
-        user.createUser(newUsername, newFirstName, newLastName, newPassword, newGroup);
+        query.createUser(newUsername, newFirstName, newLastName, newPassword, newGroup);
 
         // maakt alle textakken leeg
         clearFields();
@@ -91,7 +84,7 @@ public class Administrator extends javax.swing.JFrame {
 
     /**
      * Method to display a yes-or no pop-up that confirms the user's choice.
-     * 
+     *
      * @param message The message you get for clicking the create button and
      * will be displayed a pop-up.
      * @return The confirmation for creating.
@@ -138,7 +131,7 @@ public class Administrator extends javax.swing.JFrame {
     /**
      * Method used to create and display an error message and is used for error-
      * handling.
-     * 
+     *
      * @param errorMessage The message that will be displayed as a pop-up.
      */
     private void errorPopUp(String errorMessage) {
@@ -148,7 +141,7 @@ public class Administrator extends javax.swing.JFrame {
     /**
      * Method for checking input errors, will return a boolean if all fields are
      * filled in correctly.
-     * 
+     *
      * @return The correct input the user has filled in.
      */
     private boolean errorCheckCreateUser() {
@@ -626,22 +619,21 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
 
     @SuppressWarnings("empty-statement")
     private void createUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createUserActionPerformed
-        boolean usernameInUse = user.checkUsernameInUse(tfUsername.getText().trim());
+        boolean usernameInUse = query.checkUsernameInUse(tfUsername.getText().trim());
         boolean totalCorrectInput = errorCheckCreateUser();
         boolean isConfirm = false;
         if (totalCorrectInput == false) {
             errorPopUp(BUNDLE.getString("fillInAllFields"));
         }
-        if ( usernameInUse == true){
+        if (usernameInUse == true) {
             errorPopUp(BUNDLE.getString("usernameInUse"));
-        }
-        else {
+        } else {
             isConfirm = createPopUp(BUNDLE.getString("createUserPrompt"));
-            if (isConfirm == true && usernameInUse == false  ) {
+            if (isConfirm == true && usernameInUse == false) {
                 doCreateUser();
             }
         }
-        
+
     }//GEN-LAST:event_createUserActionPerformed
 
     private void clearFieldsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearFieldsActionPerformed
@@ -672,7 +664,7 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
     private void lockAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lockAccountActionPerformed
         boolean isError = false;
         try {
-            user.changeUserIntData(userTable.getValueAt(userTable.getSelectedRow(),
+            query.changeUserIntData(userTable.getValueAt(userTable.getSelectedRow(),
                     0).toString(), "incorrect_login", user.MAX_INCORRECT_LOGINS);
         } catch (IndexOutOfBoundsException e) {
             errorPopUp(BUNDLE.getString("selectItemInTable"));
@@ -680,7 +672,7 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
         }
         if (isError == false) {
             searchUserTable(9999, "");
-            JOptionPane.showMessageDialog(Succes, BUNDLE.getString("accountIsLocked"));
+            JOptionPane.showMessageDialog(succes, BUNDLE.getString("accountIsLocked"));
         }
     }//GEN-LAST:event_lockAccountActionPerformed
 
@@ -768,7 +760,7 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
     private void unlockAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_unlockAccountActionPerformed
         boolean isError = false;
         try {
-            user.changeUserStringData(userTable.getValueAt(userTable.getSelectedRow(),
+            query.changeUserStringData(userTable.getValueAt(userTable.getSelectedRow(),
                     0).toString(), "incorrect_login", "0");
         } catch (IndexOutOfBoundsException e) {
             errorPopUp(BUNDLE.getString("selectItemInTable"));
@@ -776,7 +768,7 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
         }
         if (isError == false) {
             searchUserTable(9999, "");
-            JOptionPane.showMessageDialog(Succes, BUNDLE.getString("accountIsUnlocked"));
+            JOptionPane.showMessageDialog(succes, BUNDLE.getString("accountIsUnlocked"));
         }
     }//GEN-LAST:event_unlockAccountActionPerformed
 
@@ -790,7 +782,7 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
         }
         if (isError == false) {
             createPopUp(BUNDLE.getString("deleteUserPrompt"));
-            user.deleteUser(userTable.getValueAt(userTable.getSelectedRow(),
+            query.deleteUser(userTable.getValueAt(userTable.getSelectedRow(),
                     0).toString());
             searchUserTable(9999, "");
 

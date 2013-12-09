@@ -1,19 +1,17 @@
 package view;
 
-import connectivity.User;
+import connectivity.QueryManager;
 import java.awt.Component;
 import java.util.ResourceBundle;
 import javax.swing.JOptionPane;
 import main.Main;
 import main.Session;
+import model.User;
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 /**
  * @author Team AwesomeSauce
  */
+
 public class Login extends javax.swing.JFrame {
     private Component errorPopUp;
     private final ResourceBundle BUNDLE = ResourceBundle.getBundle("languages.ResourceBundle");
@@ -34,16 +32,17 @@ public class Login extends javax.swing.JFrame {
     public void doLogin() {
         User user = new User();
         Session session = new Session();
+        QueryManager query = new QueryManager();
         String userName = tfUsername.getText().trim();
         userName = userName.toLowerCase();
-        String loginReturn = user.login(userName, tfPassword.getText().trim());
-        boolean statusLocked = user.getLockState();
+        String loginReturn = query.login(userName, tfPassword.getText().trim());
+        boolean statusLocked = query.getLockState();
 
         if (statusLocked == false) {
             session.storeNames(userName);
             switch (loginReturn) {
                 case "Login success":
-                    user.resetIncorrectLogin();
+                    query.resetIncorrectLogin();
                     dispose();
                     int permissionId = user.getPermissionId();
                     if (permissionId == 1) {
@@ -56,7 +55,7 @@ public class Login extends javax.swing.JFrame {
                     break;
                 case "Password is incorrect":
                     errorPopUp(BUNDLE.getString("passwordIncorrect"));
-                    user.setIncorrectLogin();
+                    query.setIncorrectLogin();
                     tfPassword.setText("");
                     break;
                 default:

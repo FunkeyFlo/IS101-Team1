@@ -1,52 +1,47 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package view;
 
-import connectivity.User;
-//import java.util.Locale;
 import java.util.ResourceBundle;
 import main.Session;
+import connectivity.QueryManager;
 
 /**
  *
  * @author Team AwesomeSauce
  */
 public class ChangePassword extends javax.swing.JFrame {
-//    private Locale locale = new Locale("nl", "NL");
-    private final ResourceBundle BUNDLE = ResourceBundle.getBundle("languages.ResourceBundle"); // , locale
+
+    private final QueryManager query = new QueryManager();
+    private final Session session = new Session();
+    private final ResourceBundle BUNDLE = ResourceBundle.getBundle("languages.ResourceBundle");
+
     /**
      * Creates new form ChangeMyPassword
      */
     public ChangePassword() {
         initComponents();
     }
-    
+
     /**
      * Updates the password of a user.
      */
     public void doChangePassword() {
-        User user = new User();
-        Session session = new Session();
-        
-        boolean oldPasswordCorrect = user.checkOldPassword(
+
+        boolean oldPasswordCorrect = query.checkOldPassword(
                 oldPassword.getText().trim(), session.storedUsername);
-        
-        if(oldPasswordCorrect == true){
-            
-            if(newPassword.getText().trim().equals(
-                    newPasswordRepeat.getText().trim())){
-                //System.out.println("cool man");
-                user.updatePassword(
+
+        if (oldPasswordCorrect == true) {
+
+            if (newPassword.getText().trim().equals(
+                    newPasswordRepeat.getText().trim())) {
+                query.updatePassword(
                         newPassword.getText().trim(), session.storedUsername);
                 dispose();
             } else {
                 warningLabel.setText(BUNDLE.getString("newPasswordNoMatch"));
             }
-        }
-        else
+        } else {
             warningLabel.setText(BUNDLE.getString("currentPasswordIncorrect"));
+        }
     }
 
     /**
@@ -186,18 +181,21 @@ public class ChangePassword extends javax.swing.JFrame {
     }//GEN-LAST:event_okButtonActionPerformed
 
     private void newPasswordRepeatKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_newPasswordRepeatKeyPressed
-        if(evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER)
+        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
             doChangePassword();
+        }
     }//GEN-LAST:event_newPasswordRepeatKeyPressed
 
     private void newPasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_newPasswordKeyPressed
-        if(evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER)
+        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
             doChangePassword();
+        }
     }//GEN-LAST:event_newPasswordKeyPressed
 
     private void oldPasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_oldPasswordKeyPressed
-        if(evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER)
+        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
             doChangePassword();
+        }
     }//GEN-LAST:event_oldPasswordKeyPressed
 
     /**

@@ -1,17 +1,23 @@
 package view.administrator;
 
-import connectivity.User;
+import connectivity.DatabaseManager;
+import connectivity.QueryManager;
 import java.util.ResourceBundle;
+import model.User;
 
 /**
- * 
+ *
  * @author Team AwesomeSauce
  */
 public class ResetPassword extends javax.swing.JFrame {
 
+    private final DatabaseManager db = new DatabaseManager();
+    private final User user = new User();
+    private final QueryManager query = new QueryManager();
+
 //    private Locale locale = new Locale("nl", "NL");
     private final ResourceBundle BUNDLE = ResourceBundle.getBundle("languages.ResourceBundle"); // , locale
-    
+
     public ResetPassword() {
         initComponents();
     }
@@ -132,15 +138,15 @@ public class ResetPassword extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 /**
- * OkButton checks if the old password and new password are not the same 
- * then updates the password.
- * @param evt 
- */
+     * OkButton checks if the old password and new password are not the same
+     * then updates the password.
+     *
+     * @param evt
+     */
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
-        User user = new User();
 
         if (tfPassword1.getText().trim().equals(tfPassword2.getText().trim())) {
-            user.updatePassword(tfPassword1.getText().trim(), Administrator.accountToChange);
+            query.updatePassword(tfPassword1.getText().trim(), Administrator.accountToChange);
             warningLabel.setText("");
             dispose();
         } else {

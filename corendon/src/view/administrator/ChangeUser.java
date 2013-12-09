@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package view.administrator;
 
-import connectivity.User;
+import connectivity.DatabaseManager;
+import connectivity.QueryManager;
 import java.awt.Component;
 import java.awt.Frame;
 import java.beans.PropertyChangeEvent;
@@ -14,6 +14,7 @@ import java.beans.PropertyChangeListener;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import main.Session;
+import model.User;
 
 /**
  *
@@ -21,33 +22,31 @@ import main.Session;
  */
 public class ChangeUser extends javax.swing.JFrame {
 
-    private User user = new User();
+    private final DatabaseManager db = new DatabaseManager();
+    private final User user = new User();
+    private final QueryManager query = new QueryManager();
     private Administrator admin = new Administrator();
-    
-    private Component Succes;
-    private Component deleteUserPopup;
-    private Component createUserPopup;
 
-    public static String nameTypeToChange;
-    public static String accountToChange;
-    private Component ErrorPopUp;
-    
+    private Component succes, deleteUserPopup, createUserPopup, ErrorPopUp;
+    public static String nameTypeToChange, accountToChange;
+
     /**
      * Creates new form ChangeUser
      */
     public ChangeUser() {
-        user.getUserData(Session.tempUsername);
-        
+        query.getUserData(Session.tempUsername);
+
         initComponents();
-        
+
         tfFirstName.setText(user.getFirstName());
         tfLastName.setText(user.getLastName());
-        permissionSelector.setSelectedIndex(user.getPermissionId()-1);
-        
+        permissionSelector.setSelectedIndex(user.getPermissionId() - 1);
+
         tfFirstName.setEditable(false);
         tfLastName.setEditable(false);
         permissionSelector.setEditable(false);
     }
+
     /**
      * doChangeUser updates the users first name and last name.
      */
@@ -56,7 +55,7 @@ public class ChangeUser extends javax.swing.JFrame {
         String firstName = tfFirstName.getText().trim();
         String lastName = tfLastName.getText().trim();
         int permissionId = permissionSelector.getSelectedIndex() + 1;
-        user.updateUser(Session.tempUsername, firstName, lastName, permissionId);
+        query.updateUser(Session.tempUsername, firstName, lastName, permissionId);
     }
 
     private boolean createPopUp(String message) {
@@ -64,7 +63,7 @@ public class ChangeUser extends javax.swing.JFrame {
         final JOptionPane createUserPopPane = new JOptionPane(message,
                 JOptionPane.QUESTION_MESSAGE,
                 JOptionPane.YES_NO_OPTION);
-        final JDialog dialog = new JDialog((Frame) createUserPopup, 
+        final JDialog dialog = new JDialog((Frame) createUserPopup,
                 "Druk op een knop", true);
         dialog.setContentPane(createUserPopPane);
         createUserPopPane.addPropertyChangeListener(
@@ -92,9 +91,11 @@ public class ChangeUser extends javax.swing.JFrame {
     private void errorPopUp(String errorMessage) {
         JOptionPane.showMessageDialog(ErrorPopUp, errorMessage);
     }
+
     /**
      * Checks if the input is not empty.
-     * @return correct output firsts and lastname. 
+     *
+     * @return correct output firsts and lastname.
      */
     private boolean errorCheckCreateUser() {
         boolean isError[] = new boolean[2];
@@ -123,6 +124,7 @@ public class ChangeUser extends javax.swing.JFrame {
 
         return totalCorrectInput;
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -280,9 +282,10 @@ public class ChangeUser extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tfFirstNameActionPerformed
     /**
-     * calls upon the errorCheckCreateUser method to check if the user input is not
-     * empty. then changes user.
-     * @param evt 
+     * calls upon the errorCheckCreateUser method to check if the user input is
+     * not empty. then changes user.
+     *
+     * @param evt
      */
 
     private void tfFirstNameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfFirstNameKeyPressed

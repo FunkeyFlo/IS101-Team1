@@ -8,6 +8,8 @@ import java.beans.PropertyChangeListener;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import main.Session;
+import model.User;
+import model.Luggage;
 
 /**
  *
@@ -15,23 +17,25 @@ import main.Session;
  */
 public class ChangeLuggage extends javax.swing.JFrame {
 
-    private Component ErrorPopUp;
-    private Component confirmationPopUp;
-    private Luggage luggage = new Luggage();
-    private User user = new User();
+    private final DatabaseManager db = new DatabaseManager();
+    private final User user = new User();
+    private final QueryManager query = new QueryManager();
+    private final Luggage luggage = new Luggage();
+
+    private Component ErrorPopUp, confirmationPopUp;
 
     public ChangeLuggage() {
-        luggage.getLuggageData(Session.storedLuggageId, "luggage_id");
-        user.getUserDataInt(luggage.getLastChangedBy());
+        query.getLuggageData(Session.storedLuggageId, "luggage_id");
+        query.getUserDataInt(luggage.getLastChangedBy());
 
         initComponents();
         tfDescription.setText(luggage.getDescription());
         tfLocation.setText(luggage.getLocation());
-        cbStatus.setSelectedIndex(luggage.getStatus()-1);
-        
+        cbStatus.setSelectedIndex(luggage.getStatus() - 1);
+
         tfDescription.setEditable(false);
         tfLocation.setEditable(false);
-        
+
         //ER MOET NOG WAT KOMEN VOOR rbDone en rbStatus
     }
 
@@ -40,10 +44,11 @@ public class ChangeLuggage extends javax.swing.JFrame {
     }
 
     /**
-    * A pop up with an error message.
-    * @param message the message it should show. 
-    * @return  returns a boolean to see if the error should pop up.
-    */
+     * A pop up with an error message.
+     *
+     * @param message the message it should show.
+     * @return returns a boolean to see if the error should pop up.
+     */
     private boolean confirmationPopUp(String message) {
         boolean confirm = false;
         final JOptionPane createUserPopPane = new JOptionPane(message,
@@ -243,18 +248,19 @@ public class ChangeLuggage extends javax.swing.JFrame {
     }//GEN-LAST:event_btCancelActionPerformed
 
     /**
-     * Updates Luggage with the textfieldinputs. 
-     * Its also uses error handling showing message when input is incorrect. 
-     * @param evt 
+     * Updates Luggage with the textfieldinputs. Its also uses error handling
+     * showing message when input is incorrect.
+     *
+     * @param evt
      */
     private void btUpdateLuggageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btUpdateLuggageActionPerformed
         boolean correctInput[] = new boolean[2];
         boolean totalCorrectInput = false;
         boolean finalCheck = false;
-        
+
         String description = tfDescription.getText();
         String location = tfLocation.getText();
-        
+
         if (description.equals("")) {
             errorPopUp("Vul een omschrijving in en probeer het nog eens.");
             correctInput[0] = false;
@@ -282,18 +288,18 @@ public class ChangeLuggage extends javax.swing.JFrame {
                 totalCorrectInput = true;
             }
         }
-        
+
         if (totalCorrectInput == true) {
 
             finalCheck = confirmationPopUp("Nieuwe baggagegegevens:" + "\n" + "Omschrinving: " + description + "\n"
                     + "Locatie: " + location);
         }
-        
+
         if (finalCheck == true) {
-            luggage.updateLuggage(luggage.getLuggageId(),
+            query.updateLuggage(luggage.getLuggageId(),
                     tfDescription.getText().trim(),
                     tfLocation.getText().trim(),
-                    cbStatus.getSelectedIndex()+1);
+                    cbStatus.getSelectedIndex() + 1);
         }
         dispose();
     }//GEN-LAST:event_btUpdateLuggageActionPerformed

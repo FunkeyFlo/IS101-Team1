@@ -1,8 +1,7 @@
 package view.employee;
 
-import connectivity.Customer;
+import connectivity.QueryManager;
 import java.io.IOException;
-
 import org.apache.pdfbox.exceptions.COSVisitorException;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
@@ -10,9 +9,10 @@ import org.apache.pdfbox.pdmodel.edit.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.font.PDFont;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import main.*;
-import connectivity.Luggage;
-import connectivity.User;
 import java.util.Calendar;
+import model.Customer;
+import model.Luggage;
+import model.User;
 
 /**
  *
@@ -20,22 +20,23 @@ import java.util.Calendar;
  */
 public class OverviewPrint {
 
-    private Luggage luggage = new Luggage();
-    private Customer customer = new Customer();
-    private User user = new User();
+    private final QueryManager query = new QueryManager();
+    private final User user = new User();
+    private final Customer customer = new Customer();
+    private final Luggage luggage = new Luggage();
 
     private final String DRAW_LINE = "_____________________________________________________________";
 
     /**
-     * Creates a pdf document that is used as receipt for the customers
-     * luggage.
+     * Creates a pdf document that is used as receipt for the customers luggage.
+     *
      * @param file folder where the file is saved to.
      */
     public void create(String file) {
 
-        luggage.getLuggageData(Session.itemsToPrint.get(0).toString(), "luggage_id");
-        customer.getCustomerData(Session.storedCustomerId, "customer_id");
-        user.getUserData(Session.storedUsername);
+        query.getLuggageData(Session.itemsToPrint.get(0).toString(), "luggage_id");
+        query.getCustomerData(Session.storedCustomerId, "customer_id");
+        query.getUserData(Session.storedUsername);
 
         System.out.println(Session.itemsToPrint);
 
@@ -110,10 +111,10 @@ public class OverviewPrint {
             contentStream.beginText();
             contentStream.setFont(font, 12);
             contentStream.moveTextPositionByAmount(100, 485);
-            contentStream.drawString("Datum afgehandeld: " + "      " 
+            contentStream.drawString("Datum afgehandeld: " + "      "
                     + Calendar.getInstance().get(Calendar.DATE)
-                    + "-" + Calendar.getInstance().get(Calendar.MONTH) + "-" 
-                    + Calendar.getInstance().get(Calendar.YEAR) + " " 
+                    + "-" + Calendar.getInstance().get(Calendar.MONTH) + "-"
+                    + Calendar.getInstance().get(Calendar.YEAR) + " "
                     + Calendar.getInstance().get(Calendar.HOUR)
                     + ":" + Calendar.getInstance().get(Calendar.MINUTE));
             contentStream.endText();
