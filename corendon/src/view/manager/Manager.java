@@ -728,7 +728,7 @@ public class Manager extends javax.swing.JFrame {
     
     private void errorPopUp(String errorMessage) {
         Component errorPopUp = null;
-        JOptionPane.showMessageDialog(errorPopUp, errorMessage);
+        JOptionPane.showMessageDialog(errorPopUp, errorMessage,"Error", JOptionPane.ERROR_MESSAGE);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -15,7 +15,7 @@ import main.Session;
  */
 public class ChangeLuggage extends javax.swing.JFrame {
 
-    private Component ErrorPopUp;
+    private Component errorPopUp;
     private Component confirmationPopUp;
     private Luggage luggage = new Luggage();
     private User user = new User();
@@ -31,13 +31,15 @@ public class ChangeLuggage extends javax.swing.JFrame {
         
         tfDescription.setEditable(false);
         tfLocation.setEditable(false);
+        cbStatus.enable(false);
         
         //ER MOET NOG WAT KOMEN VOOR rbDone en rbStatus
     }
 
     private void errorPopUp(String errorMessage) {
-        JOptionPane.showMessageDialog(ErrorPopUp, errorMessage);
+        JOptionPane.showMessageDialog(errorPopUp, errorMessage, "Error", JOptionPane.ERROR_MESSAGE);
     }
+
 
     /**
     * A pop up with an error message.
@@ -47,9 +49,9 @@ public class ChangeLuggage extends javax.swing.JFrame {
     private boolean confirmationPopUp(String message) {
         boolean confirm = false;
         final JOptionPane createUserPopPane = new JOptionPane(message,
-                JOptionPane.QUESTION_MESSAGE,
+                JOptionPane.WARNING_MESSAGE,
                 JOptionPane.YES_NO_OPTION);
-        final JDialog dialog = new JDialog((Frame) confirmationPopUp, "Druk op een knop", true);
+        final JDialog dialog = new JDialog((Frame) confirmationPopUp, "Let op!", true);
         dialog.setContentPane(createUserPopPane);
         createUserPopPane.addPropertyChangeListener(
                 new PropertyChangeListener() {
@@ -301,6 +303,7 @@ public class ChangeLuggage extends javax.swing.JFrame {
     private void chbUnlockFieldsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chbUnlockFieldsActionPerformed
         tfDescription.setEditable(chbUnlockFields.isSelected());
         tfLocation.setEditable(chbUnlockFields.isSelected());
+        cbStatus.enable(chbUnlockFields.isSelected());
     }//GEN-LAST:event_chbUnlockFieldsActionPerformed
 
     private void cbStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbStatusActionPerformed
