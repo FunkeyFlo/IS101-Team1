@@ -22,7 +22,7 @@ import main.*;
  * @author Team AwesomeSauce
  */
 public class Administrator extends javax.swing.JFrame {
-
+    
     private User userModel = new User();
     private List<User> users;
     private DefaultTableModel model;
@@ -35,7 +35,7 @@ public class Administrator extends javax.swing.JFrame {
     public static String nameTypeToChange;
     public static String accountToChange;
     private Component ErrorPopUp;
-    
+
 //    private Locale locale = new Locale("nl", "NL");
     private final ResourceBundle BUNDLE = ResourceBundle.getBundle("languages.ResourceBundle"); //, locale
 
@@ -459,11 +459,7 @@ public class Administrator extends javax.swing.JFrame {
             new Object [][] {
 
             },
-            new String [] {
-                BUNDLE.getString("username"), BUNDLE.getString("firstName"),
-                BUNDLE.getString("lastName"), BUNDLE.getString("userGroup"),
-                BUNDLE.getString("accountState")
-            }
+            BUNDLE.getStringArray("userTableFields")
         ) {
             Class[] types = new Class [] {
                 java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
@@ -506,7 +502,7 @@ public class Administrator extends javax.swing.JFrame {
             }
         });
 
-        searchComboBox.setModel(new javax.swing.DefaultComboBoxModel(BUNDLE.getStringArray("userFields")));
+        searchComboBox.setModel(new javax.swing.DefaultComboBoxModel(BUNDLE.getStringArray("userSearchFields")));
         searchComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 searchComboBoxActionPerformed(evt);
@@ -522,12 +518,12 @@ public class Administrator extends javax.swing.JFrame {
                 .addGroup(userTablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1)
                     .addGroup(userTablePanelLayout.createSequentialGroup()
-                        .addComponent(tfSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tfSearch, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(searchButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(searchComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 181, Short.MAX_VALUE)
+                        .addGap(181, 181, 181)
                         .addComponent(refreshButton1)))
                 .addContainerGap())
         );

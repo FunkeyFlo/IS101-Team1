@@ -56,17 +56,32 @@ public class ResourceBundle extends ListResourceBundle {
             { "update", "Update" },
             
         // StringArrays
-            { "luggageFields", new String [] { "All fields", "Luggage ID",
-                "Customer ID", "Description", "Location", "Date lost" } },
-            { "customerFields", new String[] { "All fields", "Customer ID", "Firstname",
+            { "customerSearchFields", new String[] { "All fields", "Customer ID", "Firstname",
                 "Lastname", "Address", "Postal code", "City", "Country",
                 "Email", "Phone - Home", "Phone - Mobile"} },
+            
+            { "customerTableFields", new String[] { "Customer ID", "Firstname",
+                "Lastname", "Address", "Postal code", "City", "Country",
+                "Email", "Phone - Home", "Phone - Mobile"} },
+            
+            { "luggageSearchFields", new String [] { "All fields", "Luggage ID",
+                "Customer ID", "Description", "Location", "Date lost" } },
+            
+            { "luggageTableFields", new String[] { "Luggage ID", "Customer ID",
+                "Description", "Location", "Date lost", "Status" } },
+            
             { "months", new String[] { "January", "February", "March", "April",
                 "May", "June", "July", "August", "September", "October",
                 "November", "December" } },
+            
             { "statuses", new String[] { "Lost", "Found", "Handled" } },
-            { "userFields", new String[] { "All fields", "User ID", "Firstname",
+            
+            { "userSearchFields", new String[] { "All fields", "User ID", "Firstname",
                 "Lastname", "Username" } },
+            
+            { "userTableFields", new String[] { "Username", "Firstname",
+                "Lastname", "User Group", "Account State" } },
+            
             { "userTypes", new String[] { "Employee", "Manager", "Administrator" } },
             
         // Toolbar

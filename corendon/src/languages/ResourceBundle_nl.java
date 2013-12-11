@@ -56,17 +56,32 @@ public class ResourceBundle_nl extends ListResourceBundle {
             { "update", "Update" },
             
         // StringArrays
-            { "luggageFields", new String [] { "Alle velden", "Bagage nummer",
-                "Klant nummer", "Omschrijving", "Locatie", "Datum verloren" } },
-            { "customerFields", new String[] { "Alle velden", "Klant nummer", 
+            { "customerSearchFields", new String[] { "Alle velden", "Klant nummer", 
                 "Voornaam", "Achternaam", "Adres", "Postcode", "Stad", "Land",
                 "Email", "Tel. thuis", "Tel. mobiel"} },
+            
+            { "customerTableFields", new String[] { "Klant nummer", "Voornaam",
+                "Achternaam", "Adres", "Postcode", "Stad", "Land",
+                "Email", "Tel. Thuis", "Tel. Mobiel"} },
+            
+            { "luggageSearchFields", new String [] { "Alle velden", "Bagage nummer",
+                "Klant nummer", "Omschrijving", "Locatie", "Datum verloren" } },
+            
+            { "luggageTableFields", new String[] { "Bagage nummer", "Klant nummer",
+                "Omschrijving", "Locatie", "Datum verloren", "Status" } },
+            
             { "months", new String[] { "Januari", "Februari", "Maart", "April",
                 "Mei", "Juni", "Juli", "Augustus", "September", "October",
                 "November", "December" } },
+            
             { "statuses", new String[] { "Verloren", "Gevonden", "Afgehandeld" } },
-            { "userFields", new String[] { "Alle velden", "Gebruikers ID", "Voornaam",
+            
+            { "userSearchFields", new String[] { "Alle velden", "Gebruikers ID", "Voornaam",
                 "Achternaam", "Gebruikersnaam" } },
+            
+            { "userTableFields", new String[] { "Gebruikersnaam", "Voornaam",
+                "Achternaam", "Gebruikersgroep", "Account Status" } },
+            
             { "userTypes", new String[] { "Medewerker", "Manager", "Beheerder" } },
         
         // Toolbar

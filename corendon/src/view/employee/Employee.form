@@ -513,19 +513,8 @@
                     <Component class="javax.swing.JTable" name="customerTable2">
                       <Properties>
                         <Property name="autoCreateRowSorter" type="boolean" value="true"/>
-                        <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                          <Table columnCount="10" rowCount="0">
-                            <Column editable="false" title="Klant ID" type="java.lang.Integer"/>
-                            <Column editable="false" title="Voornaam" type="java.lang.String"/>
-                            <Column editable="false" title="Achternaam" type="java.lang.String"/>
-                            <Column editable="false" title="Adres" type="java.lang.String"/>
-                            <Column editable="false" title="Postcode" type="java.lang.String"/>
-                            <Column editable="false" title="Stad" type="java.lang.String"/>
-                            <Column editable="false" title="Land" type="java.lang.String"/>
-                            <Column editable="false" title="Email" type="java.lang.String"/>
-                            <Column editable="false" title="Tel. thuis" type="java.lang.String"/>
-                            <Column editable="false" title="Tel. mobiel" type="java.lang.String"/>
-                          </Table>
+                        <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                          <Connection code="new javax.swing.table.DefaultTableModel(&#xa;    new Object [][] {&#xa;&#xa;    },&#xa;    BUNDLE.getStringArray(&quot;customerTableFields&quot;)&#xa;) {&#xa;    Class[] types = new Class [] {&#xa;        java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class&#xa;    };&#xa;    boolean[] canEdit = new boolean [] {&#xa;        false, false, false, false, false, false, false, false, false, false&#xa;    };&#xa;&#xa;    public Class getColumnClass(int columnIndex) {&#xa;        return types [columnIndex];&#xa;    }&#xa;&#xa;    public boolean isCellEditable(int rowIndex, int columnIndex) {&#xa;        return canEdit [columnIndex];&#xa;    }&#xa;}" type="code"/>
                         </Property>
                         <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
                           <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
@@ -538,7 +527,7 @@
                   <Properties>
                     <Property name="maximumRowCount" type="int" value="11"/>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                      <Connection code="new javax.swing.DefaultComboBoxModel(BUNDLE.getStringArray(&quot;customerFields&quot;))" type="code"/>
+                      <Connection code="new javax.swing.DefaultComboBoxModel(BUNDLE.getStringArray(&quot;customerSearchFields&quot;))" type="code"/>
                     </Property>
                   </Properties>
                 </Component>
@@ -892,15 +881,8 @@
                     <Component class="javax.swing.JTable" name="luggageTable2">
                       <Properties>
                         <Property name="autoCreateRowSorter" type="boolean" value="true"/>
-                        <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                          <Table columnCount="6" rowCount="0">
-                            <Column editable="false" title="Bagage ID" type="java.lang.Integer"/>
-                            <Column editable="false" title="Klant ID" type="java.lang.Integer"/>
-                            <Column editable="false" title="Omschrijving" type="java.lang.String"/>
-                            <Column editable="false" title="Locatie" type="java.lang.String"/>
-                            <Column editable="false" title="Datum Vermist" type="java.lang.String"/>
-                            <Column editable="false" title="Status" type="java.lang.String"/>
-                          </Table>
+                        <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                          <Connection code="new javax.swing.table.DefaultTableModel(&#xa;    new Object [][] {&#xa;&#xa;    },&#xa;    BUNDLE.getStringArray(&quot;luggageTableFields&quot;)&#xa;) {&#xa;    Class[] types = new Class [] {&#xa;        java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class&#xa;    };&#xa;    boolean[] canEdit = new boolean [] {&#xa;        false, false, false, false, false, false&#xa;    };&#xa;&#xa;    public Class getColumnClass(int columnIndex) {&#xa;        return types [columnIndex];&#xa;    }&#xa;&#xa;    public boolean isCellEditable(int rowIndex, int columnIndex) {&#xa;        return canEdit [columnIndex];&#xa;    }&#xa;}" type="code"/>
                         </Property>
                         <Property name="verifyInputWhenFocusTarget" type="boolean" value="false"/>
                       </Properties>
@@ -910,7 +892,7 @@
                 <Component class="javax.swing.JComboBox" name="cbSearchLuggage1">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                      <Connection code="new javax.swing.DefaultComboBoxModel(BUNDLE.getStringArray(&quot;luggageFields&quot;))" type="code"/>
+                      <Connection code="new javax.swing.DefaultComboBoxModel(BUNDLE.getStringArray(&quot;luggageSearchFields&quot;))" type="code"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -1135,15 +1117,8 @@
                         <Component class="javax.swing.JTable" name="luggageTable1">
                           <Properties>
                             <Property name="autoCreateRowSorter" type="boolean" value="true"/>
-                            <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                              <Table columnCount="6" rowCount="0">
-                                <Column editable="false" title="Bagage ID" type="java.lang.Integer"/>
-                                <Column editable="false" title="Klant ID" type="java.lang.Integer"/>
-                                <Column editable="false" title="Omschrijving" type="java.lang.String"/>
-                                <Column editable="false" title="Locatie" type="java.lang.String"/>
-                                <Column editable="false" title="Datum Vermist" type="java.lang.String"/>
-                                <Column editable="false" title="Status" type="java.lang.String"/>
-                              </Table>
+                            <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                              <Connection code="new javax.swing.table.DefaultTableModel(&#xa;    new Object [][] {&#xa;&#xa;    },&#xa;    BUNDLE.getStringArray(&quot;luggageTableFields&quot;)&#xa;) {&#xa;    Class[] types = new Class [] {&#xa;        java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class&#xa;    };&#xa;    boolean[] canEdit = new boolean [] {&#xa;        false, false, false, false, false, false&#xa;    };&#xa;&#xa;    public Class getColumnClass(int columnIndex) {&#xa;        return types [columnIndex];&#xa;    }&#xa;&#xa;    public boolean isCellEditable(int rowIndex, int columnIndex) {&#xa;        return canEdit [columnIndex];&#xa;    }&#xa;}" type="code"/>
                             </Property>
                             <Property name="verifyInputWhenFocusTarget" type="boolean" value="false"/>
                           </Properties>
@@ -1153,7 +1128,7 @@
                     <Component class="javax.swing.JComboBox" name="cbSearchLuggage">
                       <Properties>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                          <Connection code="new javax.swing.DefaultComboBoxModel(BUNDLE.getStringArray(&quot;luggageFields&quot;))" type="code"/>
+                          <Connection code="new javax.swing.DefaultComboBoxModel(BUNDLE.getStringArray(&quot;luggageSearchFields&quot;))" type="code"/>
                         </Property>
                       </Properties>
                     </Component>
@@ -1245,19 +1220,8 @@
                         <Component class="javax.swing.JTable" name="customerTable1">
                           <Properties>
                             <Property name="autoCreateRowSorter" type="boolean" value="true"/>
-                            <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                              <Table columnCount="10" rowCount="0">
-                                <Column editable="false" title="Klant ID" type="java.lang.Integer"/>
-                                <Column editable="false" title="Voornaam" type="java.lang.String"/>
-                                <Column editable="false" title="Achternaam" type="java.lang.String"/>
-                                <Column editable="false" title="Adres" type="java.lang.String"/>
-                                <Column editable="false" title="Postcode" type="java.lang.String"/>
-                                <Column editable="false" title="Stad" type="java.lang.String"/>
-                                <Column editable="false" title="Land" type="java.lang.String"/>
-                                <Column editable="false" title="Email" type="java.lang.String"/>
-                                <Column editable="false" title="Tel. thuis" type="java.lang.String"/>
-                                <Column editable="false" title="Tel. mobiel" type="java.lang.String"/>
-                              </Table>
+                            <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                              <Connection code="new javax.swing.table.DefaultTableModel(&#xa;    new Object [][] {&#xa;&#xa;    },&#xa;    BUNDLE.getStringArray(&quot;customerTableFields&quot;)&#xa;) {&#xa;    Class[] types = new Class [] {&#xa;        java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class&#xa;    };&#xa;    boolean[] canEdit = new boolean [] {&#xa;        false, false, false, false, false, false, false, false, false, false&#xa;    };&#xa;&#xa;    public Class getColumnClass(int columnIndex) {&#xa;        return types [columnIndex];&#xa;    }&#xa;&#xa;    public boolean isCellEditable(int rowIndex, int columnIndex) {&#xa;        return canEdit [columnIndex];&#xa;    }&#xa;}" type="code"/>
                             </Property>
                             <Property name="dragEnabled" type="boolean" value="true"/>
                             <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
@@ -1271,7 +1235,7 @@
                       <Properties>
                         <Property name="maximumRowCount" type="int" value="11"/>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                          <Connection code="new javax.swing.DefaultComboBoxModel(BUNDLE.getStringArray(&quot;customerFields&quot;))" type="code"/>
+                          <Connection code="new javax.swing.DefaultComboBoxModel(BUNDLE.getStringArray(&quot;customerSearchFields&quot;))" type="code"/>
                         </Property>
                       </Properties>
                     </Component>

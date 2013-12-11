@@ -26,16 +26,22 @@ public class Employee extends javax.swing.JFrame {
     private Luggage luggageModel = new Luggage();
     private Customer customerModel = new Customer();
     private Resort resortModel = new Resort();
+    
     private List<Luggage> luggages;
     private List<Customer> customers;
     private List<Resort> resorts;
+    
     private DefaultTableModel modelLuggage1, modelCustomer1, modelLuggage2, modelCustomer2, modelResort;
+    
     public static int customerId;
     public static int luggageId;
+    
     private String customerToLink = null;
     private String luggageToLink = null;
+    
     public boolean isLinked = false;
     public static String customerFullName;
+    
     private Component ErrorPopUp;
     private Component LuggagePopUp;
     private Component confirmationPopUp;
@@ -763,9 +769,7 @@ public class Employee extends javax.swing.JFrame {
             new Object [][] {
 
             },
-            new String [] {
-                "Klant ID", "Voornaam", "Achternaam", "Adres", "Postcode", "Stad", "Land", "Email", "Tel. thuis", "Tel. mobiel"
-            }
+            BUNDLE.getStringArray("customerTableFields")
         ) {
             Class[] types = new Class [] {
                 java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
@@ -785,7 +789,7 @@ public class Employee extends javax.swing.JFrame {
         jScrollPane3.setViewportView(customerTable2);
 
         cbSearchCustomer1.setMaximumRowCount(11);
-        cbSearchCustomer1.setModel(new javax.swing.DefaultComboBoxModel(BUNDLE.getStringArray("customerFields")));
+        cbSearchCustomer1.setModel(new javax.swing.DefaultComboBoxModel(BUNDLE.getStringArray("customerSearchFields")));
 
         refreshCustomerTable2.setText("Overzicht verversen");
         refreshCustomerTable2.addActionListener(new java.awt.event.ActionListener() {
@@ -1023,9 +1027,7 @@ public class Employee extends javax.swing.JFrame {
             new Object [][] {
 
             },
-            new String [] {
-                "Bagage ID", "Klant ID", "Omschrijving", "Locatie", "Datum Vermist", "Status"
-            }
+            BUNDLE.getStringArray("luggageTableFields")
         ) {
             Class[] types = new Class [] {
                 java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
@@ -1045,7 +1047,7 @@ public class Employee extends javax.swing.JFrame {
         luggageTable2.setVerifyInputWhenFocusTarget(false);
         jScrollPane7.setViewportView(luggageTable2);
 
-        cbSearchLuggage1.setModel(new javax.swing.DefaultComboBoxModel(BUNDLE.getStringArray("luggageFields")));
+        cbSearchLuggage1.setModel(new javax.swing.DefaultComboBoxModel(BUNDLE.getStringArray("luggageSearchFields")));
         cbSearchLuggage1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbSearchLuggage1ActionPerformed(evt);
@@ -1208,9 +1210,7 @@ public class Employee extends javax.swing.JFrame {
             new Object [][] {
 
             },
-            new String [] {
-                "Bagage ID", "Klant ID", "Omschrijving", "Locatie", "Datum Vermist", "Status"
-            }
+            BUNDLE.getStringArray("luggageTableFields")
         ) {
             Class[] types = new Class [] {
                 java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
@@ -1230,7 +1230,7 @@ public class Employee extends javax.swing.JFrame {
         luggageTable1.setVerifyInputWhenFocusTarget(false);
         jScrollPane6.setViewportView(luggageTable1);
 
-        cbSearchLuggage.setModel(new javax.swing.DefaultComboBoxModel(BUNDLE.getStringArray("luggageFields")));
+        cbSearchLuggage.setModel(new javax.swing.DefaultComboBoxModel(BUNDLE.getStringArray("luggageSearchFields")));
 
         showHandledLuggage1.setText(BUNDLE.getString("hideHandled"));
         showHandledLuggage1.addActionListener(new java.awt.event.ActionListener() {
@@ -1294,9 +1294,7 @@ public class Employee extends javax.swing.JFrame {
             new Object [][] {
 
             },
-            new String [] {
-                "Klant ID", "Voornaam", "Achternaam", "Adres", "Postcode", "Stad", "Land", "Email", "Tel. thuis", "Tel. mobiel"
-            }
+            BUNDLE.getStringArray("customerTableFields")
         ) {
             Class[] types = new Class [] {
                 java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
@@ -1317,7 +1315,7 @@ public class Employee extends javax.swing.JFrame {
         jScrollPane1.setViewportView(customerTable1);
 
         cbSearchCustomer.setMaximumRowCount(11);
-        cbSearchCustomer.setModel(new javax.swing.DefaultComboBoxModel(BUNDLE.getStringArray("customerFields")));
+        cbSearchCustomer.setModel(new javax.swing.DefaultComboBoxModel(BUNDLE.getStringArray("customerSearchFields")));
 
         javax.swing.GroupLayout linkCustomerTablePanelLayout = new javax.swing.GroupLayout(linkCustomerTablePanel);
         linkCustomerTablePanel.setLayout(linkCustomerTablePanelLayout);
