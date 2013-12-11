@@ -12,6 +12,7 @@ import java.beans.PropertyChangeListener;
 import java.util.List;
 import java.util.ResourceBundle;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import main.*;
@@ -261,39 +262,47 @@ public class Employee extends javax.swing.JFrame {
 
         if (newFirstName.equals("") || newFirstName.length() > 50) {
             correctInput[0] = false;
+            errorPopUp("Vul een voornaam in.");
         } else {
             correctInput[0] = true;
         }
 
         if (newLastName.equals("") || newLastName.length() > 50) {
             correctInput[1] = false;
+            errorPopUp("Vul een achternaam in.");
         } else {
             correctInput[1] = true;
         }
 
         if (newAddress.equals(" ") || tfAddress1.getText().equals("") || tfAddress2.getText().equals("")) {
             correctInput[2] = false;
+            errorPopUp("Vul een adres in.");
         } else {
             correctInput[2] = true;
         }
 
         if (newPostalCode.equals("")) {
             correctInput[3] = false;
-        } else if (!tfPostalCode.getText().matches("[0-9]+")) {
-            correctInput[3] = false;
+            errorPopUp("Vul een postcode in.");
+//        } else if (!tfPostalCode.getText().matches("[0-9]+")) {
+//            errorPopUp("Vul een geldige postcode in.");
+//            correctInput[3] = false;
         } else {
             correctInput[3] = true;
         }
 
         if (newCity.equals("")) {
             correctInput[4] = false;
+            errorPopUp("Vul een stad in.");
         } else {
             correctInput[4] = true;
         }
 
         if (newEmail.length() > 75) {
             correctInput[5] = false;
+            errorPopUp("Het gegeven email is te lang.");
         } else if (!tfEmail2.getText().contains(".")) {
+            errorPopUp("Het gegeven email bevat geen punt.");
             correctInput[5] = false;
         } else {
             correctInput[5] = true;
@@ -364,7 +373,7 @@ public class Employee extends javax.swing.JFrame {
         clearFields();
         searchCustomerTable2(9999, "");
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -1741,9 +1750,10 @@ public class Employee extends javax.swing.JFrame {
         boolean totalCorrectInput = errorCheckCreateCustomer();
         if (totalCorrectInput == true) {
             doCreateCustomer();
-        } else {
-            errorPopUp("Vul alle velden volledig in en probeer het nog eens.");
-        }
+        } 
+//        else {
+//            errorPopUp("Vul alle velden volledig in en probeer het nog eens.");
+//        }
     }//GEN-LAST:event_createCustomer1ActionPerformed
 
     private void refreshCustomerTable2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshCustomerTable2ActionPerformed
@@ -2068,7 +2078,9 @@ public class Employee extends javax.swing.JFrame {
         }
         if (isError == false) {
             Main.displayExtendedCustomer();
+            
         }
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btDeleteLuggageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDeleteLuggageActionPerformed
