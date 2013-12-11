@@ -79,11 +79,11 @@
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jScrollPane2" alignment="0" pref="390" max="32767" attributes="0"/>
+                              <Component id="jScrollPane2" alignment="0" pref="389" max="32767" attributes="0"/>
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="tfLocation" min="-2" pref="147" max="-2" attributes="0"/>
-                                      <Component id="cbStatus" min="-2" max="-2" attributes="0"/>
+                                      <Component id="cbStatus" min="-2" pref="115" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
@@ -131,12 +131,16 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="lblCustomerID5">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Omschrijving"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="BUNDLE.getString(&quot;description&quot;)" type="code"/>
+            </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblCustomerID6">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Locatie"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="BUNDLE.getString(&quot;location&quot;)" type="code"/>
+            </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="tfLocation">
@@ -146,12 +150,16 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lblCustomerID7">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Status"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="BUNDLE.getString(&quot;status&quot;)" type="code"/>
+            </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="btUpdateLuggage">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Aanpassen"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="BUNDLE.getString(&quot;adjust&quot;)" type="code"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btUpdateLuggageActionPerformed"/>
@@ -159,7 +167,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="btCancel">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Annuleren"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="BUNDLE.getString(&quot;cancel&quot;)" type="code"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btCancelActionPerformed"/>
@@ -192,7 +202,9 @@
         </Component>
         <Component class="javax.swing.JCheckBox" name="chbUnlockFields">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Velden ontgrendelen"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="BUNDLE.getString(&quot;unlockFields&quot;)" type="code"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="chbUnlockFieldsActionPerformed"/>
@@ -200,12 +212,8 @@
         </Component>
         <Component class="javax.swing.JComboBox" name="cbStatus">
           <Properties>
-            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="3">
-                <StringItem index="0" value="Vermist"/>
-                <StringItem index="1" value="Gevonden"/>
-                <StringItem index="2" value="Afgehandeld"/>
-              </StringArray>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="new javax.swing.DefaultComboBoxModel(BUNDLE.getStringArray(&quot;statuses&quot;))" type="code"/>
             </Property>
           </Properties>
           <Events>

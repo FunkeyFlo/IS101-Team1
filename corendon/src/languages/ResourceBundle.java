@@ -23,26 +23,44 @@ public class ResourceBundle extends ListResourceBundle {
         
         // Universally used strings
             { "administrator", "Administrator" },
+            { "adjust", "Adjust" },
             { "allFields", "All fields" },
             { "cancel", "Cancel" },
             { "create", "Create" },
+            { "customerId", "Customer ID" },
+            { "description", "Description" },
             { "employee", "Employee" },
             { "exit", "Exit" },
             { "fillInAllFields", "Please fill in all fields and try again."},
             { "firstName", "First name" },
+            { "found", "Found" },
+            { "handled", "Handled" },
             { "lastName", "Last name" },
+            { "location", "Location" },
             { "login" , "Login" },
+            { "lost", "Lost" },
             { "manager", "Manager" },
             { "selectItemInTable", "Please select an item from the table and try again." },
-            { "options", "Options" },
             { "ok", "Ok" },
+            { "options", "Options" },
             { "password", "Password" },
             { "reset", "Reset" },
+            { "resetOverview", "Reset Overview" },
             { "search", "Search" },
+            { "status", "Status" },
+            { "unlockFields", "Unlock fields" },
             { "userId", "User Id" },
             { "username", "Username" },
             { "update", "Update" },
-        
+            
+        // StringArrays
+            { "months", new String[] { "January", "February", "March", "April",
+                "May", "June", "July", "August", "September", "October",
+                "November", "December" } },
+            { "statuses", new String[] { "Lost", "Found", "Handled" } },
+            { "userFields", new String[] { "All fields", "User ID", "Firstname",
+                "Lastname", "Username" } },
+            
         // Toolbar
             { "changePassword", "Change Password" },
             { "logout", "Logout" },
@@ -93,9 +111,6 @@ public class ResourceBundle extends ListResourceBundle {
             { "handledLuggage", "Handled Luggage" },
             { "missingLuggage", "Missing Luggage" },
             { "month", "Month" },
-            { "months", new String[] { "January", "February", "March", "April",
-                "May", "June", "July", "August", "September", "October",
-                "November", "December" } },
             { "options", "Options" },
             { "otherOptions", "Other Options" },
             { "seeAllData1", "Shows all data, even if the status of the" },
@@ -104,5 +119,8 @@ public class ResourceBundle extends ListResourceBundle {
             { "xAxis", "Month/Year" },
             { "yAxis", "Number" },
             { "year", "Year" },
+            
+        // Employee.java
+            { "hideHandled", "Hide handled luggage" },
     };
 }

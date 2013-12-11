@@ -5,6 +5,7 @@ import java.awt.Component;
 import java.awt.Frame;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.ResourceBundle;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import main.Session;
@@ -15,6 +16,9 @@ import main.Session;
  */
 public class ChangeLuggage extends javax.swing.JFrame {
 
+    //    private Locale locale = new Locale("nl", "NL");
+    private final ResourceBundle BUNDLE = ResourceBundle.getBundle("languages.ResourceBundle"); //, locale
+    
     private Component errorPopUp;
     private Component confirmationPopUp;
     private Luggage luggage = new Luggage();
@@ -103,9 +107,9 @@ public class ChangeLuggage extends javax.swing.JFrame {
 
         luggageRegistrationPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Bagage Registeren"));
 
-        lblCustomerID5.setText("Omschrijving");
+        lblCustomerID5.setText(BUNDLE.getString("description"));
 
-        lblCustomerID6.setText("Locatie");
+        lblCustomerID6.setText(BUNDLE.getString("location"));
 
         tfLocation.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -113,16 +117,16 @@ public class ChangeLuggage extends javax.swing.JFrame {
             }
         });
 
-        lblCustomerID7.setText("Status");
+        lblCustomerID7.setText(BUNDLE.getString("status"));
 
-        btUpdateLuggage.setText("Aanpassen");
+        btUpdateLuggage.setText(BUNDLE.getString("adjust"));
         btUpdateLuggage.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btUpdateLuggageActionPerformed(evt);
             }
         });
 
-        btCancel.setText("Annuleren");
+        btCancel.setText(BUNDLE.getString("cancel"));
         btCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btCancelActionPerformed(evt);
@@ -136,14 +140,14 @@ public class ChangeLuggage extends javax.swing.JFrame {
         editLuggageInfo.setForeground(new java.awt.Color(102, 102, 102));
         editLuggageInfo.setText("Laatst gewijzigd door " + user.getFirstName() + " " + user.getLastName() + " op " + luggage.getDateChanged().substring(0, luggage.getDateChanged().length()-5));
 
-        chbUnlockFields.setText("Velden ontgrendelen");
+        chbUnlockFields.setText(BUNDLE.getString("unlockFields"));
         chbUnlockFields.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 chbUnlockFieldsActionPerformed(evt);
             }
         });
 
-        cbStatus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Vermist", "Gevonden", "Afgehandeld" }));
+        cbStatus.setModel(new javax.swing.DefaultComboBoxModel(BUNDLE.getStringArray("statuses")));
         cbStatus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbStatusActionPerformed(evt);
@@ -171,11 +175,11 @@ public class ChangeLuggage extends javax.swing.JFrame {
                             .addComponent(lblCustomerID7, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(luggageRegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 390, Short.MAX_VALUE)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 389, Short.MAX_VALUE)
                             .addGroup(luggageRegistrationPanelLayout.createSequentialGroup()
                                 .addGroup(luggageRegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(tfLocation, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(cbStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(cbStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );

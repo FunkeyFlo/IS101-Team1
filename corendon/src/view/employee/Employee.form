@@ -257,21 +257,19 @@
                               <Component id="tfAddress2" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jLabel19" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jLabel20" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" attributes="0">
-                                  <Component id="tfPostalCode" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="tfCity" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="tfCountry" min="-2" max="-2" attributes="0"/>
-                              </Group>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="tfPostalCode" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="tfCity" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel19" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="tfCountry" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel20" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -751,19 +749,25 @@
               <SubComponents>
                 <Component class="javax.swing.JLabel" name="lblCustomerID4">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Klant ID"/>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="BUNDLE.getString(&quot;customerId&quot;)" type="code"/>
+                    </Property>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="tfCustomerID1">
                 </Component>
                 <Component class="javax.swing.JLabel" name="lblCustomerID5">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Omschrijving"/>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="BUNDLE.getString(&quot;description&quot;)" type="code"/>
+                    </Property>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="lblCustomerID6">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Locatie"/>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="BUNDLE.getString(&quot;location&quot;)" type="code"/>
+                    </Property>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="tfLocation1">
@@ -773,7 +777,9 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="lblCustomerID7">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Status"/>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="BUNDLE.getString(&quot;status&quot;)" type="code"/>
+                    </Property>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JButton" name="btCreateLuggage">
@@ -809,12 +815,8 @@
                 </Container>
                 <Component class="javax.swing.JComboBox" name="cbStatus">
                   <Properties>
-                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="3">
-                        <StringItem index="0" value="Vermist"/>
-                        <StringItem index="1" value="Gevonden"/>
-                        <StringItem index="2" value="Afgehandeld"/>
-                      </StringArray>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="new javax.swing.DefaultComboBoxModel(BUNDLE.getStringArray(&quot;statuses&quot;))" type="code"/>
                     </Property>
                   </Properties>
                 </Component>
@@ -843,7 +845,7 @@
                                   <Component id="cbSearchLuggage1" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="chbShowHandledLuggage2" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="85" max="32767" attributes="0"/>
+                                  <EmptySpace pref="126" max="32767" attributes="0"/>
                                   <Component id="refreshLuggageTable2" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Component id="jScrollPane7" alignment="0" max="32767" attributes="0"/>
@@ -881,7 +883,9 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="luggageSearchButton2">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Zoeken"/>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="BUNDLE.getString(&quot;search&quot;)" type="code"/>
+                    </Property>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="luggageSearchButton2ActionPerformed"/>
@@ -939,7 +943,9 @@
                 </Component>
                 <Component class="javax.swing.JCheckBox" name="chbShowHandledLuggage2">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Toon afgehandelde bagage"/>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="BUNDLE.getString(&quot;hideHandled&quot;)" type="code"/>
+                    </Property>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="chbShowHandledLuggage2ActionPerformed"/>
@@ -1127,7 +1133,9 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="luggageSearchButton1">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Zoeken"/>
+                        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                          <Connection code="BUNDLE.getString(&quot;search&quot;)" type="code"/>
+                        </Property>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="luggageSearchButton1ActionPerformed"/>
@@ -1174,7 +1182,9 @@
                     </Component>
                     <Component class="javax.swing.JCheckBox" name="showHandledLuggage1">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Toon afgehandelde bagage"/>
+                        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                          <Connection code="BUNDLE.getString(&quot;hideHandled&quot;)" type="code"/>
+                        </Property>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="showHandledLuggage1ActionPerformed"/>
@@ -1240,7 +1250,9 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="customerSearchButton1">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Zoeken"/>
+                        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                          <Connection code="BUNDLE.getString(&quot;search&quot;)" type="code"/>
+                        </Property>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="customerSearchButton1ActionPerformed"/>

@@ -508,13 +508,11 @@ permissionSelector.addActionListener(new java.awt.event.ActionListener() {
         }
     });
 
-    searchComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] {
-        BUNDLE.getString("allFields"), BUNDLE.getString("userId"), BUNDLE.getString("firstName"),
-        BUNDLE.getString("lastName"), BUNDLE.getString("username")}));
-searchComboBox.addActionListener(new java.awt.event.ActionListener() {
-public void actionPerformed(java.awt.event.ActionEvent evt) {
-    searchComboBoxActionPerformed(evt);
-    }
+    searchComboBox.setModel(new javax.swing.DefaultComboBoxModel(BUNDLE.getStringArray("userFields")));
+    searchComboBox.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            searchComboBoxActionPerformed(evt);
+        }
     });
 
     javax.swing.GroupLayout userTablePanelLayout = new javax.swing.GroupLayout(userTablePanel);

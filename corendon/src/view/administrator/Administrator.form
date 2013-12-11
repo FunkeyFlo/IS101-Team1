@@ -465,7 +465,7 @@
         <Component class="javax.swing.JComboBox" name="searchComboBox">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="new javax.swing.DefaultComboBoxModel(new String[] {&#xa;    BUNDLE.getString(&quot;allFields&quot;), BUNDLE.getString(&quot;userId&quot;), BUNDLE.getString(&quot;firstName&quot;),&#xa;    BUNDLE.getString(&quot;lastName&quot;), BUNDLE.getString(&quot;username&quot;)})" type="code"/>
+              <Connection code="new javax.swing.DefaultComboBoxModel(BUNDLE.getStringArray(&quot;userFields&quot;))" type="code"/>
             </Property>
           </Properties>
           <Events>

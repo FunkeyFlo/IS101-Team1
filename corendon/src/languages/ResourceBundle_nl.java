@@ -23,25 +23,41 @@ public class ResourceBundle_nl extends ListResourceBundle {
         
         // Universally used strings
             { "administrator", "Beheerder" },
+            { "adjust", "Aanpassen" }, 
             { "allFields", "Alle velden" },
             { "cancel", "Annuleren" },
             { "create", "Aanmaken" },
+            { "customerId", "Klant nummer" },
+            { "description", "Omschrijving" },
             { "employee", "Medewerker" },
             { "exit", "Afsluiten" },
             { "fillInAllFields", "Vul alle velden in en probeer het nogmaals."},
             { "firstName", "Voornaam" },
+            { "found", "Gevonden" },
+            { "handled", "Afgehandeld" },
             { "lastName", "Achternaam" },
+            { "location", "Locatie" },
             { "login" , "Inloggen" },
+            { "lost", "Verloren" },
             { "manager", "Manager" },
             { "selectItemInTable", "Selecteer een onderdeel uit de tabel en probeer het nogmaals." },
             { "ok", "Ok" },
             { "options", "Opties" },
             { "password", "Wachtwoord" },
             { "reset", "Reset" },
+            { "resetOverview", "Tabel Resetten" },
             { "search", "Zoeken" },
+            { "status", "Status" },
+            { "unlockFields", "Velden ontgrendelen" },
             { "userId", "Gebruikers ID" },
             { "username", "Gebruikersnaam" },
             { "update", "Update" },
+            
+        // StringArrays
+            { "months", new String[] { "Januari", "Februari", "Maart", "April",
+                "Mei", "Juni", "Juli", "Augustus", "September", "October",
+                "November", "December" } },
+            { "statuses", new String[] { "Verloren", "Gevonden", "Afgehandeld" } },
         
         // Toolbar
             { "changePassword", "Wachtwoord wijzigen" },
@@ -93,9 +109,6 @@ public class ResourceBundle_nl extends ListResourceBundle {
             { "handledLuggage", "Afgehandelde Bagage" },   
             { "missingLuggage", "Vermiste Bagage" },
             { "month", "Maand" },
-            { "months", new String[] { "Januari", "Februari", "Maart", "April",
-                "Mei", "Juni", "Juli", "Augustus", "September", "October",
-                "November", "December" } },
             { "options", "Opties" },
             { "otherOptions", "Overige Opties" },
             { "seeAllData1", "Zie alle data, zelfs als de status van de" },
@@ -104,5 +117,8 @@ public class ResourceBundle_nl extends ListResourceBundle {
             { "xAxis", "Maand/Jaar" },
             { "yAxis", "Aantal" },
             { "year", "Jaar" },
+            
+        // Employee.java
+            { "hideHandled", "Afgehandelde bagage verbergen" },
     };
 }
