@@ -138,7 +138,7 @@ public class ChangeLuggage extends javax.swing.JFrame {
         jScrollPane2.setViewportView(tfDescription);
 
         editLuggageInfo.setForeground(new java.awt.Color(102, 102, 102));
-        editLuggageInfo.setText("Laatst gewijzigd door " + user.getFirstName() + " " + user.getLastName() + " op " + luggage.getDateChanged().substring(0, luggage.getDateChanged().length()-5));
+        editLuggageInfo.setText(BUNDLE.getString("lastChangedBy") + user.getFirstName() + " " + user.getLastName() + " " + BUNDLE.getString("on") + " " + luggage.getDateChanged().substring(0, luggage.getDateChanged().length()-5));
 
         chbUnlockFields.setText(BUNDLE.getString("unlockFields"));
         chbUnlockFields.addActionListener(new java.awt.event.ActionListener() {

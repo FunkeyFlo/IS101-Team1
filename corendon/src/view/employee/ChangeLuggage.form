@@ -196,7 +196,7 @@
               <Color blue="66" green="66" red="66" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="&quot;Laatst gewijzigd door &quot; + user.getFirstName() + &quot; &quot; + user.getLastName() + &quot; op &quot; + luggage.getDateChanged().substring(0, luggage.getDateChanged().length()-5)" type="code"/>
+              <Connection code="BUNDLE.getString(&quot;lastChangedBy&quot;) + user.getFirstName() + &quot; &quot; + user.getLastName() + &quot; &quot; + BUNDLE.getString(&quot;on&quot;) + &quot; &quot; + luggage.getDateChanged().substring(0, luggage.getDateChanged().length()-5)" type="code"/>
             </Property>
           </Properties>
         </Component>

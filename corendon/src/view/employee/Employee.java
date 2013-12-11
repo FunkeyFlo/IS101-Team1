@@ -785,7 +785,7 @@ public class Employee extends javax.swing.JFrame {
         jScrollPane3.setViewportView(customerTable2);
 
         cbSearchCustomer1.setMaximumRowCount(11);
-        cbSearchCustomer1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Alle velden", "Klant ID", "Voornaam", "Achternaam", "Adres", "Postcode", "Stad", "Land", "Email", "Tel. huis", "Tel. mobiel" }));
+        cbSearchCustomer1.setModel(new javax.swing.DefaultComboBoxModel(BUNDLE.getStringArray("customerFields")));
 
         refreshCustomerTable2.setText("Overzicht verversen");
         refreshCustomerTable2.addActionListener(new java.awt.event.ActionListener() {
@@ -806,8 +806,8 @@ public class Employee extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(customerSearchButton2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbSearchCustomer1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 312, Short.MAX_VALUE)
+                        .addComponent(cbSearchCustomer1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(refreshCustomerTable2))
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 759, Short.MAX_VALUE))
                 .addContainerGap())
@@ -924,6 +924,7 @@ public class Employee extends javax.swing.JFrame {
         });
 
         tfDescription.setColumns(20);
+        tfDescription.setFont(new java.awt.Font("DialogInput", 0, 11)); // NOI18N
         tfDescription.setRows(5);
         jScrollPane2.setViewportView(tfDescription);
 
@@ -1044,7 +1045,7 @@ public class Employee extends javax.swing.JFrame {
         luggageTable2.setVerifyInputWhenFocusTarget(false);
         jScrollPane7.setViewportView(luggageTable2);
 
-        cbSearchLuggage1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Alle velden", "Bagage ID", "Klant ID", "Omschrijving", "Locatie", "Datum Vermist" }));
+        cbSearchLuggage1.setModel(new javax.swing.DefaultComboBoxModel(BUNDLE.getStringArray("luggageFields")));
         cbSearchLuggage1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbSearchLuggage1ActionPerformed(evt);
@@ -1077,10 +1078,10 @@ public class Employee extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(luggageSearchButton2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbSearchLuggage1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cbSearchLuggage1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(chbShowHandledLuggage2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 126, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
                         .addComponent(refreshLuggageTable2))
                     .addComponent(jScrollPane7))
                 .addContainerGap())
@@ -1229,7 +1230,7 @@ public class Employee extends javax.swing.JFrame {
         luggageTable1.setVerifyInputWhenFocusTarget(false);
         jScrollPane6.setViewportView(luggageTable1);
 
-        cbSearchLuggage.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Alle velden", "Bagage ID", "Klant ID", "Omschrijving", "Locatie", "Datum Vermist" }));
+        cbSearchLuggage.setModel(new javax.swing.DefaultComboBoxModel(BUNDLE.getStringArray("luggageFields")));
 
         showHandledLuggage1.setText(BUNDLE.getString("hideHandled"));
         showHandledLuggage1.addActionListener(new java.awt.event.ActionListener() {
@@ -1316,7 +1317,7 @@ public class Employee extends javax.swing.JFrame {
         jScrollPane1.setViewportView(customerTable1);
 
         cbSearchCustomer.setMaximumRowCount(11);
-        cbSearchCustomer.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Alle velden", "Klant ID", "Voornaam", "Achternaam", "Adres", "Postcode", "Stad", "Land", "Email", "Tel. huis", "Tel. mobiel" }));
+        cbSearchCustomer.setModel(new javax.swing.DefaultComboBoxModel(BUNDLE.getStringArray("customerFields")));
 
         javax.swing.GroupLayout linkCustomerTablePanelLayout = new javax.swing.GroupLayout(linkCustomerTablePanel);
         linkCustomerTablePanel.setLayout(linkCustomerTablePanelLayout);

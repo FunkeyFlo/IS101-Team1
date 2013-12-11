@@ -35,6 +35,7 @@ public class ResourceBundle extends ListResourceBundle {
             { "firstName", "First name" },
             { "found", "Found" },
             { "handled", "Handled" },
+            { "lastChangedBy", "Last changed by " },
             { "lastName", "Last name" },
             { "location", "Location" },
             { "login" , "Login" },
@@ -42,6 +43,7 @@ public class ResourceBundle extends ListResourceBundle {
             { "manager", "Manager" },
             { "selectItemInTable", "Please select an item from the table and try again." },
             { "ok", "Ok" },
+            { "on", "on" },
             { "options", "Options" },
             { "password", "Password" },
             { "reset", "Reset" },
@@ -54,12 +56,18 @@ public class ResourceBundle extends ListResourceBundle {
             { "update", "Update" },
             
         // StringArrays
+            { "luggageFields", new String [] { "All fields", "Luggage ID",
+                "Customer ID", "Description", "Location", "Date lost" } },
+            { "customerFields", new String[] { "All fields", "Customer ID", "Firstname",
+                "Lastname", "Address", "Postal code", "City", "Country",
+                "Email", "Phone - Home", "Phone - Mobile"} },
             { "months", new String[] { "January", "February", "March", "April",
                 "May", "June", "July", "August", "September", "October",
                 "November", "December" } },
             { "statuses", new String[] { "Lost", "Found", "Handled" } },
             { "userFields", new String[] { "All fields", "User ID", "Firstname",
                 "Lastname", "Username" } },
+            { "userTypes", new String[] { "Employee", "Manager", "Administrator" } },
             
         // Toolbar
             { "changePassword", "Change Password" },

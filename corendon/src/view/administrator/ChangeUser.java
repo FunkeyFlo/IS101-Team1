@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package view.administrator;
 
 import connectivity.User;
@@ -11,6 +5,7 @@ import java.awt.Component;
 import java.awt.Frame;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.ResourceBundle;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import main.Session;
@@ -21,6 +16,9 @@ import main.Session;
  */
 public class ChangeUser extends javax.swing.JFrame {
 
+//    private Locale locale = new Locale("nl", "NL");
+    private final ResourceBundle BUNDLE = ResourceBundle.getBundle("languages.ResourceBundle"); //, locale
+    
     private User user = new User();
     private Administrator admin = new Administrator();
     
@@ -176,7 +174,7 @@ public class ChangeUser extends javax.swing.JFrame {
 
         permissionLabel.setText("Gebruikersgroep");
 
-        permissionSelector.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Medewerker", "Manager", "Beheerder" }));
+        permissionSelector.setModel(new javax.swing.DefaultComboBoxModel(BUNDLE.getStringArray("userTypes")));
         permissionSelector.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 permissionSelectorActionPerformed(evt);
@@ -229,7 +227,7 @@ public class ChangeUser extends javax.swing.JFrame {
                             .addComponent(firstNameLabel)
                             .addComponent(lastNameLabel)
                             .addComponent(permissionLabel)
-                            .addComponent(permissionSelector, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(permissionSelector, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
