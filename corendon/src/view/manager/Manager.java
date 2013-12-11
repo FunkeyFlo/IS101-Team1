@@ -15,6 +15,9 @@ import main.Session;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.axis.CategoryAxis;
+import org.jfree.chart.axis.CategoryLabelPositions;
+import org.jfree.chart.axis.NumberAxis;
 import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
@@ -39,7 +42,7 @@ public class Manager extends javax.swing.JFrame {
             BUNDLE.getString("foundLuggage");
     
     private static final String HANDLED_LUGGAGE_GRAPH_NAME = 
-            BUNDLE.getString("foundLuggage");
+            BUNDLE.getString("handledLuggage");
     
     private static final String X_AXIS_NAME = BUNDLE.getString("xAxis");
     private static final String Y_AXIS_NAME = BUNDLE.getString("yAxis");
@@ -447,11 +450,12 @@ public class Manager extends javax.swing.JFrame {
         JFreeChart allGraphsChart = ChartFactory.createLineChart(
                 ALL_LUGGAGE_DATA_GRAPH_NAME, X_AXIS_NAME, Y_AXIS_NAME, 
                 allDataGraph);
-//        JFreeChart allGraphsChart = ChartFactory.createBarChart(
-//                ALL_LUGGAGE_DATA_GRAPH_NAME, X_AXIS_NAME, Y_AXIS_NAME, 
-//                allDataGraph, PlotOrientation.VERTICAL, 
-//                false, true, false);
+        
         CategoryPlot allGraphsPlot = allGraphsChart.getCategoryPlot();
+        CategoryAxis xAxis = allGraphsPlot.getDomainAxis();
+        NumberAxis numberAxis = (NumberAxis)allGraphsPlot.getRangeAxis();
+        numberAxis.setStandardTickUnits(NumberAxis.createIntegerTickUnits());
+        
         allGraphsPlot.setRangeGridlinePaint(Color.BLACK);
         ChartPanel lostBaggagePanel = new ChartPanel(allGraphsChart);
         allGraphsChart.setBackgroundPaint(TRANS);
@@ -494,11 +498,12 @@ public class Manager extends javax.swing.JFrame {
         JFreeChart lostBaggageChart = ChartFactory.createLineChart(
                 LOST_LUGGAGE_GRAPH_NAME, X_AXIS_NAME, Y_AXIS_NAME, 
                 lostBaggageGraph);
-//        JFreeChart lostBaggageChart = ChartFactory.createBarChart(
-//                LOST_LUGGAGE_GRAPH_NAME, X_AXIS_NAME, Y_AXIS_NAME, 
-//                lostBaggageGraph, PlotOrientation.VERTICAL, 
-//                false, true, false);
+
         CategoryPlot lostBaggagePlot = lostBaggageChart.getCategoryPlot();
+        CategoryAxis xAxis = lostBaggagePlot.getDomainAxis();
+        NumberAxis numberAxis = (NumberAxis)lostBaggagePlot.getRangeAxis();
+        numberAxis.setStandardTickUnits(NumberAxis.createIntegerTickUnits());
+        
         lostBaggagePlot.setRangeGridlinePaint(Color.BLACK);
         ChartPanel lostBaggagePanel = new ChartPanel(lostBaggageChart);
         lostBaggageChart.setBackgroundPaint(TRANS);
@@ -507,7 +512,6 @@ public class Manager extends javax.swing.JFrame {
         lostBaggage.add(lostBaggagePanel, BorderLayout.CENTER);
         lostBaggage.validate();
 
-  
     }
     
     /**
@@ -539,11 +543,12 @@ public class Manager extends javax.swing.JFrame {
         JFreeChart foundBaggageChart = ChartFactory.createLineChart(
                 FOUND_LUGGAGE_GRAPH_NAME, X_AXIS_NAME, Y_AXIS_NAME, 
                 foundBaggageGraph);
-//        JFreeChart foundBaggageChart = ChartFactory.createBarChart(
-//                FOUND_LUGGAGE_GRAPH_NAME, X_AXIS_NAME, Y_AXIS_NAME, 
-//                foundBaggageGraph, PlotOrientation.VERTICAL, 
-//                false, true, false);
+
         CategoryPlot foundBaggagePlot = foundBaggageChart.getCategoryPlot();
+        CategoryAxis xAxis = foundBaggagePlot.getDomainAxis();
+        NumberAxis numberAxis = (NumberAxis)foundBaggagePlot.getRangeAxis();
+        numberAxis.setStandardTickUnits(NumberAxis.createIntegerTickUnits());
+        
         foundBaggagePlot.setRangeGridlinePaint(Color.BLACK);
         ChartPanel foundBaggagePanel = new ChartPanel(foundBaggageChart);
         foundBaggageChart.setBackgroundPaint(new Color(0xFF, 0xFF, 0xFF, 0));
@@ -585,11 +590,12 @@ public class Manager extends javax.swing.JFrame {
         JFreeChart handledBaggageChart = ChartFactory.createLineChart(
                 HANDLED_LUGGAGE_GRAPH_NAME, X_AXIS_NAME, Y_AXIS_NAME, 
                 handledBaggageGraph);
-//        JFreeChart handledBaggageChart = ChartFactory.createBarChart(
-//                HANDLED_LUGGAGE_GRAPH_NAME, X_AXIS_NAME, Y_AXIS_NAME, 
-//                handledBaggageGraph, PlotOrientation.VERTICAL, 
-//                false, true, false);
+
         CategoryPlot handledBaggagePlot = handledBaggageChart.getCategoryPlot();
+        CategoryAxis xAxis = handledBaggagePlot.getDomainAxis();
+        NumberAxis numberAxis = (NumberAxis)handledBaggagePlot.getRangeAxis();
+        numberAxis.setStandardTickUnits(NumberAxis.createIntegerTickUnits());
+
         handledBaggagePlot.setRangeGridlinePaint(Color.BLACK);
         ChartPanel handledBaggagePanel = new ChartPanel(handledBaggageChart);
         handledBaggageChart.setBackgroundPaint(TRANS);
@@ -645,6 +651,14 @@ public class Manager extends javax.swing.JFrame {
     private void cbMonthFromActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbMonthFromActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbMonthFromActionPerformed
+    
+    private static List<String> giveMonthLetters(int beginYear, int endYear,
+            int beginMonth, int endMonth) {
+        List<String> letters = new ArrayList<>();
+        
+        
+        return letters;
+    }
     
     /**
      * @return amount of months between begin year and month and end year and month.
