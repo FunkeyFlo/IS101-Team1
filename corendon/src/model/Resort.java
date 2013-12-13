@@ -14,6 +14,7 @@ import connectivity.DatabaseManager;
 public class Resort {
 
     DatabaseManager db = new DatabaseManager();
+    private String FUCK_YOU;
 
     private int id;
     private String phone, email, name, address, country, city, postalCode;

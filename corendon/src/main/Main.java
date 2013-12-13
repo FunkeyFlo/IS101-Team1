@@ -22,6 +22,7 @@ public class Main {
 
     private JFrame frameLogin;
     public static Session session;
+    private String FUCK_YOU;
 
     private Main() {
     }
@@ -55,26 +56,27 @@ public class Main {
         ResetPassword frameResetPassword = new ResetPassword();
         frameResetPassword.setVisible(true);
     }
-    
+
     public static void displayExtendedCustomer() {
         ExtendedCustomer frameExtendedCustomer = new ExtendedCustomer();
         frameExtendedCustomer.setVisible(true);
     }
-    
+
     public static void displayChangeLuggage() {
         ChangeLuggage frameChangeLuggage = new ChangeLuggage();
         frameChangeLuggage.setVisible(true);
     }
-    
+
     public static void displayChangeUser() {
         ChangeUser frameChangeUser = new ChangeUser();
         frameChangeUser.setVisible(true);
     }
-    public static void displaySaveDocument(){
+
+    public static void displaySaveDocument() {
         SaveDocument frameSaveDocument = new SaveDocument();
         frameSaveDocument.setVisible(true);
     }
-    
+
     public static void main(String args[]) {
 
         try {

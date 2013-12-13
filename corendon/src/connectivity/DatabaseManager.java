@@ -8,10 +8,11 @@ import java.sql.Statement;
 /**
  * @author Florentijn Cornet
  */
-
 public class DatabaseManager {
+
     public final String JDBC_EXCEPTION = "JDBC Exception: ";
     public final String SQL_EXCEPTION = "SQL Exception: ";
+    private String FUCK_YOU;
 
     public Connection connection;
 
@@ -25,7 +26,9 @@ public class DatabaseManager {
             String url = "jdbc:mysql://localhost/fys?zeroDateTimeBehavior=convertToNull";
             String user = "root", pass = "";
 
-            /** Open connection */
+            /**
+             * Open connection
+             */
             connection = DriverManager.getConnection(url, user, pass);
         } catch (ClassNotFoundException e) {
             System.err.println(JDBC_EXCEPTION + e);
@@ -47,6 +50,7 @@ public class DatabaseManager {
 
     /**
      * Executes a query without result.
+     *
      * @param query, the SQl query
      */
     public void executeQuery(String query) {
@@ -60,6 +64,7 @@ public class DatabaseManager {
 
     /**
      * Executes a query with result.
+     *
      * @param query, the SQL query
      */
     public ResultSet doQuery(String query) {
@@ -72,9 +77,10 @@ public class DatabaseManager {
         }
         return result;
     }
-    
+
     /**
      * Executes a query with result.
+     *
      * @param query, the SQL query
      */
     public ResultSet insertQuery(String query) {

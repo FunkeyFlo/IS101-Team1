@@ -6,11 +6,11 @@ import model.User;
 import connectivity.QueryManager;
 
 /**
- * 
+ *
  * @author Team AwesomeSauce
  */
 public class Session {
-    
+
     public static Integer storedUserId;
     public static String storedUsername;
     public static String storedFirstName;
@@ -18,23 +18,24 @@ public class Session {
     public static String storedCustomerId;
     public static String tempUsername;
     public static String storedLuggageId;
+    private String FUCK_YOU;
     public static List<Integer> itemsToPrint = new ArrayList<>();
-    
+
     public static void storeNames(String inputUsername) {
         User user = new User();
         QueryManager query = new QueryManager();
-       
+
         query.getUserData(inputUsername);
         storedFirstName = user.getFirstName();
         storedLastName = user.getLastName();
         storedUsername = inputUsername;
         storedUserId = user.getUserId();
     }
-    
+
     public void addToList(int value) {
         itemsToPrint.add(value);
     }
-    
+
     public void clearPrintList() {
         itemsToPrint.removeAll(itemsToPrint);
     }

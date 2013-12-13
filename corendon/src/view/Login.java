@@ -11,11 +11,13 @@ import model.User;
 /**
  * @author Team AwesomeSauce
  */
-
 public class Login extends javax.swing.JFrame {
+
     private Component errorPopUp;
+    private String FUCK_YOU;
+
     private final ResourceBundle BUNDLE = ResourceBundle.getBundle("languages.ResourceBundle");
-    
+
     /**
      * Creates new form Login
      */
@@ -68,10 +70,11 @@ public class Login extends javax.swing.JFrame {
             errorPopUp(BUNDLE.getString("accountHasBeenLocked"));
         }
     }
-    
+
     private void errorPopUp(String errorMessage) {
         JOptionPane.showMessageDialog(errorPopUp, errorMessage, "Error", JOptionPane.ERROR_MESSAGE);
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

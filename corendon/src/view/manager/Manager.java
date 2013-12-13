@@ -33,6 +33,7 @@ public class Manager extends javax.swing.JFrame {
     private final Customer customer = new Customer();
     private final Luggage luggage = new Luggage();
     private final Resort resort = new Resort();
+    private String FUCK_YOU;
 
     //    private Locale locale = new Locale("nl", "NL");
     private static final ResourceBundle BUNDLE

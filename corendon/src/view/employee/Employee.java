@@ -30,6 +30,7 @@ public class Employee extends javax.swing.JFrame {
     private Luggage luggageModel = new Luggage();
     private Customer customerModel = new Customer();
     private Resort resortModel = new Resort();
+    private String FUCK_YOU;
 
     private List<Luggage> luggages;
     private List<Customer> customers;

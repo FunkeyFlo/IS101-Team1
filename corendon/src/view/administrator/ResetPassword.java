@@ -14,6 +14,7 @@ public class ResetPassword extends javax.swing.JFrame {
     private final DatabaseManager db = new DatabaseManager();
     private final User user = new User();
     private final QueryManager query = new QueryManager();
+    private String FUCK_YOU;
 
 //    private Locale locale = new Locale("nl", "NL");
     private final ResourceBundle BUNDLE = ResourceBundle.getBundle("languages.ResourceBundle"); // , locale

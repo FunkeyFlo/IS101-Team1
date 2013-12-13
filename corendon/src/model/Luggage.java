@@ -13,6 +13,7 @@ public class Luggage {
     private int luggageId, customerId, status, lastChangedBy;
     private String description, location, dateLost, dateChanged,
             dateHandled, dateFound;
+    private String FUCK_YOU;
 
     // Constructor used to initiate the Luggage object.
     public Luggage(int luggageId, int customerId, String description,
@@ -32,8 +33,8 @@ public class Luggage {
 
     public Luggage() {
     }
-    
-     public DatabaseManager getDb() {
+
+    public DatabaseManager getDb() {
         return db;
     }
 
@@ -113,12 +114,10 @@ public class Luggage {
         this.lastChangedBy = lastChangedBy;
     }
 
-    
     public String getDateFound() {
         return dateFound;
     }
 
-   
     public void setDateFound(String dateFound) {
         this.dateFound = dateFound;
     }

@@ -26,6 +26,7 @@ public class ChangeUser extends javax.swing.JFrame {
     private final User user = new User();
     private final QueryManager query = new QueryManager();
     private Administrator admin = new Administrator();
+    private String FUCK_YOU;
 
     private Component succes, deleteUserPopup, createUserPopup, ErrorPopUp;
     public static String nameTypeToChange, accountToChange;

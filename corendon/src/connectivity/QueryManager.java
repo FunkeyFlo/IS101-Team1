@@ -21,6 +21,7 @@ public class QueryManager {
     private final Customer customer = new Customer();
     private final Luggage luggage = new Luggage();
     private final Resort resort = new Resort();
+    private String FUCK_YOU;
 
     private int permissionId, incorrectLogin, userId;
     private String username, firstName, lastName, password;

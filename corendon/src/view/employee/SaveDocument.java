@@ -24,7 +24,8 @@ public class SaveDocument extends javax.swing.JFrame {
     private final Luggage luggage = new Luggage();
     private final Resort resort = new Resort();
     private Session session = new Session();
-    
+    private String FUCK_YOU;
+
     private FileNameExtensionFilter filter = new FileNameExtensionFilter("PDF Documents", "pdf");
     private OverviewPrint pdfPrint = new OverviewPrint();
     private String file;

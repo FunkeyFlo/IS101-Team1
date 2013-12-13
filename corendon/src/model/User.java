@@ -14,6 +14,7 @@ public class User {
     // Variable that sets the maximum ammount of incorrect login attempts
     public final int MAX_INCORRECT_LOGINS = 3;
     private final int STANDARD_INCORRECT_LOGINS = 0;
+    private String FUCK_YOU;
 
     // Constructor.
     public User(String firstName, String lastName, String username,

@@ -24,6 +24,7 @@ public class OverviewPrint {
     private final User user = new User();
     private final Customer customer = new Customer();
     private final Luggage luggage = new Luggage();
+    private String FUCK_YOU;
 
     private final String DRAW_LINE = "_____________________________________________________________";
 

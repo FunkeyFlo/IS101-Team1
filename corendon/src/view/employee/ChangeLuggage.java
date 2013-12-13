@@ -21,6 +21,7 @@ public class ChangeLuggage extends javax.swing.JFrame {
     private final User user = new User();
     private final QueryManager query = new QueryManager();
     private final Luggage luggage = new Luggage();
+    private String FUCK_YOU;
 
     private Component ErrorPopUp, confirmationPopUp;
 

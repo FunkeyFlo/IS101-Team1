@@ -13,6 +13,7 @@ public class ChangePassword extends javax.swing.JFrame {
     private final QueryManager query = new QueryManager();
     private final Session session = new Session();
     private final ResourceBundle BUNDLE = ResourceBundle.getBundle("languages.ResourceBundle");
+    private String FUCK_YOU;
 
     /**
      * Creates new form ChangeMyPassword

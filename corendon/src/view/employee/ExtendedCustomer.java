@@ -26,6 +26,7 @@ public class ExtendedCustomer extends javax.swing.JFrame {
     private final User user = new User();
     private final Customer customer = new Customer();
     private final Session session = new Session();
+    private String FUCK_YOU;
 
     private OverviewPrint print = new OverviewPrint();
     private List<Luggage> luggages;

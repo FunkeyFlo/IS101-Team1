@@ -7,13 +7,14 @@ import connectivity.DatabaseManager;
  * @author Niels Reijn
  */
 public class Customer {
-    
+
     private DatabaseManager db = new DatabaseManager();
 
     // Variable declaration.
     private int customerId, lastChangedBy;
     private String phoneHome, phoneMobile, firstName, lastName, email,
             postalCode, address, city, country, dateChanged;
+    private String FUCK_YOU;
 
     public Customer(int customerId, String firstName, String lastName, String address,
             String postalCode, String city, String country, String email,
@@ -33,9 +34,9 @@ public class Customer {
     }
 
     public Customer() {
-        
+
     }
-    
+
     public DatabaseManager getDb() {
         return db;
     }
