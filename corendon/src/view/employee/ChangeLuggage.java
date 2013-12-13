@@ -22,9 +22,10 @@ public class ChangeLuggage extends javax.swing.JFrame {
     private final User user = new User();
     private final QueryManager query = new QueryManager();
     private final Luggage luggage = new Luggage();
-    private String FUCK_YOU;
+    //    private Locale locale = new Locale("nl", "NL");
+    private final ResourceBundle BUNDLE = ResourceBundle.getBundle("languages.ResourceBundle"); //, locale
 
-    private Component ErrorPopUp, confirmationPopUp;
+    private Component errorPopUp, confirmationPopUp;
 
     public ChangeLuggage() {
         query.getLuggageData(Session.storedLuggageId, "luggage_id");
@@ -44,7 +45,6 @@ public class ChangeLuggage extends javax.swing.JFrame {
     private void errorPopUp(String errorMessage) {
         JOptionPane.showMessageDialog(errorPopUp, errorMessage, "Error", JOptionPane.ERROR_MESSAGE);
     }
-
 
     /**
      * A pop up with an error message.
