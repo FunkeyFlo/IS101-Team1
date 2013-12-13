@@ -72,7 +72,7 @@ public class ExtendedCustomer extends javax.swing.JFrame {
         tfLastName.setEditable(false);
         tfPostalCode.setEditable(false);
         tfCity.setEditable(false);
-        cbCountry.setEditable(false);
+        cbCountry.enable(false);
         tfEmail1.setEditable(false);
         tfEmail2.setEditable(false);
         tfPhoneHome.setEditable(false);
@@ -167,7 +167,7 @@ public class ExtendedCustomer extends javax.swing.JFrame {
     private boolean confirmationPopUp(String message) {
         boolean confirm = false;
         final JOptionPane createUserPopPane = new JOptionPane(message,
-                JOptionPane.QUESTION_MESSAGE,
+                JOptionPane.WARNING_MESSAGE,
                 JOptionPane.YES_NO_OPTION);
         final JDialog dialog = new JDialog((Frame) confirmationPopUp,
                 "Druk op een knop", true);
@@ -733,7 +733,7 @@ public class ExtendedCustomer extends javax.swing.JFrame {
             tfLastName.setEditable(false);
             tfPostalCode.setEditable(false);
             tfCity.setEditable(false);
-            cbCountry.setEditable(false);
+            cbCountry.enable(false);
             tfEmail1.setEditable(false);
             tfEmail2.setEditable(false);
             tfPhoneHome.setEditable(false);
@@ -758,7 +758,7 @@ public class ExtendedCustomer extends javax.swing.JFrame {
         tfEmail2.setEditable(chbUnlockFields.isSelected());
         tfPostalCode.setEditable(chbUnlockFields.isSelected());
         tfCity.setEditable(chbUnlockFields.isSelected());
-        cbCountry.setEditable(chbUnlockFields.isSelected());
+        cbCountry.enable(chbUnlockFields.isSelected());
         tfPhoneHome.setEditable(chbUnlockFields.isSelected());
         tfPhoneMobile.setEditable(chbUnlockFields.isSelected());
         tfFirstName.setEditable(chbUnlockFields.isSelected());
@@ -770,7 +770,11 @@ public class ExtendedCustomer extends javax.swing.JFrame {
     }//GEN-LAST:event_btDeleteListItemActionPerformed
 
     private void btAddToListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddToListActionPerformed
-        model.addElement((Integer) luggageTable.getValueAt(luggageTable.getSelectedRow(), 0));
+        try {
+            model.addElement((Integer) luggageTable.getValueAt(luggageTable.getSelectedRow(), 0));
+        } catch (IndexOutOfBoundsException e) {
+            errorPopUp("Selecteer een baggagestuk om toe te voegen.");
+        }
     }//GEN-LAST:event_btAddToListActionPerformed
 
     private void btClearListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btClearListActionPerformed
@@ -781,7 +785,6 @@ public class ExtendedCustomer extends javax.swing.JFrame {
         for (int i = 0; i < listBagageToPrint.getModel().getSize(); i++) {
             session.addToList((Integer) listBagageToPrint.getModel().getElementAt(i));
         }
-        Main.displaySaveDocument();
     }//GEN-LAST:event_btCreatePdfActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -23,25 +23,66 @@ public class ResourceBundle_nl extends ListResourceBundle {
         
         // Universally used strings
             { "administrator", "Beheerder" },
+            { "adjust", "Aanpassen" }, 
             { "allFields", "Alle velden" },
             { "cancel", "Annuleren" },
             { "create", "Aanmaken" },
+            { "customerId", "Klant nummer" },
+            { "description", "Omschrijving" },
             { "employee", "Medewerker" },
             { "exit", "Afsluiten" },
             { "fillInAllFields", "Vul alle velden in en probeer het nogmaals."},
             { "firstName", "Voornaam" },
+            { "found", "Gevonden" },
+            { "handled", "Afgehandeld" },
+            { "lastChangedBy", "Laatst gewijzigd door " },
             { "lastName", "Achternaam" },
+            { "location", "Locatie" },
             { "login" , "Inloggen" },
+            { "lost", "Verloren" },
             { "manager", "Manager" },
-            { "selectItemInTable", "Selecteer een onderdeel uit de tabel en probeer het nogmaals." },
             { "ok", "Ok" },
+            { "on", "op" },
             { "options", "Opties" },
             { "password", "Wachtwoord" },
             { "reset", "Reset" },
+            { "resetOverview", "Tabel Resetten" },
             { "search", "Zoeken" },
+            { "selectItemInTable", "Selecteer een onderdeel uit de tabel en probeer het nogmaals." },
+            { "status", "Status" },
+            { "unlockFields", "Velden ontgrendelen" },
             { "userId", "Gebruikers ID" },
             { "username", "Gebruikersnaam" },
             { "update", "Update" },
+            
+        // StringArrays
+            { "customerSearchFields", new String[] { "Alle velden", "Klant nummer", 
+                "Voornaam", "Achternaam", "Adres", "Postcode", "Stad", "Land",
+                "Email", "Tel. thuis", "Tel. mobiel"} },
+            
+            { "customerTableFields", new String[] { "Klant nummer", "Voornaam",
+                "Achternaam", "Adres", "Postcode", "Stad", "Land",
+                "Email", "Tel. Thuis", "Tel. Mobiel"} },
+            
+            { "luggageSearchFields", new String [] { "Alle velden", "Bagage nummer",
+                "Klant nummer", "Omschrijving", "Locatie", "Datum verloren" } },
+            
+            { "luggageTableFields", new String[] { "Bagage nummer", "Klant nummer",
+                "Omschrijving", "Locatie", "Datum verloren", "Status" } },
+            
+            { "months", new String[] { "Januari", "Februari", "Maart", "April",
+                "Mei", "Juni", "Juli", "Augustus", "September", "October",
+                "November", "December" } },
+            
+            { "statuses", new String[] { "Verloren", "Gevonden", "Afgehandeld" } },
+            
+            { "userSearchFields", new String[] { "Alle velden", "Gebruikers ID", "Voornaam",
+                "Achternaam", "Gebruikersnaam" } },
+            
+            { "userTableFields", new String[] { "Gebruikersnaam", "Voornaam",
+                "Achternaam", "Gebruikersgroep", "Account Status" } },
+            
+            { "userTypes", new String[] { "Medewerker", "Manager", "Beheerder" } },
         
         // Toolbar
             { "changePassword", "Wachtwoord wijzigen" },
@@ -93,9 +134,6 @@ public class ResourceBundle_nl extends ListResourceBundle {
             { "handledLuggage", "Afgehandelde Bagage" },   
             { "missingLuggage", "Vermiste Bagage" },
             { "month", "Maand" },
-            { "months", new String[] { "Januari", "Februari", "Maart", "April",
-                "Mei", "Juni", "Juli", "Augustus", "September", "October",
-                "November", "December" } },
             { "options", "Opties" },
             { "otherOptions", "Overige Opties" },
             { "seeAllData1", "Zie alle data, zelfs als de status van de" },
@@ -104,5 +142,8 @@ public class ResourceBundle_nl extends ListResourceBundle {
             { "xAxis", "Maand/Jaar" },
             { "yAxis", "Aantal" },
             { "year", "Jaar" },
+            
+        // Employee.java
+            { "hideHandled", "Afgehandelde bagage verbergen" },
     };
 }

@@ -12,6 +12,7 @@ import java.beans.PropertyChangeListener;
 import java.util.List;
 import java.util.ResourceBundle;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import main.*;
@@ -35,13 +36,18 @@ public class Employee extends javax.swing.JFrame {
     private List<Luggage> luggages;
     private List<Customer> customers;
     private List<Resort> resorts;
+    
     private DefaultTableModel modelLuggage1, modelCustomer1, modelLuggage2, modelCustomer2, modelResort;
+    
     public static int customerId;
     public static int luggageId;
+    
     private String customerToLink = null;
     private String luggageToLink = null;
+    
     public boolean isLinked = false;
     public static String customerFullName;
+    
     private Component ErrorPopUp;
     private Component LuggagePopUp;
     private Component confirmationPopUp;
@@ -58,9 +64,9 @@ public class Employee extends javax.swing.JFrame {
         modelResort = (DefaultTableModel) this.tblResort.getModel();
 
         searchCustomerTable1(9999, "");
-        searchLuggageTable1(9999, "", 1);
+        searchLuggageTable1(9999, "", 0);
         searchCustomerTable2(9999, "");
-        searchLuggageTable2(9999, "", 1);
+        searchLuggageTable2(9999, "", 0);
         searchResortTable(9999, "");
 
     }
@@ -213,9 +219,9 @@ public class Employee extends javax.swing.JFrame {
      */
     public int getShowHandled1() {
         if (showHandledLuggage1.isSelected()) {
-            return 0;
-        } else {
             return 1;
+        } else {
+            return 0;
         }
     }
 
@@ -227,9 +233,9 @@ public class Employee extends javax.swing.JFrame {
      */
     public int getShowHandled2() {
         if (chbShowHandledLuggage2.isSelected()) {
-            return 0;
-        } else {
             return 1;
+        } else {
+            return 0;
         }
     }
 
@@ -270,39 +276,47 @@ public class Employee extends javax.swing.JFrame {
 
         if (newFirstName.equals("") || newFirstName.length() > 50) {
             correctInput[0] = false;
+            errorPopUp("Vul een voornaam in.");
         } else {
             correctInput[0] = true;
         }
 
         if (newLastName.equals("") || newLastName.length() > 50) {
             correctInput[1] = false;
+            errorPopUp("Vul een achternaam in.");
         } else {
             correctInput[1] = true;
         }
 
         if (newAddress.equals(" ") || tfAddress1.getText().equals("") || tfAddress2.getText().equals("")) {
             correctInput[2] = false;
+            errorPopUp("Vul een adres in.");
         } else {
             correctInput[2] = true;
         }
 
         if (newPostalCode.equals("")) {
             correctInput[3] = false;
-        } else if (!tfPostalCode.getText().matches("[0-9]+")) {
-            correctInput[3] = false;
+            errorPopUp("Vul een postcode in.");
+//        } else if (!tfPostalCode.getText().matches("[0-9]+")) {
+//            errorPopUp("Vul een geldige postcode in.");
+//            correctInput[3] = false;
         } else {
             correctInput[3] = true;
         }
 
         if (newCity.equals("")) {
             correctInput[4] = false;
+            errorPopUp("Vul een stad in.");
         } else {
             correctInput[4] = true;
         }
 
         if (newEmail.length() > 75) {
             correctInput[5] = false;
+            errorPopUp("Het gegeven email is te lang.");
         } else if (!tfEmail2.getText().contains(".")) {
+            errorPopUp("Het gegeven email bevat geen punt.");
             correctInput[5] = false;
         } else {
             correctInput[5] = true;
@@ -376,7 +390,7 @@ public class Employee extends javax.swing.JFrame {
         clearFields();
         searchCustomerTable2(9999, "");
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -473,26 +487,34 @@ public class Employee extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jSplitPane1 = new javax.swing.JSplitPane();
         jPanel2 = new javax.swing.JPanel();
-        lblNaam = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
+        buttonUpdateResort = new javax.swing.JButton();
+        buttonDeleteResort = new javax.swing.JButton();
+        jPanel6 = new javax.swing.JPanel();
+        btnCreateResort = new javax.swing.JButton();
+        tfResortEmail2 = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        tfResortEmail1 = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        lblNaam = new javax.swing.JLabel();
         tfResortName = new javax.swing.JTextField();
         tfResortCountry = new javax.swing.JTextField();
         tfResortCity = new javax.swing.JTextField();
         tfResortAddress = new javax.swing.JTextField();
         tfResortPostalCode = new javax.swing.JTextField();
         tfResortPhone = new javax.swing.JTextField();
-        tfResortEmail1 = new javax.swing.JTextField();
-        tfResortEmail2 = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        btnCreateResort = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         tblResort = new javax.swing.JTable();
+        buttonRefresh = new javax.swing.JButton();
+        buttonSearchResort = new javax.swing.JButton();
+        tfSearchResort = new javax.swing.JTextField();
+        cbResort = new javax.swing.JComboBox();
         menuBar = new javax.swing.JMenuBar();
         userMenu = new javax.swing.JMenu();
         changePassword = new javax.swing.JMenuItem();
@@ -513,7 +535,6 @@ public class Employee extends javax.swing.JFrame {
         setTitle(BUNDLE.getString("employee") + " - " + Session.storedFirstName + " " + Session.storedLastName);
         setIconImage(getToolkit().getImage(getClass().getResource("/img/corendon.png")));
         setMinimumSize(new java.awt.Dimension(820, 460));
-        
 
         overviewPane.setToolTipText("tooltip");
         overviewPane.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -704,19 +725,17 @@ public class Employee extends javax.swing.JFrame {
                     .addComponent(tfAddress1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tfAddress2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(customerRegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(customerRegistrationPanelLayout.createSequentialGroup()
-                        .addComponent(jLabel12)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel19)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel20))
-                    .addGroup(customerRegistrationPanelLayout.createSequentialGroup()
-                        .addComponent(tfPostalCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tfCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tfCountry, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(customerRegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tfPostalCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel12))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(customerRegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tfCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel19))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(customerRegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tfCountry, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel20))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(customerRegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(customerRegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -742,7 +761,6 @@ public class Employee extends javax.swing.JFrame {
         );
 
         customerTablePanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Klanten"));
-        
 
         customerSearchField1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -762,9 +780,7 @@ public class Employee extends javax.swing.JFrame {
             new Object [][] {
 
             },
-            new String [] {
-                "Klant ID", "Voornaam", "Achternaam", "Adres", "Postcode", "Stad", "Land", "Email", "Tel. thuis", "Tel. mobiel"
-            }
+            BUNDLE.getStringArray("customerTableFields")
         ) {
             Class[] types = new Class [] {
                 java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
@@ -784,7 +800,7 @@ public class Employee extends javax.swing.JFrame {
         jScrollPane3.setViewportView(customerTable2);
 
         cbSearchCustomer1.setMaximumRowCount(11);
-        cbSearchCustomer1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Alle velden", "Klant ID", "Voornaam", "Achternaam", "Adres", "Postcode", "Stad", "Land", "Email", "Tel. huis", "Tel. mobiel" }));
+        cbSearchCustomer1.setModel(new javax.swing.DefaultComboBoxModel(BUNDLE.getStringArray("customerSearchFields")));
 
         refreshCustomerTable2.setText("Overzicht verversen");
         refreshCustomerTable2.addActionListener(new java.awt.event.ActionListener() {
@@ -805,10 +821,10 @@ public class Employee extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(customerSearchButton2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbSearchCustomer1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 208, Short.MAX_VALUE)
+                        .addComponent(cbSearchCustomer1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(refreshCustomerTable2))
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 680, Short.MAX_VALUE))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 759, Short.MAX_VALUE))
                 .addContainerGap())
         );
         customerTablePanelLayout.setVerticalGroup(
@@ -821,7 +837,7 @@ public class Employee extends javax.swing.JFrame {
                     .addComponent(cbSearchCustomer1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(refreshCustomerTable2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 457, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 588, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -894,11 +910,11 @@ public class Employee extends javax.swing.JFrame {
 
         luggageRegistrationPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Bagage Registeren"));
 
-        lblCustomerID4.setText("Klant ID");
+        lblCustomerID4.setText(BUNDLE.getString("customerId"));
 
-        lblCustomerID5.setText("Omschrijving");
+        lblCustomerID5.setText(BUNDLE.getString("description"));
 
-        lblCustomerID6.setText("Locatie");
+        lblCustomerID6.setText(BUNDLE.getString("location"));
 
         tfLocation1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -906,7 +922,7 @@ public class Employee extends javax.swing.JFrame {
             }
         });
 
-        lblCustomerID7.setText("Status");
+        lblCustomerID7.setText(BUNDLE.getString("status"));
 
         btCreateLuggage.setText("Voeg toe");
         btCreateLuggage.addActionListener(new java.awt.event.ActionListener() {
@@ -923,10 +939,11 @@ public class Employee extends javax.swing.JFrame {
         });
 
         tfDescription.setColumns(20);
+        tfDescription.setFont(new java.awt.Font("DialogInput", 0, 11)); // NOI18N
         tfDescription.setRows(5);
         jScrollPane2.setViewportView(tfDescription);
 
-        cbStatus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Vermist", "Gevonden", "Afgehandeld" }));
+        cbStatus.setModel(new javax.swing.DefaultComboBoxModel(BUNDLE.getStringArray("statuses")));
 
         javax.swing.GroupLayout luggageRegistrationPanelLayout = new javax.swing.GroupLayout(luggageRegistrationPanel);
         luggageRegistrationPanel.setLayout(luggageRegistrationPanelLayout);
@@ -1009,7 +1026,7 @@ public class Employee extends javax.swing.JFrame {
             }
         });
 
-        luggageSearchButton2.setText("Zoeken");
+        luggageSearchButton2.setText(BUNDLE.getString("search"));
         luggageSearchButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 luggageSearchButton2ActionPerformed(evt);
@@ -1021,9 +1038,7 @@ public class Employee extends javax.swing.JFrame {
             new Object [][] {
 
             },
-            new String [] {
-                "Bagage ID", "Klant ID", "Omschrijving", "Locatie", "Datum Vermist", "Status"
-            }
+            BUNDLE.getStringArray("luggageTableFields")
         ) {
             Class[] types = new Class [] {
                 java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
@@ -1043,7 +1058,7 @@ public class Employee extends javax.swing.JFrame {
         luggageTable2.setVerifyInputWhenFocusTarget(false);
         jScrollPane7.setViewportView(luggageTable2);
 
-        cbSearchLuggage1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Alle velden", "Bagage ID", "Klant ID", "Omschrijving", "Locatie", "Datum Vermist" }));
+        cbSearchLuggage1.setModel(new javax.swing.DefaultComboBoxModel(BUNDLE.getStringArray("luggageSearchFields")));
         cbSearchLuggage1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbSearchLuggage1ActionPerformed(evt);
@@ -1057,7 +1072,7 @@ public class Employee extends javax.swing.JFrame {
             }
         });
 
-        chbShowHandledLuggage2.setText("Toon afgehandelde bagage");
+        chbShowHandledLuggage2.setText(BUNDLE.getString("hideHandled"));
         chbShowHandledLuggage2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 chbShowHandledLuggage2ActionPerformed(evt);
@@ -1076,10 +1091,10 @@ public class Employee extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(luggageSearchButton2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbSearchLuggage1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cbSearchLuggage1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(chbShowHandledLuggage2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 6, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
                         .addComponent(refreshLuggageTable2))
                     .addComponent(jScrollPane7))
                 .addContainerGap())
@@ -1096,7 +1111,7 @@ public class Employee extends javax.swing.JFrame {
                         .addComponent(chbShowHandledLuggage2))
                     .addComponent(luggageSearchButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 457, Short.MAX_VALUE)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 588, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1194,7 +1209,7 @@ public class Employee extends javax.swing.JFrame {
             }
         });
 
-        luggageSearchButton1.setText("Zoeken");
+        luggageSearchButton1.setText(BUNDLE.getString("search"));
         luggageSearchButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 luggageSearchButton1ActionPerformed(evt);
@@ -1206,9 +1221,7 @@ public class Employee extends javax.swing.JFrame {
             new Object [][] {
 
             },
-            new String [] {
-                "Bagage ID", "Klant ID", "Omschrijving", "Locatie", "Datum Vermist", "Status"
-            }
+            BUNDLE.getStringArray("luggageTableFields")
         ) {
             Class[] types = new Class [] {
                 java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
@@ -1228,9 +1241,9 @@ public class Employee extends javax.swing.JFrame {
         luggageTable1.setVerifyInputWhenFocusTarget(false);
         jScrollPane6.setViewportView(luggageTable1);
 
-        cbSearchLuggage.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Alle velden", "Bagage ID", "Klant ID", "Omschrijving", "Locatie", "Datum Vermist" }));
+        cbSearchLuggage.setModel(new javax.swing.DefaultComboBoxModel(BUNDLE.getStringArray("luggageSearchFields")));
 
-        showHandledLuggage1.setText("Toon afgehandelde bagage");
+        showHandledLuggage1.setText(BUNDLE.getString("hideHandled"));
         showHandledLuggage1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 showHandledLuggage1ActionPerformed(evt);
@@ -1266,7 +1279,7 @@ public class Employee extends javax.swing.JFrame {
                     .addComponent(cbSearchLuggage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(showHandledLuggage1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 502, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1280,7 +1293,7 @@ public class Employee extends javax.swing.JFrame {
             }
         });
 
-        customerSearchButton1.setText("Zoeken");
+        customerSearchButton1.setText(BUNDLE.getString("search"));
         customerSearchButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 customerSearchButton1ActionPerformed(evt);
@@ -1292,9 +1305,7 @@ public class Employee extends javax.swing.JFrame {
             new Object [][] {
 
             },
-            new String [] {
-                "Klant ID", "Voornaam", "Achternaam", "Adres", "Postcode", "Stad", "Land", "Email", "Tel. thuis", "Tel. mobiel"
-            }
+            BUNDLE.getStringArray("customerTableFields")
         ) {
             Class[] types = new Class [] {
                 java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
@@ -1315,7 +1326,7 @@ public class Employee extends javax.swing.JFrame {
         jScrollPane1.setViewportView(customerTable1);
 
         cbSearchCustomer.setMaximumRowCount(11);
-        cbSearchCustomer.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Alle velden", "Klant ID", "Voornaam", "Achternaam", "Adres", "Postcode", "Stad", "Land", "Email", "Tel. huis", "Tel. mobiel" }));
+        cbSearchCustomer.setModel(new javax.swing.DefaultComboBoxModel(BUNDLE.getStringArray("customerSearchFields")));
 
         javax.swing.GroupLayout linkCustomerTablePanelLayout = new javax.swing.GroupLayout(linkCustomerTablePanel);
         linkCustomerTablePanel.setLayout(linkCustomerTablePanelLayout);
@@ -1331,7 +1342,7 @@ public class Employee extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cbSearchCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 434, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE))
                 .addContainerGap())
         );
         linkCustomerTablePanelLayout.setVerticalGroup(
@@ -1343,7 +1354,7 @@ public class Employee extends javax.swing.JFrame {
                     .addComponent(customerSearchButton1)
                     .addComponent(cbSearchCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 502, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1418,25 +1429,39 @@ public class Employee extends javax.swing.JFrame {
 
         overviewPane.addTab("Bagage en klanten koppelen", linkLuggage);
 
+        jSplitPane1.setBorder(null);
         jSplitPane1.setDividerLocation(360);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Nieuw Resort"));
 
-        lblNaam.setText("Naam");
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Opties"));
 
-        jLabel2.setText("Land");
+        buttonUpdateResort.setText("Update Resort");
 
-        jLabel3.setText("Plaats");
+        buttonDeleteResort.setText("Verwijder resort");
 
-        jLabel4.setText("Adres");
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(buttonDeleteResort, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(buttonUpdateResort, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(219, Short.MAX_VALUE))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(buttonUpdateResort)
+                .addGap(18, 18, 18)
+                .addComponent(buttonDeleteResort)
+                .addContainerGap(104, Short.MAX_VALUE))
+        );
 
-        jLabel5.setText("Postcode");
-
-        jLabel6.setText("Telefoon");
-
-        jLabel8.setText("E-mail ");
-
-        jLabel1.setText("@");
+        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder("Resort aanmaken"));
 
         btnCreateResort.setText("Voeg toe");
         btnCreateResort.addActionListener(new java.awt.event.ActionListener() {
@@ -1445,81 +1470,123 @@ public class Employee extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setText("@");
+
+        jLabel8.setText("E-mail ");
+
+        jLabel6.setText("Telefoon");
+
+        jLabel5.setText("Postcode");
+
+        jLabel4.setText("Adres");
+
+        jLabel3.setText("Plaats");
+
+        jLabel2.setText("Land");
+
+        lblNaam.setText("Naam");
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel2)
+                            .addComponent(lblNaam)
+                            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel3)
+                                .addComponent(jLabel4))
+                            .addComponent(jLabel8))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tfResortCountry, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(tfResortName)
+                            .addComponent(tfResortCity, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addComponent(tfResortEmail1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tfResortEmail2))
+                            .addComponent(tfResortPhone)
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(tfResortAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(tfResortPostalCode, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnCreateResort)))
+                .addContainerGap())
+        );
+
+        jPanel6Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {tfResortAddress, tfResortEmail1, tfResortPostalCode});
+
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblNaam)
+                    .addComponent(tfResortName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(tfResortCountry, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(tfResortCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(tfResortAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(tfResortPostalCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(tfResortPhone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(tfResortEmail1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfResortEmail2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addComponent(btnCreateResort)
+                .addContainerGap())
+        );
+
+        jPanel6Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {tfResortAddress, tfResortCity, tfResortCountry, tfResortEmail1, tfResortName, tfResortPhone, tfResortPostalCode});
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel2)
-                    .addComponent(lblNaam)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jLabel3)
-                        .addComponent(jLabel4)))
-                .addGap(20, 20, 20)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tfResortEmail1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfResortName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfResortCountry, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfResortCity, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfResortAddress, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfResortPostalCode, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfResortPhone, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1)
-                .addGap(15, 15, 15)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(btnCreateResort)
-                        .addGap(0, 22, Short.MAX_VALUE))
-                    .addComponent(tfResortEmail2))
-                .addContainerGap())
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-
-        jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {tfResortAddress, tfResortCity, tfResortCountry, tfResortEmail1, tfResortName, tfResortPhone, tfResortPostalCode});
-
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblNaam)
-                    .addComponent(tfResortName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(tfResortCountry, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(tfResortCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(tfResortAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(tfResortPostalCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(tfResortPhone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(tfResortEmail1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfResortEmail2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addGap(18, 18, 18)
-                .addComponent(btnCreateResort)
-                .addContainerGap(255, Short.MAX_VALUE))
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(146, Short.MAX_VALUE))
         );
-
-        jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {tfResortAddress, tfResortCity, tfResortCountry, tfResortEmail1, tfResortName, tfResortPhone, tfResortPostalCode});
 
         jSplitPane1.setLeftComponent(jPanel2);
 
@@ -1539,21 +1606,44 @@ public class Employee extends javax.swing.JFrame {
         ));
         jScrollPane4.setViewportView(tblResort);
 
+        buttonRefresh.setText("Overzicht verversen");
+
+        buttonSearchResort.setText("Zoek");
+
+        cbResort.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Alle velden", "Naam", "Adres", "Land", "Stad", "Telefoon", "Email", "Postcode", " ", " " }));
+
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(172, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 705, Short.MAX_VALUE)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addComponent(tfSearchResort, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(buttonSearchResort)
+                        .addGap(6, 6, 6)
+                        .addComponent(cbResort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(buttonRefresh)))
+                .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addGap(10, 10, 10)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(cbResort, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(buttonRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(buttonSearchResort)
+                        .addComponent(tfSearchResort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 584, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jSplitPane1.setRightComponent(jPanel7);
@@ -1564,7 +1654,7 @@ public class Employee extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jSplitPane1)
+                .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1149, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -1579,17 +1669,11 @@ public class Employee extends javax.swing.JFrame {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         overviewPane.addTab("Resort registratie", jPanel4);
@@ -1626,7 +1710,7 @@ public class Employee extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(overviewPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 584, Short.MAX_VALUE)
+            .addComponent(overviewPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 715, Short.MAX_VALUE)
         );
 
         overviewPane.getAccessibleContext().setAccessibleName("Tabbed Pane");
@@ -1674,9 +1758,10 @@ public class Employee extends javax.swing.JFrame {
         boolean totalCorrectInput = errorCheckCreateCustomer();
         if (totalCorrectInput == true) {
             doCreateCustomer();
-        } else {
-            errorPopUp("Vul alle velden volledig in en probeer het nog eens.");
-        }
+        } 
+//        else {
+//            errorPopUp("Vul alle velden volledig in en probeer het nog eens.");
+//        }
     }//GEN-LAST:event_createCustomer1ActionPerformed
 
     private void refreshCustomerTable2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshCustomerTable2ActionPerformed
@@ -2001,7 +2086,9 @@ public class Employee extends javax.swing.JFrame {
         }
         if (isError == false) {
             Main.displayExtendedCustomer();
+            
         }
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btDeleteLuggageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDeleteLuggageActionPerformed
@@ -2097,8 +2184,13 @@ public class Employee extends javax.swing.JFrame {
     private javax.swing.JButton btDeleteLuggage;
     private javax.swing.JButton btPrintReceipt;
     private javax.swing.JButton btnCreateResort;
+    private javax.swing.JButton buttonDeleteResort;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JButton buttonRefresh;
+    private javax.swing.JButton buttonSearchResort;
+    private javax.swing.JButton buttonUpdateResort;
     private javax.swing.JButton cancelButton;
+    private javax.swing.JComboBox cbResort;
     private javax.swing.JComboBox cbSearchCustomer;
     private javax.swing.JComboBox cbSearchCustomer1;
     private javax.swing.JComboBox cbSearchLuggage;
@@ -2141,6 +2233,8 @@ public class Employee extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -2200,6 +2294,7 @@ public class Employee extends javax.swing.JFrame {
     private javax.swing.JTextField tfResortName;
     private javax.swing.JTextField tfResortPhone;
     private javax.swing.JTextField tfResortPostalCode;
+    private javax.swing.JTextField tfSearchResort;
     private javax.swing.JMenu userMenu;
     private javax.swing.JLabel warningLabel1;
     // End of variables declaration//GEN-END:variables
