@@ -21,7 +21,6 @@ public class QueryManager {
     private final Customer customer = new Customer();
     private final Luggage luggage = new Luggage();
     private final Resort resort = new Resort();
-    private String FUCK_YOU;
 
     private int permissionId, incorrectLogin, userId;
     private String username, firstName, lastName, password;
@@ -192,8 +191,13 @@ public class QueryManager {
      * removed.
      */
     public void deleteUser(String tfUsername) {
-        String sql = "DELETE FROM `user` WHERE `username` = '" + tfUsername + "'";
-        db.insertQuery(sql);
+        try {
+            preparedStatement = db.connection.prepareStatement("DELETE FROM `user` WHERE `username` = ?");
+            preparedStatement.setString(1, tfUsername);
+            preparedStatement.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(QueryManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -232,43 +236,63 @@ public class QueryManager {
      */
     public void changeUserStringData(String username, String dbField,
             String newValue) {
-
-        String sql = "UPDATE `user` SET `" + dbField + "` = '" + newValue
-                + "' WHERE `username` = '" + username + "'";
-        db.insertQuery(sql);
+        try {
+            preparedStatement = db.connection.prepareStatement("UPDATE `user` SET ? = ? WHERE `username` = ?");
+            preparedStatement.setString(1, dbField);
+            preparedStatement.setString(2, newValue);
+            preparedStatement.setString(3, username);
+            preparedStatement.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(QueryManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
      * Method that changes specific user data depending on the dbField
      * parameter.
      *
-     * @param inputUsername parameter to specify user to be altered.
+     * @param username parameter to specify user to be altered.
      * @param dbField parameter that specifies the field to be altered.
      * @param newValue Integer value to be inputted into the specific database
      * field.
      */
-    public void changeUserIntData(String inputUsername, String dbField, int newValue) {
-        String sql = "UPDATE `user` SET `" + dbField + "` = '" + newValue
-                + "' WHERE `username` = '" + inputUsername + "'";
-        db.insertQuery(sql);
+    public void changeUserIntData(String username, String dbField, int newValue) {
+        try {
+            preparedStatement = db.connection.prepareStatement("UPDATE `user` SET ? = ? WHERE `username` = ?");
+            preparedStatement.setString(1, dbField);
+            preparedStatement.setInt(2, newValue);
+            preparedStatement.setString(3, username);
+            preparedStatement.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(QueryManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
      * Increases incorrect login count by one on incorrect login attempt.
      */
     public void setIncorrectLogin() {
-        String sql = "UPDATE `user` SET `incorrect_login` = `incorrect_login`"
-                + "+ 1 WHERE `username` = '" + this.username + "'";
-        db.insertQuery(sql);
+        try {
+            preparedStatement = db.connection.prepareStatement("UPDATE `user` SET `incorrect_login` = `incorrect_login`"
+                    + "+ 1 WHERE `username` = ?");
+            preparedStatement.setString(1, user.getUsername());
+            preparedStatement.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(QueryManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
      * Sets incorrect login count to 0.
      */
     public void resetIncorrectLogin() {
-        String sql = "UPDATE `user` SET `incorrect_login` = 0 WHERE `username` = '"
-                + this.username + "'";
-        db.insertQuery(sql);
+        try {
+            preparedStatement = db.connection.prepareStatement("UPDATE `user` SET `incorrect_login` = 0 WHERE `username` = ?");
+            preparedStatement.setString(1, user.getUsername());
+            preparedStatement.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(QueryManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -279,10 +303,14 @@ public class QueryManager {
      */
     public void updatePassword(String tfPassword, String tfUsername) {
         tfPassword = BCrypt.hashpw(tfPassword, BCrypt.gensalt());
-
-        String sql = "UPDATE `user` SET `password` = '" + tfPassword
-                + "' WHERE `username`='" + tfUsername + "'";
-        db.insertQuery(sql);
+        try {
+            preparedStatement = db.connection.prepareStatement("UPDATE `user` SET `password` = ? WHERE `username` = ?");
+            preparedStatement.setString(1, tfPassword);
+            preparedStatement.setString(2, tfUsername);
+            preparedStatement.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(QueryManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -469,22 +497,25 @@ public class QueryManager {
     public void setNewCustomer(String tfFirstName, String tfLastName,
             String tfAddress, String tfPostalCode, String tfCity, String tfCountry,
             String tfEmail, String tfPhoneHome, String tfPhoneMobile) {
-
-        String sql = "INSERT INTO `customer` (first_name, last_name, address,"
-                + "postal_code, city, country, email, phone_home, phone_mobile,"
-                + "date_changed, last_changed_by)"
-                + " VALUES ('" + tfFirstName + "', '"
-                + tfLastName + "', '"
-                + tfAddress + "', '"
-                + tfPostalCode + "', '"
-                + tfCity + "', '"
-                + tfCountry + "', '"
-                + tfEmail + "', '"
-                + tfPhoneHome + "', '"
-                + tfPhoneMobile + "', "
-                + "CURRENT_TIMESTAMP, '"
-                + Session.storedUserId + "')";
-        db.insertQuery(sql);
+        try {
+            preparedStatement = db.connection.prepareStatement("INSERT INTO `customer` (first_name, last_name, address,"
+                    + "postal_code, city, country, email, phone_home, phone_mobile,"
+                    + "date_changed, last_changed_by)"
+                    + " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP, ?)");
+            preparedStatement.setString(1, tfFirstName);
+            preparedStatement.setString(2, tfLastName);
+            preparedStatement.setString(3, tfAddress);
+            preparedStatement.setString(4, tfPostalCode);
+            preparedStatement.setString(5, tfCity);
+            preparedStatement.setString(6, tfCountry);
+            preparedStatement.setString(7, tfEmail);
+            preparedStatement.setString(8, tfPhoneHome);
+            preparedStatement.setString(9, tfPhoneMobile);
+            preparedStatement.setInt(10, Session.storedUserId);
+            preparedStatement.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(QueryManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -493,8 +524,13 @@ public class QueryManager {
      * @param tfCustomerId id of the customer that will be deleted.
      */
     public void deleteCustomer(String tfCustomerId) {
-        String sql = "DELETE FROM `customer` WHERE `customer_id` = '" + tfCustomerId + "'";
-        db.insertQuery(sql);
+        try {
+            preparedStatement = db.connection.prepareStatement("DELETE FROM `customer` WHERE `customer_id` = ?");
+            preparedStatement.setString(1, tfCustomerId);
+            preparedStatement.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(QueryManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -513,21 +549,24 @@ public class QueryManager {
     public void updateCustomer(String firstName, String lastName, String address,
             String postalCode, String city, String country, String email,
             String phoneHome, String phoneMobile) {
-
-        String sql = "UPDATE `customer` SET `first_name` = '" + firstName + "'"
-                + ", `last_name` = '" + lastName + "'"
-                + ", `address` = '" + address + "'"
-                + ", `postal_code` = '" + postalCode + "'"
-                + ", `city` = '" + city + "'"
-                + ", `country` = '" + country + "'"
-                + ", `email` = '" + email + "'"
-                + ", `phone_home` = '" + phoneHome + "'"
-                + ", `last_changed_by` = '" + Session.storedUserId + "'"
-                + ", `phone_mobile` = '" + phoneMobile + "'"
-                + ", `date_changed` = CURRENT_TIMESTAMP"
-                + " WHERE `customer_id` = " + Session.storedCustomerId;
-
-        db.insertQuery(sql);
+        try {
+            preparedStatement = db.connection.prepareStatement("UPDATE `customer` SET `first_name` = ?, `last_name` = ?"
+                    + ", `address` = ?, `postal_code` = ?, `city` = ?, `country` = ?, `email` = ?, `phone_home` = ?, `last_changed_by` = ?, `phone_mobile` = ?, `date_changed` = CURRENT_TIMESTAMP WHERE `customer_id` = ?");
+            preparedStatement.setString(1, firstName);
+            preparedStatement.setString(2, lastName);
+            preparedStatement.setString(3, address);
+            preparedStatement.setString(4, postalCode);
+            preparedStatement.setString(6, city);
+            preparedStatement.setString(7, country);
+            preparedStatement.setString(8, email);
+            preparedStatement.setString(9, phoneHome);
+            preparedStatement.setInt(10, Session.storedUserId);
+            preparedStatement.setString(11, phoneMobile);
+            preparedStatement.setString(12, Session.storedCustomerId);
+            preparedStatement.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(QueryManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -669,15 +708,18 @@ public class QueryManager {
         if (customerId.equals("")) {
             customerId = "NULL";
         }
-        String sql = "INSERT INTO `luggage` (customer_id, description, location, "
-                + "status, last_changed_by , date_changed) VALUES ("
-                + customerId + ", '"
-                + description + "', '"
-                + location + "', '"
-                + status + "', '"
-                + Session.storedUserId + "', "
-                + "CURRENT_TIMESTAMP)";
-        db.insertQuery(sql);
+        try {
+            preparedStatement = db.connection.prepareStatement("INSERT INTO `luggage` (customer_id, description, location, "
+                    + "status, last_changed_by , date_changed) VALUES (?, ?,? ,? ,? ,CURRENT_TIMESTAMP)");
+            preparedStatement.setString(1, customerId);
+            preparedStatement.setString(2, description);
+            preparedStatement.setString(3, location);
+            preparedStatement.setInt(4, status);
+            preparedStatement.setInt(5, Session.storedUserId);
+            preparedStatement.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(QueryManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -691,19 +733,20 @@ public class QueryManager {
     public void updateLuggage(int luggageId, String description,
             String location, int status) {
         String dateHandled = "";
-
         if (status == 3) {
             dateHandled = ", `date_handled` = CURRENT_TIMESTAMP";
         }
-
-        String sql = "UPDATE `luggage` SET `description` = '" + description + "'"
-                + ", `location` = '" + location + "'"
-                + ", `status` = " + status + ""
-                + ", `date_changed` = CURRENT_TIMESTAMP"
-                + dateHandled
-                + ", `last_changed_by` = '" + Session.storedUserId + "'"
-                + " WHERE `luggage_id` =" + luggageId + "";
-        db.insertQuery(sql);
+        try {
+            preparedStatement = db.connection.prepareStatement("UPDATE `luggage` SET `description` = ?, `location` = ?, `status` = ?, `date_changed` = CURRENT_TIMESTAMP + dateHandled, `last_changed_by` = ?, WHERE `luggage_id` = ?");
+            preparedStatement.setString(1, description);
+            preparedStatement.setString(2, location);
+            preparedStatement.setInt(3, status);
+            preparedStatement.setInt(4, Session.storedUserId);
+            preparedStatement.setInt(5, luggageId);
+            preparedStatement.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(QueryManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -714,9 +757,14 @@ public class QueryManager {
      * @param luggageId
      */
     public void linkCustomerId(int customerId, int luggageId) {
-        String sql = "UPDATE `luggage` SET `customer_id` = " + customerId
-                + " WHERE `luggage_id` = " + luggageId;
-        db.insertQuery(sql);
+        try {
+            preparedStatement = db.connection.prepareStatement("UPDATE `luggage` SET `customer_id` = ? WHERE `luggage_id` = ?");
+            preparedStatement.setInt(1, customerId);
+            preparedStatement.setInt(2, luggageId);
+            preparedStatement.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(QueryManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -725,8 +773,13 @@ public class QueryManager {
      * @param luggageId
      */
     public void deleteLuggage(String luggageId) {
-        String sql = "DELETE FROM `luggage` WHERE `luggage_id` = '" + luggageId + "'";
-        db.insertQuery(sql);
+        try {
+            preparedStatement = db.connection.prepareStatement("DELETE FROM `luggage` WHERE `luggage_id` = ?");
+            preparedStatement.setString(1, luggageId);
+            preparedStatement.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(QueryManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -742,18 +795,21 @@ public class QueryManager {
      */
     public void setNewResort(String tfName, String tfAddress, String tfCountry, String tfCity,
             String tfPhoneResort, String tfEmail, String tfpostalCode) {
-
-        String sql = "INSERT INTO `resort` (resort_name, address, country, city,"
-                + "phone_resort, email, postal_code)"
-                + "VALUES ('" + tfName + "', '"
-                + tfAddress + "', '"
-                + tfCountry + "', '"
-                + tfCity + "', '"
-                + tfPhoneResort + "', '"
-                + tfEmail + "', '"
-                + tfpostalCode + "')";
-
-        db.insertQuery(sql);
+        try {
+            preparedStatement = db.connection.prepareStatement("INSERT INTO `resort` (resort_name, address, country, city,"
+                    + "phone_resort, email, postal_code)"
+                    + "VALUES (?, ?, ?, ?, ?, ?, ?)");
+            preparedStatement.setString(1, tfName);
+            preparedStatement.setString(2, tfAddress);
+            preparedStatement.setString(3, tfCountry);
+            preparedStatement.setString(4, tfCity);
+            preparedStatement.setString(5, tfPhoneResort);
+            preparedStatement.setString(6, tfEmail);
+            preparedStatement.setString(7, tfpostalCode);
+            preparedStatement.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(QueryManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -762,8 +818,13 @@ public class QueryManager {
      * @param tfResortId
      */
     public void deleteResort(String tfResortId) {
-        String sql = "DELETE FROM `resort` WHERE `resort_id` = '" + tfResortId + "'";
-        db.insertQuery(sql);
+        try {
+            preparedStatement = db.connection.prepareStatement("DELETE FROM `resort` WHERE `resort_id` = ?");
+            preparedStatement.setString(1, tfResortId);
+            preparedStatement.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(QueryManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -780,17 +841,19 @@ public class QueryManager {
      */
     public void updateResort(int tfId, String tfName, String tfAddress, String tfCountry, String tfCity,
             String tfPhoneResort, String tfEmail, String tfpostalCode) {
-
-        String sql = "UPDATE `resort` SET `resort_name` = '" + tfName + "'"
-                + ", `address` = '" + tfAddress + "'"
-                + ", `country` = '" + tfCountry + "'"
-                + "', `city` = '" + tfCity + "'"
-                + "', `phone_resort` = '" + tfPhoneResort + "'"
-                + "', `email` = '" + tfEmail + "'"
-                + "', `postal_code` = '" + tfpostalCode + "'"
-                + "WHERE `resort_id` =" + tfId;
-
-        db.insertQuery(sql);
+        try {
+            preparedStatement = db.connection.prepareStatement("UPDATE `resort` SET `resort_name` = ? `address` = ?, `country` = ?, `city` = ?, `phone_resort` = ?, `email` = ? `postal_code` = ? WHERE `resort_id` = ?");
+            preparedStatement.setString(1, tfName);
+            preparedStatement.setString(2, tfAddress);
+            preparedStatement.setString(3, tfCountry);
+            preparedStatement.setString(4, tfCity);
+            preparedStatement.setString(5, tfPhoneResort);
+            preparedStatement.setString(6, tfEmail);
+            preparedStatement.setString(7, tfpostalCode);
+            preparedStatement.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(QueryManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -879,9 +942,7 @@ public class QueryManager {
         } catch (SQLException e) {
             System.out.println(resort.getDb().SQL_EXCEPTION + e.getMessage());
         }
-
         return resorts;
-
     }
 
     /**
@@ -894,6 +955,14 @@ public class QueryManager {
         String sql = "UPDATE `customer` SET `resort_id` = " + resortId
                 + "WHERE `customer_id` =" + customerId;
         db.insertQuery(sql);
+        try {
+            preparedStatement = db.connection.prepareStatement("UPDATE `customer` SET `resort_id` = ? WHERE `customer_id` = ?");
+            preparedStatement.setInt(1, resortId);
+            preparedStatement.setInt(1, customerId);
+            preparedStatement.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(QueryManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }
