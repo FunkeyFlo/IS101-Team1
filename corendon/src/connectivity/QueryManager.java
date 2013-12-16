@@ -799,7 +799,7 @@ public class QueryManager {
      * @param tfInput
      * @param databaseVariable
      */
-    public void getResortDate(String tfInput, String databaseVariable) {
+    public void getResortData(String tfInput, String databaseVariable) {
 
         try {
             String sql = "SELECT *, COUNT(*) as `rows` FROM `resort` WHERE `"

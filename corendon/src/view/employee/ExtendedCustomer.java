@@ -14,6 +14,7 @@ import main.Main;
 import main.Session;
 import model.Customer;
 import model.Luggage;
+import model.Resort;
 import model.User;
 
 /**
@@ -26,6 +27,7 @@ public class ExtendedCustomer extends javax.swing.JFrame {
     private final User user = new User();
     private final Customer customer = new Customer();
     private final Session session = new Session();
+    private final Resort resort = new Resort();
     private String FUCK_YOU;
 
     private OverviewPrint print = new OverviewPrint();
@@ -35,6 +37,7 @@ public class ExtendedCustomer extends javax.swing.JFrame {
     private DefaultListModel model = new DefaultListModel();
     private Component errorPopUp, confirmationPopUp;
     private String[] email, address;
+    private String[] resortEmail;
 
     /**
      * Method to show the old information of the customer and can be replaced by
@@ -44,7 +47,10 @@ public class ExtendedCustomer extends javax.swing.JFrame {
     public ExtendedCustomer() {
         query.getCustomerData(Session.storedCustomerId, "customer_id");
         query.getUserDataInt(customer.getLastChangedBy());
-
+        query.getResortData(Session.storedCustomerId, "customer_id");
+        
+      
+        resortEmail = seperateString(resort.getEmail(), "@");
         email = seperateString(customer.getEmail(), "@");
         address = seperateString(customer.getAddress(), " ");
 
@@ -65,6 +71,14 @@ public class ExtendedCustomer extends javax.swing.JFrame {
         tfEmail2.setText(email[1]);
         tfPhoneHome.setText(customer.getPhoneHome());
         tfPhoneMobile.setText(customer.getPhoneMobile());
+        tfResortAddress.setText(resort.getAddress());
+        tfResortCity.setText(resort.getCity());
+        tfResortCountry.setText(resort.getCountry());
+        tfResortPhoneNumber.setText(resort.getPhone());
+        tfResortPostalCode.setText(resort.getPostalCode());
+        tfResortEmail.setText(resortEmail[0]);
+        tfResortEmail2.setText(resortEmail[1]);
+       
 
         tfAddress1.setEditable(false);
         tfAddress2.setEditable(false);
@@ -77,6 +91,12 @@ public class ExtendedCustomer extends javax.swing.JFrame {
         tfEmail2.setEditable(false);
         tfPhoneHome.setEditable(false);
         tfPhoneMobile.setEditable(false);
+        tfResortAddress.setEditable(false);
+        tfResortCity.setEditable(false);
+        tfResortCountry.setEditable(false);
+        tfResortEmail.setEditable(false);
+        tfResortPhoneNumber.setEditable(false);
+        tfResortPostalCode.setEditable(false);
 
         listBagageToPrint.setModel(model);
         modelLuggage = (DefaultTableModel) this.luggageTable.getModel();
@@ -243,6 +263,23 @@ public class ExtendedCustomer extends javax.swing.JFrame {
         chbHideHandled = new javax.swing.JCheckBox();
         chbHideLost = new javax.swing.JCheckBox();
         chbHideFound = new javax.swing.JCheckBox();
+        jPanel3 = new javax.swing.JPanel();
+        tfNameResort = new javax.swing.JTextField();
+        tfResortCountry = new javax.swing.JTextField();
+        tfResortAddress = new javax.swing.JTextField();
+        tfResortCity = new javax.swing.JTextField();
+        tfResortEmail = new javax.swing.JTextField();
+        tfResortPostalCode = new javax.swing.JTextField();
+        tfResortPhoneNumber = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        tfResortEmail2 = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Gegevens van " + customer.getFirstName() + " " + customer.getLastName());
@@ -573,8 +610,98 @@ public class ExtendedCustomer extends javax.swing.JFrame {
                     .addComponent(chbHideLost)
                     .addComponent(chbHideFound))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
                 .addContainerGap())
+        );
+
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Vakantie gegevens"));
+
+        jLabel2.setText("Naam");
+
+        jLabel3.setText("Adres");
+
+        jLabel4.setText("Land");
+
+        jLabel5.setText("E-mail");
+
+        jLabel6.setText("Telefoon ");
+
+        jLabel8.setText("Plaats");
+
+        jLabel9.setText("Postcode");
+
+        jLabel10.setText("@");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jLabel2)
+                        .addComponent(jLabel4))
+                    .addComponent(jLabel8))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(tfNameResort, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
+                    .addComponent(tfResortCountry)
+                    .addComponent(tfResortCity))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tfResortAddress)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(tfResortEmail)
+                        .addComponent(tfResortPostalCode, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(2, 2, 2)
+                .addComponent(jLabel10)
+                .addGap(5, 5, 5)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tfResortEmail2, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tfResortPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(54, 54, 54))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(tfNameResort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(tfResortCountry, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel9)
+                            .addComponent(tfResortPostalCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(tfResortCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8)))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(tfResortAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel6)
+                            .addComponent(tfResortPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(tfResortEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tfResortEmail2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel10))))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -584,6 +711,7 @@ public class ExtendedCustomer extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(customerRegistrationPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -600,7 +728,9 @@ public class ExtendedCustomer extends javax.swing.JFrame {
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(customerRegistrationPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -802,6 +932,7 @@ public class ExtendedCustomer extends javax.swing.JFrame {
     private javax.swing.JLabel editInfoLabel;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
@@ -810,10 +941,18 @@ public class ExtendedCustomer extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JList listBagageToPrint;
@@ -825,9 +964,17 @@ public class ExtendedCustomer extends javax.swing.JFrame {
     private javax.swing.JTextField tfEmail2;
     private javax.swing.JTextField tfFirstName;
     private javax.swing.JTextField tfLastName;
+    private javax.swing.JTextField tfNameResort;
     private javax.swing.JTextField tfPhoneHome;
     private javax.swing.JTextField tfPhoneMobile;
     private javax.swing.JTextField tfPostalCode;
+    private javax.swing.JTextField tfResortAddress;
+    private javax.swing.JTextField tfResortCity;
+    private javax.swing.JTextField tfResortCountry;
+    private javax.swing.JTextField tfResortEmail;
+    private javax.swing.JTextField tfResortEmail2;
+    private javax.swing.JTextField tfResortPhoneNumber;
+    private javax.swing.JTextField tfResortPostalCode;
     private javax.swing.JLabel warningLabel1;
     // End of variables declaration//GEN-END:variables
 }
