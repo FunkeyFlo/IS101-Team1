@@ -13,7 +13,6 @@ public class DatabaseManager {
 
     public final String JDBC_EXCEPTION = "JDBC Exception: ";
     public final String SQL_EXCEPTION = "SQL Exception: ";
-
     public Connection connection;
 
     /**
