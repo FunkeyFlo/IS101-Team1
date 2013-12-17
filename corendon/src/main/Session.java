@@ -22,10 +22,10 @@ public class Session {
     public static List<Integer> itemsToPrint = new ArrayList<>();
 
     public static void storeNames(String inputUsername) {
-        User user = new User();
+        
         QueryManager query = new QueryManager();
 
-        query.getUserData(inputUsername);
+        User user = query.getUserData(inputUsername);
         storedFirstName = user.getFirstName();
         storedLastName = user.getLastName();
         storedUsername = inputUsername;
