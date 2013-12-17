@@ -17,10 +17,6 @@ import model.*;
 public class QueryManager {
 
     private final DatabaseManager db = new DatabaseManager();
-    private User user = new User();
-    private final Customer customer = new Customer();
-    private final Luggage luggage = new Luggage();
-    private final Resort resort = new Resort();
 
     private int permissionId, incorrectLogin, userId;
     private String username, firstName, lastName, password;
@@ -38,7 +34,7 @@ public class QueryManager {
      * method.
      */
     public String login(String tfUsername, String tfPassword) {
-        user = getUserData(tfUsername);
+        User user = getUserData(tfUsername);
         if (user.getUsername().equals(tfUsername)) {
             if (BCrypt.checkpw(tfPassword, user.getPassword())) {
                 user.setIsLoggedIn(true);
@@ -60,7 +56,7 @@ public class QueryManager {
      * @return
      */
     public boolean checkOldPassword(String oldPassword, String storedUsername) {
-        this.getUserData(storedUsername);
+        User user = getUserData(storedUsername);
         return BCrypt.checkpw(oldPassword, user.getPassword());
     }
 
@@ -82,28 +78,28 @@ public class QueryManager {
      * @return users
      */
     public User getUserData(String username) {
-        User tempUser = new User();
+        User user = new User();
         try {
             String sql = "SELECT *, COUNT(*) as `rows` FROM `user` WHERE `username`='" + username + "'";
             System.out.println(username);
             ResultSet result = db.doQuery(sql);
             if (result.next()) {
                 if (result.getInt("rows") >= 1) {
-                    tempUser.setUserId(result.getInt("user_id"));
-                    tempUser.setUsername(result.getString("username"));
-                    tempUser.setFirstName(result.getString("first_name"));
-                    tempUser.setLastName(result.getString("last_name"));
-                    tempUser.setPermissionId(result.getInt("permission_id"));
-                    tempUser.setPassword(result.getString("password"));
-                    tempUser.setIncorrectLogin(result.getInt("incorrect_login"));
+                    user.setUserId(result.getInt("user_id"));
+                    user.setUsername(result.getString("username"));
+                    user.setFirstName(result.getString("first_name"));
+                    user.setLastName(result.getString("last_name"));
+                    user.setPermissionId(result.getInt("permission_id"));
+                    user.setPassword(result.getString("password"));
+                    user.setIncorrectLogin(result.getInt("incorrect_login"));
                 } else {
-                    tempUser.setUsername("INVALID");
+                    user.setUsername("INVALID");
                 }
             }
         } catch (SQLException e) {
             System.out.println(db.SQL_EXCEPTION + e.getMessage());
         }
-        return tempUser;
+        return user;
     }
 
     /**
@@ -112,7 +108,8 @@ public class QueryManager {
      * @param userId integer parameter to determine which user data is pulled
      * from the database.
      */
-    public void getUserDataInt(int userId) {
+    public User getUserDataInt(int userId) {
+        User user = new User();
         try {
             String sql = "SELECT *, COUNT(*) as `rows` FROM `user` WHERE `user_id`='" + userId + "'";
             ResultSet result = db.doQuery(sql);
@@ -132,6 +129,7 @@ public class QueryManager {
         } catch (SQLException e) {
             System.out.println(db.SQL_EXCEPTION + e.getMessage());
         }
+        return user;
     }
 
     /**
@@ -276,10 +274,11 @@ public class QueryManager {
      * Increases incorrect login count by one on incorrect login attempt.
      */
     public void setIncorrectLogin() {
+        
         try {
             preparedStatement = db.connection.prepareStatement("UPDATE `user` SET `incorrect_login` = `incorrect_login`"
                     + "+ 1 WHERE `username` = ?");
-            preparedStatement.setString(1, user.getUsername());
+            preparedStatement.setString(1, Session.storedUsername);
             preparedStatement.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(QueryManager.class.getName()).log(Level.SEVERE, null, ex);
@@ -292,7 +291,7 @@ public class QueryManager {
     public void resetIncorrectLogin() {
         try {
             preparedStatement = db.connection.prepareStatement("UPDATE `user` SET `incorrect_login` = 0 WHERE `username` = ?");
-            preparedStatement.setString(1, user.getUsername());
+            preparedStatement.setString(1, Session.storedUsername);
             preparedStatement.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(QueryManager.class.getName()).log(Level.SEVERE, null, ex);
@@ -374,33 +373,35 @@ public class QueryManager {
      * @param tfInput the value databaseVariable has to be.
      * @param databaseVariable the column in the table that will be searched in.
      */
-    public void getCustomerData(String tfInput, String databaseVariable) {
+    public Customer getCustomerData(String tfInput, String databaseVariable) {
+        Customer tempCustomer = new Customer();
         try {
             String sql = "SELECT *, COUNT(*) as `rows` FROM `customer` WHERE `"
                     + databaseVariable + "`='" + tfInput + "'";
-            ResultSet result = customer.getDb().doQuery(sql);
+            ResultSet result = tempCustomer.getDb().doQuery(sql);
             if (result.next()) {
                 if (result.getInt("rows") >= 1) {
-                    user.setUserId(result.getInt("user_id"));
-                    customer.setEmail(result.getString("email"));
-                    customer.setCustomerId(result.getInt("customer_id"));
-                    customer.setFirstName(result.getString("first_name"));
-                    customer.setLastName(result.getString("last_name"));
-                    customer.setPostalCode(result.getString("postal_code"));
-                    customer.setPhoneHome(result.getString("phone_home"));
-                    customer.setAddress(result.getString("address"));
-                    customer.setPhoneMobile(result.getString("phone_mobile"));
-                    customer.setCity(result.getString("city"));
-                    customer.setCountry(result.getString("country"));
-                    customer.setDateChanged(result.getString("date_changed"));
-                    customer.setLastChangedBy(result.getInt("last_changed_by"));
+//                    user.setUserId(result.getInt("user_id"));
+                    tempCustomer.setEmail(result.getString("email"));
+                    tempCustomer.setCustomerId(result.getInt("customer_id"));
+                    tempCustomer.setFirstName(result.getString("first_name"));
+                    tempCustomer.setLastName(result.getString("last_name"));
+                    tempCustomer.setPostalCode(result.getString("postal_code"));
+                    tempCustomer.setPhoneHome(result.getString("phone_home"));
+                    tempCustomer.setAddress(result.getString("address"));
+                    tempCustomer.setPhoneMobile(result.getString("phone_mobile"));
+                    tempCustomer.setCity(result.getString("city"));
+                    tempCustomer.setCountry(result.getString("country"));
+                    tempCustomer.setDateChanged(result.getString("date_changed"));
+                    tempCustomer.setLastChangedBy(result.getInt("last_changed_by"));
                 } else {
                     System.out.println("SOMETHING WENT WRONG");
                 }
             }
         } catch (SQLException e) {
-            System.out.println(customer.getDb().SQL_EXCEPTION + e.getMessage());
+            System.out.println(tempCustomer.getDb().SQL_EXCEPTION + e.getMessage());
         }
+        return tempCustomer;
     }
 
     /**
@@ -412,6 +413,7 @@ public class QueryManager {
      */
     public List<Customer> searchCustomerList(int dbField, String searchArg) {
         List<Customer> customers = new ArrayList<>();
+        Customer customer = new Customer();
         String sql, sqlSelect = "SELECT * FROM `customer`";
 
         // Statement for searching all collumns
@@ -579,30 +581,32 @@ public class QueryManager {
      * @param tfInput
      * @param databaseVariable
      */
-    public void getLuggageData(String tfInput, String databaseVariable) {
+    public Luggage getLuggageData(String tfInput, String databaseVariable) {
+        Luggage tempLuggage = new Luggage();
         try {
             String sql = "SELECT *, COUNT(*) as `rows` FROM `luggage` WHERE `"
                     + databaseVariable + "`='" + tfInput + "'";
-            ResultSet result = luggage.getDb().doQuery(sql);
+            ResultSet result = tempLuggage.getDb().doQuery(sql);
             if (result.next()) {
                 if (result.getInt("rows") >= 0) {
-                    luggage.setLuggageId(result.getInt("luggage_id"));
-                    luggage.setCustomerId(result.getInt("customer_id"));
-                    luggage.setDescription(result.getString("description"));
-                    luggage.setLocation(result.getString("location"));
-                    luggage.setDateLost(result.getString("date_lost"));
-                    luggage.setStatus(result.getInt("status"));
-                    luggage.setDateChanged(result.getString("date_changed"));
-                    luggage.setDateHandled(result.getString("date_handled"));
-                    luggage.setDateFound(result.getString("date_found"));
-                    luggage.setLastChangedBy(result.getInt("last_changed_by"));
+                    tempLuggage.setLuggageId(result.getInt("luggage_id"));
+                    tempLuggage.setCustomerId(result.getInt("customer_id"));
+                    tempLuggage.setDescription(result.getString("description"));
+                    tempLuggage.setLocation(result.getString("location"));
+                    tempLuggage.setDateLost(result.getString("date_lost"));
+                    tempLuggage.setStatus(result.getInt("status"));
+                    tempLuggage.setDateChanged(result.getString("date_changed"));
+                    tempLuggage.setDateHandled(result.getString("date_handled"));
+                    tempLuggage.setDateFound(result.getString("date_found"));
+                    tempLuggage.setLastChangedBy(result.getInt("last_changed_by"));
                 } else {
                     System.out.println("SOMETHING WENT WRONG");
                 }
             }
         } catch (SQLException e) {
-            System.out.println(luggage.getDb().SQL_EXCEPTION + e.getMessage());
+            System.out.println(tempLuggage.getDb().SQL_EXCEPTION + e.getMessage());
         }
+        return tempLuggage;
     }
 
     /**
@@ -615,6 +619,7 @@ public class QueryManager {
      */
     public List<Luggage> searchLuggageList(int dbField, String searchArg, int handled) {
         List<Luggage> luggages = new ArrayList<>();
+        Luggage tempLuggage = new Luggage();
         String showHandled, sql, sqlSelect = "SELECT * FROM `luggage`";
 
         if (handled == 1) {
@@ -680,7 +685,7 @@ public class QueryManager {
         }
 
         try {
-            ResultSet result = luggage.getDb().doQuery(sql);
+            ResultSet result = tempLuggage.getDb().doQuery(sql);
             while (result.next()) {
                 luggages.add(new Luggage(result.getInt("luggage_id"),
                         result.getInt("customer_id"),
@@ -694,7 +699,7 @@ public class QueryManager {
                         result.getInt("last_changed_by")));
             }
         } catch (SQLException e) {
-            System.out.println(luggage.getDb().SQL_EXCEPTION + e.getMessage());
+            System.out.println(tempLuggage.getDb().SQL_EXCEPTION + e.getMessage());
         }
         return luggages;
     }
@@ -866,31 +871,32 @@ public class QueryManager {
      * @param tfInput
      * @param databaseVariable
      */
-    public void getResortData(String tfInput, String databaseVariable) {
-
+    public Resort getResortData(String tfInput, String databaseVariable) {
+        Resort tempResort = new Resort();
         try {
             String sql = "SELECT *, COUNT(*) as `rows` FROM `resort` WHERE `"
                     + databaseVariable + "`='" + tfInput + "'";
 
-            ResultSet result = resort.getDb().doQuery(sql);
+            ResultSet result = tempResort.getDb().doQuery(sql);
             if (result.next()) {
 
                 if (result.getInt("rows") >= 0) {
-                    resort.setId(result.getInt("resort_id"));
-                    resort.setName(result.getString("resort_name"));
-                    resort.setAddress(result.getString("address"));
-                    resort.setCity(result.getString("city"));
-                    resort.setPhone(result.getString("phone_resort"));
-                    resort.setEmail(result.getString("email"));
-                    resort.setPostalCode(result.getString("postal_code"));
+                    tempResort.setId(result.getInt("resort_id"));
+                    tempResort.setName(result.getString("resort_name"));
+                    tempResort.setAddress(result.getString("address"));
+                    tempResort.setCity(result.getString("city"));
+                    tempResort.setPhone(result.getString("phone_resort"));
+                    tempResort.setEmail(result.getString("email"));
+                    tempResort.setPostalCode(result.getString("postal_code"));
                 } else {
                     System.out.println("SOMETING WENT WRONG");
                 }
             }
 
         } catch (SQLException e) {
-            System.out.println(resort.getDb().SQL_EXCEPTION + e.getMessage());
+            System.out.println(tempResort.getDb().SQL_EXCEPTION + e.getMessage());
         }
+        return tempResort;
     }
 
     /**
@@ -902,6 +908,7 @@ public class QueryManager {
      */
     public List<Resort> searchResortList(int dbField, String searchArg) {
         List<Resort> resorts = new ArrayList<>();
+        Resort tempResort = new Resort();
         String sql, sqlSelect = "SELECT * FROM `resort`";
 
         if (dbField == 0) {
@@ -932,7 +939,7 @@ public class QueryManager {
         }
 
         try {
-            ResultSet result = resort.getDb().doQuery(sql);
+            ResultSet result = tempResort.getDb().doQuery(sql);
             while (result.next()) {
                 resorts.add(new Resort(result.getInt("resort_id"),
                         result.getString("resort_name"),
@@ -944,7 +951,7 @@ public class QueryManager {
                         result.getString("postal_code")));
             }
         } catch (SQLException e) {
-            System.out.println(resort.getDb().SQL_EXCEPTION + e.getMessage());
+            System.out.println(tempResort.getDb().SQL_EXCEPTION + e.getMessage());
         }
         return resorts;
     }
