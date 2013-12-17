@@ -3,6 +3,7 @@ package connectivity;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
@@ -12,7 +13,6 @@ public class DatabaseManager {
 
     public final String JDBC_EXCEPTION = "JDBC Exception: ";
     public final String SQL_EXCEPTION = "SQL Exception: ";
-    private String FUCK_YOU;
 
     public Connection connection;
 
@@ -43,7 +43,7 @@ public class DatabaseManager {
     public void closeConnection() {
         try {
             connection.close();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.err.println(e.getMessage());
         }
     }
@@ -54,20 +54,24 @@ public class DatabaseManager {
      * @param query, the SQl query
      */
     public void executeQuery(String query) {
+        openConnection();
         try {
             Statement statement = connection.createStatement();
             statement.executeQuery(query);
         } catch (java.sql.SQLException e) {
             System.err.println(SQL_EXCEPTION + e);
         }
+        closeConnection();
     }
 
     /**
      * Executes a query with result.
      *
      * @param query, the SQL query
+     * @return
      */
     public ResultSet doQuery(String query) {
+        openConnection();
         ResultSet result = null;
         try {
             Statement statement = connection.createStatement();
@@ -75,6 +79,7 @@ public class DatabaseManager {
         } catch (java.sql.SQLException e) {
             System.err.println(SQL_EXCEPTION + e);
         }
+        closeConnection();
         return result;
     }
 
@@ -82,8 +87,10 @@ public class DatabaseManager {
      * Executes a query with result.
      *
      * @param query, the SQL query
+     * @return 
      */
     public ResultSet insertQuery(String query) {
+        openConnection();
         ResultSet result = null;
         try {
             Statement statement = connection.createStatement();
@@ -92,6 +99,7 @@ public class DatabaseManager {
         } catch (java.sql.SQLException e) {
             System.err.println(SQL_EXCEPTION + e);
         }
+        closeConnection();
         return result;
     }
 }
