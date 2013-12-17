@@ -37,7 +37,9 @@ public class Login extends javax.swing.JFrame {
         QueryManager query = new QueryManager();
         String userName = tfUsername.getText().trim();
         userName = userName.toLowerCase();
+        user = query.getUserData(userName);
         String loginReturn = query.login(userName, tfPassword.getText().trim());
+        int permissionId = user.getPermissionId();
         boolean statusLocked = query.getLockState();
 
         if (statusLocked == false) {
@@ -46,7 +48,7 @@ public class Login extends javax.swing.JFrame {
                 case "Login success":
                     query.resetIncorrectLogin();
                     dispose();
-                    int permissionId = user.getPermissionId();
+                    
                     if (permissionId == 1) {
                         Main.displayEmployee();
                     } else if (permissionId == 2) {

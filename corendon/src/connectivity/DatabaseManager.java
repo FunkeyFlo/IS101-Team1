@@ -24,7 +24,7 @@ public class DatabaseManager {
             Class.forName("com.mysql.jdbc.Driver");
 
             String url = "jdbc:mysql://localhost/fys?zeroDateTimeBehavior=convertToNull";
-            String user = "root", pass = "";
+            String user = "root", pass = "1234";
 
             /**
              * Open connection

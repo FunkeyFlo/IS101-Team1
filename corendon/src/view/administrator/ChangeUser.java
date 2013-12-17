@@ -23,8 +23,7 @@ import model.User;
  */
 public class ChangeUser extends javax.swing.JFrame {
 
-    private final DatabaseManager db = new DatabaseManager();
-    private final User user = new User();
+    private final DatabaseManager db = new DatabaseManager(); 
     private final QueryManager query = new QueryManager();
     private Administrator admin = new Administrator();
 //    private Locale locale = new Locale("nl", "NL");
@@ -36,7 +35,8 @@ public class ChangeUser extends javax.swing.JFrame {
      * Creates new form ChangeUser
      */
     public ChangeUser() {
-        query.getUserData(Session.tempUsername);
+        User user = new User();
+        user = query.getUserData(Session.tempUsername);
 
         initComponents();
 
