@@ -17,7 +17,7 @@ import model.*;
 public class QueryManager {
 
     private final DatabaseManager db = new DatabaseManager();
-    private final User user = new User();
+    private User user = new User();
     private final Customer customer = new Customer();
     private final Luggage luggage = new Luggage();
     private final Resort resort = new Resort();
@@ -38,7 +38,7 @@ public class QueryManager {
      * method.
      */
     public String login(String tfUsername, String tfPassword) {
-        this.getUserData(tfUsername);
+        user = getUserData(tfUsername);
         if (user.getUsername().equals(tfUsername)) {
             if (BCrypt.checkpw(tfPassword, user.getPassword())) {
                 user.setIsLoggedIn(true);
@@ -79,27 +79,31 @@ public class QueryManager {
      *
      * @param username String parameter to determine which user data is pulled
      * from the database.
+     * @return users
      */
-    public void getUserData(String username) {
+    public User getUserData(String username) {
+        User tempUser = new User();
         try {
             String sql = "SELECT *, COUNT(*) as `rows` FROM `user` WHERE `username`='" + username + "'";
+            System.out.println(username);
             ResultSet result = db.doQuery(sql);
             if (result.next()) {
                 if (result.getInt("rows") >= 1) {
-                    user.setUserId(result.getInt("user_id"));
-                    user.setUsername(result.getString("username"));
-                    user.setFirstName(result.getString("first_name"));
-                    user.setLastName(result.getString("last_name"));
-                    user.setPermissionId(result.getInt("permission_id"));
-                    user.setPassword(result.getString("password"));
-                    user.setIncorrectLogin(result.getInt("incorrect_login"));
+                    tempUser.setUserId(result.getInt("user_id"));
+                    tempUser.setUsername(result.getString("username"));
+                    tempUser.setFirstName(result.getString("first_name"));
+                    tempUser.setLastName(result.getString("last_name"));
+                    tempUser.setPermissionId(result.getInt("permission_id"));
+                    tempUser.setPassword(result.getString("password"));
+                    tempUser.setIncorrectLogin(result.getInt("incorrect_login"));
                 } else {
-                    user.setUsername("INVALID");
+                    tempUser.setUsername("INVALID");
                 }
             }
         } catch (SQLException e) {
             System.out.println(db.SQL_EXCEPTION + e.getMessage());
         }
+        return tempUser;
     }
 
     /**
