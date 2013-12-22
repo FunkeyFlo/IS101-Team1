@@ -18,7 +18,6 @@ public class Session {
     public static String storedCustomerId;
     public static String tempUsername;
     public static String storedLuggageId;
-    private String FUCK_YOU;
     public static List<Integer> itemsToPrint = new ArrayList<>();
 
     public static void storeNames(String inputUsername) {

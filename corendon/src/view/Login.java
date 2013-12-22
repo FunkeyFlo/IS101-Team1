@@ -31,7 +31,7 @@ public class Login extends javax.swing.JFrame {
      * password is false.
      *
      */
-    public void doLogin() {
+    public void doLogin() { 
         User user = new User();
         Session session = new Session();
         QueryManager query = new QueryManager();

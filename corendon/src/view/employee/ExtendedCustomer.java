@@ -24,11 +24,10 @@ import model.User;
 public class ExtendedCustomer extends javax.swing.JFrame {
 
     private final QueryManager query = new QueryManager();
-    private final User user = new User();
-    private final Customer customer = new Customer();
+    private User user = new User();
+    private Customer customer = new Customer();
     private final Session session = new Session();
-    private final Resort resort = new Resort();
-    private String FUCK_YOU;
+    private Resort resort = new Resort();
 
     private OverviewPrint print = new OverviewPrint();
     private List<Luggage> luggages;
@@ -45,9 +44,10 @@ public class ExtendedCustomer extends javax.swing.JFrame {
      * edited.
      */
     public ExtendedCustomer() {
-        query.getCustomerData(Session.storedCustomerId, "customer_id");
-        query.getUserDataInt(customer.getLastChangedBy());
-        query.getResortData(Session.storedCustomerId, "customer_id");
+        customer = query.getCustomerData(Session.storedCustomerId, "customer_id");
+        user = query.getUserDataInt(customer.getLastChangedBy());
+        resort = query.getResortData(Integer.toString(customer.getResortId()), "resort_id");
+        System.out.println(Integer.toString(resort.getId()));
         
       
         resortEmail = seperateString(resort.getEmail(), "@");
@@ -58,7 +58,8 @@ public class ExtendedCustomer extends javax.swing.JFrame {
 
         editInfoLabel.setText("Gegevens laatst gewijzigd door "
                 + user.getFirstName() + " " + user.getLastName()
-                + " op " + customer.getDateChanged().substring(0, customer.getDateChanged().length() - 5));
+                + " op " + customer.getDateChanged().substring(0, 
+                        customer.getDateChanged().length() - 5));
 
         tfAddress1.setText(address[0]);
         tfAddress2.setText(address[1]);
@@ -107,8 +108,8 @@ public class ExtendedCustomer extends javax.swing.JFrame {
      * Method to show when the customer information is edited.
      */
     private void initFields() {
-        query.getCustomerData(Session.storedCustomerId, "customer_id");
-        query.getUserDataInt(customer.getLastChangedBy());
+        customer = query.getCustomerData(Session.storedCustomerId, "customer_id");
+        user = query.getUserDataInt(customer.getLastChangedBy());
 
         editInfoLabel.setText("Gegevens laatst gewijzigd door "
                 + user.getFirstName() + " " + user.getLastName()

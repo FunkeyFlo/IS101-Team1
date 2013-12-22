@@ -394,6 +394,7 @@ public class QueryManager {
                     tempCustomer.setCountry(result.getString("country"));
                     tempCustomer.setDateChanged(result.getString("date_changed"));
                     tempCustomer.setLastChangedBy(result.getInt("last_changed_by"));
+                    tempCustomer.setResortId(result.getInt("resort_id"));
                 } else {
                     System.out.println("SOMETHING WENT WRONG");
                 }
@@ -478,6 +479,7 @@ public class QueryManager {
                         result.getString("phone_home"),
                         result.getString("phone_mobile"),
                         result.getString("date_changed"),
+                        result.getInt("resort_id"),
                         result.getInt("last_changed_by")));
             }
         } catch (SQLException e) {
