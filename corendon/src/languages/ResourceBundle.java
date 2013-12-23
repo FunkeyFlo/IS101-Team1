@@ -142,6 +142,19 @@ public class ResourceBundle extends ListResourceBundle {
             { "xAxis", "Month/Year" },
             { "yAxis", "Number" },
             { "year", "Year" },
+            // Month abbreviations
+            { "Jan", "Jan" },
+            { "Feb", "Feb" },
+            { "Mar", "Mar" },
+            { "Apr", "Apr" },
+            { "May", "May" },
+            { "Jun", "Jun" },
+            { "Jul", "Jul" },
+            { "Aug", "Aug" },
+            { "Sep", "Sep" },
+            { "Oct", "Oct" },
+            { "Nov", "Nov" },
+            { "Dec", "Dec" },
             
         // Employee.java
             { "hideHandled", "Hide handled luggage" },

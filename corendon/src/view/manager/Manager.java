@@ -5,6 +5,7 @@ import connectivity.QueryManager;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Font;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -36,8 +37,8 @@ public class Manager extends javax.swing.JFrame {
     private final Customer customer = new Customer();
     private final Luggage luggage = new Luggage();
     private final Resort resort = new Resort();
-    private String FUCK_YOU;
-
+    private static final Font X_AXIS_FONT = new Font("Verdana", Font.PLAIN, 8);
+    
     //    private Locale locale = new Locale("nl", "NL");
     private static final ResourceBundle BUNDLE
             = ResourceBundle.getBundle("languages.ResourceBundle"); //, locale
@@ -53,6 +54,12 @@ public class Manager extends javax.swing.JFrame {
 
     private static final String HANDLED_LUGGAGE_GRAPH_NAME
             = BUNDLE.getString("foundLuggage");
+    
+    private static final String[] MONTHS = {BUNDLE.getString("Jan"),
+    BUNDLE.getString("Feb"), BUNDLE.getString("Mar"), BUNDLE.getString("Apr"),
+    BUNDLE.getString("May"), BUNDLE.getString("Jun"), BUNDLE.getString("Jul"),
+    BUNDLE.getString("Aug"), BUNDLE.getString("Sep"), BUNDLE.getString("Oct"),
+    BUNDLE.getString("Nov"), BUNDLE.getString("Dec")};
 
     private static final String X_AXIS_NAME = BUNDLE.getString("xAxis");
     private static final String Y_AXIS_NAME = BUNDLE.getString("yAxis");
@@ -439,6 +446,8 @@ public class Manager extends javax.swing.JFrame {
                 beginMonth, endMonth);
         List<String> yearsAndMonths = generateDates(beginYear, endYear,
                 beginMonth, endMonth);
+        ArrayList<String> xAxisLabels = giveXaxisLabels(numMonths, beginMonth,
+                beginYear);
 
         List<Integer> numTimesLost = getAmountLuggage(numMonths,
                 LOST_LUGGAGE_DBFIELD + showIfAttributeNotTrue, yearsAndMonths);
@@ -447,14 +456,14 @@ public class Manager extends javax.swing.JFrame {
         List<Integer> numTimesHandled = getAmountLuggage(numMonths,
                 HANDLED_LUGGAGE_DBFIELD, yearsAndMonths);
 
-        for (int i = 0; i < numMonths; i++) {
+        for (int i = 0; i < xAxisLabels.size(); i++) {
             //all graphs
             allDataGraph.setValue(numTimesLost.get(i),
-                    LOST_LUGGAGE_GRAPH_NAME, yearsAndMonths.get(i));
+                    LOST_LUGGAGE_GRAPH_NAME, xAxisLabels.get(i));
             allDataGraph.setValue(numTimesFound.get(i),
-                    FOUND_LUGGAGE_GRAPH_NAME, yearsAndMonths.get(i));
+                    FOUND_LUGGAGE_GRAPH_NAME, xAxisLabels.get(i));
             allDataGraph.setValue(numTimesHandled.get(i),
-                    HANDLED_LUGGAGE_GRAPH_NAME, yearsAndMonths.get(i));
+                    HANDLED_LUGGAGE_GRAPH_NAME, xAxisLabels.get(i));
         }
 
         //creates the graph
@@ -464,6 +473,7 @@ public class Manager extends javax.swing.JFrame {
         
         CategoryPlot allGraphsPlot = allGraphsChart.getCategoryPlot();
         CategoryAxis xAxis = allGraphsPlot.getDomainAxis();
+        xAxis.setTickLabelFont(X_AXIS_FONT);
         NumberAxis numberAxis = (NumberAxis)allGraphsPlot.getRangeAxis();
         numberAxis.setStandardTickUnits(NumberAxis.createIntegerTickUnits());
         
@@ -497,13 +507,15 @@ public class Manager extends javax.swing.JFrame {
                 beginMonth, endMonth);
         List<String> yearsAndMonths = generateDates(beginYear, endYear,
                 beginMonth, endMonth);
+        ArrayList<String> xAxisLabels = giveXaxisLabels(numMonths, beginMonth,
+                beginYear);
 
         List<Integer> numLostPerMonth = getAmountLuggage(numMonths,
                 LOST_LUGGAGE_DBFIELD + showIfAttributeNotTrue, yearsAndMonths);
 
         for (int i = 0; i < numMonths; i++) {
             lostBaggageGraph.setValue(numLostPerMonth.get(i),
-                    LOST_LUGGAGE_GRAPH_NAME, yearsAndMonths.get(i));
+                    LOST_LUGGAGE_GRAPH_NAME,xAxisLabels.get(i));
         }
 
         JFreeChart lostBaggageChart = ChartFactory.createLineChart(
@@ -512,6 +524,7 @@ public class Manager extends javax.swing.JFrame {
 
         CategoryPlot lostBaggagePlot = lostBaggageChart.getCategoryPlot();
         CategoryAxis xAxis = lostBaggagePlot.getDomainAxis();
+        xAxis.setTickLabelFont(X_AXIS_FONT);
         NumberAxis numberAxis = (NumberAxis)lostBaggagePlot.getRangeAxis();
         numberAxis.setStandardTickUnits(NumberAxis.createIntegerTickUnits());
         
@@ -543,13 +556,17 @@ public class Manager extends javax.swing.JFrame {
         int numMonths = giveNumMonths(beginYear, endYear, beginMonth, endMonth);
         List<String> yearsAndMonths
                 = generateDates(beginYear, endYear, beginMonth, endMonth);
+        ArrayList<String> xAxisLabels = giveXaxisLabels(numMonths, beginMonth,
+                beginYear);
+        
         List<Integer> numFoundPerMonth = getAmountLuggage(numMonths,
                 FOUND_LUGGAGE_DBFIELD + showIfAttributeNotTrue, yearsAndMonths);
+        
 
         //sets data
         for (int i = 0; i < numMonths; i++) {
             foundBaggageGraph.setValue(numFoundPerMonth.get(i),
-                    FOUND_LUGGAGE_GRAPH_NAME, yearsAndMonths.get(i));
+                    FOUND_LUGGAGE_GRAPH_NAME, xAxisLabels.get(i));
         }
 
         //creates graph
@@ -559,6 +576,7 @@ public class Manager extends javax.swing.JFrame {
 
         CategoryPlot foundBaggagePlot = foundBaggageChart.getCategoryPlot();
         CategoryAxis xAxis = foundBaggagePlot.getDomainAxis();
+        xAxis.setTickLabelFont(X_AXIS_FONT);
         NumberAxis numberAxis = (NumberAxis)foundBaggagePlot.getRangeAxis();
         numberAxis.setStandardTickUnits(NumberAxis.createIntegerTickUnits());
         
@@ -592,13 +610,16 @@ public class Manager extends javax.swing.JFrame {
                 beginMonth, endMonth);
         int numMonths = giveNumMonths(beginYear, endYear,
                 beginMonth, endMonth);
+        ArrayList<String> xAxisLabels = giveXaxisLabels(numMonths, beginMonth,
+                beginYear);
+        
         List<Integer> numHandledPerMonth = getAmountLuggage(numMonths,
                 HANDLED_LUGGAGE_DBFIELD, yearsAndMonths);
 
         //sets data
         for (int i = 0; i < numMonths; i++) {
             handledBaggageGraph.setValue(numHandledPerMonth.get(i),
-                    HANDLED_LUGGAGE_GRAPH_NAME, yearsAndMonths.get(i));
+                    HANDLED_LUGGAGE_GRAPH_NAME, xAxisLabels.get(i));
         }
 
         //creates graph
@@ -608,6 +629,7 @@ public class Manager extends javax.swing.JFrame {
 
         CategoryPlot handledBaggagePlot = handledBaggageChart.getCategoryPlot();
         CategoryAxis xAxis = handledBaggagePlot.getDomainAxis();
+        xAxis.setTickLabelFont(X_AXIS_FONT);
         NumberAxis numberAxis = (NumberAxis)handledBaggagePlot.getRangeAxis();
         numberAxis.setStandardTickUnits(NumberAxis.createIntegerTickUnits());
 
@@ -691,7 +713,7 @@ public class Manager extends javax.swing.JFrame {
      * @return String array of format 'yyyy-mm'
      * @see getAmountLuggage
      */
-    private static List<String> generateDates(int beginYear, int endYear,
+    private List<String> generateDates(int beginYear, int endYear,
             int beginMonth, int endMonth) {
         List<String> yearsAndMonths = new ArrayList<>();
         int currentMonth = beginMonth - 1;
@@ -716,6 +738,51 @@ public class Manager extends javax.swing.JFrame {
         }
 
         return yearsAndMonths;
+    }
+    
+    private ArrayList<String> giveXaxisLabels(int numMonths, int beginMonth,
+            int beginYear)
+    {
+        ArrayList<String> xAxisLabels = new ArrayList<>();
+        numMonths += beginMonth;
+        beginYear -= 2000;
+        int currentMonth = beginMonth;
+        for (int i = beginMonth; i < numMonths; i++) {
+            if (currentMonth >= 13) {
+                currentMonth = 1;
+                beginYear++;
+            }
+            switch(currentMonth) {
+                case 1: xAxisLabels.add(MONTHS[0]+" '"+beginYear);
+                    break;
+                case 2: xAxisLabels.add(MONTHS[1]+" '"+beginYear);
+                    break;
+                case 3: xAxisLabels.add(MONTHS[2]+" '"+beginYear);
+                    break;
+                case 4: xAxisLabels.add(MONTHS[3]+" '"+beginYear);
+                    break;
+                case 5: xAxisLabels.add(MONTHS[4]+" '"+beginYear);
+                    break;
+                case 6: xAxisLabels.add(MONTHS[5]+" '"+beginYear);
+                    break;
+                case 7: xAxisLabels.add(MONTHS[6]+" '"+beginYear);
+                    break;
+                case 8: xAxisLabels.add(MONTHS[7]+" '"+beginYear);
+                    break;
+                case 9: xAxisLabels.add(MONTHS[8]+" '"+beginYear);
+                    break;
+                case 10: xAxisLabels.add(MONTHS[9]+" '"+beginYear);
+                    break;
+                case 11: xAxisLabels.add(MONTHS[10]+" '"+beginYear);
+                    break;
+                case 12: xAxisLabels.add(MONTHS[11]+" '"+beginYear);
+                    break;
+                default: xAxisLabels.add("? '?");
+                    break;
+            }
+            currentMonth++;
+        }
+        return xAxisLabels;
     }
 
     /**
