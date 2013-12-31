@@ -540,9 +540,11 @@ public class QueryManager {
             preparedStatement = db.connection.prepareStatement("DELETE FROM `customer` WHERE `customer_id` = ?");
             preparedStatement.setString(1, tfCustomerId);
             preparedStatement.executeUpdate();
-            db.openConnection();
+
         } catch (SQLException ex) {
             Logger.getLogger(QueryManager.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            db.closeConnection();
         }
     }
 
