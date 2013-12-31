@@ -24,6 +24,7 @@ public class QueryManager {
     public final int MAX_INCORRECT_LOGINS = 3;
     public PreparedStatement preparedStatement = null;
 
+
     /**
      * Compares username and password to database entries, denies or grants
      * access depending on the result.
@@ -506,6 +507,7 @@ public class QueryManager {
             String tfAddress, String tfPostalCode, String tfCity, String tfCountry,
             String tfEmail, String tfPhoneHome, String tfPhoneMobile) {
         try {
+             db.openConnection();
             preparedStatement = db.connection.prepareStatement("INSERT INTO `customer` (first_name, last_name, address,"
                     + "postal_code, city, country, email, phone_home, phone_mobile,"
                     + "date_changed, last_changed_by)"
@@ -521,6 +523,7 @@ public class QueryManager {
             preparedStatement.setString(9, tfPhoneMobile);
             preparedStatement.setInt(10, Session.storedUserId);
             preparedStatement.executeUpdate();
+            db.closeConnection();
         } catch (SQLException ex) {
             Logger.getLogger(QueryManager.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -533,9 +536,11 @@ public class QueryManager {
      */
     public void deleteCustomer(String tfCustomerId) {
         try {
+            db.openConnection();
             preparedStatement = db.connection.prepareStatement("DELETE FROM `customer` WHERE `customer_id` = ?");
             preparedStatement.setString(1, tfCustomerId);
             preparedStatement.executeUpdate();
+            db.openConnection();
         } catch (SQLException ex) {
             Logger.getLogger(QueryManager.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -720,6 +725,7 @@ public class QueryManager {
             customerId = "NULL";
         }
         try {
+            db.openConnection();
             preparedStatement = db.connection.prepareStatement("INSERT INTO `luggage` (customer_id, description, location, "
                     + "status, last_changed_by , date_changed) VALUES (?, ?,? ,? ,? ,CURRENT_TIMESTAMP)");
             preparedStatement.setString(1, customerId);
@@ -730,6 +736,10 @@ public class QueryManager {
             preparedStatement.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(QueryManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        finally
+        {
+            db.closeConnection();
         }
     }
 
@@ -769,12 +779,16 @@ public class QueryManager {
      */
     public void linkCustomerId(int customerId, int luggageId) {
         try {
+            db.openConnection();
             preparedStatement = db.connection.prepareStatement("UPDATE `luggage` SET `customer_id` = ? WHERE `luggage_id` = ?");
             preparedStatement.setInt(1, customerId);
             preparedStatement.setInt(2, luggageId);
             preparedStatement.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(QueryManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        finally{
+            db.closeConnection();
         }
     }
 
@@ -785,11 +799,14 @@ public class QueryManager {
      */
     public void deleteLuggage(String luggageId) {
         try {
+            db.openConnection();
             preparedStatement = db.connection.prepareStatement("DELETE FROM `luggage` WHERE `luggage_id` = ?");
             preparedStatement.setString(1, luggageId);
             preparedStatement.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(QueryManager.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            db.closeConnection();
         }
     }
 
@@ -807,6 +824,7 @@ public class QueryManager {
     public void setNewResort(String tfName, String tfAddress, String tfCountry, String tfCity,
             String tfPhoneResort, String tfEmail, String tfpostalCode) {
         try {
+            db.openConnection();
             preparedStatement = db.connection.prepareStatement("INSERT INTO `resort` (resort_name, address, country, city,"
                     + "phone_resort, email, postal_code)"
                     + "VALUES (?, ?, ?, ?, ?, ?, ?)");
@@ -820,6 +838,8 @@ public class QueryManager {
             preparedStatement.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(QueryManager.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            db.closeConnection();
         }
     }
 
@@ -830,12 +850,16 @@ public class QueryManager {
      */
     public void deleteResort(String tfResortId) {
         try {
+            db.openConnection();
             preparedStatement = db.connection.prepareStatement("DELETE FROM `resort` WHERE `resort_id` = ?");
             preparedStatement.setString(1, tfResortId);
             preparedStatement.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(QueryManager.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            db.closeConnection();
         }
+
     }
 
     /**

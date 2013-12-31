@@ -374,7 +374,7 @@ public class Employee extends javax.swing.JFrame {
      * user into the database.
      */
     private void doCreateCustomer() {
-        Customer customer = new Customer();
+      
         String newFirstName = tfFirstName.getText().trim();
         String newLastName = tfLastName.getText().trim();
         String newAddress = tfAddress1.getText().trim() + " " + tfAddress2.getText().trim();
@@ -384,6 +384,11 @@ public class Employee extends javax.swing.JFrame {
         String newEmail = tfEmail1.getText().trim() + "@" + tfEmail2.getText().trim();
         String newPhoneHome = tfPhoneHome.getText().trim();
         String newPhoneMobile = tfPhoneMobile.getText().trim();
+        
+       
+        
+        
+        
         query.setNewCustomer(newFirstName, newLastName,
                 newAddress, newPostalCode, newCity, newCountry, newEmail,
                 newPhoneHome, newPhoneMobile);
@@ -1430,15 +1435,25 @@ public class Employee extends javax.swing.JFrame {
         overviewPane.addTab("Bagage en klanten koppelen", linkLuggage);
 
         jSplitPane1.setBorder(null);
-        jSplitPane1.setDividerLocation(360);
+        jSplitPane1.setDividerLocation(400);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Nieuw Resort"));
 
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Opties"));
 
         buttonUpdateResort.setText("Update Resort");
+        buttonUpdateResort.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonUpdateResortActionPerformed(evt);
+            }
+        });
 
         buttonDeleteResort.setText("Verwijder resort");
+        buttonDeleteResort.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonDeleteResortActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -2134,14 +2149,45 @@ public class Employee extends javax.swing.JFrame {
         String newCountry = tfResortCountry.getText().trim();
         String newCity = tfResortCity.getText().trim();
         String newPhone = tfResortPhone.getText().trim();
-        String newEmail = tfEmail1.getText().trim() + "@" + tfEmail2.getText().trim();
+        String newEmail = tfResortEmail1.getText().trim() + "@" + tfResortEmail2.getText().trim();
         String newPostalCode = tfPostalCode.getText().trim();
+        
 
         query.setNewResort(newName, newAddress, newCountry, newCity, newPhone,
                 newEmail, newPostalCode);
+        
+        searchResortTable(9999, "");
 
 
     }//GEN-LAST:event_btnCreateResortActionPerformed
+
+    private void buttonDeleteResortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDeleteResortActionPerformed
+
+        boolean isError = false;
+        boolean confirmation = false;
+        Resort resort = new Resort();
+
+        try {
+            String resortId = tblResort.getValueAt(tblResort.getSelectedRow(), 0).toString();
+        } catch (IndexOutOfBoundsException e) {
+            errorPopUp("Maak een selectie in de tabel en probeer het nog eens.");
+            isError = true;
+        }
+        if (isError == false) {
+            String message = "Weet u zeker dat u dit Resort wilt verwijderen";
+            confirmation = confirmationPopUp(message);
+        }
+        if (confirmation == true) {
+            String resortId = tblResort.getValueAt(tblResort.getSelectedRow(), 0).toString();
+            query.deleteResort(resortId);
+            searchResortTable(99999, "");
+        }
+
+    }//GEN-LAST:event_buttonDeleteResortActionPerformed
+
+    private void buttonUpdateResortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonUpdateResortActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buttonUpdateResortActionPerformed
 
     /**
      * @param args the command line arguments
