@@ -36,18 +36,18 @@ public class Employee extends javax.swing.JFrame {
     private List<Luggage> luggages;
     private List<Customer> customers;
     private List<Resort> resorts;
-    
+
     private DefaultTableModel modelLuggage1, modelCustomer1, modelLuggage2, modelCustomer2, modelResort;
-    
+
     public static int customerId;
     public static int luggageId;
-    
+
     private String customerToLink = null;
     private String luggageToLink = null;
-    
+
     public boolean isLinked = false;
     public static String customerFullName;
-    
+
     private Component ErrorPopUp;
     private Component LuggagePopUp;
     private Component confirmationPopUp;
@@ -374,7 +374,7 @@ public class Employee extends javax.swing.JFrame {
      * user into the database.
      */
     private void doCreateCustomer() {
-      
+
         String newFirstName = tfFirstName.getText().trim();
         String newLastName = tfLastName.getText().trim();
         String newAddress = tfAddress1.getText().trim() + " " + tfAddress2.getText().trim();
@@ -384,18 +384,14 @@ public class Employee extends javax.swing.JFrame {
         String newEmail = tfEmail1.getText().trim() + "@" + tfEmail2.getText().trim();
         String newPhoneHome = tfPhoneHome.getText().trim();
         String newPhoneMobile = tfPhoneMobile.getText().trim();
-        
-       
-        
-        
-        
+
         query.setNewCustomer(newFirstName, newLastName,
                 newAddress, newPostalCode, newCity, newCountry, newEmail,
                 newPhoneHome, newPhoneMobile);
         clearFields();
         searchCustomerTable2(9999, "");
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -1773,7 +1769,7 @@ public class Employee extends javax.swing.JFrame {
         boolean totalCorrectInput = errorCheckCreateCustomer();
         if (totalCorrectInput == true) {
             doCreateCustomer();
-        } 
+        }
 //        else {
 //            errorPopUp("Vul alle velden volledig in en probeer het nog eens.");
 //        }
@@ -2101,9 +2097,9 @@ public class Employee extends javax.swing.JFrame {
         }
         if (isError == false) {
             Main.displayExtendedCustomer();
-            
+
         }
-        
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btDeleteLuggageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDeleteLuggageActionPerformed
@@ -2150,15 +2146,96 @@ public class Employee extends javax.swing.JFrame {
         String newCity = tfResortCity.getText().trim();
         String newPhone = tfResortPhone.getText().trim();
         String newEmail = tfResortEmail1.getText().trim() + "@" + tfResortEmail2.getText().trim();
-        String newPostalCode = tfPostalCode.getText().trim();
-        
+        String newPostalCode = tfResortPostalCode.getText().trim();
 
-        query.setNewResort(newName, newAddress, newCountry, newCity, newPhone,
-                newEmail, newPostalCode);
-        
-        searchResortTable(9999, "");
+        boolean correctInput[] = new boolean[7];
+        boolean totalCorrectInput = true;
+        boolean finalCheck;
 
+        if (newName.equals("")) {
+            errorPopUp("Vul een naam in en probeer het nog eens.");
+            correctInput[0] = false;
+        } else {
+            correctInput[0] = true;
+        }
 
+        if (newAddress.equals("")) {
+            errorPopUp("Vul een adres in en probeer het nog eens.");
+            correctInput[1] = false;
+        } else {
+            correctInput[1] = true;
+        }
+
+        if (newCountry.equals("")) {
+            errorPopUp("Vul een land in en probeer het nog eens.");
+            correctInput[2] = false;
+        } else {
+            correctInput[2] = true;
+        }
+
+        if (newCity.equals("")) {
+            errorPopUp("Vul een stad in en probeer het nog eens.");
+            correctInput[3] = false;
+        } else {
+            correctInput[3] = true;
+        }
+
+        if (newPhone.equals("")) {
+            errorPopUp("Vul een telefoonnummer in en probeer het nog eens.");
+            correctInput[4] = false;
+        } else {
+            correctInput[4] = true;
+        }
+
+        if (newEmail.equals("")) {
+            errorPopUp("Vul een email in en probeer het nog eens.");
+            correctInput[5] = false;
+        } else {
+            correctInput[5] = true;
+        }
+
+        if (newPostalCode.equals("")) {
+            errorPopUp("Vul een postcode in en probeer het nog eens.");
+            correctInput[6] = false;
+        } else {
+            correctInput[6] = true;
+        }
+
+        for (int i = 0; i < correctInput.length; i++) {
+            if (correctInput[i] == false) {
+                totalCorrectInput = false;
+                break;
+            } else {
+                totalCorrectInput = true;
+            }
+            System.out.println(correctInput[i]);
+        }
+        System.out.println(totalCorrectInput);
+        if (totalCorrectInput == true) {
+            finalCheck = confirmationPopUp("Nieuwe resortgegevens:         " + "   \n"
+                    + "Naam: " + newName + "   \n" + "Adres: " + newAddress + "   \n"
+                    + "Land: " + newCountry + "   \n" + "Stad: " + newCity + "   \n"
+                    + "Telefoonnummmer" + newPhone + "   \n" + "Email: " + newEmail + "   \n"
+                    + "Postcode: " + newPostalCode);
+        } else {
+            finalCheck = false;
+        }
+
+        if (finalCheck == true) {
+            query.setNewResort(tfResortName.getText().trim(),
+                    tfResortAddress.getText().trim(),
+                    tfResortCountry.getText().trim(),
+                    tfResortCity.getText().trim(),
+                    tfResortPhone.getText().trim(),
+                    tfResortEmail1.getText() + "@" + tfResortEmail2.getText(),
+                    tfResortPostalCode.getText().trim());
+
+            query.setNewResort(newName, newAddress, newCountry, newCity, newPhone,
+                    newEmail, newPostalCode);
+
+            searchResortTable(9999, "");
+
+        }
     }//GEN-LAST:event_btnCreateResortActionPerformed
 
     private void buttonDeleteResortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDeleteResortActionPerformed
