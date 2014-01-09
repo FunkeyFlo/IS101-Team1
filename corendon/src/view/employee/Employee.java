@@ -467,6 +467,14 @@ public class Employee extends javax.swing.JFrame {
         btDeleteLuggage = new javax.swing.JButton();
         linkLuggage = new javax.swing.JPanel();
         linkTableSplitter = new javax.swing.JSplitPane();
+        linkCustomerTablePanel = new javax.swing.JPanel();
+        customerSearchField = new javax.swing.JTextField();
+        customerSearchButton1 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        customerTable1 = new javax.swing.JTable();
+        cbSearchCustomer = new javax.swing.JComboBox();
+        jPanel8 = new javax.swing.JPanel();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
         linkLuggageTablePanel = new javax.swing.JPanel();
         luggageSearchField = new javax.swing.JTextField();
         luggageSearchButton1 = new javax.swing.JButton();
@@ -474,19 +482,18 @@ public class Employee extends javax.swing.JFrame {
         luggageTable1 = new javax.swing.JTable();
         cbSearchLuggage = new javax.swing.JComboBox();
         showHandledLuggage1 = new javax.swing.JCheckBox();
-        linkCustomerTablePanel = new javax.swing.JPanel();
-        customerSearchField = new javax.swing.JTextField();
-        customerSearchButton1 = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        customerTable1 = new javax.swing.JTable();
-        cbSearchCustomer = new javax.swing.JComboBox();
+        jPanel9 = new javax.swing.JPanel();
+        tfSearchResort1 = new javax.swing.JTextField();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        tblResort1 = new javax.swing.JTable();
+        buttonSearchResort1 = new javax.swing.JButton();
+        cbResort1 = new javax.swing.JComboBox();
         linkOptionsPanel = new javax.swing.JPanel();
         linkButton = new javax.swing.JButton();
         refreshTables1 = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
-        jSplitPane1 = new javax.swing.JSplitPane();
         jPanel2 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         buttonUpdateResort = new javax.swing.JButton();
@@ -509,13 +516,13 @@ public class Employee extends javax.swing.JFrame {
         tfResortAddress = new javax.swing.JTextField();
         tfResortPostalCode = new javax.swing.JTextField();
         tfResortPhone = new javax.swing.JTextField();
-        jPanel7 = new javax.swing.JPanel();
+        jPanel10 = new javax.swing.JPanel();
+        tfSearchResort = new javax.swing.JTextField();
         jScrollPane4 = new javax.swing.JScrollPane();
         tblResort = new javax.swing.JTable();
-        buttonRefresh = new javax.swing.JButton();
         buttonSearchResort = new javax.swing.JButton();
-        tfSearchResort = new javax.swing.JTextField();
         cbResort = new javax.swing.JComboBox();
+        buttonRefresh = new javax.swing.JButton();
         menuBar = new javax.swing.JMenuBar();
         userMenu = new javax.swing.JMenu();
         changePassword = new javax.swing.JMenuItem();
@@ -825,7 +832,7 @@ public class Employee extends javax.swing.JFrame {
                         .addComponent(cbSearchCustomer1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(refreshCustomerTable2))
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 759, Short.MAX_VALUE))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 982, Short.MAX_VALUE))
                 .addContainerGap())
         );
         customerTablePanelLayout.setVerticalGroup(
@@ -1095,7 +1102,7 @@ public class Employee extends javax.swing.JFrame {
                         .addComponent(cbSearchLuggage1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(chbShowHandledLuggage2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 288, Short.MAX_VALUE)
                         .addComponent(refreshLuggageTable2))
                     .addComponent(jScrollPane7))
                 .addContainerGap())
@@ -1197,7 +1204,84 @@ public class Employee extends javax.swing.JFrame {
         linkTableSplitter.setBorder(javax.swing.BorderFactory.createTitledBorder("Overzichten"));
         linkTableSplitter.setDividerLocation(600);
 
-        linkLuggageTablePanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Bagage"));
+        linkCustomerTablePanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Klanten"));
+
+        customerSearchField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                customerSearchFieldKeyPressed(evt);
+            }
+        });
+
+        customerSearchButton1.setText(BUNDLE.getString("search"));
+        customerSearchButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                customerSearchButton1ActionPerformed(evt);
+            }
+        });
+
+        customerTable1.setAutoCreateRowSorter(true);
+        customerTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            BUNDLE.getStringArray("customerTableFields")
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        customerTable1.setDragEnabled(true);
+        jScrollPane1.setViewportView(customerTable1);
+
+        cbSearchCustomer.setMaximumRowCount(11);
+        cbSearchCustomer.setModel(new javax.swing.DefaultComboBoxModel(BUNDLE.getStringArray("customerSearchFields")));
+
+        javax.swing.GroupLayout linkCustomerTablePanelLayout = new javax.swing.GroupLayout(linkCustomerTablePanel);
+        linkCustomerTablePanel.setLayout(linkCustomerTablePanelLayout);
+        linkCustomerTablePanelLayout.setHorizontalGroup(
+            linkCustomerTablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(linkCustomerTablePanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(linkCustomerTablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(linkCustomerTablePanelLayout.createSequentialGroup()
+                        .addComponent(customerSearchField, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(customerSearchButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cbSearchCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        linkCustomerTablePanelLayout.setVerticalGroup(
+            linkCustomerTablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(linkCustomerTablePanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(linkCustomerTablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(customerSearchField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(customerSearchButton1)
+                    .addComponent(cbSearchCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 502, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        linkTableSplitter.setRightComponent(linkCustomerTablePanel);
+
+        jPanel8.setMinimumSize(new java.awt.Dimension(400, 400));
+
+        jTabbedPane1.setName(""); // NOI18N
 
         luggageSearchField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1263,11 +1347,10 @@ public class Employee extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(luggageSearchButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbSearchLuggage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(showHandledLuggage1)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 561, Short.MAX_VALUE))
+                        .addComponent(cbSearchLuggage, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(showHandledLuggage1))
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 565, Short.MAX_VALUE))
                 .addContainerGap())
         );
         linkLuggageTablePanelLayout.setVerticalGroup(
@@ -1280,86 +1363,79 @@ public class Employee extends javax.swing.JFrame {
                     .addComponent(cbSearchLuggage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(showHandledLuggage1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 502, Short.MAX_VALUE)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 478, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        linkTableSplitter.setLeftComponent(linkLuggageTablePanel);
+        jTabbedPane1.addTab(BUNDLE.getString("luggage")
+            , linkLuggageTablePanel);
 
-        linkCustomerTablePanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Klanten"));
-
-        customerSearchField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                customerSearchFieldKeyPressed(evt);
-            }
-        });
-
-        customerSearchButton1.setText(BUNDLE.getString("search"));
-        customerSearchButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                customerSearchButton1ActionPerformed(evt);
-            }
-        });
-
-        customerTable1.setAutoCreateRowSorter(true);
-        customerTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblResort1.setAutoCreateRowSorter(true);
+        tblResort1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
-            BUNDLE.getStringArray("customerTableFields")
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
             }
+        ));
+        jScrollPane5.setViewportView(tblResort1);
 
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        customerTable1.setDragEnabled(true);
-        jScrollPane1.setViewportView(customerTable1);
+        buttonSearchResort1.setText("Zoek");
 
-        cbSearchCustomer.setMaximumRowCount(11);
-        cbSearchCustomer.setModel(new javax.swing.DefaultComboBoxModel(BUNDLE.getStringArray("customerSearchFields")));
+        cbResort1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Alle velden", "Naam", "Adres", "Land", "Stad", "Telefoon", "Email", "Postcode", " ", " " }));
 
-        javax.swing.GroupLayout linkCustomerTablePanelLayout = new javax.swing.GroupLayout(linkCustomerTablePanel);
-        linkCustomerTablePanel.setLayout(linkCustomerTablePanelLayout);
-        linkCustomerTablePanelLayout.setHorizontalGroup(
-            linkCustomerTablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(linkCustomerTablePanelLayout.createSequentialGroup()
+        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
+        jPanel9.setLayout(jPanel9Layout);
+        jPanel9Layout.setHorizontalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(linkCustomerTablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(linkCustomerTablePanelLayout.createSequentialGroup()
-                        .addComponent(customerSearchField, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane5)
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addComponent(tfSearchResort1, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(customerSearchButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbSearchCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE))
+                        .addComponent(buttonSearchResort1)
+                        .addGap(6, 6, 6)
+                        .addComponent(cbResort1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 283, Short.MAX_VALUE)))
                 .addContainerGap())
         );
-        linkCustomerTablePanelLayout.setVerticalGroup(
-            linkCustomerTablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(linkCustomerTablePanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(linkCustomerTablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(customerSearchField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(customerSearchButton1)
-                    .addComponent(cbSearchCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        jPanel9Layout.setVerticalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cbResort1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(buttonSearchResort1)
+                        .addComponent(tfSearchResort1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 502, Short.MAX_VALUE)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 475, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        linkTableSplitter.setRightComponent(linkCustomerTablePanel);
+        jTabbedPane1.addTab(BUNDLE.getString("resort"), jPanel9);
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jTabbedPane1)
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jTabbedPane1)
+        );
+
+        jTabbedPane1.getAccessibleContext().setAccessibleName(BUNDLE.getString("luggage"));
+        jTabbedPane1.getAccessibleContext().setAccessibleDescription("Aapje");
+
+        linkTableSplitter.setLeftComponent(jPanel8);
 
         linkOptionsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Opties"));
 
@@ -1428,10 +1504,9 @@ public class Employee extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        overviewPane.addTab("Bagage en klanten koppelen", linkLuggage);
+        linkTableSplitter.getAccessibleContext().setAccessibleName(BUNDLE.getString("overviews"));
 
-        jSplitPane1.setBorder(null);
-        jSplitPane1.setDividerLocation(400);
+        overviewPane.addTab(BUNDLE.getString("linkCustomer"), linkLuggage);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Nieuw Resort"));
 
@@ -1596,12 +1671,10 @@ public class Employee extends javax.swing.JFrame {
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(146, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jSplitPane1.setLeftComponent(jPanel2);
-
-        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder("Lijst resorts"));
+        jPanel10.setBorder(javax.swing.BorderFactory.createTitledBorder("Verblijfs overzicht"));
 
         tblResort.setAutoCreateRowSorter(true);
         tblResort.setModel(new javax.swing.table.DefaultTableModel(
@@ -1617,21 +1690,21 @@ public class Employee extends javax.swing.JFrame {
         ));
         jScrollPane4.setViewportView(tblResort);
 
-        buttonRefresh.setText("Overzicht verversen");
-
         buttonSearchResort.setText("Zoek");
 
         cbResort.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Alle velden", "Naam", "Adres", "Land", "Stad", "Telefoon", "Email", "Postcode", " ", " " }));
 
-        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-        jPanel7.setLayout(jPanel7Layout);
-        jPanel7Layout.setHorizontalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
+        buttonRefresh.setText("Overzicht verversen");
+
+        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
+        jPanel10.setLayout(jPanel10Layout);
+        jPanel10Layout.setHorizontalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 705, Short.MAX_VALUE)
-                    .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 927, Short.MAX_VALUE)
+                    .addGroup(jPanel10Layout.createSequentialGroup()
                         .addComponent(tfSearchResort, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(buttonSearchResort)
@@ -1641,38 +1714,40 @@ public class Employee extends javax.swing.JFrame {
                         .addComponent(buttonRefresh)))
                 .addContainerGap())
         );
-        jPanel7Layout.setVerticalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
+        jPanel10Layout.setVerticalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
                 .addGap(10, 10, 10)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(cbResort, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(buttonRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(buttonSearchResort)
                         .addComponent(tfSearchResort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 584, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 573, Short.MAX_VALUE)
                 .addContainerGap())
         );
-
-        jSplitPane1.setRightComponent(jPanel7);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1149, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jSplitPane1)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -1687,7 +1762,7 @@ public class Employee extends javax.swing.JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        overviewPane.addTab("Resort registratie", jPanel4);
+        overviewPane.addTab(BUNDLE.getString("resortTab"), jPanel4);
 
         userMenu.setText(BUNDLE.getString("options"));
 
@@ -2311,9 +2386,11 @@ public class Employee extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton buttonRefresh;
     private javax.swing.JButton buttonSearchResort;
+    private javax.swing.JButton buttonSearchResort1;
     private javax.swing.JButton buttonUpdateResort;
     private javax.swing.JButton cancelButton;
     private javax.swing.JComboBox cbResort;
+    private javax.swing.JComboBox cbResort1;
     private javax.swing.JComboBox cbSearchCustomer;
     private javax.swing.JComboBox cbSearchCustomer1;
     private javax.swing.JComboBox cbSearchLuggage;
@@ -2353,19 +2430,22 @@ public class Employee extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
-    private javax.swing.JSplitPane jSplitPane1;
+    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel lblCustomerID4;
     private javax.swing.JLabel lblCustomerID5;
     private javax.swing.JLabel lblCustomerID6;
@@ -2395,6 +2475,7 @@ public class Employee extends javax.swing.JFrame {
     private javax.swing.JButton refreshTables1;
     private javax.swing.JCheckBox showHandledLuggage1;
     private javax.swing.JTable tblResort;
+    private javax.swing.JTable tblResort1;
     private javax.swing.JTextField tfAddress1;
     private javax.swing.JTextField tfAddress2;
     private javax.swing.JTextField tfCity;
@@ -2418,6 +2499,7 @@ public class Employee extends javax.swing.JFrame {
     private javax.swing.JTextField tfResortPhone;
     private javax.swing.JTextField tfResortPostalCode;
     private javax.swing.JTextField tfSearchResort;
+    private javax.swing.JTextField tfSearchResort1;
     private javax.swing.JMenu userMenu;
     private javax.swing.JLabel warningLabel1;
     // End of variables declaration//GEN-END:variables
