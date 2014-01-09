@@ -49,7 +49,8 @@ public class ExtendedCustomer extends javax.swing.JFrame {
         resort = query.getResortData(Integer.toString(customer.getResortId()), "resort_id");
         System.out.println(Integer.toString(resort.getId()));
         
-      
+        
+        System.out.println("");
         resortEmail = seperateString(resort.getEmail(), "@");
         email = seperateString(customer.getEmail(), "@");
         address = seperateString(customer.getAddress(), " ");

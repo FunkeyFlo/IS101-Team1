@@ -1224,13 +1224,13 @@ public class Employee extends javax.swing.JFrame {
             new Object [][] {
 
             },
-            BUNDLE.getStringArray("customerTableFields")
+            BUNDLE.getStringArray("customerTableFieldsMin")
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -1245,7 +1245,7 @@ public class Employee extends javax.swing.JFrame {
         jScrollPane1.setViewportView(customerTable1);
 
         cbSearchCustomer.setMaximumRowCount(11);
-        cbSearchCustomer.setModel(new javax.swing.DefaultComboBoxModel(BUNDLE.getStringArray("customerSearchFields")));
+        cbSearchCustomer.setModel(new javax.swing.DefaultComboBoxModel(BUNDLE.getStringArray("customerSearchFieldsMin")));
 
         javax.swing.GroupLayout linkCustomerTablePanelLayout = new javax.swing.GroupLayout(linkCustomerTablePanel);
         linkCustomerTablePanel.setLayout(linkCustomerTablePanelLayout);
@@ -1281,6 +1281,7 @@ public class Employee extends javax.swing.JFrame {
 
         jPanel8.setMinimumSize(new java.awt.Dimension(400, 400));
 
+        jTabbedPane1.setMinimumSize(new java.awt.Dimension(550, 48));
         jTabbedPane1.setName(""); // NOI18N
 
         luggageSearchField.addActionListener(new java.awt.event.ActionListener() {
@@ -1425,11 +1426,11 @@ public class Employee extends javax.swing.JFrame {
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jTabbedPane1.getAccessibleContext().setAccessibleName(BUNDLE.getString("luggage"));

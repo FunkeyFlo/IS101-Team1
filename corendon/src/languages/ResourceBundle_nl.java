@@ -65,9 +65,17 @@ public class ResourceBundle_nl extends ListResourceBundle {
                 "Voornaam", "Achternaam", "Adres", "Postcode", "Stad", "Land",
                 "Email", "Tel. thuis", "Tel. mobiel"} },
             
+            { "customerSearchFieldsMin", new String[] { "Alle velden", "Klant nummer", 
+                "Voornaam", "Achternaam", "Adres", "Postcode", "Stad", "Land",
+                "Email"} },
+            
             { "customerTableFields", new String[] { "Klant nummer", "Voornaam",
                 "Achternaam", "Adres", "Postcode", "Stad", "Land",
                 "Email", "Tel. Thuis", "Tel. Mobiel"} },
+            
+            { "customerTableFieldsMin", new String[] { "Klant nummer", "Voornaam",
+                "Achternaam", "Adres", "Postcode", "Stad", "Land",
+                "Email"} },
             
             { "luggageSearchFields", new String [] { "Alle velden", "Bagage nummer",
                 "Klant nummer", "Omschrijving", "Locatie", "Datum verloren" } },

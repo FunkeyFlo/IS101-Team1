@@ -65,9 +65,17 @@ public class ResourceBundle extends ListResourceBundle {
                 "Lastname", "Address", "Postal code", "City", "Country",
                 "Email", "Phone - Home", "Phone - Mobile"} },
             
+            { "customerSearchFieldsMin", new String[] { "All fields", "Customer ID", "Firstname",
+                "Lastname", "Address", "Postal code", "City", "Country",
+                "Email"} },
+            
             { "customerTableFields", new String[] { "Customer ID", "Firstname",
                 "Lastname", "Address", "Postal code", "City", "Country",
                 "Email", "Phone - Home", "Phone - Mobile"} },
+            
+            { "customerTableFieldsMin", new String[] { "Customer ID", "Firstname",
+                "Lastname", "Address", "Postal code", "City", "Country",
+                "Email"} },
             
             { "luggageSearchFields", new String [] { "All fields", "Luggage ID",
                 "Customer ID", "Description", "Location", "Date lost" } },
