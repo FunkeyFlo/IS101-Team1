@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package model;
 
 import connectivity.DatabaseManager;
@@ -30,7 +25,8 @@ public class Resort {
      * @param city
      * @param postalCode
      */
-    public Resort(int id, String phone, String email, String name, String address, String country, String city, String postalCode) {
+    public Resort(int id, String phone, String email, String name,
+            String address, String country, String city, String postalCode) {
         this.id = id;
         this.phone = phone;
         this.email = email;

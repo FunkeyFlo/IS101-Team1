@@ -23,12 +23,16 @@ public class ResourceBundle_nl extends ListResourceBundle {
         
         // Universally used strings
             { "administrator", "Beheerder" },
-            { "adjust", "Aanpassen" }, 
+            { "address", "Adres" },
+            { "adjust", "Aanpassen" },
             { "allFields", "Alle velden" },
             { "cancel", "Annuleren" },
+            { "city", "Plaats" },
+            { "country", "Land" },
             { "create", "Aanmaken" },
             { "customerId", "Klant nummer" },
             { "description", "Omschrijving" },
+            { "email", "Email" },
             { "employee", "Medewerker" },
             { "exit", "Afsluiten" },
             { "fillInAllFields", "Vul alle velden in en probeer het nogmaals."},
@@ -43,11 +47,16 @@ public class ResourceBundle_nl extends ListResourceBundle {
             { "lost", "Verloren" },
             { "luggage", "Bagage" },
             { "manager", "Manager" },
+            { "name", "Naam" },
             { "ok", "Ok" },
             { "on", "op" },
             { "options", "Opties" },
             { "overviews", "Overzichten" },
             { "password", "Wachtwoord" },
+            { "phoneHome", "Tel. thuis" },
+            { "phoneNumber", "Telefoonnummer" },
+            { "phoneMobile", "Tel. mobiel" },
+            { "postalCode", "Postcode" },
             { "reset", "Reset" },
             { "resetOverview", "Tabel Resetten" },
             { "resort", "Verblijf" },
@@ -171,5 +180,13 @@ public class ResourceBundle_nl extends ListResourceBundle {
             
         // Employee.java
             { "hideHandled", "Afgehandelde bagage verbergen" },
+            
+        // ExtendedCustomer.java
+            { "changeCustomerInfo", "Klant gegevens wijzigen" },
+            { "clearList", "Alle onderdelen uit lijst verwijdern" },
+            { "deleteFromList", "Geselecteerde onderdeel verwijderen" },
+            { "itemsToPrint", "Lijst van onderdelen die geprint zullen worden" },
+            { "printTicket", "Ophaalbewijs printen" },
+            { "resortInfo", "Verblijfsgegevens" },
     };
 }

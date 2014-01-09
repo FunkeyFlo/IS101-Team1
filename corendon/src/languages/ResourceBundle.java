@@ -22,13 +22,17 @@ public class ResourceBundle extends ListResourceBundle {
     private Object[][] contents = {
         
         // Universally used strings
+            { "address", "Address" },
             { "administrator", "Administrator" },
             { "adjust", "Adjust" },
             { "allFields", "All fields" },
             { "cancel", "Cancel" },
+            { "city", "City" },
+            { "country", "Country" },
             { "create", "Create" },
             { "customerId", "Customer ID" },
             { "description", "Description" },
+            { "email", "Email" },
             { "employee", "Employee" },
             { "exit", "Exit" },
             { "fillInAllFields", "Please fill in all fields and try again."},
@@ -43,17 +47,22 @@ public class ResourceBundle extends ListResourceBundle {
             { "lost", "Lost" },
             { "luggage", "Luggage" },
             { "manager", "Manager" },
-            { "selectItemInTable", "Please select an item from the table and try again." },
+            { "name", "Name" },
             { "ok", "Ok" },
             { "on", "on" },
             { "options", "Options" },
             { "overviews", "Overviews" },
             { "password", "Password" },
+            { "phoneHome", "Phone - home" },
+            { "phoneNumber", "Phone number" },
+            { "phoneMobile", "Phone - mobile" },
+            { "postalCode", "Postal code" },
             { "reset", "Reset" },
             { "resetOverview", "Reset Overview" },
             { "resort", "Resort" },
             { "resortTab", "Resort overview and registration" },
             { "search", "Search" },
+            { "selectItemInTable", "Please select an item from the table and try again." },
             { "status", "Status" },
             { "unlockFields", "Unlock fields" },
             { "userId", "User Id" },
@@ -171,5 +180,13 @@ public class ResourceBundle extends ListResourceBundle {
             
         // Employee.java
             { "hideHandled", "Hide handled luggage" },
+            
+        // ExtendedCustomer.java
+            { "changeCustomerInfo", "Change customer information" },
+            { "clearList", "Remove all items" },
+            { "deleteFromList", "Remove selected item" },
+            { "itemsToPrint", "List of items that will be printed" },
+            { "printTicket", "Print luggage ticket" },
+            { "resortInfo", "Resort information" },
     };
 }

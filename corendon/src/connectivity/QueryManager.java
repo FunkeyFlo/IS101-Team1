@@ -1013,6 +1013,7 @@ public class QueryManager {
                     tempResort.setId(result.getInt("resort_id"));
                     tempResort.setName(result.getString("resort_name"));
                     tempResort.setAddress(result.getString("address"));
+                    tempResort.setCountry(result.getString("country"));
                     tempResort.setCity(result.getString("city"));
                     tempResort.setPhone(result.getString("phone_resort"));
                     tempResort.setEmail(result.getString("email"));
