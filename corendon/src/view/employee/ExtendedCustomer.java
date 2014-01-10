@@ -162,16 +162,20 @@ public class ExtendedCustomer extends javax.swing.JFrame {
      */
     public String[] seperateString(String itemToSeperate, String sepChar) {
         String[] seperatedItems = {"", ""};
+        if (itemToSeperate == null) {
+            return seperatedItems;
+        } else {
 
-        String[] temp = itemToSeperate.split(sepChar);
+            String[] temp = itemToSeperate.split(sepChar);
 
-        for (int i = 0; i < temp.length - 1; i++) {
-            seperatedItems[0] += (temp[i] + " ");
+            for (int i = 0; i < temp.length - 1; i++) {
+                seperatedItems[0] += (temp[i] + " ");
+            }
+
+            seperatedItems[1] = temp[temp.length - 1];
+
+            return seperatedItems;
         }
-
-        seperatedItems[1] = temp[temp.length - 1];
-
-        return seperatedItems;
     }
 
     /**
