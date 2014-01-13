@@ -292,17 +292,15 @@ public class QueryManager {
      * parameter.
      *
      * @param username parameter to specify user to be altered.
-     * @param dbField parameter that specifies the field to be altered.
      * @param newValue Integer value to be inputted into the specific database
      * field.
      */
-    public void changeUserIntData(String username, String dbField, int newValue) {
+    public void lockUserAccount(String username, int newValue) {
         try {
             db.openConnection();
-            preparedStatement = db.connection.prepareStatement("UPDATE `user` SET ? = ? WHERE `username` = ?");
-            preparedStatement.setString(1, dbField);
-            preparedStatement.setInt(2, newValue);
-            preparedStatement.setString(3, username);
+            preparedStatement = db.connection.prepareStatement("UPDATE `user` SET `incorrect_login` = ? WHERE `username` = ?");
+            preparedStatement.setInt(1, newValue);
+            preparedStatement.setString(2, username);
             preparedStatement.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(QueryManager.class.getName()).log(Level.SEVERE, null, ex);
@@ -853,7 +851,7 @@ public class QueryManager {
         }
         try {
             db.openConnection();
-            preparedStatement = db.connection.prepareStatement("UPDATE `luggage` SET `description` = ?, `location` = ?, `status` = ?, `date_changed` = CURRENT_TIMESTAMP + dateHandled, `last_changed_by` = ?, WHERE `luggage_id` = ?");
+            preparedStatement = db.connection.prepareStatement("UPDATE `luggage` SET `description` = ?, `location` = ?, `status` = ?, `date_changed` CURRENT_TIMESTAMP + dateHandled, `last_changed_by` = ?, WHERE `luggage_id` = ?");
             preparedStatement.setString(1, description);
             preparedStatement.setString(2, location);
             preparedStatement.setInt(3, status);
