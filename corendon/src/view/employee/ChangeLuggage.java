@@ -19,22 +19,22 @@ import model.Luggage;
 public class ChangeLuggage extends javax.swing.JFrame {
 
     private final DatabaseManager db = new DatabaseManager();
-    private final User user = new User();
-
-  
-    
+    private  User user = new User();
+    private  Luggage luggage = new Luggage();    
     private final QueryManager query = new QueryManager();
-    private final Luggage luggage = new Luggage();
+
     //    private Locale locale = new Locale("nl", "NL");
     private final ResourceBundle BUNDLE = ResourceBundle.getBundle("languages.ResourceBundle"); //, locale
 
     private Component errorPopUp, confirmationPopUp;
 
     public ChangeLuggage() {
-        query.getLuggageData(Session.storedLuggageId, "luggage_id");
-        query.getUserDataInt(luggage.getLastChangedBy());
+
+        luggage = query.getLuggageData(Session.storedLuggageId, "luggage_id");
+        user = query.getUserDataInt(luggage.getLastChangedBy());
 
         initComponents();
+
         tfDescription.setText(luggage.getDescription());
         tfLocation.setText(luggage.getLocation());
         cbStatus.setSelectedIndex(luggage.getStatus() - 1);
