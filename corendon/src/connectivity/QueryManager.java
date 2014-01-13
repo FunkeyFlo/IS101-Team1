@@ -190,13 +190,15 @@ public class QueryManager {
             int permissionId) {
         try {
             db.openConnection();
-            preparedStatement = db.connection.prepareStatement("UPDATE `user`"
-                    + "SET `first_name` = ?, `last_name` = ?,"
-                    + "`permission_id` = ? WHERE `username` = ?");
-            preparedStatement.setString(1, username);
-            preparedStatement.setString(2, firstName);
-            preparedStatement.setString(3, lastName);
-            preparedStatement.setInt(4, permissionId);
+            
+            String updateSQL = "UPDATE `user` SET `first_name` = ?, `last_name` = ?,`permission_id` = ? WHERE `username` = ?";
+                       
+            preparedStatement = db.connection.prepareStatement(updateSQL);
+            preparedStatement.setString(1, firstName);
+            preparedStatement.setString(2, lastName);
+            preparedStatement.setInt(3, permissionId);
+            preparedStatement.setString(4, username);          
+           
             preparedStatement.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(QueryManager.class.getName()).log(Level.SEVERE, null, ex);
@@ -860,6 +862,7 @@ public class QueryManager {
             preparedStatement.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(QueryManager.class.getName()).log(Level.SEVERE, null, ex);
+            
         }
           finally
         {
