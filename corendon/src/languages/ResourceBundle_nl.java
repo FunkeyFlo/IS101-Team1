@@ -116,6 +116,11 @@ public class ResourceBundle_nl extends ListResourceBundle {
             { "passwordIncorrect", "Wachtwoord is onjuist." },
             { "usernameIncorrect", "Gebruikersnaam is onjuist." },
             
+            //ResetPassword
+            {"changePasswordForUser","Wachtwoord aanpassen voor gebruiker: "},
+            {"apply","Aanpassen"},
+            
+            
         // ChangeMyPassword.java
             { "changeMyPassword", "Wachtwoord veranderen" },
             { "currentPasswordIncorrect", "Het huidige wachtwoord is onjuist." },

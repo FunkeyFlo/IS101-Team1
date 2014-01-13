@@ -116,7 +116,13 @@ public class ResourceBundle extends ListResourceBundle {
             { "passwordIncorrect", "Password is incorrect." },
             { "usernameIncorrect", "Username does not exist." },
             
-        // ChangeMyPassword.java
+            
+            //ResetPassword.java
+            {"changePasswordForUser", "Change password" },
+            {"apply", "Apply"},
+            
+            
+        // ChangeMyPassword.java           
             { "changeMyPassword", "Change Password" },
             { "currentPasswordIncorrect", "Current password is incorrect." },
             { "newPasswordNoMatch", "New password fields do not match." },
@@ -178,6 +184,8 @@ public class ResourceBundle extends ListResourceBundle {
             { "Nov", "Nov" },
             { "Dec", "Dec" },
             
+          
+            
         // Employee.java
             { "hideHandled", "Hide handled luggage" },
             
@@ -189,4 +197,8 @@ public class ResourceBundle extends ListResourceBundle {
             { "printTicket", "Print luggage ticket" },
             { "resortInfo", "Resort information" },
     };
+    
+    
+    
+    
 }
