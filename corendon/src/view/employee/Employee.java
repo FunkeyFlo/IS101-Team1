@@ -1889,7 +1889,8 @@ public class Employee extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(ErrorPopUp,
                     "Maak een selectie in de tabel en probeer het nog eens.");
             isLinked = false;
-        }
+        }        boolean isError = false;
+
 
         customerId = Integer.parseInt(customerToLink);
         luggageId = Integer.parseInt(luggageToLink);
@@ -1951,7 +1952,7 @@ public class Employee extends javax.swing.JFrame {
         }
 
         customerId = tfCustomerID1.getText().trim();
-        if (!customerId.matches("[0-9]") && !customerId.equals("")) {
+        if (!customerId.matches("^[0-9]+$") && !customerId.equals("")) {
             errorPopUp("Klant ID kan alleen nummers bevatten!");
             correctInput[2] = false;
         } else {
