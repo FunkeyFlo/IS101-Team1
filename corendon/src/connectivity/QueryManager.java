@@ -269,14 +269,12 @@ public class QueryManager {
      * @param newValue String value to be inputted into the specific database
      * field.
      */
-    public void changeUserStringData(String username, String dbField,
-            String newValue) {
+    public void unlockUser(String username, String newValue) {
         try {
             db.openConnection();
-            preparedStatement = db.connection.prepareStatement("UPDATE `user` SET ? = ? WHERE `username` = ?");
-            preparedStatement.setString(1, dbField);
-            preparedStatement.setString(2, newValue);
-            preparedStatement.setString(3, username);
+            preparedStatement = db.connection.prepareStatement("UPDATE `user` SET `incorrect_login` = ? WHERE `username` = ?");
+            preparedStatement.setString(1, newValue);
+            preparedStatement.setString(2, username);
             preparedStatement.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(QueryManager.class.getName()).log(Level.SEVERE, null, ex);

@@ -657,8 +657,8 @@ public class Administrator extends javax.swing.JFrame {
     private void lockAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lockAccountActionPerformed
         boolean isError = false;
         try {
-            query.changeUserIntData(userTable.getValueAt(userTable.getSelectedRow(),
-                    0).toString(), "incorrect_login", user.MAX_INCORRECT_LOGINS);
+            query.lockUserAccount(userTable.getValueAt(userTable.getSelectedRow(),
+                    0).toString(), user.MAX_INCORRECT_LOGINS);
         } catch (IndexOutOfBoundsException e) {
             errorPopUp(BUNDLE.getString("selectItemInTable"));
             isError = true;
@@ -753,8 +753,8 @@ public class Administrator extends javax.swing.JFrame {
     private void unlockAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_unlockAccountActionPerformed
         boolean isError = false;
         try {
-            query.changeUserStringData(userTable.getValueAt(userTable.getSelectedRow(),
-                    0).toString(), "incorrect_login", "0");
+            query.unlockUser(userTable.getValueAt(userTable.getSelectedRow(),
+                    0).toString(),"0");
         } catch (IndexOutOfBoundsException e) {
             errorPopUp(BUNDLE.getString("selectItemInTable"));
             isError = true;
