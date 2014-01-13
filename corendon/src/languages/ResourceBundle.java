@@ -58,7 +58,7 @@ public class ResourceBundle extends ListResourceBundle {
             { "phoneMobile", "Phone - mobile" },
             { "postalCode", "Postal code" },
             { "reset", "Reset" },
-            { "resetOverview", "Reset Overview" },
+            { "resetOverview", "Refresh Overview" },
             { "resort", "Resort" },
             { "resortTab", "Resort overview and registration" },
             { "search", "Search" },
