@@ -2340,7 +2340,16 @@ public class Employee extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonDeleteResortActionPerformed
 
     private void buttonUpdateResortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonUpdateResortActionPerformed
-        // TODO add your handling code here:
+         boolean isError = false;
+        try {
+            Session.storedResortId = tblResort.getValueAt(tblResort.getSelectedRow(), 0).toString();
+        } catch (IndexOutOfBoundsException e) {
+            errorPopUp("Maak een selectie in de tabel en probeer het nog eens.");
+            isError = true;
+        }
+        if (isError == false) {
+            Main.displayChangeResort();
+        }
     }//GEN-LAST:event_buttonUpdateResortActionPerformed
 
     /**

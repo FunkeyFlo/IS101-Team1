@@ -256,12 +256,7 @@ public class ChangeResort extends javax.swing.JFrame {
                  tfResortPostalCode.getText());
          
          dispose();
-         }
-         
-//        
-//        int tfId, String tfName, String tfAddress, String tfCountry, String tfCity,
-//            String tfPhoneResort, String tfEmail, String tfpostalCode
-        
+         }                 
     }//GEN-LAST:event_jButton2ActionPerformed
 
     
