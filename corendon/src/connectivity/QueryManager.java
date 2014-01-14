@@ -849,7 +849,7 @@ public class QueryManager {
         }
         try {
             db.openConnection();
-            preparedStatement = db.connection.prepareStatement("UPDATE `luggage` SET `description` = ?, `location` = ?, `status` = ?, `date_changed` = CURRENT_TIMESTAMP, `last_changed_by` = ? WHERE `luggage_id` = ?");
+            preparedStatement = db.connection.prepareStatement("UPDATE `luggage` SET `description` = ?, `location` = ?, `status` = ?, `date_changed` = CURRENT_TIMESTAMP" + dateHandled + ", `last_changed_by` = ? WHERE `luggage_id` = ?");
             preparedStatement.setString(1, description);
             preparedStatement.setString(2, location);
             preparedStatement.setInt(3, status);
