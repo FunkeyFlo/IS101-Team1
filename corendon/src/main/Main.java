@@ -46,6 +46,12 @@ public class Main {
         Administrator frameBeheerder = new Administrator();
         frameBeheerder.setVisible(true);
     }
+    
+    public static void displayChangeResort()// permissionId = 1
+    {
+        ChangeResort frameChangeResort = new ChangeResort();
+        frameChangeResort.setVisible(true);
+    }
 
     public static void displayChangePassword() {
         ChangePassword frameChangePassword = new ChangePassword();

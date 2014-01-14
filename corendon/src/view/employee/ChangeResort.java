@@ -9,7 +9,14 @@ package view.employee;
 import connectivity.DatabaseManager;
 import connectivity.QueryManager;
 import java.awt.Component;
+import java.awt.Frame;
+import java.awt.TextField;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.ResourceBundle;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import main.Session;
 import model.Luggage;
 import model.Resort;
@@ -27,6 +34,7 @@ public class ChangeResort extends javax.swing.JFrame {
     private final QueryManager query = new QueryManager();   
     private final ResourceBundle BUNDLE = ResourceBundle.getBundle("languages.ResourceBundle"); //, locale
     private Component errorPopUp, confirmationPopUp;
+    private String[] resortEmail;
     
     
     
@@ -35,11 +43,34 @@ public class ChangeResort extends javax.swing.JFrame {
     public ChangeResort() {
         
        resort = query.getResortData(Session.storedResortId, "resort_id");
-        
-        
-        
-        
+       resortEmail = seperateString(resort.getEmail(), "@");
+              
         initComponents();
+        
+        tfResortAddress.setText(resort.getAddress());
+        tfResortCity.setText(resort.getCity());
+        tfResortCountry.setText(resort.getCountry());
+        tfResortName.setText(resort.getName());
+        tfResortPhone.setText(resort.getPhone());
+        tfResortPostalCode.setText(resort.getPostalCode());
+        tfResortEmail1.setText(resortEmail[0]);
+        tfResortEmail2.setText(resortEmail[1]);
+        
+        tfResortEmail1.setEditable(false);
+        tfResortEmail2.setEditable(false);
+        tfResortAddress.setEditable(false);
+        tfResortCity.setEditable(false);
+        tfResortCountry.setEditable(false);
+        tfResortName.setEditable(false);
+        tfResortPhone.setEditable(false);
+        tfResortPostalCode.setEditable(false);
+        
+ 
+        
+    }
+    
+    private void errorPopUp(String errorMessage) {
+        JOptionPane.showMessageDialog(errorPopUp, errorMessage);
     }
 
     /**
@@ -67,6 +98,9 @@ public class ChangeResort extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        tfResortPostalCode = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        chbUnlockFields = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -85,8 +119,27 @@ public class ChangeResort extends javax.swing.JFrame {
         jLabel7.setText("@");
 
         jButton1.setText("Annuleren");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Aanpassen");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jLabel8.setText("Postcode:");
+
+        chbUnlockFields.setText("Velden ontgrendelen");
+        chbUnlockFields.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chbUnlockFieldsActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -95,57 +148,72 @@ public class ChangeResort extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2))
-                .addGap(50, 50, 50)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(tfResortEmail1, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
-                            .addComponent(tfResortPhone))
-                        .addGap(11, 11, 11)
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tfResortEmail2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(tfResortCity, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
-                        .addComponent(tfResortCountry, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(tfResortAddress, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(tfResortName, javax.swing.GroupLayout.Alignment.LEADING)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(215, Short.MAX_VALUE)
-                .addComponent(jButton2)
-                .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addGap(65, 65, 65))
+                        .addComponent(chbUnlockFields)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton2)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton1)
+                        .addGap(65, 65, 65))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel2))
+                                .addGap(50, 50, 50)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(tfResortEmail1)
+                                    .addComponent(tfResortPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(11, 11, 11)
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tfResortEmail2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel8))
+                                .addGap(30, 30, 30)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(tfResortPostalCode, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(tfResortCity)
+                                        .addComponent(tfResortCountry)
+                                        .addComponent(tfResortAddress)
+                                        .addComponent(tfResortName, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addContainerGap(107, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(tfResortAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4))
+                        .addGap(40, 40, 40)
+                        .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(tfResortCountry, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3))
+                        .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(tfResortCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5)))
+                        .addComponent(jLabel5))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(tfResortName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(26, 26, 26)
+                                    .addComponent(tfResortAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(tfResortCountry, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(tfResortCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(tfResortName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel6))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tfResortPostalCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tfResortPhone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -156,52 +224,120 @@ public class ChangeResort extends javax.swing.JFrame {
                     .addComponent(tfResortEmail2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel7))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(jButton2)
+                    .addComponent(chbUnlockFields))
                 .addGap(23, 23, 23))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ChangeResort.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ChangeResort.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ChangeResort.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ChangeResort.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    
+         boolean finalCheck = false;
+         
+        finalCheck = confirmationPopUp("Nieuwe resort gegevens:         " + "   \n"
+                + "Naam: " + tfResortName.getText() + "   \n" + "Adres: " + tfResortAddress.getText() + "   \n"
+                + "Land: " + tfResortCountry.getText() + "  \n" + "Postcode: " + tfResortPostalCode.getText()
+                + "   \n" + "Stad: " + tfResortCity.getText() + "   \n" + "   \n" + "Email: "
+                + tfResortEmail1.getText() + "@" + tfResortEmail2.getText() + "   \n" + "Telefoon: " + tfResortPhone.getText());
+         
+         if(finalCheck == true){
+         query.updateResort(resort.getId(), 
+                 tfResortName.getText(), 
+                 tfResortAddress.getText(),
+                 tfResortCountry.getText(), 
+                 tfResortCity.getText(), 
+                 tfResortPhone.getText(), 
+                 tfResortEmail1.getText() + "@" + tfResortEmail2.getText(),
+                 tfResortPostalCode.getText());
+         
+         dispose();
+         }
+         
+//        
+//        int tfId, String tfName, String tfAddress, String tfCountry, String tfCity,
+//            String tfPhoneResort, String tfEmail, String tfpostalCode
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ChangeResort().setVisible(true);
-            }
-        });
+    
+    private boolean confirmationPopUp(String message) {
+        boolean confirm = false;
+        final JOptionPane createUserPopPane = new JOptionPane(message,
+                JOptionPane.WARNING_MESSAGE,
+                JOptionPane.YES_NO_OPTION);
+        final JDialog dialog = new JDialog((Frame) confirmationPopUp,
+                "Maak een keuze", true);
+        dialog.setContentPane(createUserPopPane);
+        createUserPopPane.addPropertyChangeListener(
+                new PropertyChangeListener() {
+                    public void propertyChange(PropertyChangeEvent e) {
+                        String prop = e.getPropertyName();
+
+                        if (dialog.isVisible()
+                        && (e.getSource() == createUserPopPane)
+                        && (prop.equals(JOptionPane.VALUE_PROPERTY))) {
+                            dialog.setVisible(false);
+                        }
+                    }
+                });
+        dialog.pack();
+        dialog.setVisible(true);
+        int value = ((Integer) createUserPopPane.getValue()).intValue();
+        if (value == JOptionPane.YES_OPTION) {
+            confirm = true;
+        }
+        return confirm;
     }
+    
+    
+    
+    
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        dispose(); 
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void chbUnlockFieldsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chbUnlockFieldsActionPerformed
+        tfResortEmail1.setEditable(chbUnlockFields.isSelected());
+        tfResortEmail2.setEditable(chbUnlockFields.isSelected());
+        tfResortAddress.setEditable(chbUnlockFields.isSelected());
+        tfResortCity.setEditable(chbUnlockFields.isSelected());
+        tfResortCountry.setEditable(chbUnlockFields.isSelected());
+        tfResortName.setEditable(chbUnlockFields.isSelected());
+        tfResortPhone.setEditable(chbUnlockFields.isSelected());
+        tfResortPostalCode.setEditable(chbUnlockFields.isSelected());
+    }//GEN-LAST:event_chbUnlockFieldsActionPerformed
+
+    
+    
+    public String[] seperateString(String itemToSeperate, String sepChar) {
+        String[] seperatedItems = {"", ""};
+        if (itemToSeperate == null) {
+            return seperatedItems;
+        } else {
+
+            String[] temp = itemToSeperate.split(sepChar);
+
+            for (int i = 0; i < temp.length - 1; i++) {
+                seperatedItems[0] += (temp[i] + " ");
+            }
+
+            seperatedItems[1] = temp[temp.length - 1];
+
+            return seperatedItems;
+        }
+    }
+    
+    
+ 
+ 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JCheckBox chbUnlockFields;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
@@ -211,6 +347,7 @@ public class ChangeResort extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JTextField tfResortAddress;
     private javax.swing.JTextField tfResortCity;
     private javax.swing.JTextField tfResortCountry;
@@ -218,5 +355,6 @@ public class ChangeResort extends javax.swing.JFrame {
     private javax.swing.JTextField tfResortEmail2;
     private javax.swing.JTextField tfResortName;
     private javax.swing.JTextField tfResortPhone;
+    private javax.swing.JTextField tfResortPostalCode;
     // End of variables declaration//GEN-END:variables
 }

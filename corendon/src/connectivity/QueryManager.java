@@ -974,7 +974,7 @@ public class QueryManager {
             String tfPhoneResort, String tfEmail, String tfpostalCode) {
         try {
             db.openConnection();
-            preparedStatement = db.connection.prepareStatement("UPDATE `resort` SET `resort_name` = ? `address` = ?, `country` = ?, `city` = ?, `phone_resort` = ?, `email` = ? `postal_code` = ? WHERE `resort_id` = ?");
+            preparedStatement = db.connection.prepareStatement("UPDATE `resort` SET `resort_name` = ?, `address` = ?, `country` = ?, `city` = ?, `phone_resort` = ?, `email` = ?, `postal_code` = ? WHERE `resort_id` = ?");
             preparedStatement.setString(1, tfName);
             preparedStatement.setString(2, tfAddress);
             preparedStatement.setString(3, tfCountry);
@@ -982,6 +982,7 @@ public class QueryManager {
             preparedStatement.setString(5, tfPhoneResort);
             preparedStatement.setString(6, tfEmail);
             preparedStatement.setString(7, tfpostalCode);
+            preparedStatement.setInt(8, tfId);
             preparedStatement.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(QueryManager.class.getName()).log(Level.SEVERE, null, ex);
