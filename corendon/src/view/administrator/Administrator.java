@@ -23,7 +23,6 @@ public class Administrator extends javax.swing.JFrame {
     private final DatabaseManager db = new DatabaseManager();
     private final User user = new User();
     private final QueryManager query = new QueryManager();
-    private String FUCK_YOU;
 
     private List<User> users;
     private DefaultTableModel model;

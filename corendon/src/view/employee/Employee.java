@@ -87,13 +87,13 @@ public class Employee extends javax.swing.JFrame {
         luggages = query.searchLuggageList(dbField, searchArg, showHandled);
         for (Luggage luggage : luggages) {
             modelLuggage1.addRow(new Object[]{new Integer(luggage.getLuggageId()),
-                (luggage.getCustomerId() == 0) ? "Nog niet toegewezen"
+                (luggage.getCustomerId() == 0) ? BUNDLE.getString("unassigned")
                 : luggage.getCustomerId(),
                 luggage.getDescription(),
                 luggage.getLocation(),
                 luggage.getDateLost(),
-                (luggage.getStatus() == 2) ? "Gevonden"
-                : (luggage.getStatus() == 1) ? "Vermist" : "Afgehandeld"});
+                (luggage.getStatus() == 2) ? BUNDLE.getString("found")
+                : (luggage.getStatus() == 1) ? BUNDLE.getString("lost") : BUNDLE.getString("handled")});
         }
     }
 
@@ -113,13 +113,13 @@ public class Employee extends javax.swing.JFrame {
         luggages = query.searchLuggageList(dbField, searchArg, showHandled);
         for (Luggage luggage : luggages) {
             modelLuggage2.addRow(new Object[]{new Integer(luggage.getLuggageId()),
-                (luggage.getCustomerId() == 0) ? "Nog niet toegewezen"
+                (luggage.getCustomerId() == 0) ? BUNDLE.getString("unassigned")
                 : luggage.getCustomerId(),
                 luggage.getDescription(),
                 luggage.getLocation(),
                 luggage.getDateLost(),
-                (luggage.getStatus() == 2) ? "Gevonden"
-                : (luggage.getStatus() == 1) ? "Vermist" : "Adgehandeld"});
+                (luggage.getStatus() == 2) ? BUNDLE.getString("found")
+                : (luggage.getStatus() == 1) ? BUNDLE.getString("lost") : BUNDLE.getString("handled")});
 
             //System.out.println(user.getFirstName());
         }

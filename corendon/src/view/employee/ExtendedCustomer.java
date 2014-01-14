@@ -870,7 +870,6 @@ public class ExtendedCustomer extends javax.swing.JFrame {
             } else {
                 totalCorrectInput = true;
             }
-            System.out.println(correctInput[i]);
         }
         System.out.println(totalCorrectInput);
         if (totalCorrectInput == true) {
