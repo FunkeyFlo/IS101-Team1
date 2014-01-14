@@ -54,12 +54,13 @@ public class Login extends javax.swing.JFrame {
                     }
                     break;
                 case "Password is incorrect":
-                    errorPopUp(BUNDLE.getString("passwordIncorrect"));
+                    errorPopUp(BUNDLE.getString("loginIncorrect"));
                     query.setIncorrectLogin();
                     tfPassword.setText("");
+                    tfUsername.setText("");
                     break;
                 default:
-                    errorPopUp(BUNDLE.getString("usernameIncorrect"));
+                    errorPopUp(BUNDLE.getString("loginIncorrect"));
                     tfPassword.setText("");
                     tfUsername.setText("");
                     break;

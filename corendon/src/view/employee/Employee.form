@@ -117,8 +117,10 @@
         <Container class="javax.swing.JPanel" name="customer">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="Klanten overzicht en registratie">
-                <Property name="tabTitle" type="java.lang.String" value="Klanten overzicht en registratie"/>
+              <JTabbedPaneConstraints tabName="&lt;User Code&gt;">
+                <Property name="tabTitle" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="BUNDLE.getString(&quot;summaryCustomerRegister&quot;)&#xd;&#xa;" type="code"/>
+                </Property>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
@@ -129,7 +131,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="customerRegistrationPanel" max="32767" attributes="0"/>
+                          <Component id="customerRegistrationPanel" pref="344" max="32767" attributes="0"/>
                           <Component id="customerOptionsPanel" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -161,10 +163,8 @@
           <SubComponents>
             <Container class="javax.swing.JPanel" name="customerRegistrationPanel">
               <Properties>
-                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                  <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                    <TitledBorder title="Klant Registreren"/>
-                  </Border>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="javax.swing.BorderFactory.createTitledBorder(BUNDLE.getString(&quot;registerCustomer&quot;))" type="code"/>
                 </Property>
               </Properties>
 
@@ -189,15 +189,15 @@
                                   </Group>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" attributes="0">
-                                          <EmptySpace min="-2" pref="132" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="138" max="-2" attributes="0"/>
                                           <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="tfEmail2" max="32767" attributes="0"/>
+                                          <EmptySpace max="32767" attributes="0"/>
+                                          <Component id="tfEmail2" min="-2" pref="104" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
-                                          <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="tfPhoneMobile" alignment="1" max="32767" attributes="0"/>
+                                              <Component id="tfPhoneMobile" max="32767" attributes="0"/>
                                               <Component id="tfPhoneHome" max="32767" attributes="0"/>
                                           </Group>
                                       </Group>
@@ -228,7 +228,7 @@
                                       <Group type="102" alignment="0" attributes="0">
                                           <Component id="tfAddress1" min="-2" pref="155" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="tfAddress2" pref="57" max="32767" attributes="0"/>
+                                          <Component id="tfAddress2" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -275,10 +275,12 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="tfEmail2" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel16" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel15" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="tfEmail1" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                                  <Component id="tfEmail1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel16" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -286,9 +288,9 @@
                               <Component id="tfPhoneHome" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="tfPhoneMobile" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel18" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jLabel18" min="-2" max="-2" attributes="0"/>
+                              <Component id="tfPhoneMobile" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="warningLabel1" pref="17" max="32767" attributes="0"/>
@@ -305,7 +307,9 @@
               <SubComponents>
                 <Component class="javax.swing.JLabel" name="jLabel7">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Adres"/>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="BUNDLE.getString(&quot;address&quot;)" type="code"/>
+                    </Property>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="tfAddress2">
@@ -321,7 +325,9 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel12">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Postcode"/>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="BUNDLE.getString(&quot;postalCode&quot;)" type="code"/>
+                    </Property>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="tfFirstName">
@@ -332,12 +338,16 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel13">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Voornaam"/>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="BUNDLE.getString(&quot;firstName&quot;)" type="code"/>
+                    </Property>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel14">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Achternaam"/>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="BUNDLE.getString(&quot;lastName&quot;)" type="code"/>
+                    </Property>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="tfLastName">
@@ -347,7 +357,9 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel15">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="E-mail"/>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="BUNDLE.getString(&quot;email&quot;)" type="code"/>
+                    </Property>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="tfEmail1">
@@ -373,7 +385,9 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel17">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Huis telefoon"/>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="BUNDLE.getString(&quot;phoneHome&quot;)" type="code"/>
+                    </Property>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="tfPhoneMobile">
@@ -383,12 +397,16 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel18">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Mobiel tel."/>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="BUNDLE.getString(&quot;phoneMobile&quot;)" type="code"/>
+                    </Property>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JButton" name="createCustomer1">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Voeg toe"/>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="BUNDLE.getString(&quot;add&quot;)" type="code"/>
+                    </Property>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="createCustomer1ActionPerformed"/>
@@ -396,7 +414,9 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="jButton4">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Annuleren"/>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="BUNDLE.getString(&quot;cancel&quot;)" type="code"/>
+                    </Property>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton4ActionPerformed"/>
@@ -404,12 +424,16 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel19">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Stad"/>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="BUNDLE.getString(&quot;city&quot;)" type="code"/>
+                    </Property>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel20">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Land"/>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="BUNDLE.getString(&quot;country&quot;)" type="code"/>
+                    </Property>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="tfCity">
@@ -419,12 +443,8 @@
                 </Component>
                 <Component class="javax.swing.JComboBox" name="tfCountry">
                   <Properties>
-                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="3">
-                        <StringItem index="0" value="Nederland"/>
-                        <StringItem index="1" value="Turkije"/>
-                        <StringItem index="2" value="Australi&#xeb;"/>
-                      </StringArray>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="new javax.swing.DefaultComboBoxModel(BUNDLE.getStringArray(&quot;countriesComboBox&quot;))" type="code"/>
                     </Property>
                   </Properties>
                 </Component>
@@ -444,10 +464,8 @@
             </Container>
             <Container class="javax.swing.JPanel" name="customerTablePanel">
               <Properties>
-                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                  <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                    <TitledBorder title="Klanten"/>
-                  </Border>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="javax.swing.BorderFactory.createTitledBorder(BUNDLE.getString(&quot;customer&quot;))" type="code"/>
                 </Property>
               </Properties>
 
@@ -466,7 +484,7 @@
                                   <EmptySpace max="32767" attributes="0"/>
                                   <Component id="refreshCustomerTable2" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="jScrollPane3" alignment="0" pref="982" max="32767" attributes="0"/>
+                              <Component id="jScrollPane3" alignment="0" pref="998" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -483,7 +501,7 @@
                               <Component id="refreshCustomerTable2" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jScrollPane3" pref="588" max="32767" attributes="0"/>
+                          <Component id="jScrollPane3" pref="610" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -497,7 +515,9 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="customerSearchButton2">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Zoeken"/>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="BUNDLE.getString(&quot;search&quot;)" type="code"/>
+                    </Property>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="customerSearchButton2ActionPerformed"/>
@@ -533,7 +553,9 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="refreshCustomerTable2">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Overzicht verversen"/>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="BUNDLE.getString(&quot;resetOverview&quot;)" type="code"/>
+                    </Property>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="refreshCustomerTable2ActionPerformed"/>
@@ -543,10 +565,8 @@
             </Container>
             <Container class="javax.swing.JPanel" name="customerOptionsPanel">
               <Properties>
-                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                  <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                    <TitledBorder title="Opties"/>
-                  </Border>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="javax.swing.BorderFactory.createTitledBorder(BUNDLE.getString(&quot;options&quot;))" type="code"/>
                 </Property>
               </Properties>
 
@@ -578,7 +598,9 @@
               <SubComponents>
                 <Component class="javax.swing.JButton" name="jButton1">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Uitgebreide klantgegevens"/>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="BUNDLE.getString(&quot;extensiveCustomerData&quot;)" type="code"/>
+                    </Property>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
@@ -586,7 +608,9 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="customerDeleteButton">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Klant verwijderen"/>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="BUNDLE.getString(&quot;deleteCustomer&quot;)" type="code"/>
+                    </Property>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="customerDeleteButtonActionPerformed"/>
@@ -599,8 +623,10 @@
         <Container class="javax.swing.JPanel" name="luggage">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="Bagage overzicht en registratie">
-                <Property name="tabTitle" type="java.lang.String" value="Bagage overzicht en registratie"/>
+              <JTabbedPaneConstraints tabName="&lt;User Code&gt;">
+                <Property name="tabTitle" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="BUNDLE.getString(&quot;summaryLuggageRegister&quot;)&#xd;&#xa;" type="code"/>
+                </Property>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
@@ -641,10 +667,8 @@
           <SubComponents>
             <Container class="javax.swing.JLayeredPane" name="luggageRegistrationPanel">
               <Properties>
-                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                  <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                    <TitledBorder title="Bagage Registeren"/>
-                  </Border>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="javax.swing.BorderFactory.createTitledBorder(BUNDLE.getString(&quot;registerLuggage&quot;))" type="code"/>
                 </Property>
               </Properties>
 
@@ -761,7 +785,9 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="btCreateLuggage">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Voeg toe"/>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="BUNDLE.getString(&quot;add&quot;)" type="code"/>
+                    </Property>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btCreateLuggageActionPerformed"/>
@@ -769,7 +795,9 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="btCancel">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Annuleren"/>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="BUNDLE.getString(&quot;cancel&quot;)" type="code"/>
+                    </Property>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btCancelActionPerformed"/>
@@ -804,10 +832,8 @@
             </Container>
             <Container class="javax.swing.JPanel" name="luggageTablePanel">
               <Properties>
-                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                  <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                    <TitledBorder title="Bagage"/>
-                  </Border>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="javax.swing.BorderFactory.createTitledBorder(BUNDLE.getString(&quot;luggage&quot;))" type="code"/>
                 </Property>
               </Properties>
 
@@ -825,7 +851,7 @@
                                   <Component id="cbSearchLuggage1" min="-2" pref="124" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="chbShowHandledLuggage2" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="288" max="32767" attributes="0"/>
+                                  <EmptySpace pref="386" max="32767" attributes="0"/>
                                   <Component id="refreshLuggageTable2" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Component id="jScrollPane7" alignment="0" max="32767" attributes="0"/>
@@ -848,7 +874,7 @@
                               <Component id="luggageSearchButton2" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jScrollPane7" pref="588" max="32767" attributes="0"/>
+                          <Component id="jScrollPane7" pref="610" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -901,7 +927,9 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="refreshLuggageTable2">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Overzicht verversen"/>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="BUNDLE.getString(&quot;resetOverview&quot;)" type="code"/>
+                    </Property>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="refreshLuggageTable2ActionPerformed"/>
@@ -921,10 +949,8 @@
             </Container>
             <Container class="javax.swing.JPanel" name="luggageOptionsPanel">
               <Properties>
-                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                  <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                    <TitledBorder title="Opties"/>
-                  </Border>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="javax.swing.BorderFactory.createTitledBorder(BUNDLE.getString(&quot;options&quot;))" type="code"/>
                 </Property>
               </Properties>
 
@@ -959,7 +985,9 @@
               <SubComponents>
                 <Component class="javax.swing.JButton" name="btChangeLuggage">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Bagage wijzigen"/>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="BUNDLE.getString(&quot;modifyLuggage&quot;)" type="code"/>
+                    </Property>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btChangeLuggageActionPerformed"/>
@@ -967,7 +995,9 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="btPrintReceipt">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Bewijs voor klant printen"/>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="BUNDLE.getString(&quot;proofPrint&quot;)" type="code"/>
+                    </Property>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btPrintReceiptActionPerformed"/>
@@ -975,7 +1005,9 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="btDeleteLuggage">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Bagage verwijderen"/>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="BUNDLE.getString(&quot;deleteLuggage&quot;)" type="code"/>
+                    </Property>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btDeleteLuggageActionPerformed"/>
@@ -1029,27 +1061,21 @@
           <SubComponents>
             <Container class="javax.swing.JSplitPane" name="linkTableSplitter">
               <Properties>
-                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                  <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                    <TitledBorder title="Overzichten"/>
-                  </Border>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="javax.swing.BorderFactory.createTitledBorder(BUNDLE.getString(&quot;summary&quot;))" type="code"/>
                 </Property>
                 <Property name="dividerLocation" type="int" value="600"/>
               </Properties>
               <AccessibilityProperties>
-                <Property name="AccessibleContext.accessibleName" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="BUNDLE.getString(&quot;overviews&quot;)" type="code"/>
-                </Property>
+                <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="BUNDLE.getString(&quot;overviews&quot;)"/>
               </AccessibilityProperties>
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JSplitPaneSupportLayout"/>
               <SubComponents>
                 <Container class="javax.swing.JPanel" name="linkCustomerTablePanel">
                   <Properties>
-                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                      <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                        <TitledBorder title="Klanten"/>
-                      </Border>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="javax.swing.BorderFactory.createTitledBorder(BUNDLE.getString(&quot;customer&quot;))" type="code"/>
                     </Property>
                   </Properties>
                   <Constraints>
@@ -1088,7 +1114,7 @@
                                   <Component id="cbSearchCustomer" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jScrollPane1" pref="502" max="32767" attributes="0"/>
+                              <Component id="jScrollPane1" pref="566" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -1208,7 +1234,7 @@
                                               <EmptySpace max="32767" attributes="0"/>
                                               <Component id="showHandledLuggage1" min="-2" max="-2" attributes="0"/>
                                           </Group>
-                                          <Component id="jScrollPane6" pref="565" max="32767" attributes="0"/>
+                                          <Component id="jScrollPane6" pref="570" max="32767" attributes="0"/>
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
                                   </Group>
@@ -1225,7 +1251,7 @@
                                           <Component id="showHandledLuggage1" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jScrollPane6" pref="478" max="32767" attributes="0"/>
+                                      <Component id="jScrollPane6" pref="539" max="32767" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -1309,7 +1335,7 @@
                                               <Component id="buttonSearchResort1" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                                               <Component id="cbResort1" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace min="0" pref="283" max="32767" attributes="0"/>
+                                              <EmptySpace min="0" pref="309" max="32767" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
@@ -1328,7 +1354,7 @@
                                           </Group>
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jScrollPane5" pref="475" max="32767" attributes="0"/>
+                                      <Component id="jScrollPane5" pref="535" max="32767" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -1347,13 +1373,8 @@
                                 <Component class="javax.swing.JTable" name="tblResort1">
                                   <Properties>
                                     <Property name="autoCreateRowSorter" type="boolean" value="true"/>
-                                    <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                                      <Table columnCount="4" rowCount="4">
-                                        <Column editable="true" title="Title 1" type="java.lang.Object"/>
-                                        <Column editable="true" title="Title 2" type="java.lang.Object"/>
-                                        <Column editable="true" title="Title 3" type="java.lang.Object"/>
-                                        <Column editable="true" title="Title 4" type="java.lang.Object"/>
-                                      </Table>
+                                    <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                                      <Connection code="new javax.swing.table.DefaultTableModel(&#xa;    new Object [][] {&#xa;        {null, null, null, null},&#xa;        {null, null, null, null},&#xa;        {null, null, null, null},&#xa;        {null, null, null, null}&#xa;    },&#xa;    BUNDLE.getStringArray(&quot;resortTableTitles&quot;)&#xa;)" type="code"/>
                                     </Property>
                                   </Properties>
                                 </Component>
@@ -1361,24 +1382,15 @@
                             </Container>
                             <Component class="javax.swing.JButton" name="buttonSearchResort1">
                               <Properties>
-                                <Property name="text" type="java.lang.String" value="Zoek"/>
+                                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                                  <Connection code="BUNDLE.getString(&quot;search&quot;)" type="code"/>
+                                </Property>
                               </Properties>
                             </Component>
                             <Component class="javax.swing.JComboBox" name="cbResort1">
                               <Properties>
-                                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                                  <StringArray count="10">
-                                    <StringItem index="0" value="Alle velden"/>
-                                    <StringItem index="1" value="Naam"/>
-                                    <StringItem index="2" value="Adres"/>
-                                    <StringItem index="3" value="Land"/>
-                                    <StringItem index="4" value="Stad"/>
-                                    <StringItem index="5" value="Telefoon"/>
-                                    <StringItem index="6" value="Email"/>
-                                    <StringItem index="7" value="Postcode"/>
-                                    <StringItem index="8" value=" "/>
-                                    <StringItem index="9" value=" "/>
-                                  </StringArray>
+                                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                                  <Connection code="new javax.swing.DefaultComboBoxModel(BUNDLE.getStringArray(&quot;resortTableAllFieldsLink&quot;))" type="code"/>
                                 </Property>
                               </Properties>
                             </Component>
@@ -1392,10 +1404,8 @@
             </Container>
             <Container class="javax.swing.JPanel" name="linkOptionsPanel">
               <Properties>
-                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                  <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                    <TitledBorder title="Opties"/>
-                  </Border>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="javax.swing.BorderFactory.createTitledBorder(BUNDLE.getString(&quot;options&quot;))" type="code"/>
                 </Property>
               </Properties>
 
@@ -1429,7 +1439,9 @@
               <SubComponents>
                 <Component class="javax.swing.JButton" name="linkButton">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Koppelen"/>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="BUNDLE.getString(&quot;connect&quot;)" type="code"/>
+                    </Property>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="linkButtonActionPerformed"/>
@@ -1437,7 +1449,9 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="refreshTables1">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Overzichten verversen"/>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="BUNDLE.getString(&quot;resetOverview&quot;)" type="code"/>
+                    </Property>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="refreshTables1ActionPerformed"/>
@@ -1445,7 +1459,9 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="cancelButton">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Annuleren"/>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="BUNDLE.getString(&quot;cancel&quot;)" type="code"/>
+                    </Property>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cancelButtonActionPerformed"/>
@@ -1509,10 +1525,8 @@
               <SubComponents>
                 <Container class="javax.swing.JPanel" name="jPanel2">
                   <Properties>
-                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                      <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                        <TitledBorder title="Nieuw Resort"/>
-                      </Border>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="javax.swing.BorderFactory.createTitledBorder(BUNDLE.getString(&quot;newResort&quot;))" type="code"/>
                     </Property>
                   </Properties>
 
@@ -1543,10 +1557,8 @@
                   <SubComponents>
                     <Container class="javax.swing.JPanel" name="jPanel5">
                       <Properties>
-                        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                          <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                            <TitledBorder title="Opties"/>
-                          </Border>
+                        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                          <Connection code="javax.swing.BorderFactory.createTitledBorder(BUNDLE.getString(&quot;options&quot;))" type="code"/>
                         </Property>
                       </Properties>
 
@@ -1578,7 +1590,9 @@
                       <SubComponents>
                         <Component class="javax.swing.JButton" name="buttonUpdateResort">
                           <Properties>
-                            <Property name="text" type="java.lang.String" value="Update Resort"/>
+                            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                              <Connection code="BUNDLE.getString(&quot;updateResort&quot;)" type="code"/>
+                            </Property>
                           </Properties>
                           <Events>
                             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonUpdateResortActionPerformed"/>
@@ -1586,7 +1600,9 @@
                         </Component>
                         <Component class="javax.swing.JButton" name="buttonDeleteResort">
                           <Properties>
-                            <Property name="text" type="java.lang.String" value="Verwijder resort"/>
+                            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                              <Connection code="BUNDLE.getString(&quot;deleteResort&quot;)" type="code"/>
+                            </Property>
                           </Properties>
                           <Events>
                             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonDeleteResortActionPerformed"/>
@@ -1596,10 +1612,8 @@
                     </Container>
                     <Container class="javax.swing.JPanel" name="jPanel6">
                       <Properties>
-                        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                          <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                            <TitledBorder title="Resort aanmaken"/>
-                          </Border>
+                        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                          <Connection code="javax.swing.BorderFactory.createTitledBorder(BUNDLE.getString(&quot;createResort&quot;))" type="code"/>
                         </Property>
                       </Properties>
 
@@ -1615,11 +1629,9 @@
                                               <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                                               <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
                                               <Component id="lblNaam" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                                                  <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                                              </Group>
+                                              <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
                                               <Component id="jLabel8" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
@@ -1631,7 +1643,7 @@
                                                   <EmptySpace max="-2" attributes="0"/>
                                                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                                                   <EmptySpace max="-2" attributes="0"/>
-                                                  <Component id="tfResortEmail2" max="32767" attributes="0"/>
+                                                  <Component id="tfResortEmail2" pref="72" max="32767" attributes="0"/>
                                               </Group>
                                               <Component id="tfResortPhone" max="32767" attributes="0"/>
                                               <Group type="102" alignment="0" attributes="0">
@@ -1702,7 +1714,9 @@
                       <SubComponents>
                         <Component class="javax.swing.JButton" name="btnCreateResort">
                           <Properties>
-                            <Property name="text" type="java.lang.String" value="Voeg toe"/>
+                            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                              <Connection code="BUNDLE.getString(&quot;add&quot;)" type="code"/>
+                            </Property>
                           </Properties>
                           <Events>
                             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCreateResortActionPerformed"/>
@@ -1719,37 +1733,51 @@
                         </Component>
                         <Component class="javax.swing.JLabel" name="jLabel8">
                           <Properties>
-                            <Property name="text" type="java.lang.String" value="E-mail "/>
+                            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                              <Connection code="BUNDLE.getString(&quot;email&quot;)" type="code"/>
+                            </Property>
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JLabel" name="jLabel6">
                           <Properties>
-                            <Property name="text" type="java.lang.String" value="Telefoon"/>
+                            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                              <Connection code="BUNDLE.getString(&quot;phoneNumber&quot;)" type="code"/>
+                            </Property>
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JLabel" name="jLabel5">
                           <Properties>
-                            <Property name="text" type="java.lang.String" value="Postcode"/>
+                            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                              <Connection code="BUNDLE.getString(&quot;postalCode&quot;)" type="code"/>
+                            </Property>
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JLabel" name="jLabel4">
                           <Properties>
-                            <Property name="text" type="java.lang.String" value="Adres"/>
+                            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                              <Connection code="BUNDLE.getString(&quot;address&quot;)" type="code"/>
+                            </Property>
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JLabel" name="jLabel3">
                           <Properties>
-                            <Property name="text" type="java.lang.String" value="Plaats"/>
+                            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                              <Connection code="BUNDLE.getString(&quot;city&quot;)" type="code"/>
+                            </Property>
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JLabel" name="jLabel2">
                           <Properties>
-                            <Property name="text" type="java.lang.String" value="Land"/>
+                            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                              <Connection code="BUNDLE.getString(&quot;country&quot;)" type="code"/>
+                            </Property>
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JLabel" name="lblNaam">
                           <Properties>
-                            <Property name="text" type="java.lang.String" value="Naam"/>
+                            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                              <Connection code="BUNDLE.getString(&quot;name&quot;)" type="code"/>
+                            </Property>
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JTextField" name="tfResortName">
@@ -1770,10 +1798,8 @@
                 </Container>
                 <Container class="javax.swing.JPanel" name="jPanel10">
                   <Properties>
-                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                      <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                        <TitledBorder title="Verblijfs overzicht"/>
-                      </Border>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="javax.swing.BorderFactory.createTitledBorder(BUNDLE.getString(&quot;summaryResort&quot;))" type="code"/>
                     </Property>
                   </Properties>
 
@@ -1783,7 +1809,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jScrollPane4" pref="927" max="32767" attributes="0"/>
+                                  <Component id="jScrollPane4" pref="978" max="32767" attributes="0"/>
                                   <Group type="102" attributes="0">
                                       <Component id="tfSearchResort" min="-2" pref="121" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
@@ -1813,7 +1839,7 @@
                                   </Group>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="jScrollPane4" pref="573" max="32767" attributes="0"/>
+                              <Component id="jScrollPane4" pref="606" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -1832,13 +1858,8 @@
                         <Component class="javax.swing.JTable" name="tblResort">
                           <Properties>
                             <Property name="autoCreateRowSorter" type="boolean" value="true"/>
-                            <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                              <Table columnCount="4" rowCount="4">
-                                <Column editable="true" title="Title 1" type="java.lang.Object"/>
-                                <Column editable="true" title="Title 2" type="java.lang.Object"/>
-                                <Column editable="true" title="Title 3" type="java.lang.Object"/>
-                                <Column editable="true" title="Title 4" type="java.lang.Object"/>
-                              </Table>
+                            <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                              <Connection code="new javax.swing.table.DefaultTableModel(&#xa;    new Object [][] {&#xa;        {null, null, null, null},&#xa;        {null, null, null, null},&#xa;        {null, null, null, null},&#xa;        {null, null, null, null}&#xa;    },&#xa;    BUNDLE.getStringArray(&quot;resortTableAllFields&quot;)&#xa;)" type="code"/>
                             </Property>
                           </Properties>
                         </Component>
@@ -1846,30 +1867,23 @@
                     </Container>
                     <Component class="javax.swing.JButton" name="buttonSearchResort">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Zoek"/>
+                        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                          <Connection code="BUNDLE.getString(&quot;search&quot;)" type="code"/>
+                        </Property>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JComboBox" name="cbResort">
                       <Properties>
-                        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                          <StringArray count="10">
-                            <StringItem index="0" value="Alle velden"/>
-                            <StringItem index="1" value="Naam"/>
-                            <StringItem index="2" value="Adres"/>
-                            <StringItem index="3" value="Land"/>
-                            <StringItem index="4" value="Stad"/>
-                            <StringItem index="5" value="Telefoon"/>
-                            <StringItem index="6" value="Email"/>
-                            <StringItem index="7" value="Postcode"/>
-                            <StringItem index="8" value=" "/>
-                            <StringItem index="9" value=" "/>
-                          </StringArray>
+                        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                          <Connection code="new javax.swing.DefaultComboBoxModel(new String[] { &quot;Alle velden&quot;, &quot;Naam&quot;, &quot;Adres&quot;, &quot;Land&quot;, &quot;Stad&quot;, &quot;Telefoon&quot;, &quot;Email&quot;, &quot;Postcode&quot; })" type="code"/>
                         </Property>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JButton" name="buttonRefresh">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Overzicht verversen"/>
+                        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                          <Connection code="BUNDLE.getString(&quot;resetOverview&quot;)" type="code"/>
+                        </Property>
                       </Properties>
                     </Component>
                   </SubComponents>

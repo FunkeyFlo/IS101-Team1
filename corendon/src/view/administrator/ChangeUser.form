@@ -46,10 +46,8 @@
   <SubComponents>
     <Container class="javax.swing.JPanel" name="userCreationPanel">
       <Properties>
-        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-            <TitledBorder title="Gebruiker aanmaken"/>
-          </Border>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="javax.swing.BorderFactory.createTitledBorder(BUNDLE.getString(&quot;createUser&quot;))" type="code"/>
         </Property>
       </Properties>
 
@@ -63,7 +61,7 @@
                       <Component id="tfLastName" alignment="0" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="chbUnlockFields" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="36" max="32767" attributes="0"/>
+                          <EmptySpace pref="63" max="32767" attributes="0"/>
                           <Component id="btCancel" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="createUser" min="-2" max="-2" attributes="0"/>
@@ -122,17 +120,23 @@
         </Component>
         <Component class="javax.swing.JLabel" name="firstNameLabel">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Voornaam"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="BUNDLE.getString(&quot;firstName&quot;)" type="code"/>
+            </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lastNameLabel">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Achternaam"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="BUNDLE.getString(&quot;lastName&quot;)" type="code"/>
+            </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="permissionLabel">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Gebruikersgroep"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="BUNDLE.getString(&quot;userGroup&quot;)" type="code"/>
+            </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JComboBox" name="permissionSelector">
@@ -148,7 +152,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="btCancel">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Annuleren"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="BUNDLE.getString(&quot;cancel&quot;)" type="code"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btCancelActionPerformed"/>
@@ -156,7 +162,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="createUser">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Aanpassen"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="BUNDLE.getString(&quot;modify&quot;)" type="code"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="createUserActionPerformed"/>
@@ -164,7 +172,9 @@
         </Component>
         <Component class="javax.swing.JCheckBox" name="chbUnlockFields">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Velden ontgrendelen"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="BUNDLE.getString(&quot;unlockFields&quot;)" type="code"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="chbUnlockFieldsActionPerformed"/>

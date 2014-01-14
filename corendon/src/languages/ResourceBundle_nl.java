@@ -21,11 +21,12 @@ public class ResourceBundle_nl extends ListResourceBundle {
 
     private Object[][] contents = {
         
-        // Universally used strings
-            { "administrator", "Beheerder" },
+        // Universally used strings            
+            { "add", "Toevoegen"},
             { "address", "Adres" },
             { "adjust", "Aanpassen" },
             { "allFields", "Alle velden" },
+            { "apply", "Toepassen" },
             { "cancel", "Annuleren" },
             { "city", "Plaats" },
             { "country", "Land" },
@@ -113,13 +114,10 @@ public class ResourceBundle_nl extends ListResourceBundle {
         // Login.java
             { "accountHasBeenLocked", "Dit account is vergrendeld. \n"
                 + "Neem contact op met uw beheerder." },
-            { "passwordIncorrect", "Wachtwoord is onjuist." },
-            { "usernameIncorrect", "Gebruikersnaam is onjuist." },
+            { "loginIncorrect", "Gebruikersnaam/Wachtwoord is incorrect." },
             
             //ResetPassword
-            {"changePasswordForUser","Wachtwoord aanpassen voor gebruiker: "},
-            {"apply","Aanpassen"},
-            
+            {"changePasswordForUser","Wachtwoord aanpassen voor gebruiker: "},                       
             
         // ChangeMyPassword.java
             { "changeMyPassword", "Wachtwoord veranderen" },
@@ -136,6 +134,7 @@ public class ResourceBundle_nl extends ListResourceBundle {
             { "accountIsLocked",
                 "Het gebruikersaccount is succesvol vergrendeld." },
             { "active", "Actief" },
+            { "administrator", "Beheerder" },
             { "createUserPrompt", 
                 "Weet u zeker dat u deze gebruiker wilt aanmaken?" },
             { "deleteUserPrompt", 

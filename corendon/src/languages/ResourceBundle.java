@@ -22,8 +22,8 @@ public class ResourceBundle extends ListResourceBundle {
     private Object[][] contents = {
         
         // Universally used strings
-            { "address", "Address" },
-            { "administrator", "Administrator" },
+            { "add", "Add"},
+            { "address", "Address" },            
             { "adjust", "Adjust" },
             { "allFields", "All fields" },
             { "cancel", "Cancel" },
@@ -113,8 +113,7 @@ public class ResourceBundle extends ListResourceBundle {
         // Login.java
             { "accountHasBeenLocked", "This account has been locked. \n"
                 + "Please contact your administrator." },
-            { "passwordIncorrect", "Password is incorrect." },
-            { "usernameIncorrect", "Username does not exist." },
+            { "loginIncorrect", "Username/Password is incorrect." },
             
             
             //ResetPassword.java
@@ -137,6 +136,7 @@ public class ResourceBundle extends ListResourceBundle {
             { "accountIsLocked",
                 "The account has successfully been locked." },
             { "active", "Active" },
+            { "administrator", "Administrator" },
             { "createUserPrompt", 
                 "Are you sure you want to create this user account?" },
             { "deleteUserPrompt", 

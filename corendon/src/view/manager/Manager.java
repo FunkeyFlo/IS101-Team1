@@ -43,7 +43,7 @@ public class Manager extends javax.swing.JFrame {
             = BUNDLE.getString("foundLuggage");
 
     private static final String HANDLED_LUGGAGE_GRAPH_NAME
-            = BUNDLE.getString("foundLuggage");
+            = BUNDLE.getString("handledLuggage");
 
     private static final String[] MONTHS = {BUNDLE.getString("Jan"),
         BUNDLE.getString("Feb"), BUNDLE.getString("Mar"), BUNDLE.getString("Apr"),
