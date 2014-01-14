@@ -14,8 +14,6 @@ import model.User;
 public class Login extends javax.swing.JFrame {
 
     private Component errorPopUp;
-    private String FUCK_YOU;
-
     private final ResourceBundle BUNDLE = ResourceBundle.getBundle("languages.ResourceBundle");
 
     /**
@@ -32,15 +30,14 @@ public class Login extends javax.swing.JFrame {
      *
      */
     public void doLogin() { 
-        User user = new User();
         Session session = new Session();
         QueryManager query = new QueryManager();
         String userName = tfUsername.getText().trim();
         userName = userName.toLowerCase();
-        user = query.getUserData(userName);
+        User user = query.getUserData(userName);
         String loginReturn = query.login(userName, tfPassword.getText().trim());
         int permissionId = user.getPermissionId();
-        boolean statusLocked = query.getLockState();
+        boolean statusLocked = query.getLockState(userName);
 
         if (statusLocked == false) {
             session.storeNames(userName);

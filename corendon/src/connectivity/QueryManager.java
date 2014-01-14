@@ -24,7 +24,6 @@ public class QueryManager {
     public final int MAX_INCORRECT_LOGINS = 3;
     public PreparedStatement preparedStatement = null;
 
-
     /**
      * Compares username and password to database entries, denies or grants
      * access depending on the result.
@@ -67,8 +66,9 @@ public class QueryManager {
      * @return boolean returns true if the amount of incorrect logins has
      * exceeded the maximum allowed amount.
      */
-    public boolean getLockState() {
-        return this.incorrectLogin >= MAX_INCORRECT_LOGINS;
+    public boolean getLockState(String tfUsername) {
+        User user = getUserData(tfUsername);
+        return user.getIncorrectLogin() >= MAX_INCORRECT_LOGINS;
     }
 
     /**
@@ -100,9 +100,7 @@ public class QueryManager {
             }
         } catch (SQLException e) {
             System.out.println(db.SQL_EXCEPTION + e.getMessage());
-        }
-        finally
-        {
+        } finally {
             db.closeConnection();
         }
         return user;
@@ -135,9 +133,7 @@ public class QueryManager {
             }
         } catch (SQLException e) {
             System.out.println(db.SQL_EXCEPTION + e.getMessage());
-        }
-        finally
-        {
+        } finally {
             db.closeConnection();
         }
         return user;
@@ -170,9 +166,7 @@ public class QueryManager {
             preparedStatement.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(QueryManager.class.getName()).log(Level.SEVERE, null, ex);
-        }
-          finally
-        {
+        } finally {
             db.closeConnection();
         }
     }
@@ -190,21 +184,19 @@ public class QueryManager {
             int permissionId) {
         try {
             db.openConnection();
-            
+
             String updateSQL = "UPDATE `user` SET `first_name` = ?, `last_name` = ?,`permission_id` = ? WHERE `username` = ?";
-                       
+
             preparedStatement = db.connection.prepareStatement(updateSQL);
             preparedStatement.setString(1, firstName);
             preparedStatement.setString(2, lastName);
             preparedStatement.setInt(3, permissionId);
-            preparedStatement.setString(4, username);          
-           
+            preparedStatement.setString(4, username);
+
             preparedStatement.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(QueryManager.class.getName()).log(Level.SEVERE, null, ex);
-        }
-          finally
-        {
+        } finally {
             db.closeConnection();
         }
     }
@@ -223,9 +215,7 @@ public class QueryManager {
             preparedStatement.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(QueryManager.class.getName()).log(Level.SEVERE, null, ex);
-        }
-          finally
-        {
+        } finally {
             db.closeConnection();
         }
     }
@@ -251,9 +241,7 @@ public class QueryManager {
             }
         } catch (SQLException e) {
             System.out.println(db.SQL_EXCEPTION + e.getMessage());
-        }
-          finally
-        {
+        } finally {
             db.closeConnection();
         }
 
@@ -278,9 +266,7 @@ public class QueryManager {
             preparedStatement.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(QueryManager.class.getName()).log(Level.SEVERE, null, ex);
-        }
-          finally
-        {
+        } finally {
             db.closeConnection();
         }
     }
@@ -302,9 +288,7 @@ public class QueryManager {
             preparedStatement.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(QueryManager.class.getName()).log(Level.SEVERE, null, ex);
-        }
-          finally
-        {
+        } finally {
             db.closeConnection();
         }
     }
@@ -313,7 +297,7 @@ public class QueryManager {
      * Increases incorrect login count by one on incorrect login attempt.
      */
     public void setIncorrectLogin() {
-        
+
         try {
             db.openConnection();
             preparedStatement = db.connection.prepareStatement("UPDATE `user` SET `incorrect_login` = `incorrect_login`"
@@ -322,9 +306,7 @@ public class QueryManager {
             preparedStatement.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(QueryManager.class.getName()).log(Level.SEVERE, null, ex);
-        }
-          finally
-        {
+        } finally {
             db.closeConnection();
         }
     }
@@ -340,9 +322,7 @@ public class QueryManager {
             preparedStatement.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(QueryManager.class.getName()).log(Level.SEVERE, null, ex);
-        }
-          finally
-        {
+        } finally {
             db.closeConnection();
         }
     }
@@ -363,9 +343,7 @@ public class QueryManager {
             preparedStatement.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(QueryManager.class.getName()).log(Level.SEVERE, null, ex);
-        }
-          finally
-        {
+        } finally {
             db.closeConnection();
         }
     }
@@ -379,7 +357,7 @@ public class QueryManager {
      * @return users that match the search argument.
      */
     public List<User> searchUserList(int dbField, String searchArg) {
-        
+
         List<User> users = new ArrayList<>();
         String sql, sqlSelect = "SELECT * FROM `user`";
 
@@ -419,9 +397,7 @@ public class QueryManager {
             }
         } catch (SQLException e) {
             System.out.println(db.SQL_EXCEPTION + e.getMessage());
-        }
-          finally
-        {
+        } finally {
             db.closeConnection();
         }
         return users;
@@ -462,9 +438,7 @@ public class QueryManager {
             }
         } catch (SQLException e) {
             System.out.println(tempCustomer.getDb().SQL_EXCEPTION + e.getMessage());
-        }
-          finally
-        {
+        } finally {
             db.closeConnection();
         }
         return tempCustomer;
@@ -550,9 +524,7 @@ public class QueryManager {
             }
         } catch (SQLException e) {
             System.out.println(customer.getDb().SQL_EXCEPTION + e.getMessage());
-        }
-          finally
-        {
+        } finally {
             db.closeConnection();
         }
         return customers;
@@ -576,7 +548,7 @@ public class QueryManager {
             String tfAddress, String tfPostalCode, String tfCity, String tfCountry,
             String tfEmail, String tfPhoneHome, String tfPhoneMobile) {
         try {
-             db.openConnection();
+            db.openConnection();
             preparedStatement = db.connection.prepareStatement("INSERT INTO `customer` (first_name, last_name, address,"
                     + "postal_code, city, country, email, phone_home, phone_mobile,"
                     + "date_changed, last_changed_by)"
@@ -595,9 +567,7 @@ public class QueryManager {
             db.closeConnection();
         } catch (SQLException ex) {
             Logger.getLogger(QueryManager.class.getName()).log(Level.SEVERE, null, ex);
-        }
-          finally
-        {
+        } finally {
             db.closeConnection();
         }
     }
@@ -655,9 +625,7 @@ public class QueryManager {
             preparedStatement.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(QueryManager.class.getName()).log(Level.SEVERE, null, ex);
-        }
-          finally
-        {
+        } finally {
             db.closeConnection();
         }
     }
@@ -693,9 +661,7 @@ public class QueryManager {
             }
         } catch (SQLException e) {
             System.out.println(tempLuggage.getDb().SQL_EXCEPTION + e.getMessage());
-        }
-          finally
-        {
+        } finally {
             db.closeConnection();
         }
         return tempLuggage;
@@ -793,9 +759,7 @@ public class QueryManager {
             }
         } catch (SQLException e) {
             System.out.println(tempLuggage.getDb().SQL_EXCEPTION + e.getMessage());
-        }
-          finally
-        {
+        } finally {
             db.closeConnection();
         }
         return luggages;
@@ -826,9 +790,7 @@ public class QueryManager {
             preparedStatement.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(QueryManager.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        finally
-        {
+        } finally {
             db.closeConnection();
         }
     }
@@ -858,10 +820,8 @@ public class QueryManager {
             preparedStatement.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(QueryManager.class.getName()).log(Level.SEVERE, null, ex);
-            
-        }
-          finally
-        {
+
+        } finally {
             db.closeConnection();
         }
     }
@@ -882,8 +842,7 @@ public class QueryManager {
             preparedStatement.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(QueryManager.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        finally{
+        } finally {
             db.closeConnection();
         }
     }
@@ -986,9 +945,7 @@ public class QueryManager {
             preparedStatement.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(QueryManager.class.getName()).log(Level.SEVERE, null, ex);
-        }
-          finally
-        {
+        } finally {
             db.closeConnection();
         }
     }
@@ -1025,9 +982,7 @@ public class QueryManager {
 
         } catch (SQLException e) {
             System.out.println(tempResort.getDb().SQL_EXCEPTION + e.getMessage());
-        }
-          finally
-        {
+        } finally {
             db.closeConnection();
         }
         return tempResort;
@@ -1087,9 +1042,7 @@ public class QueryManager {
             }
         } catch (SQLException e) {
             System.out.println(tempResort.getDb().SQL_EXCEPTION + e.getMessage());
-        }
-          finally
-        {
+        } finally {
             db.closeConnection();
         }
         return resorts;
@@ -1104,23 +1057,21 @@ public class QueryManager {
     public void linkCustomerIdToResort(int customerId, int resortId) {
         try {
             db.openConnection();
-        String sql = "UPDATE `customer` SET `resort_id` = " + resortId
-                + "WHERE `customer_id` =" + customerId;
-        
-        db.insertQuery(sql);
-        
+            String sql = "UPDATE `customer` SET `resort_id` = " + resortId
+                    + "WHERE `customer_id` =" + customerId;
+
+            db.insertQuery(sql);
+
             preparedStatement = db.connection.prepareStatement("UPDATE `customer` SET `resort_id` = ? WHERE `customer_id` = ?");
             preparedStatement.setInt(1, resortId);
             preparedStatement.setInt(1, customerId);
             preparedStatement.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(QueryManager.class.getName()).log(Level.SEVERE, null, ex);
-        }
-            finally
-        {
+        } finally {
             db.closeConnection();
         }
-        
+
     }
 
 }
