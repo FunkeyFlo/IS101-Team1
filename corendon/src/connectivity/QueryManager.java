@@ -17,9 +17,6 @@ import model.*;
 public class QueryManager {
 
     private final DatabaseManager db = new DatabaseManager();
-
-    private int permissionId, incorrectLogin, userId;
-    private String username, firstName, lastName, password;
     private boolean isLoggedIn = false;
     public final int MAX_INCORRECT_LOGINS = 3;
     public PreparedStatement preparedStatement = null;
@@ -63,6 +60,7 @@ public class QueryManager {
     /**
      * Determines whether a user's account has been locked.
      *
+     * @param tfUsername
      * @return boolean returns true if the amount of incorrect logins has
      * exceeded the maximum allowed amount.
      */
@@ -111,6 +109,7 @@ public class QueryManager {
      *
      * @param userId integer parameter to determine which user data is pulled
      * from the database.
+     * @return
      */
     public User getUserDataInt(int userId) {
         User user = new User();
@@ -253,7 +252,6 @@ public class QueryManager {
      * parameter.
      *
      * @param username parameter to specify user to be altered.
-     * @param dbField parameter that specifies the field to be altered.
      * @param newValue String value to be inputted into the specific database
      * field.
      */
@@ -408,6 +406,7 @@ public class QueryManager {
      *
      * @param tfInput the value databaseVariable has to be.
      * @param databaseVariable the column in the table that will be searched in.
+     * @return
      */
     public Customer getCustomerData(String tfInput, String databaseVariable) {
         Customer tempCustomer = new Customer();
@@ -635,6 +634,7 @@ public class QueryManager {
      *
      * @param tfInput
      * @param databaseVariable
+     * @return
      */
     public Luggage getLuggageData(String tfInput, String databaseVariable) {
         Luggage tempLuggage = new Luggage();
@@ -955,6 +955,7 @@ public class QueryManager {
      *
      * @param tfInput
      * @param databaseVariable
+     * @return
      */
     public Resort getResortData(String tfInput, String databaseVariable) {
         Resort tempResort = new Resort();

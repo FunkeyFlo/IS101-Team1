@@ -14,11 +14,10 @@ public class Customer {
     private int customerId, lastChangedBy, resortId;
     private String phoneHome, phoneMobile, firstName, lastName, email,
             postalCode, address, city, country, dateChanged;
-    private String FUCK_YOU;
 
     public Customer(int customerId, String firstName, String lastName, String address,
             String postalCode, String city, String country, String email,
-            String phoneHome, String phoneMobile, String dateChanged, 
+            String phoneHome, String phoneMobile, String dateChanged,
             int lastChangedBy, int resortId) {
         this.customerId = customerId;
         this.firstName = firstName;
@@ -142,11 +141,11 @@ public class Customer {
     public void setLastChangedBy(int lastChangedBy) {
         this.lastChangedBy = lastChangedBy;
     }
-    
+
     public int getResortId() {
         return resortId;
     }
-    
+
     public void setResortId(int resortId) {
         this.resortId = resortId;
     }

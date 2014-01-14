@@ -18,9 +18,8 @@ import model.Luggage;
  */
 public class ChangeLuggage extends javax.swing.JFrame {
 
-    private final DatabaseManager db = new DatabaseManager();
-    private  User user = new User();
-    private  Luggage luggage = new Luggage();    
+    private User user = new User();
+    private Luggage luggage = new Luggage();
     private final QueryManager query = new QueryManager();
 
     //    private Locale locale = new Locale("nl", "NL");
@@ -81,7 +80,7 @@ public class ChangeLuggage extends javax.swing.JFrame {
         if (value == JOptionPane.YES_OPTION) {
             confirm = true;
         }
-       
+
         return confirm;
     }
 

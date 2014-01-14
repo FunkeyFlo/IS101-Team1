@@ -13,7 +13,6 @@ public class Luggage {
     private int luggageId, customerId, status, lastChangedBy;
     private String description, location, dateLost, dateChanged,
             dateHandled, dateFound;
-    private String FUCK_YOU;
 
     // Constructor used to initiate the Luggage object.
     public Luggage(int luggageId, int customerId, String description,

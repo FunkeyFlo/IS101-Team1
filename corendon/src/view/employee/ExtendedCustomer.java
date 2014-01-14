@@ -38,7 +38,7 @@ public class ExtendedCustomer extends javax.swing.JFrame {
     private Component errorPopUp, confirmationPopUp;
     private String[] email, address;
     private String[] resortEmail;
-    
+
     private final ResourceBundle BUNDLE = ResourceBundle.getBundle("languages.ResourceBundle");
 
     /**
@@ -51,8 +51,7 @@ public class ExtendedCustomer extends javax.swing.JFrame {
         user = query.getUserDataInt(customer.getLastChangedBy());
         resort = query.getResortData(Integer.toString(customer.getResortId()), "resort_id");
         System.out.println(resort.getCountry());
-        
-        
+
         System.out.println("");
         resortEmail = seperateString(resort.getEmail(), "@");
         email = seperateString(customer.getEmail(), "@");
@@ -62,7 +61,7 @@ public class ExtendedCustomer extends javax.swing.JFrame {
 
         editInfoLabel.setText("Gegevens laatst gewijzigd door "
                 + user.getFirstName() + " " + user.getLastName()
-                + " op " + customer.getDateChanged().substring(0, 
+                + " op " + customer.getDateChanged().substring(0,
                         customer.getDateChanged().length() - 5));
 
         tfAddress1.setText(address[0]);
@@ -874,24 +873,24 @@ public class ExtendedCustomer extends javax.swing.JFrame {
         System.out.println(totalCorrectInput);
         if (totalCorrectInput == true) {
             finalCheck = confirmationPopUp("Nieuwe klantgegevens:         " + "   \n"
-                + "Voornaam: " + firstName + "   \n" + "Achternaam: " + lastName + "   \n"
-                + "Adress: " + address1 + " " + address2 + "   \n" + "Postcode: " + postalCode
-                + "   \n" + "Woonplaats: " + city + "   \n" + "Land: " + country + "   \n" + "Email: "
-                + email1 + "@" + email2 + "   \n" + "Telefoon: " + phoneHome + "   \n"
-                + "Mobiel: " + phoneMobile);
+                    + "Voornaam: " + firstName + "   \n" + "Achternaam: " + lastName + "   \n"
+                    + "Adress: " + address1 + " " + address2 + "   \n" + "Postcode: " + postalCode
+                    + "   \n" + "Woonplaats: " + city + "   \n" + "Land: " + country + "   \n" + "Email: "
+                    + email1 + "@" + email2 + "   \n" + "Telefoon: " + phoneHome + "   \n"
+                    + "Mobiel: " + phoneMobile);
         } else {
             finalCheck = false;
         }
 
         if (finalCheck == true) {
             query.updateCustomer(tfFirstName.getText().trim(),
-                tfLastName.getText().trim(),
-                tfAddress1.getText().trim() + " " + tfAddress2.getText().trim(),
-                tfPostalCode.getText().trim(),
-                tfCity.getText().trim(),
-                cbCountry.getSelectedItem().toString(),
-                tfEmail1.getText() + "@" + tfEmail2.getText(), tfPhoneHome.getText().trim(),
-                tfPhoneMobile.getText().trim());
+                    tfLastName.getText().trim(),
+                    tfAddress1.getText().trim() + " " + tfAddress2.getText().trim(),
+                    tfPostalCode.getText().trim(),
+                    tfCity.getText().trim(),
+                    cbCountry.getSelectedItem().toString(),
+                    tfEmail1.getText() + "@" + tfEmail2.getText(), tfPhoneHome.getText().trim(),
+                    tfPhoneMobile.getText().trim());
 
             tfAddress1.setEditable(false);
             tfAddress2.setEditable(false);

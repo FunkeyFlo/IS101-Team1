@@ -6,14 +6,13 @@ import connectivity.QueryManager;
 
 /**
  *
- * @author Team AwesomeSauce
+ * @author IS101
  */
 public class ChangePassword extends javax.swing.JFrame {
 
     private final QueryManager query = new QueryManager();
     private final Session session = new Session();
     private final ResourceBundle BUNDLE = ResourceBundle.getBundle("languages.ResourceBundle");
-    private String FUCK_YOU;
 
     /**
      * Creates new form ChangeMyPassword
@@ -28,14 +27,14 @@ public class ChangePassword extends javax.swing.JFrame {
     public void doChangePassword() {
 
         boolean oldPasswordCorrect = query.checkOldPassword(
-                oldPassword.getText().trim(), session.storedUsername);
+                oldPassword.getText().trim(), Session.storedUsername);
 
         if (oldPasswordCorrect == true) {
 
             if (newPassword.getText().trim().equals(
                     newPasswordRepeat.getText().trim())) {
                 query.updatePassword(
-                        newPassword.getText().trim(), session.storedUsername);
+                        newPassword.getText().trim(), Session.storedUsername);
                 dispose();
             } else {
                 warningLabel.setText(BUNDLE.getString("newPasswordNoMatch"));
@@ -215,19 +214,14 @@ public class ChangePassword extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ChangePassword.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ChangePassword.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ChangePassword.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(ChangePassword.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new ChangePassword().setVisible(true);
             }

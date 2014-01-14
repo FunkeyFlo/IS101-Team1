@@ -10,13 +10,11 @@ import org.apache.pdfbox.pdmodel.font.PDFont;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import main.*;
 import java.util.Calendar;
-import model.Customer;
-import model.Luggage;
-import model.User;
+import model.*;
 
 /**
  *
- * @author Team AwesomeSauce
+ * @author IS101
  */
 public class OverviewPrint {
 
@@ -24,7 +22,6 @@ public class OverviewPrint {
     private final User user = new User();
     private final Customer customer = new Customer();
     private final Luggage luggage = new Luggage();
-    private String FUCK_YOU;
 
     private final String DRAW_LINE = "_____________________________________________________________";
 
@@ -124,9 +121,7 @@ public class OverviewPrint {
             document.save(file);
             document.close();
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (COSVisitorException e) {
+        } catch (IOException | COSVisitorException e) {
             e.printStackTrace();
         }
 

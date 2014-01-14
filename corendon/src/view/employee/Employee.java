@@ -26,12 +26,10 @@ import model.Resort;
  */
 public class Employee extends javax.swing.JFrame {
 
-    private final DatabaseManager db = new DatabaseManager();
     private final QueryManager query = new QueryManager();
     private Luggage luggageModel = new Luggage();
     private Customer customerModel = new Customer();
     private Resort resortModel = new Resort();
-    private String FUCK_YOU;
 
     private List<Luggage> luggages;
     private List<Customer> customers;
@@ -1889,8 +1887,8 @@ public class Employee extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(ErrorPopUp,
                     "Maak een selectie in de tabel en probeer het nog eens.");
             isLinked = false;
-        }        boolean isError = false;
-
+        }
+        boolean isError = false;
 
         customerId = Integer.parseInt(customerToLink);
         luggageId = Integer.parseInt(luggageToLink);
@@ -2340,7 +2338,7 @@ public class Employee extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonDeleteResortActionPerformed
 
     private void buttonUpdateResortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonUpdateResortActionPerformed
-         boolean isError = false;
+        boolean isError = false;
         try {
             Session.storedResortId = tblResort.getValueAt(tblResort.getSelectedRow(), 0).toString();
         } catch (IndexOutOfBoundsException e) {

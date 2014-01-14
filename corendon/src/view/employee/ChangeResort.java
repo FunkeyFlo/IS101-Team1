@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package view.employee;
 
 import connectivity.DatabaseManager;
@@ -28,25 +27,19 @@ import model.User;
  */
 public class ChangeResort extends javax.swing.JFrame {
 
-
-    private final DatabaseManager db = new DatabaseManager();
     private Resort resort = new Resort();
-    private final QueryManager query = new QueryManager();   
+    private final QueryManager query = new QueryManager();
     private final ResourceBundle BUNDLE = ResourceBundle.getBundle("languages.ResourceBundle"); //, locale
     private Component errorPopUp, confirmationPopUp;
     private String[] resortEmail;
-    
-    
-    
-    
-    
+
     public ChangeResort() {
-        
-       resort = query.getResortData(Session.storedResortId, "resort_id");
-       resortEmail = seperateString(resort.getEmail(), "@");
-              
+
+        resort = query.getResortData(Session.storedResortId, "resort_id");
+        resortEmail = seperateString(resort.getEmail(), "@");
+
         initComponents();
-        
+
         tfResortAddress.setText(resort.getAddress());
         tfResortCity.setText(resort.getCity());
         tfResortCountry.setText(resort.getCountry());
@@ -55,7 +48,7 @@ public class ChangeResort extends javax.swing.JFrame {
         tfResortPostalCode.setText(resort.getPostalCode());
         tfResortEmail1.setText(resortEmail[0]);
         tfResortEmail2.setText(resortEmail[1]);
-        
+
         tfResortEmail1.setEditable(false);
         tfResortEmail2.setEditable(false);
         tfResortAddress.setEditable(false);
@@ -64,11 +57,9 @@ public class ChangeResort extends javax.swing.JFrame {
         tfResortName.setEditable(false);
         tfResortPhone.setEditable(false);
         tfResortPostalCode.setEditable(false);
-        
- 
-        
+
     }
-    
+
     private void errorPopUp(String errorMessage) {
         JOptionPane.showMessageDialog(errorPopUp, errorMessage);
     }
@@ -236,30 +227,29 @@ public class ChangeResort extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-    
-         boolean finalCheck = false;
-         
+
+        boolean finalCheck = false;
+
         finalCheck = confirmationPopUp("Nieuwe resort gegevens:         " + "   \n"
                 + "Naam: " + tfResortName.getText() + "   \n" + "Adres: " + tfResortAddress.getText() + "   \n"
                 + "Land: " + tfResortCountry.getText() + "  \n" + "Postcode: " + tfResortPostalCode.getText()
                 + "   \n" + "Stad: " + tfResortCity.getText() + "   \n" + "   \n" + "Email: "
                 + tfResortEmail1.getText() + "@" + tfResortEmail2.getText() + "   \n" + "Telefoon: " + tfResortPhone.getText());
-         
-         if(finalCheck == true){
-         query.updateResort(resort.getId(), 
-                 tfResortName.getText(), 
-                 tfResortAddress.getText(),
-                 tfResortCountry.getText(), 
-                 tfResortCity.getText(), 
-                 tfResortPhone.getText(), 
-                 tfResortEmail1.getText() + "@" + tfResortEmail2.getText(),
-                 tfResortPostalCode.getText());
-         
-         dispose();
-         }                 
+
+        if (finalCheck == true) {
+            query.updateResort(resort.getId(),
+                    tfResortName.getText(),
+                    tfResortAddress.getText(),
+                    tfResortCountry.getText(),
+                    tfResortCity.getText(),
+                    tfResortPhone.getText(),
+                    tfResortEmail1.getText() + "@" + tfResortEmail2.getText(),
+                    tfResortPostalCode.getText());
+
+            dispose();
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    
     private boolean confirmationPopUp(String message) {
         boolean confirm = false;
         final JOptionPane createUserPopPane = new JOptionPane(message,
@@ -288,12 +278,10 @@ public class ChangeResort extends javax.swing.JFrame {
         }
         return confirm;
     }
-    
-    
-    
-    
+
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        dispose(); 
+        dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void chbUnlockFieldsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chbUnlockFieldsActionPerformed
@@ -307,8 +295,6 @@ public class ChangeResort extends javax.swing.JFrame {
         tfResortPostalCode.setEditable(chbUnlockFields.isSelected());
     }//GEN-LAST:event_chbUnlockFieldsActionPerformed
 
-    
-    
     public String[] seperateString(String itemToSeperate, String sepChar) {
         String[] seperatedItems = {"", ""};
         if (itemToSeperate == null) {
@@ -326,10 +312,7 @@ public class ChangeResort extends javax.swing.JFrame {
             return seperatedItems;
         }
     }
-    
-    
- 
- 
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox chbUnlockFields;

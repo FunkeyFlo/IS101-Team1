@@ -17,14 +17,9 @@ import model.User;
  */
 public class SaveDocument extends javax.swing.JFrame {
 
-    private final DatabaseManager db = new DatabaseManager();
     private final QueryManager query = new QueryManager();
-    private final User user = new User();
     private final Customer customer = new Customer();
-    private final Luggage luggage = new Luggage();
-    private final Resort resort = new Resort();
     private Session session = new Session();
-    private String FUCK_YOU;
 
     private FileNameExtensionFilter filter = new FileNameExtensionFilter("PDF Documents", "pdf");
     private OverviewPrint pdfPrint = new OverviewPrint();

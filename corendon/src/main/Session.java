@@ -7,7 +7,7 @@ import connectivity.QueryManager;
 
 /**
  *
- * @author Team AwesomeSauce
+ * @author IS101
  */
 public class Session {
 
@@ -22,7 +22,7 @@ public class Session {
     public static List<Integer> itemsToPrint = new ArrayList<>();
 
     public static void storeNames(String inputUsername) {
-        
+
         QueryManager query = new QueryManager();
 
         User user = query.getUserData(inputUsername);

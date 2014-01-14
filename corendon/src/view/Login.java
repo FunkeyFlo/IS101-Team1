@@ -9,7 +9,7 @@ import main.Session;
 import model.User;
 
 /**
- * @author Team AwesomeSauce
+ * @author IS101
  */
 public class Login extends javax.swing.JFrame {
 
@@ -29,8 +29,7 @@ public class Login extends javax.swing.JFrame {
      * password is false.
      *
      */
-    public void doLogin() { 
-        Session session = new Session();
+    public void doLogin() {
         QueryManager query = new QueryManager();
         String userName = tfUsername.getText().trim();
         userName = userName.toLowerCase();
@@ -40,12 +39,12 @@ public class Login extends javax.swing.JFrame {
         boolean statusLocked = query.getLockState(userName);
 
         if (statusLocked == false) {
-            session.storeNames(userName);
+            Session.storeNames(userName);
             switch (loginReturn) {
                 case "Login success":
                     query.resetIncorrectLogin();
                     dispose();
-                    
+
                     if (permissionId == 1) {
                         Main.displayEmployee();
                     } else if (permissionId == 2) {
@@ -240,19 +239,14 @@ public class Login extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new Login().setVisible(true);
             }
