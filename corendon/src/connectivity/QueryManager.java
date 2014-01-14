@@ -645,13 +645,13 @@ public class QueryManager {
             preparedStatement.setString(2, lastName);
             preparedStatement.setString(3, address);
             preparedStatement.setString(4, postalCode);
-            preparedStatement.setString(6, city);
-            preparedStatement.setString(7, country);
-            preparedStatement.setString(8, email);
-            preparedStatement.setString(9, phoneHome);
-            preparedStatement.setInt(10, Session.storedUserId);
-            preparedStatement.setString(11, phoneMobile);
-            preparedStatement.setString(12, Session.storedCustomerId);
+            preparedStatement.setString(5, city);
+            preparedStatement.setString(6, country);
+            preparedStatement.setString(7, email);
+            preparedStatement.setString(8, phoneHome);
+            preparedStatement.setInt(9, Session.storedUserId);
+            preparedStatement.setString(10, phoneMobile);
+            preparedStatement.setString(11, Session.storedCustomerId);
             preparedStatement.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(QueryManager.class.getName()).log(Level.SEVERE, null, ex);
@@ -812,7 +812,7 @@ public class QueryManager {
     public void createLuggage(String customerId, String description,
             String location, int status) {
         if (customerId.equals("")) {
-            customerId = "NULL";
+            customerId = null;
         }
         try {
             db.openConnection();

@@ -188,6 +188,10 @@ public class ResourceBundle extends ListResourceBundle {
             
         // Employee.java
             { "hideHandled", "Hide handled luggage" },
+            { "unassigned", "Unassigned"},
+            { "found", "Found"},
+            { "lost", "Lost"},
+            { "handled", "Handled"},
             
         // ExtendedCustomer.java
             { "changeCustomerInfo", "Change customer information" },

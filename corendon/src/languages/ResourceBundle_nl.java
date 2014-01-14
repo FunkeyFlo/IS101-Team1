@@ -185,6 +185,11 @@ public class ResourceBundle_nl extends ListResourceBundle {
             
         // Employee.java
             { "hideHandled", "Afgehandelde bagage verbergen" },
+            { "unassigned", "Nog niet toegewezen"},
+            { "found", "Gevonden"},
+            { "lost", "Vermist"},
+            { "handled", "Afgehandeld"},
+            
             
         // ExtendedCustomer.java
             { "changeCustomerInfo", "Klant gegevens wijzigen" },
