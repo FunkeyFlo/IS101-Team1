@@ -200,10 +200,10 @@ public class Employee extends javax.swing.JFrame {
     
 
     private void searchResortTable(int dbField, String searchArgs) {
-        modelResort.setRowCount(0);
+        modelResort1.setRowCount(0);
         resorts = query.searchResortList(dbField, searchArgs);
         for (Resort resort : resorts) {
-            modelResort.addRow(new Object[]{new Integer(resort.getId()),
+            modelResort1.addRow(new Object[]{new Integer(resort.getId()),
                 resort.getName(),
                 resort.getAddress(),
                 resort.getCity(),
