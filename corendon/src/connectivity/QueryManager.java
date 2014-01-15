@@ -778,20 +778,55 @@ public class QueryManager {
         if (customerId.equals("")) {
             customerId = null;
         }
-        try {
-            db.openConnection();
-            preparedStatement = db.connection.prepareStatement("INSERT INTO `luggage` (customer_id, description, location, "
-                    + "status, last_changed_by , date_changed) VALUES (?, ?,? ,? ,? ,CURRENT_TIMESTAMP)");
-            preparedStatement.setString(1, customerId);
-            preparedStatement.setString(2, description);
-            preparedStatement.setString(3, location);
-            preparedStatement.setInt(4, status);
-            preparedStatement.setInt(5, Session.storedUserId);
-            preparedStatement.executeUpdate();
-        } catch (SQLException ex) {
-            Logger.getLogger(QueryManager.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            db.closeConnection();
+        if(status==1)
+            try {
+                db.openConnection();
+                preparedStatement = db.connection.prepareStatement("INSERT INTO `luggage` (customer_id, description, location, "
+                        + "status, last_changed_by , date_changed) VALUES (?, ?,? ,? ,? ,CURRENT_TIMESTAMP)");
+                preparedStatement.setString(1, customerId);
+                preparedStatement.setString(2, description);
+                preparedStatement.setString(3, location);
+                preparedStatement.setInt(4, status);
+                preparedStatement.setInt(5, Session.storedUserId);
+                preparedStatement.executeUpdate();
+            } catch (SQLException ex) {
+                Logger.getLogger(QueryManager.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                db.closeConnection();
+            }
+        if(status==2) {
+            try {
+                db.openConnection();
+                preparedStatement = db.connection.prepareStatement("INSERT INTO `luggage` (customer_id, description, location, "
+                        + "status, last_changed_by , date_found, date_changed) VALUES (?, ?,? ,? ,? ,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP)");
+                preparedStatement.setString(1, customerId);
+                preparedStatement.setString(2, description);
+                preparedStatement.setString(3, location);
+                preparedStatement.setInt(4, status);
+                preparedStatement.setInt(5, Session.storedUserId);
+                preparedStatement.executeUpdate();
+            } catch (SQLException ex) {
+                Logger.getLogger(QueryManager.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                db.closeConnection();
+            }
+        }
+        if(status==3) {
+            try {
+                db.openConnection();
+                preparedStatement = db.connection.prepareStatement("INSERT INTO `luggage` (customer_id, description, location, "
+                        + "status, last_changed_by ,date_found,date_handled, date_changed) VALUES (?, ?,? ,? ,? ,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP)");
+                preparedStatement.setString(1, customerId);
+                preparedStatement.setString(2, description);
+                preparedStatement.setString(3, location);
+                preparedStatement.setInt(4, status);
+                preparedStatement.setInt(5, Session.storedUserId);
+                preparedStatement.executeUpdate();
+            } catch (SQLException ex) {
+                Logger.getLogger(QueryManager.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                db.closeConnection();
+            }
         }
     }
 
