@@ -82,7 +82,7 @@ public class ResourceBundle extends ListResourceBundle {
                 "Lastname", "Address", "Postal code", "City", "Country",
                 "Email", "Phone - Home", "Phone - Mobile"} },
             
-            { "customerTableFieldsMin", new String[] { "Customer ID", "Firstname",
+            { "customerTableFieldsMin", new String[] { "Customer ID","Resort ID" ,"Firstname",
                 "Lastname", "Address", "Postal code", "City", "Country",
                 "Email"} },
             
