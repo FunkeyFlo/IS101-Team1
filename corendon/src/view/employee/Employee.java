@@ -1728,6 +1728,11 @@ public class Employee extends javax.swing.JFrame {
         jScrollPane4.setViewportView(tblResort);
 
         buttonSearchResort.setText(BUNDLE.getString("search"));
+        buttonSearchResort.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonSearchResortActionPerformed(evt);
+            }
+        });
 
         cbResort.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Alle velden", "Naam", "Adres", "Land", "Stad", "Telefoon", "Email", "Postcode" }));
 
@@ -2419,6 +2424,11 @@ public class Employee extends javax.swing.JFrame {
         int searchField = cbResort1.getSelectedIndex();
         searchResortTable1(searchField, tfSearchResort1.getText().trim());
     }//GEN-LAST:event_buttonSearchResort1ActionPerformed
+
+    private void buttonSearchResortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSearchResortActionPerformed
+     int searchField = cbResort.getSelectedIndex();
+        searchResortTable(searchField, tfSearchResort.getText().trim());
+    }//GEN-LAST:event_buttonSearchResortActionPerformed
 
     /**
      * @param args the command line arguments
