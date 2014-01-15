@@ -350,6 +350,7 @@ public class Employee extends javax.swing.JFrame {
         for (int i = 0; i < correctInput.length; i++) {
             if (correctInput[i] == false) {
                 totalCorrectInput = false;
+                break;
             } else {
                 totalCorrectInput = true;
             }
