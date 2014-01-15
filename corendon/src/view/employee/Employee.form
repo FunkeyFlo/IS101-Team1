@@ -129,14 +129,14 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="customerRegistrationPanel" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="customerRegistrationPanel" pref="344" max="32767" attributes="0"/>
                           <Component id="customerOptionsPanel" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Component id="customerTablePanel" max="32767" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -190,10 +190,10 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" attributes="0">
-                                          <Component id="tfEmail1" min="-2" pref="94" max="-2" attributes="0"/>
+                                          <Component id="tfEmail1" min="-2" pref="108" max="-2" attributes="0"/>
                                           <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                                           <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace pref="16" max="32767" attributes="0"/>
+                                          <EmptySpace max="32767" attributes="0"/>
                                           <Component id="tfEmail2" min="-2" pref="104" max="-2" attributes="0"/>
                                       </Group>
                                       <Component id="tfPhoneHome" max="32767" attributes="0"/>
@@ -209,23 +209,23 @@
                                       <Component id="jLabel20" alignment="0" min="-2" max="-2" attributes="0"/>
                                       <Component id="jLabel19" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="tfFirstName" max="32767" attributes="0"/>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="tfCity" min="-2" pref="116" max="-2" attributes="0"/>
-                                              <Component id="tfCountry" min="-2" pref="116" max="-2" attributes="0"/>
-                                              <Component id="tfPostalCode" alignment="0" min="-2" pref="116" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="tfAddress1" min="-2" pref="155" max="-2" attributes="0"/>
+                                      <Component id="tfLastName" alignment="1" max="32767" attributes="0"/>
+                                      <Group type="102" attributes="0">
+                                          <Component id="tfAddress1" min="-2" pref="143" max="-2" attributes="0"/>
                                           <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                                           <Component id="tfAddress2" max="32767" attributes="0"/>
                                       </Group>
-                                      <Component id="tfLastName" alignment="0" max="32767" attributes="0"/>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="tfCity" alignment="0" min="-2" pref="104" max="-2" attributes="0"/>
+                                              <Component id="tfCountry" min="-2" pref="104" max="-2" attributes="0"/>
+                                              <Component id="tfPostalCode" alignment="0" min="-2" pref="104" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                      </Group>
+                                      <Component id="tfFirstName" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -356,6 +356,7 @@
                 </Component>
                 <Component class="javax.swing.JTextField" name="tfEmail1">
                   <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfEmail1ActionPerformed"/>
                     <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfEmail1KeyPressed"/>
                   </Events>
                 </Component>
@@ -493,7 +494,7 @@
                               <Component id="refreshCustomerTable2" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jScrollPane3" pref="610" max="32767" attributes="0"/>
+                          <Component id="jScrollPane3" pref="612" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
