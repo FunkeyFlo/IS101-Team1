@@ -225,5 +225,9 @@ public class ResourceBundle_nl extends ListResourceBundle {
             { "itemsToPrint", "Lijst van onderdelen die geprint zullen worden" },
             { "printTicket", "Ophaalbewijs printen" },
             { "resortInfo", "Verblijfsgegevens" },
+            { "addToPrintList", "Toevoegen aan printlijst"},
+            { "hideHandled", "Afgehandelde baggage verbergen"},
+            { "hideMissing", "Vermiste baggage verbergen"},
+            { "hideFound", "Gevonden baggage verbergen"},
     };
 }

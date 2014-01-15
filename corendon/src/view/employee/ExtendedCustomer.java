@@ -347,7 +347,7 @@ public class ExtendedCustomer extends javax.swing.JFrame {
 
         lblCustomerCountry.setText(BUNDLE.getString("country"));
 
-        cbCountry.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Nederland", "Turkije", "Australië" }));
+        cbCountry.setModel(new javax.swing.DefaultComboBoxModel(BUNDLE.getStringArray("countriesComboBox")));
         cbCountry.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbCountryActionPerformed(evt);
@@ -550,9 +550,7 @@ public class ExtendedCustomer extends javax.swing.JFrame {
             new Object [][] {
 
             },
-            new String [] {
-                "Bagage ID", "Klant ID", "Omschrijving", "Locatie", "Datum Vermist", "Status"
-            }
+            BUNDLE.getStringArray("luggageTableFields")
         ) {
             Class[] types = new Class [] {
                 java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
@@ -572,18 +570,18 @@ public class ExtendedCustomer extends javax.swing.JFrame {
         luggageTable.setVerifyInputWhenFocusTarget(false);
         jScrollPane7.setViewportView(luggageTable);
 
-        btAddToList.setText("Toevoegen aan printlijst");
+        btAddToList.setText(BUNDLE.getString("addToPrintList"));
         btAddToList.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btAddToListActionPerformed(evt);
             }
         });
 
-        chbHideHandled.setText("Afgehandelde bagage verbergen");
+        chbHideHandled.setText(BUNDLE.getString("hideHandled"));
 
-        chbHideLost.setText("Vermist bagage verbergen");
+        chbHideLost.setText(BUNDLE.getString("hideMissing"));
 
-        chbHideFound.setText("Gevonde bagage verbergen");
+        chbHideFound.setText(BUNDLE.getString("hideFound"));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -715,13 +713,15 @@ public class ExtendedCustomer extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(customerRegistrationPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 46, Short.MAX_VALUE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(customerRegistrationPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 8, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -747,7 +747,11 @@ public class ExtendedCustomer extends javax.swing.JFrame {
 
     private void btAddToListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddToListActionPerformed
         try {
-            model.addElement((Integer) luggageTable.getValueAt(luggageTable.getSelectedRow(), 0));
+            int luggageID = Integer.parseInt(luggageTable.getValueAt(luggageTable.getSelectedRow(), 0).toString());
+            if(model.contains(luggageID))
+            errorPopUp("Dit baggagestuk is al toegevoegd");    
+            else
+            model.addElement((Integer) luggageID);
         } catch (IndexOutOfBoundsException e) {
             errorPopUp("Selecteer een baggagestuk om toe te voegen.");
         }

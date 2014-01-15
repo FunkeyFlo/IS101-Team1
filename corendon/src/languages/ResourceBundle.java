@@ -232,6 +232,10 @@ public class ResourceBundle extends ListResourceBundle {
             { "itemsToPrint", "List of items that will be printed" },
             { "printTicket", "Print luggage ticket" },
             { "resortInfo", "Resort information" },
+            { "addToPrintList", "Add to printlist"},
+            { "hideHandled", "Hide handled luggage"},
+            { "hideMissing", "Hide missing luggage"},
+            { "hideFound", "Hide found luggage"},
     };
     
     

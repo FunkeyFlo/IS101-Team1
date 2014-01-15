@@ -320,12 +320,8 @@
         </Component>
         <Component class="javax.swing.JComboBox" name="cbCountry">
           <Properties>
-            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="3">
-                <StringItem index="0" value="Nederland"/>
-                <StringItem index="1" value="Turkije"/>
-                <StringItem index="2" value="Australi&#xeb;"/>
-              </StringArray>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="new javax.swing.DefaultComboBoxModel(BUNDLE.getStringArray(&quot;countriesComboBox&quot;))" type="code"/>
             </Property>
           </Properties>
           <Events>
@@ -549,15 +545,8 @@
             <Component class="javax.swing.JTable" name="luggageTable">
               <Properties>
                 <Property name="autoCreateRowSorter" type="boolean" value="true"/>
-                <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="6" rowCount="0">
-                    <Column editable="false" title="Bagage ID" type="java.lang.Integer"/>
-                    <Column editable="false" title="Klant ID" type="java.lang.Integer"/>
-                    <Column editable="false" title="Omschrijving" type="java.lang.String"/>
-                    <Column editable="false" title="Locatie" type="java.lang.String"/>
-                    <Column editable="false" title="Datum Vermist" type="java.lang.String"/>
-                    <Column editable="false" title="Status" type="java.lang.String"/>
-                  </Table>
+                <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="new javax.swing.table.DefaultTableModel(&#xa;    new Object [][] {&#xa;&#xa;    },&#xa;    BUNDLE.getStringArray(&quot;luggageTableFields&quot;)&#xa;) {&#xa;    Class[] types = new Class [] {&#xa;        java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class&#xa;    };&#xa;    boolean[] canEdit = new boolean [] {&#xa;        false, false, false, false, false, false&#xa;    };&#xa;&#xa;    public Class getColumnClass(int columnIndex) {&#xa;        return types [columnIndex];&#xa;    }&#xa;&#xa;    public boolean isCellEditable(int rowIndex, int columnIndex) {&#xa;        return canEdit [columnIndex];&#xa;    }&#xa;}" type="code"/>
                 </Property>
                 <Property name="verifyInputWhenFocusTarget" type="boolean" value="false"/>
               </Properties>
@@ -566,7 +555,9 @@
         </Container>
         <Component class="javax.swing.JButton" name="btAddToList">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Toevoegen aan printlijst"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="BUNDLE.getString(&quot;addToPrintList&quot;)" type="code"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btAddToListActionPerformed"/>
@@ -574,17 +565,23 @@
         </Component>
         <Component class="javax.swing.JCheckBox" name="chbHideHandled">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Afgehandelde bagage verbergen"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="BUNDLE.getString(&quot;hideHandled&quot;)" type="code"/>
+            </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JCheckBox" name="chbHideLost">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Vermist bagage verbergen"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="BUNDLE.getString(&quot;hideMissing&quot;)" type="code"/>
+            </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JCheckBox" name="chbHideFound">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Gevonde bagage verbergen"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="BUNDLE.getString(&quot;hideFound&quot;)" type="code"/>
+            </Property>
           </Properties>
         </Component>
       </SubComponents>
