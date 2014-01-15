@@ -116,7 +116,13 @@ public class ResourceBundle_nl extends ListResourceBundle {
                 "Adres", "Land", "Stad", "Telefoon", "Email", "Postcode" } },
             
             { "resortTableAllFields", new String[] { "Resort ID", "Resort naam",
-                "Adres", "Land", "Stad", "Telefoon", "Email", "Postcode"} },
+                "Adres", "Land", "Stad", "Telefoon", "Email", "Postcode"} 
+            },
+            
+            {"confirmationChangeCustomer", new String[] { "Nieuwe klantgegevens:",
+                "Voornaam:", "Achternaam:", "Adres:", "Postcode:", "Woonplaats:", "Land:",
+                "Email:", "Telefoon thuis:", "Telefoon mobiel:"} 
+            },
         
         // Toolbar
             { "changePassword", "Wachtwoord wijzigen" },
@@ -229,5 +235,18 @@ public class ResourceBundle_nl extends ListResourceBundle {
             { "hideHandled", "Afgehandelde baggage verbergen"},
             { "hideMissing", "Vermiste baggage verbergen"},
             { "hideFound", "Gevonden baggage verbergen"},
+            
+        // PopUps used in various classes
+            {"enterFirstName", "Voer een voornaam in."},
+            {"enterLastName", "Voer een achternaam in."},
+            {"enterAddress", "Voer een adres in."},
+            {"enterPostalCode", "Voer een postcode in."},
+            {"enterCity", "Voer een woonplaats in."},
+            {"enterEmail", "Voer een email adres in."},
+            {"enterPhoneHome", "Voer een geldig thuisnummer in."},
+            {"enterPhoneMobile", "Voer een geldig mobiel nummer in."},
+            {"pressButton", "Druk op een knop."},
+            {"selectLuggageToAdd", "Selecteer een baggagestuk om toe te voegen."},
+            {"luggageAlreadyAdded", "Dit baggagestuk is al toegevoegd."},
     };
 }

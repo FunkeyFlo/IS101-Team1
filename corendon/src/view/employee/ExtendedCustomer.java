@@ -59,9 +59,9 @@ public class ExtendedCustomer extends javax.swing.JFrame {
 
         initComponents();
 
-        editInfoLabel.setText("Gegevens laatst gewijzigd door "
+        editInfoLabel.setText(BUNDLE.getString("lastChangedBy")
                 + user.getFirstName() + " " + user.getLastName()
-                + " op " + customer.getDateChanged().substring(0,
+                + BUNDLE.getString("on") + customer.getDateChanged().substring(0,
                         customer.getDateChanged().length() - 5));
 
         tfAddress1.setText(address[0]);
@@ -116,9 +116,9 @@ public class ExtendedCustomer extends javax.swing.JFrame {
         customer = query.getCustomerData(Session.storedCustomerId, "customer_id");
         user = query.getUserDataInt(customer.getLastChangedBy());
 
-        editInfoLabel.setText("Gegevens laatst gewijzigd door "
+        editInfoLabel.setText(BUNDLE.getString("lastChangedBy")
                 + user.getFirstName() + " " + user.getLastName()
-                + " op " + customer.getDateChanged().substring(0,
+                + BUNDLE.getString("on") + customer.getDateChanged().substring(0,
                         customer.getDateChanged().length() - 5));
 
         modelLuggage = (DefaultTableModel) this.luggageTable.getModel();
@@ -200,7 +200,7 @@ public class ExtendedCustomer extends javax.swing.JFrame {
                 JOptionPane.WARNING_MESSAGE,
                 JOptionPane.YES_NO_OPTION);
         final JDialog dialog = new JDialog((Frame) confirmationPopUp,
-                "Druk op een knop", true);
+                BUNDLE.getString("pressButton"), true);
         dialog.setContentPane(createUserPopPane);
         createUserPopPane.addPropertyChangeListener(
                 new PropertyChangeListener() {
@@ -749,11 +749,11 @@ public class ExtendedCustomer extends javax.swing.JFrame {
         try {
             int luggageID = Integer.parseInt(luggageTable.getValueAt(luggageTable.getSelectedRow(), 0).toString());
             if(model.contains(luggageID))
-            errorPopUp("Dit baggagestuk is al toegevoegd");    
+            errorPopUp(BUNDLE.getString("luggageAlreadyAdded"));    
             else
             model.addElement((Integer) luggageID);
         } catch (IndexOutOfBoundsException e) {
-            errorPopUp("Selecteer een baggagestuk om toe te voegen.");
+            errorPopUp(BUNDLE.getString("selectLuggageToAdd"));
         }
     }//GEN-LAST:event_btAddToListActionPerformed
 
@@ -801,48 +801,49 @@ public class ExtendedCustomer extends javax.swing.JFrame {
         String email2 = tfEmail2.getText().trim();
         String phoneHome = tfPhoneHome.getText().trim();
         String phoneMobile = tfPhoneMobile.getText().trim();
+        String[] popUpMsg = BUNDLE.getStringArray("confirmationChangeCustomer");
 
         boolean correctInput[] = new boolean[8];
         boolean totalCorrectInput = true;
         boolean finalCheck;
 
         if (firstName.equals("")) {
-            errorPopUp("Vul een voornaam in en probeer het nog eens.");
+            errorPopUp(BUNDLE.getString("enterFirstName"));
             correctInput[0] = false;
         } else {
             correctInput[0] = true;
         }
 
         if (lastName.equals("")) {
-            errorPopUp("Vul een achternaam in en probeer het nog eens.");
+            errorPopUp(BUNDLE.getString("enterLastName"));
             correctInput[1] = false;
         } else {
             correctInput[1] = true;
         }
 
         if (address1.equals("") || address2.equals("")) {
-            errorPopUp("Vul een adress in en probeer het nog eens.");
+            errorPopUp(BUNDLE.getString("enterAddress"));
             correctInput[2] = false;
         } else {
             correctInput[2] = true;
         }
 
         if (postalCode.equals("")) {
-            errorPopUp("Vul een postcode in en probeer het nog eens.");
+            errorPopUp(BUNDLE.getString("enterPostalCode"));
             correctInput[3] = false;
         } else {
             correctInput[3] = true;
         }
 
         if (city.equals("")) {
-            errorPopUp("Vul een woonplaats in en probeer het nog eens.");
+            errorPopUp(BUNDLE.getString("enterCity"));
             correctInput[4] = false;
         } else {
             correctInput[4] = true;
         }
 
         if (email1.equals("") || email2.equals("")) {
-            errorPopUp("Vul een email in en probeer het nog eens.");
+            errorPopUp(BUNDLE.getString("enterEmail"));
             correctInput[5] = false;
         } else {
             correctInput[5] = true;
@@ -853,7 +854,7 @@ public class ExtendedCustomer extends javax.swing.JFrame {
         } else if (phoneHome.matches("[0-9]+")) {
             correctInput[6] = true;
         } else {
-            errorPopUp("Vul een geldig thuisnummer in en probeer het nog eens.");
+            errorPopUp(BUNDLE.getString("enterPhoneHome"));
             correctInput[6] = false;
         }
 
@@ -862,7 +863,7 @@ public class ExtendedCustomer extends javax.swing.JFrame {
         } else if (phoneMobile.matches("[0-9]+")) {
             correctInput[7] = true;
         } else {
-            errorPopUp("Vul een geldig  mobiel nummer in en probeer het nog eens.");
+            errorPopUp(BUNDLE.getString("enterPhoneMobile"));
             correctInput[7] = false;
         }
 
@@ -876,12 +877,12 @@ public class ExtendedCustomer extends javax.swing.JFrame {
         }
         System.out.println(totalCorrectInput);
         if (totalCorrectInput == true) {
-            finalCheck = confirmationPopUp("Nieuwe klantgegevens:         " + "   \n"
-                    + "Voornaam: " + firstName + "   \n" + "Achternaam: " + lastName + "   \n"
-                    + "Adress: " + address1 + " " + address2 + "   \n" + "Postcode: " + postalCode
-                    + "   \n" + "Woonplaats: " + city + "   \n" + "Land: " + country + "   \n" + "Email: "
-                    + email1 + "@" + email2 + "   \n" + "Telefoon: " + phoneHome + "   \n"
-                    + "Mobiel: " + phoneMobile);
+            finalCheck = confirmationPopUp(popUpMsg[0] + "   \n"
+                    + popUpMsg[1] + firstName + "   \n" + popUpMsg[2] + lastName + "   \n"
+                    + popUpMsg[3] + address1 + " " + address2 + "   \n" + popUpMsg[4] + postalCode
+                    + "   \n" + popUpMsg[5] + city + "   \n" + popUpMsg[6] + country + "   \n" + popUpMsg[7]
+                    + email1 + "@" + email2 + "   \n" + popUpMsg[8] + phoneHome + "   \n"
+                    + popUpMsg[9] + phoneMobile);
         } else {
             finalCheck = false;
         }
