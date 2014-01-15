@@ -25,16 +25,21 @@ public class Resort {
      * @param city
      * @param postalCode
      */
-    public Resort(int id, String phone, String email, String name,
-            String address, String country, String city, String postalCode) {
+    public Resort(int id, String name, String country, String city,
+            String address, String postalCode, String phone, String email) {
         this.id = id;
-        this.phone = phone;
-        this.email = email;
         this.name = name;
-        this.address = address;
         this.country = country;
         this.city = city;
+        this.address = address;
         this.postalCode = postalCode;
+        this.phone = phone;
+        this.email = email;
+        
+      
+      
+        
+       
     }
 
     public Resort() {

@@ -110,7 +110,7 @@ public class ResourceBundle_nl extends ListResourceBundle {
             { "countriesComboBox", new String[] { "Nederland", "Turkije", "Australië" } },
             
             { "resortTableTitles", new String[] { "Resort ID", "Resort naam",
-                "Adres", "Land", "Stad", "Telefoon", "Email", "Postcode"} },
+                "Land", "Plaats", "Adres", "Postcode", "Telefoon", "E-mail"} },
             
             { "resortTableAllFieldsLink", new String [] { "Alle velden", "Naam",
                 "Adres", "Land", "Stad", "Telefoon", "Email", "Postcode" } },

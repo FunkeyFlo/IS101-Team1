@@ -1069,12 +1069,13 @@ public class QueryManager {
             while (result.next()) {
                 resorts.add(new Resort(result.getInt("resort_id"),
                         result.getString("resort_name"),
-                        result.getString("address"),
                         result.getString("country"),
                         result.getString("city"),
+                        result.getString("address"),
+                        result.getString("postal_code"),
                         result.getString("phone_resort"),
-                        result.getString("email"),
-                        result.getString("postal_code")));
+                        result.getString("email")          
+                ));
             }
         } catch (SQLException e) {
             System.out.println(tempResort.getDb().SQL_EXCEPTION + e.getMessage());
