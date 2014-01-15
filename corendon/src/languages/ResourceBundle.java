@@ -106,6 +106,19 @@ public class ResourceBundle extends ListResourceBundle {
             
             { "userTypes", new String[] { "Employee", "Manager", "Administrator" } },
             
+            { "countriesComboBox", new String[] { "Netherlands", "Turkey", "Australia" } },
+            
+            { "resortTableTitles", new String[] { "Resort ID", "Resort name", 
+                "Address", "Country", "City", "Phone number", "Email", "Postal Code" } },
+            
+            { "resortTableAllFieldsLink", new String [] { "All fields", "Name",
+                "Adress", "Country", "City", "Phone number", "Email", "Postal Code" } },
+            
+            { "resortTableAllFields", new String[] { "Resort ID", "Resort name", 
+                "Address", "Country", "City", "Phone number", "Email", "Postal Code" } },
+            
+            
+            
         // Toolbar
             { "changePassword", "Change Password" },
             { "logout", "Logout" },
@@ -192,6 +205,25 @@ public class ResourceBundle extends ListResourceBundle {
             { "found", "Found"},
             { "lost", "Lost"},
             { "handled", "Handled"},
+            { "registerCustomer", "Register Customer"},
+            { "customer", "Klant"},
+            { "extensiveCustomerData", "Extended customer data" },
+            { "deleteCustomer", "Delete customer" },
+            { "summaryCustomerRegister", "Customer summary and registration" },
+            { "registerLuggage", "Register luggage"},
+            { "modifyLuggage", "Modify luggage"},
+            { "proofPrint", "Print receipt"},
+            { "deleteLuggage", "Delete luggage"},
+            { "summaryLuggageRegister", "Luggage summary and registration"},
+            { "summary", "Summary"},
+            { "connect", "Link"},
+            { "newResort", "New resort"},
+            { "updateResort", "Update resort"},
+            { "deleteResort", "Delete resort"},
+            { "createResort", "Create resort"},
+            { "summaryResort", "Resort summary"},
+           
+            
             
         // ExtendedCustomer.java
             { "changeCustomerInfo", "Change customer information" },

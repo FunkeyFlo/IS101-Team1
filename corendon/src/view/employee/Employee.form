@@ -1571,7 +1571,7 @@
                                       <Component id="buttonDeleteResort" max="32767" attributes="0"/>
                                       <Component id="buttonUpdateResort" max="32767" attributes="0"/>
                                   </Group>
-                                  <EmptySpace pref="219" max="32767" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -1643,7 +1643,7 @@
                                                   <EmptySpace max="-2" attributes="0"/>
                                                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                                                   <EmptySpace max="-2" attributes="0"/>
-                                                  <Component id="tfResortEmail2" pref="72" max="32767" attributes="0"/>
+                                                  <Component id="tfResortEmail2" pref="90" max="32767" attributes="0"/>
                                               </Group>
                                               <Component id="tfResortPhone" max="32767" attributes="0"/>
                                               <Group type="102" alignment="0" attributes="0">
@@ -1809,7 +1809,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jScrollPane4" pref="978" max="32767" attributes="0"/>
+                                  <Component id="jScrollPane4" pref="1019" max="32767" attributes="0"/>
                                   <Group type="102" attributes="0">
                                       <Component id="tfSearchResort" min="-2" pref="121" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
