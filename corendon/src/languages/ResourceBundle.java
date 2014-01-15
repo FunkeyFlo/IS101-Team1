@@ -1,16 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package languages;
 
 import java.util.ListResourceBundle;
 
 /**
  *
- * @author Flo
+ * @author Team AwesomeSauce
  */
 public class ResourceBundle extends ListResourceBundle {
 
@@ -26,6 +20,7 @@ public class ResourceBundle extends ListResourceBundle {
             { "address", "Address" },            
             { "adjust", "Adjust" },
             { "allFields", "All fields" },
+            { "apply", "Apply" },
             { "cancel", "Cancel" },
             { "city", "City" },
             { "country", "Country" },
@@ -70,19 +65,25 @@ public class ResourceBundle extends ListResourceBundle {
             { "update", "Update" },
             
         // StringArrays
+            { "confirmationChangeCustomer", new String[] { "New customer data:",
+                "First name:", "Last name:", "Address:", "Postal Code:", "City:", "Country:",
+                "Email:", "Phone home:", "Phone mobile:"} },
+            
+            { "countriesComboBox", new String[] { "Netherlands", "Turkey", "Australia" } },
+            
             { "customerSearchFields", new String[] { "All fields", "Customer ID", "Firstname",
                 "Lastname", "Address", "Postal code", "City", "Country",
                 "Email", "Phone - Home", "Phone - Mobile"} },
             
-            { "customerSearchFieldsMin", new String[] { "All fields", "Customer ID", "Firstname",
-                "Lastname", "Address", "Postal code", "City", "Country",
+            { "customerSearchFieldsMin", new String[] { "All fields", "Customer ID", 
+                "Firstname", "Lastname", "Address", "Postal code", "City", "Country",
                 "Email"} },
             
             { "customerTableFields", new String[] { "Customer ID", "Firstname",
                 "Lastname", "Address", "Postal code", "City", "Country",
                 "Email", "Phone - Home", "Phone - Mobile"} },
             
-            { "customerTableFieldsMin", new String[] { "Customer ID","Resort ID" ,"Firstname",
+            { "customerTableFieldsMin", new String[] { "Customer ID", "Firstname",
                 "Lastname", "Address", "Postal code", "City", "Country",
                 "Email"} },
             
@@ -96,6 +97,18 @@ public class ResourceBundle extends ListResourceBundle {
                 "May", "June", "July", "August", "September", "October",
                 "November", "December" } },
             
+            { "resortSearchFields", new String[] { "All fields", "Resort ID", "Resort name",
+                "Country", "City", "Address", "Postalcode", "Phone Number", "E-mail" } },
+                                  
+            { "resortTableAllFields", new String[] { "Resort ID", "Resort name", 
+                "Address", "Country", "City", "Phone number", "Email", "Postal Code" } },
+            
+            { "resortTableAllFieldsLink", new String [] { "All fields", "Name",
+                "Adress", "Country", "City", "Phone number", "Email", "Postal Code" } },
+            
+            { "resortTableTitles", new String[] { "Resort ID", "Resort name", 
+                "Address", "Country", "City", "Phone number", "Email", "Postal Code" } },
+            
             { "statuses", new String[] { "Lost", "Found", "Handled" } },
             
             { "userSearchFields", new String[] { "All fields", "User ID", "Firstname",
@@ -105,26 +118,7 @@ public class ResourceBundle extends ListResourceBundle {
                 "Lastname", "User Group", "Account State" } },
             
             { "userTypes", new String[] { "Employee", "Manager", "Administrator" } },
-            
-            { "countriesComboBox", new String[] { "Netherlands", "Turkey", "Australia" } },
-            
-            { "resortTableTitles", new String[] { "Resort ID", "Resort name", 
-                "Address", "Country", "City", "Phone number", "Email", "Postal Code" } },
-            
-            { "resortTableAllFieldsLink", new String [] { "All fields", "Name",
-                "Adress", "Country", "City", "Phone number", "Email", "Postal Code" } },
-            
-            { "resortTableAllFields", new String[] { "Resort ID", "Resort name", 
-                "Address", "Country", "City", "Phone number", "Email", "Postal Code" } },
-            
-            {"confirmationChangeCustomer", new String[] { "New customer data:",
-                "First name:", "Last name:", "Address:", "Postal Code:", "City:", "Country:",
-                "Email:", "Phone home:", "Phone mobile:"} 
-            },
-            
-            
-            
-            
+             
         // Toolbar
             { "changePassword", "Change Password" },
             { "logout", "Logout" },
@@ -133,13 +127,10 @@ public class ResourceBundle extends ListResourceBundle {
             { "accountHasBeenLocked", "This account has been locked. \n"
                 + "Please contact your administrator." },
             { "loginIncorrect", "Username/Password is incorrect." },
-            
-            
-            //ResetPassword.java
+                        
+        //ResetPassword.java
             {"changePasswordForUser", "Change password" },
-            {"apply", "Apply"},
-            
-            
+                        
         // ChangeMyPassword.java           
             { "changeMyPassword", "Change Password" },
             { "currentPasswordIncorrect", "Current password is incorrect." },
@@ -203,9 +194,7 @@ public class ResourceBundle extends ListResourceBundle {
             { "Oct", "Oct" },
             { "Nov", "Nov" },
             { "Dec", "Dec" },
-            
-          
-            
+         
         // Employee.java
             { "hideHandled", "Hide handled luggage" },
             { "unassigned", "Unassigned"},
@@ -228,9 +217,7 @@ public class ResourceBundle extends ListResourceBundle {
             { "updateResort", "Update resort"},
             { "deleteResort", "Delete resort"},
             { "createResort", "Create resort"},
-            { "summaryResort", "Resort summary"},
-           
-            
+            { "summaryResort", "Resort summary"},                      
             
         // ExtendedCustomer.java
             { "changeCustomerInfo", "Change customer information" },
@@ -255,11 +242,6 @@ public class ResourceBundle extends ListResourceBundle {
             {"enterPhoneMobile", "Enter a valid mobile phonenumber"},
             {"pressButton", "Press a button"},
             {"selectLuggageToAdd", "Select luggage to add to list."},
-            {"luggageAlreadyAdded", "This luggage has already been added to the list."},
-            
-    };
-    
-    
-    
-    
+            {"luggageAlreadyAdded", "This luggage has already been added to the list."},            
+    };        
 }

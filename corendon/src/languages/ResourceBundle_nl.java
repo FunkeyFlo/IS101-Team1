@@ -1,16 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package languages;
 
 import java.util.ListResourceBundle;
 
 /**
  *
- * @author Flo
+ * @author TeamAwesomeSauce
  */
 public class ResourceBundle_nl extends ListResourceBundle {
 
@@ -28,7 +22,7 @@ public class ResourceBundle_nl extends ListResourceBundle {
             { "allFields", "Alle velden" },
             { "apply", "Toepassen" },
             { "cancel", "Annuleren" },
-            { "city", "Plaats" },
+            { "city", "Stad" },
             { "country", "Land" },
             { "create", "Aanmaken" },
             { "customerId", "Klant nummer" },
@@ -71,6 +65,12 @@ public class ResourceBundle_nl extends ListResourceBundle {
             { "update", "Update" },
             
         // StringArrays
+            { "confirmationChangeCustomer", new String[] { "Nieuwe klantgegevens:",
+                "Voornaam:", "Achternaam:", "Adres:", "Postcode:", "Woonplaats:", "Land:",
+                "Email:", "Telefoon thuis:", "Telefoon mobiel:"} },
+            
+            { "countriesComboBox", new String[] { "Nederland", "Turkije", "Australië" } },
+            
             { "customerSearchFields", new String[] { "Alle velden", "Klant nummer", 
                 "Voornaam", "Achternaam", "Adres", "Postcode", "Stad", "Land",
                 "Email", "Tel. thuis", "Tel. mobiel"} },
@@ -97,6 +97,18 @@ public class ResourceBundle_nl extends ListResourceBundle {
                 "Mei", "Juni", "Juli", "Augustus", "September", "October",
                 "November", "December" } },
             
+            { "resortSearchFields", new String[] { "Alle velden", "Resort ID", "Resort naam",
+                "Land", "Stad", "Adres", "Postcode", "Telefoon", "E-mail" } },
+            
+            { "resortTableAllFields", new String[] { "Resort ID", "Resort naam",
+                "Adres", "Land", "Stad", "Telefoon", "Email", "Postcode"} },
+            
+            { "resortTableAllFieldsLink", new String [] { "Alle velden", "Naam",
+                "Adres", "Land", "Stad", "Telefoon", "Email", "Postcode" } },
+            
+            { "resortTableTitles", new String[] { "Resort ID", "Resort naam",
+                "Land", "Plaats", "Adres", "Postcode", "Telefoon", "E-mail"} },
+            
             { "statuses", new String[] { "Verloren", "Gevonden", "Afgehandeld" } },
             
             { "userSearchFields", new String[] { "Alle velden", "Gebruikers ID", "Voornaam",
@@ -105,25 +117,8 @@ public class ResourceBundle_nl extends ListResourceBundle {
             { "userTableFields", new String[] { "Gebruikersnaam", "Voornaam",
                 "Achternaam", "Gebruikersgroep", "Account Status" } },
             
-            { "userTypes", new String[] { "Medewerker", "Manager", "Beheerder" } },
-            
-            { "countriesComboBox", new String[] { "Nederland", "Turkije", "Australië" } },
-            
-            { "resortTableTitles", new String[] { "Resort ID", "Resort naam",
-                "Land", "Plaats", "Adres", "Postcode", "Telefoon", "E-mail"} },
-            
-            { "resortTableAllFieldsLink", new String [] { "Alle velden", "Naam",
-                "Adres", "Land", "Stad", "Telefoon", "Email", "Postcode" } },
-            
-            { "resortTableAllFields", new String[] { "Resort ID", "Resort naam",
-                "Adres", "Land", "Stad", "Telefoon", "Email", "Postcode"} 
-            },
-            
-            {"confirmationChangeCustomer", new String[] { "Nieuwe klantgegevens:",
-                "Voornaam:", "Achternaam:", "Adres:", "Postcode:", "Woonplaats:", "Land:",
-                "Email:", "Telefoon thuis:", "Telefoon mobiel:"} 
-            },
-        
+            { "userTypes", new String[] { "Medewerker", "Manager", "Beheerder" } },        
+              
         // Toolbar
             { "changePassword", "Wachtwoord wijzigen" },
             { "logout", "Uitloggen" },
@@ -133,7 +128,7 @@ public class ResourceBundle_nl extends ListResourceBundle {
                 + "Neem contact op met uw beheerder." },
             { "loginIncorrect", "Gebruikersnaam/Wachtwoord is incorrect." },
             
-            //ResetPassword
+        //ResetPassword
             {"changePasswordForUser","Wachtwoord aanpassen voor gebruiker: "},                       
             
         // ChangeMyPassword.java
@@ -152,6 +147,7 @@ public class ResourceBundle_nl extends ListResourceBundle {
                 "Het gebruikersaccount is succesvol vergrendeld." },
             { "active", "Actief" },
             { "administrator", "Beheerder" },
+            { "createUser", "Gebruiker aanmaken" },
             { "createUserPrompt", 
                 "Weet u zeker dat u deze gebruiker wilt aanmaken?" },
             { "deleteUserPrompt", 
@@ -164,10 +160,10 @@ public class ResourceBundle_nl extends ListResourceBundle {
             { "unlockAccount", "Account ontgrendelen" },
             { "userGroup", "Gebruikersgroep"},
             { "usernameInUse", "Gebruikersnaam is al in gebruik." },
+            { "userLogged", "Sorry, You cannot change your own password." },
             { "userOptions", "Opties voor gebruikers" },
-            { "userOverview", "Gebruikers overzicht" },
-            { "createUser", "Gebruiker aanmaken" },
-            
+            { "userOverview", "Gebruikers overzicht" },            
+                        
         // Manager.java
             { "allData", "Alle Data" },
             { "allStatusLuggage", "Vermiste, gevonden en afgehandelde bagage per maand" },
@@ -208,7 +204,7 @@ public class ResourceBundle_nl extends ListResourceBundle {
             { "registerCustomer", "Registreren klant"},
             { "customer", "Klant"},
             { "extensiveCustomerData", "Uitgebreide klantgegevens" },
-            { "deleteCustomer", "Delete customer" },
+            { "deleteCustomer", "Klant verwijderen" },
             { "summaryCustomerRegister", "Klantenoverzicht en registratie" },
             { "registerLuggage", "Baggage registreren"},
             { "modifyLuggage", "Baggage aanpassen"},
@@ -221,8 +217,7 @@ public class ResourceBundle_nl extends ListResourceBundle {
             { "updateResort", "Resort aanpassen"},
             { "deleteResort", "Resort verwijderen"},
             { "createResort", "Resort aanmaken"},
-            { "summaryResort", "Resort overzicht"},
-            
+            { "summaryResort", "Resort overzicht"},            
             
         // ExtendedCustomer.java
             { "changeCustomerInfo", "Klant gegevens wijzigen" },
