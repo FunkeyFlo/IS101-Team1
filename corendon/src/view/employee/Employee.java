@@ -323,9 +323,6 @@ public class Employee extends javax.swing.JFrame {
         if (newPostalCode.equals("")) {
             correctInput[3] = false;
             errorPopUp("Vul een postcode in.");
-//        } else if (!tfPostalCode.getText().matches("[0-9]+")) {
-//            errorPopUp("Vul een geldige postcode in.");
-//            correctInput[3] = false;
         } else {
             correctInput[3] = true;
         }
