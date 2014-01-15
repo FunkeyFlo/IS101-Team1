@@ -645,7 +645,11 @@ public class Administrator extends javax.swing.JFrame {
             errorPopUp(BUNDLE.getString("selectItemInTable"));
             isError = true;
         }
-        if (isError == false) {
+        System.out.println(accountToChange);
+        System.out.println(Session.storedUsername);
+        if (accountToChange.equals(Session.storedUsername)) {
+            JOptionPane.showMessageDialog(succes, BUNDLE.getString("userLogged"));
+        } else {
             Main.displayResetPassword();
         }
     }//GEN-LAST:event_resetPasswordActionPerformed

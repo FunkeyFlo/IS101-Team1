@@ -165,6 +165,7 @@ public class ResourceBundle extends ListResourceBundle {
             { "userOptions", "User options" },
             { "userOverview", "User overview" },
             { "createUser", "Create user" },
+            { "userLogged", "Sorry, You cannot change your own password." },
             
         // Manager.java
             { "allData", "All Data" },
