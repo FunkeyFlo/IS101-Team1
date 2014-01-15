@@ -11,6 +11,7 @@ import view.manager.Manager;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
+import javax.swing.plaf.synth.SynthLookAndFeel;
 import view.*;
 import view.administrator.*;
 
@@ -46,7 +47,7 @@ public class Main {
         Administrator frameBeheerder = new Administrator();
         frameBeheerder.setVisible(true);
     }
-    
+
     public static void displayChangeResort()// permissionId = 1
     {
         ChangeResort frameChangeResort = new ChangeResort();
@@ -86,7 +87,10 @@ public class Main {
     public static void main(String args[]) {
 
         try {
-            UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+//            UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+            SynthLookAndFeel laf = new SynthLookAndFeel();
+            laf.load(Main.class.getResourceAsStream("cstyle.xml"), Main.class);
+            UIManager.setLookAndFeel(laf);
         } catch (Exception ex) {
             ex.printStackTrace();
         }

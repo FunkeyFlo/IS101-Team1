@@ -7,7 +7,7 @@ import connectivity.QueryManager;
 
 /**
  *
- * @author IS101
+ * @autlistBagageToPrinthor IS101
  */
 public class Session {
 

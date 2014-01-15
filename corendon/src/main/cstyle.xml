@@ -1,0 +1,130 @@
+<synth>
+
+ <style id="backingStyle">
+     <object id="TitledBorder_Color" class="java.awt.Color">
+		<int>156</int>
+		<int>10</int>
+		<int>13</int>
+		<int>255</int>
+     </object>
+     
+     <object id="LineBorder" class="javax.swing.border.LineBorder">
+		<object idref="TitledBorder_Color"/>
+     </object>
+     <defaultsProperty key="TitledBorder.border" type="idref" value="LineBorder"/>
+     
+        <opaque value="TRUE"/>
+        <font name="Dialog" size="14"/>
+         <property key="" type="boolean" value="false"/>
+        <state>
+            <color value="WHITE" type="BACKGROUND"/> 
+            <color value="BLACK" type="FOREGROUND"/>
+        </state>
+    </style>
+    <bind style="backingStyle" type="region" key=".*"/>
+  
+ 
+  <style id="TextFieldUI">
+    <state>
+       <font name="Dialog" size="14"/>
+       <color value="#9c0a0d" type="BACKGROUND"/>
+       <color value="#000000" type="TEXT_FOREGROUND"/>
+    </state>
+    <imagePainter method="TextFieldBorder" path="images/textfieldC.png"
+                  sourceInsets="4 6 4 6" paintCenter="false"/>
+    <insets top="4" left="6" bottom="4" right="12"/>
+  </style>
+  
+  <style id="passwordFieldUI">
+    <state>
+       <font name="Dialog" size="14"/>
+       <color value="#9c0a0d" type="BACKGROUND"/>
+       <color value="#000000" type="TEXT_FOREGROUND"/>
+    </state>
+    <imagePainter method="PasswordFieldBorder" path="images/textfieldC.png"
+                  sourceInsets="4 6 4 6" paintCenter="false"/>
+    <insets top="4" left="6" bottom="4" right="6"/>
+  
+  </style>
+  <style id="textAreaUI">
+    <state>
+       <font name="Dialog" size="14"/>
+       <color value="#9c0a0d" type="BACKGROUND"/>
+       <color value="#000000" type="TEXT_FOREGROUND"/>
+    </state>
+    <imagePainter method="TextAreaBorder" path="images/textfieldC.png"
+                  sourceInsets="4 6 4 6" paintCenter="false"/>
+    <insets top="4" left="6" bottom="4" right="6"/>
+  </style>
+  
+  <bind style="textAreaUI" type="region" key="TEXTAREA"/>
+  <bind style="TextFieldUI" type="region" key="TEXTFIELD"/>
+  <bind style="passwordFieldUI" type="region" key="PASSWORDFIELD"/>  
+     
+  <style id = "buttonUI"> 
+       <property key="Button.textShiftOffset" type="integer" value="1"/>
+      <state>
+          <color value="#FFFFFF" type="TEXT_FOREGROUND"/>
+          <imagePainter method="buttonBackground" path="images/buttonT.png"
+	                  sourceInsets="9 12 9 12" paintCenter="true" stretch="false"/>
+          <insets top="5" left="9" bottom="5" right="12"/>
+      </state>
+  </style>
+  <bind style="buttonUI" type="region" key ="BUTTON"/>
+
+  <style id = "tabbedUI"> 
+      <state>
+          <color value="#FFFFFF" type="TEXT_FOREGROUND"/>
+          <imagePainter method="tabbedpanetabborder" path="images/tabbed.png"
+	                  sourceInsets="14 1 5 0" paintCenter="true" stretch="true"/>
+           <insets top="8" left="25" bottom="14" right="25"/>
+      </state>
+      <state value="SELECTED">
+          <color value="#000000" type="TEXT_FOREGROUND"/>
+          <imagePainter method="tabbedpanetabborder" path="images/tabbedP.png"
+	                  sourceInsets="14 1 5 0" paintCenter="true" stretch="true"/>
+           <insets top="8" left="25" bottom="14" right="25"/>
+      </state>
+  </style>
+  <bind style="tabbedUI" type="region" key="TABBEDPANETAB"/>
+  
+  <style id="tableHeaderUI">
+      <state>
+          <color value="#9c0a0d" type="BACKGROUND"/>
+          <color value="#FFFFFF" type="FOREGROUND"/>
+      </state>
+  </style>
+  <bind style="tableHeaderUI" type="region" key="TABLEHEADER"/>
+  
+  <style id="tableUI">
+      <state>
+          <color value="#E09D9E" type="BACKGROUND"/>
+            <imagePainter method="tableborder" path="images/textfieldC.png"
+                  sourceInsets="1 1 1 1" paintCenter="false"/>
+
+      </state>
+      <state value="SELECTED" id="tableui">
+          <color value="#FFFFFF" type="TEXT_FOREGROUND"/>
+      </state>
+  </style>
+  <bind style="tableUI" type="region" key="TABLE"/>
+
+  
+  <style id="listUi">
+  </style>
+  <imagePainter method="listborder" path="images/textfieldC.png"
+                  sourceInsets="0 0 0 0" paintCenter="false"/>
+    <!--<insets top="4" left="6" bottom="4" right="12"/>-->
+    <bind style="listUi" type="region" key="LIST"/>
+    
+    <style id="checkbox">
+   <imageIcon id="check_off" path="images/checkbox_off.png"/>
+   <imageIcon id="check_on" path="images/checkbox_on.png"/>
+   <property key="CheckBox.icon" value="check_off"/>
+   <state value="SELECTED">
+      <property key="CheckBox.icon" value="check_on"/>
+   </state>
+</style>
+<bind style="checkbox" type="region" key="Checkbox"/>
+
+</synth>
