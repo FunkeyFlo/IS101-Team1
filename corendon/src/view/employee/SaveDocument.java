@@ -18,7 +18,7 @@ import model.User;
 public class SaveDocument extends javax.swing.JFrame {
 
     private final QueryManager query = new QueryManager();
-    private final Customer customer = new Customer();
+//    private final Customer customer = new Customer();
     private Session session = new Session();
 
     private FileNameExtensionFilter filter = new FileNameExtensionFilter("PDF Documents", "pdf");
@@ -29,7 +29,7 @@ public class SaveDocument extends javax.swing.JFrame {
      * Creates new form SaveDocument
      */
     public SaveDocument() {
-        query.getCustomerData(Session.storedCustomerId, "customer_id");
+       Customer customer = query.getCustomerData(Session.storedCustomerId, "customer_id");
 
         file = "/"
                 + customer.getFirstName() + "_" + customer.getLastName() + "_"

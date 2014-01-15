@@ -117,6 +117,12 @@ public class ResourceBundle extends ListResourceBundle {
             { "resortTableAllFields", new String[] { "Resort ID", "Resort name", 
                 "Address", "Country", "City", "Phone number", "Email", "Postal Code" } },
             
+            {"confirmationChangeCustomer", new String[] { "New customer data:",
+                "First name:", "Last name:", "Address:", "Postal Code:", "City:", "Country:",
+                "Email:", "Phone home:", "Phone mobile:"} 
+            },
+            
+            
             
             
         // Toolbar
@@ -237,6 +243,20 @@ public class ResourceBundle extends ListResourceBundle {
             { "hideHandled", "Hide handled luggage"},
             { "hideMissing", "Hide missing luggage"},
             { "hideFound", "Hide found luggage"},
+            
+        // PopUps used in various classes
+            {"enterFirstName", "Enter a first name."},
+            {"enterLastName", "Enter a last name."},
+            {"enterAddress", "Enter an address."},
+            {"enterPostalCode", "Enter a postal code."},
+            {"enterCity", "Enter a city."},
+            {"enterEmail", "Enter an email."},
+            {"enterPhoneHome", "Enter a valid home phonenumber."},
+            {"enterPhoneMobile", "Enter a valid mobile phonenumber"},
+            {"pressButton", "Press a button"},
+            {"selectLuggageToAdd", "Select luggage to add to list."},
+            {"luggageAlreadyAdded", "This luggage has already been added to the list."},
+            
     };
     
     
