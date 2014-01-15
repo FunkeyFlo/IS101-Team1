@@ -388,13 +388,8 @@
             </Component>
             <Component class="javax.swing.JComboBox" name="cbYearFrom">
               <Properties>
-                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="4">
-                    <StringItem index="0" value="2010"/>
-                    <StringItem index="1" value="2011"/>
-                    <StringItem index="2" value="2012"/>
-                    <StringItem index="3" value="2013"/>
-                  </StringArray>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="new javax.swing.DefaultComboBoxModel(new String[] { &quot;2010&quot;, &quot;2011&quot;, &quot;2012&quot;, &quot;2013&quot;, &quot;2014&quot; })" type="code"/>
                 </Property>
               </Properties>
             </Component>
@@ -493,13 +488,8 @@
             </Component>
             <Component class="javax.swing.JComboBox" name="cbYearTo">
               <Properties>
-                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="4">
-                    <StringItem index="0" value="2010"/>
-                    <StringItem index="1" value="2011"/>
-                    <StringItem index="2" value="2012"/>
-                    <StringItem index="3" value="2013"/>
-                  </StringArray>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="new javax.swing.DefaultComboBoxModel(new String[] { &quot;2010&quot;, &quot;2011&quot;, &quot;2012&quot;, &quot;2013&quot;, &quot;2014&quot; })" type="code"/>
                 </Property>
               </Properties>
               <Events>

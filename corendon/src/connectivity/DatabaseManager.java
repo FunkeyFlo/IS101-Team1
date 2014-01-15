@@ -78,6 +78,7 @@ public class DatabaseManager {
         } catch (java.sql.SQLException e) {
             System.err.println(SQL_EXCEPTION + e);
         }
+//        closeConnection();
         return result;        
     }
 

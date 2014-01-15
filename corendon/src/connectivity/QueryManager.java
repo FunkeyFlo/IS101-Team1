@@ -837,6 +837,86 @@ public class QueryManager {
     }
 
     /**
+     * Counts all occurences of the specific luggage statusses in a month.
+     * @param status the status that will be searched for
+     * @param statusNum the internal number for the luggage status, e.g. lost would be
+     * number 1.
+     * @param beginYear the first year that will be searched in
+     * @param beginMonth the first month that will be searched in
+     * @param endYear the last year that will be searched in
+     * @param endMonth the last month that will be searched in
+     * @param dontShowAll if true, luggage will only be shown if the current status applies.
+     * if false, the luggage will be counted regardless if the status currently applies.
+     * @return 
+     */
+    public  List<Integer> countLuggage(String status, int statusNum, int beginYear, int beginMonth,
+            int endYear, int endMonth,boolean dontShowAll)
+    {
+        Luggage tempLuggage = new Luggage();
+        List<Integer> tempCount = new ArrayList<>();
+        List<String> tempYM = new ArrayList<>();
+        
+        int numYears = endYear - beginYear == 0
+                ? 1 : (endYear - beginYear) + 1;
+        int numMonths = ((numYears * 12) - beginMonth) - (12 - endMonth) + 1;
+//        System.out.println(numMonths);
+        
+        String sql = "SELECT CONCAT(YEAR(" + status + "), '-', MONTH(" + status + ")) as yearmonth,"
+                + " COUNT(" + status + ") as count  FROM luggage WHERE";
+        if(dontShowAll) {
+            sql += " status = " + statusNum + " AND";
+        }
+        sql += " DATE(" + status + ") > '" + beginYear + "-" + beginMonth + "-1'"
+            + " AND DATE(" + status + ") < '" + endYear + "-" + endMonth + "-31'"
+            + " GROUP BY YEAR(" + status + "), MONTH(" + status + ");";
+//        System.out.println(sql);
+
+        try {
+            db.openConnection();
+            ResultSet result = tempLuggage.getDb().doQuery(sql);
+            while (result.next()) {
+                tempYM.add(result.getString("yearmonth"));
+                tempCount.add(result.getInt("count"));
+            }
+        } catch (SQLException e) {
+            System.out.println(tempLuggage.getDb().SQL_EXCEPTION + e.getMessage());
+        } finally {
+            db.closeConnection();
+        }
+        
+        int currMonth = beginMonth - 1;
+        int currYear = beginYear;
+        int currCountNum = 0;
+        int currCountYm = 0;
+        List <Integer> count = new ArrayList<>();
+        List <String> yearmonth = new ArrayList<>();
+        String ym;
+        for (int i = 0; i < numMonths; i++) {
+            currYear = currMonth > 11 ? ++currYear : currYear;
+            currMonth = currMonth >= 12 ? 1 : ++currMonth;
+            
+            ym = currYear + "-" + currMonth;
+            System.out.println(ym);
+            if(tempYM.size() > 0) {
+                if (ym.equals(tempYM.get(currCountNum))) {
+                    yearmonth.add(ym);
+                    count.add(tempCount.get(currCountNum));
+                    currCountNum = currCountNum == tempYM.size()-1 ? currCountNum : ++currCountNum;
+                } else {
+                    yearmonth.add(ym);
+                    count.add(0);
+                }
+            } else {
+                yearmonth.add(ym);
+                count.add(0);
+            }
+        }
+        
+//        return new Object[]{count, yearmonth};
+        return count;
+    }
+    
+    /**
      * Used to update already existing luggage.
      *
      * @param luggageId
