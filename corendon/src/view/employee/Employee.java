@@ -35,7 +35,7 @@ public class Employee extends javax.swing.JFrame {
     private List<Customer> customers;
     private List<Resort> resorts;
 
-    private DefaultTableModel modelLuggage1, modelCustomer1, modelLuggage2, modelCustomer2, modelResort;
+    private DefaultTableModel modelLuggage1, modelCustomer1, modelLuggage2, modelCustomer2, modelResort, modelResort1;
 
     public static int customerId;
     public static int luggageId;
@@ -60,12 +60,15 @@ public class Employee extends javax.swing.JFrame {
         modelLuggage2 = (DefaultTableModel) this.luggageTable2.getModel();
         modelCustomer2 = (DefaultTableModel) this.customerTable2.getModel();
         modelResort = (DefaultTableModel) this.tblResort.getModel();
+        modelResort1 = (DefaultTableModel)this.tblResort1.getModel();
 
         searchCustomerTable1(9999, "");
         searchLuggageTable1(9999, "", 0);
         searchCustomerTable2(9999, "");
         searchLuggageTable2(9999, "", 0);
         searchResortTable(9999, "");
+        searchResortTable1(9999, "");
+       
 
     }
 
@@ -176,6 +179,25 @@ public class Employee extends javax.swing.JFrame {
                 customer.getPhoneMobile()});
         }
     }
+    
+    private void searchResortTable1(int dbfield, String searchArgs)
+    {
+        modelResort1.setRowCount(0);
+        resorts = query.searchResortList(dbfield, searchArgs);
+        for (Resort resort : resorts) {
+            modelResort1.addRow(new Object[]{new Integer(resort.getId()),
+                resort.getName(),
+                resort.getAddress(),
+                resort.getCity(),
+                resort.getCountry(),
+                resort.getEmail(),
+                resort.getPostalCode(),
+                resort.getPhone()});
+        }
+    
+    
+    }
+    
 
     private void searchResortTable(int dbField, String searchArgs) {
         modelResort.setRowCount(0);

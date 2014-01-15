@@ -1055,17 +1055,14 @@ public class QueryManager {
      * @param customerId
      * @param resortId
      */
-    public void linkCustomerIdToResort(int customerId, int resortId) {
+   public void linkCustomerIdToResort(int customerId, int resortId) {
         try {
             db.openConnection();
-            String sql = "UPDATE `customer` SET `resort_id` = " + resortId
-                    + "WHERE `customer_id` =" + customerId;
-
-            db.insertQuery(sql);
-
-            preparedStatement = db.connection.prepareStatement("UPDATE `customer` SET `resort_id` = ? WHERE `customer_id` = ?");
+            String sql = "UPDATE `customer` SET `resort_id` = ? WHERE `customer_id` = ?";
+            
+            preparedStatement = db.connection.prepareStatement(sql);
             preparedStatement.setInt(1, resortId);
-            preparedStatement.setInt(1, customerId);
+            preparedStatement.setInt(2, customerId);
             preparedStatement.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(QueryManager.class.getName()).log(Level.SEVERE, null, ex);
@@ -1075,4 +1072,6 @@ public class QueryManager {
 
     }
 
-}
+    }
+
+
