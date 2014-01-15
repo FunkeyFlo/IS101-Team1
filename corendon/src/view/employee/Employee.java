@@ -2343,9 +2343,6 @@ public class Employee extends javax.swing.JFrame {
                     tfResortEmail1.getText() + "@" + tfResortEmail2.getText(),
                     tfResortPostalCode.getText().trim());
 
-            query.setNewResort(newName, newAddress, newCountry, newCity, newPhone,
-                    newEmail, newPostalCode);
-
             searchResortTable(9999, "");
 
         }
