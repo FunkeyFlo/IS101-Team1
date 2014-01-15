@@ -567,9 +567,9 @@ public class Employee extends javax.swing.JFrame {
         overviewPane.setToolTipText("tooltip");
         overviewPane.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        customerRegistrationPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Klant Registreren"));
+        customerRegistrationPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(BUNDLE.getString("registerCustomer")));
 
-        jLabel7.setText("Adres");
+        jLabel7.setText(BUNDLE.getString("address"));
 
         tfAddress2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -588,7 +588,7 @@ public class Employee extends javax.swing.JFrame {
             }
         });
 
-        jLabel12.setText("Postcode");
+        jLabel12.setText(BUNDLE.getString("postalCode"));
 
         tfFirstName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -601,9 +601,9 @@ public class Employee extends javax.swing.JFrame {
             }
         });
 
-        jLabel13.setText("Voornaam");
+        jLabel13.setText(BUNDLE.getString("firstName"));
 
-        jLabel14.setText("Achternaam");
+        jLabel14.setText(BUNDLE.getString("lastName"));
 
         tfLastName.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -611,7 +611,7 @@ public class Employee extends javax.swing.JFrame {
             }
         });
 
-        jLabel15.setText("E-mail");
+        jLabel15.setText(BUNDLE.getString("email"));
 
         tfEmail1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -638,7 +638,7 @@ public class Employee extends javax.swing.JFrame {
             }
         });
 
-        jLabel17.setText("Huis telefoon");
+        jLabel17.setText(BUNDLE.getString("phoneHome"));
 
         tfPhoneMobile.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -646,25 +646,25 @@ public class Employee extends javax.swing.JFrame {
             }
         });
 
-        jLabel18.setText("Mobiel tel.");
+        jLabel18.setText(BUNDLE.getString("phoneMobile"));
 
-        createCustomer1.setText("Voeg toe");
+        createCustomer1.setText(BUNDLE.getString("add"));
         createCustomer1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 createCustomer1ActionPerformed(evt);
             }
         });
 
-        jButton4.setText("Annuleren");
+        jButton4.setText(BUNDLE.getString("cancel"));
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
             }
         });
 
-        jLabel19.setText("Stad");
+        jLabel19.setText(BUNDLE.getString("city"));
 
-        jLabel20.setText("Land");
+        jLabel20.setText(BUNDLE.getString("country"));
 
         tfCity.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -672,7 +672,7 @@ public class Employee extends javax.swing.JFrame {
             }
         });
 
-        tfCountry.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Nederland", "Turkije", "Australië" }));
+        tfCountry.setModel(new javax.swing.DefaultComboBoxModel(BUNDLE.getStringArray("countriesComboBox")));
 
         warningLabel1.setForeground(new java.awt.Color(255, 0, 0));
 
@@ -702,14 +702,14 @@ public class Employee extends javax.swing.JFrame {
                             .addComponent(jLabel18))
                         .addGroup(customerRegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(customerRegistrationPanelLayout.createSequentialGroup()
-                                .addGap(132, 132, 132)
+                                .addGap(138, 138, 138)
                                 .addComponent(jLabel16)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(tfEmail2))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(tfEmail2, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(customerRegistrationPanelLayout.createSequentialGroup()
-                                .addGap(35, 35, 35)
+                                .addGap(39, 39, 39)
                                 .addGroup(customerRegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(tfPhoneMobile, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(tfPhoneMobile)
                                     .addComponent(tfPhoneHome)))))
                     .addGroup(customerRegistrationPanelLayout.createSequentialGroup()
                         .addGroup(customerRegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -733,7 +733,7 @@ public class Employee extends javax.swing.JFrame {
                             .addGroup(customerRegistrationPanelLayout.createSequentialGroup()
                                 .addComponent(tfAddress1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(tfAddress2, javax.swing.GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE)))))
+                                .addComponent(tfAddress2)))))
                 .addContainerGap())
         );
         customerRegistrationPanelLayout.setVerticalGroup(
@@ -768,17 +768,18 @@ public class Employee extends javax.swing.JFrame {
                 .addGroup(customerRegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(customerRegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(tfEmail2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel16)
                         .addComponent(jLabel15))
-                    .addComponent(tfEmail1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(customerRegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(tfEmail1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel16)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(customerRegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel17)
                     .addComponent(tfPhoneHome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(customerRegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfPhoneMobile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel18))
+                .addGroup(customerRegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel18)
+                    .addComponent(tfPhoneMobile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(warningLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 17, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -788,7 +789,7 @@ public class Employee extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        customerTablePanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Klanten"));
+        customerTablePanel.setBorder(javax.swing.BorderFactory.createTitledBorder(BUNDLE.getString("customer")));
 
         customerSearchField1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -796,7 +797,7 @@ public class Employee extends javax.swing.JFrame {
             }
         });
 
-        customerSearchButton2.setText("Zoeken");
+        customerSearchButton2.setText(BUNDLE.getString("search"));
         customerSearchButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 customerSearchButton2ActionPerformed(evt);
@@ -830,7 +831,7 @@ public class Employee extends javax.swing.JFrame {
         cbSearchCustomer1.setMaximumRowCount(11);
         cbSearchCustomer1.setModel(new javax.swing.DefaultComboBoxModel(BUNDLE.getStringArray("customerSearchFields")));
 
-        refreshCustomerTable2.setText("Overzicht verversen");
+        refreshCustomerTable2.setText(BUNDLE.getString("resetOverview"));
         refreshCustomerTable2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 refreshCustomerTable2ActionPerformed(evt);
@@ -852,7 +853,7 @@ public class Employee extends javax.swing.JFrame {
                         .addComponent(cbSearchCustomer1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(refreshCustomerTable2))
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 982, Short.MAX_VALUE))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 998, Short.MAX_VALUE))
                 .addContainerGap())
         );
         customerTablePanelLayout.setVerticalGroup(
@@ -865,20 +866,20 @@ public class Employee extends javax.swing.JFrame {
                     .addComponent(cbSearchCustomer1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(refreshCustomerTable2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 588, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 610, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        customerOptionsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Opties"));
+        customerOptionsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(BUNDLE.getString("options")));
 
-        jButton1.setText("Uitgebreide klantgegevens");
+        jButton1.setText(BUNDLE.getString("extensiveCustomerData"));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
-        customerDeleteButton.setText("Klant verwijderen");
+        customerDeleteButton.setText(BUNDLE.getString("deleteCustomer"));
         customerDeleteButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 customerDeleteButtonActionPerformed(evt);
@@ -913,7 +914,7 @@ public class Employee extends javax.swing.JFrame {
             .addGroup(customerLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(customerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(customerRegistrationPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(customerRegistrationPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 344, Short.MAX_VALUE)
                     .addComponent(customerOptionsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(customerTablePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -934,9 +935,10 @@ public class Employee extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
 
-        overviewPane.addTab("Klanten overzicht en registratie", customer);
+        overviewPane.addTab(BUNDLE.getString("summaryCustomerRegister")
+            , customer);
 
-        luggageRegistrationPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Bagage Registeren"));
+        luggageRegistrationPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(BUNDLE.getString("registerLuggage")));
 
         lblCustomerID4.setText(BUNDLE.getString("customerId"));
 
@@ -952,14 +954,14 @@ public class Employee extends javax.swing.JFrame {
 
         lblCustomerID7.setText(BUNDLE.getString("status"));
 
-        btCreateLuggage.setText("Voeg toe");
+        btCreateLuggage.setText(BUNDLE.getString("add"));
         btCreateLuggage.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btCreateLuggageActionPerformed(evt);
             }
         });
 
-        btCancel.setText("Annuleren");
+        btCancel.setText(BUNDLE.getString("cancel"));
         btCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btCancelActionPerformed(evt);
@@ -1041,7 +1043,7 @@ public class Employee extends javax.swing.JFrame {
         luggageRegistrationPanel.setLayer(jScrollPane2, javax.swing.JLayeredPane.DEFAULT_LAYER);
         luggageRegistrationPanel.setLayer(cbStatus, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        luggageTablePanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Bagage"));
+        luggageTablePanel.setBorder(javax.swing.BorderFactory.createTitledBorder(BUNDLE.getString("luggage")));
 
         luggageSearchField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1093,7 +1095,7 @@ public class Employee extends javax.swing.JFrame {
             }
         });
 
-        refreshLuggageTable2.setText("Overzicht verversen");
+        refreshLuggageTable2.setText(BUNDLE.getString("resetOverview"));
         refreshLuggageTable2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 refreshLuggageTable2ActionPerformed(evt);
@@ -1122,7 +1124,7 @@ public class Employee extends javax.swing.JFrame {
                         .addComponent(cbSearchLuggage1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(chbShowHandledLuggage2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 288, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 386, Short.MAX_VALUE)
                         .addComponent(refreshLuggageTable2))
                     .addComponent(jScrollPane7))
                 .addContainerGap())
@@ -1139,27 +1141,27 @@ public class Employee extends javax.swing.JFrame {
                         .addComponent(chbShowHandledLuggage2))
                     .addComponent(luggageSearchButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 588, Short.MAX_VALUE)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 610, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        luggageOptionsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Opties"));
+        luggageOptionsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(BUNDLE.getString("options")));
 
-        btChangeLuggage.setText("Bagage wijzigen");
+        btChangeLuggage.setText(BUNDLE.getString("modifyLuggage"));
         btChangeLuggage.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btChangeLuggageActionPerformed(evt);
             }
         });
 
-        btPrintReceipt.setText("Bewijs voor klant printen");
+        btPrintReceipt.setText(BUNDLE.getString("proofPrint"));
         btPrintReceipt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btPrintReceiptActionPerformed(evt);
             }
         });
 
-        btDeleteLuggage.setText("Bagage verwijderen");
+        btDeleteLuggage.setText(BUNDLE.getString("deleteLuggage"));
         btDeleteLuggage.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btDeleteLuggageActionPerformed(evt);
@@ -1217,14 +1219,15 @@ public class Employee extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        overviewPane.addTab("Bagage overzicht en registratie", luggage);
+        overviewPane.addTab(BUNDLE.getString("summaryLuggageRegister")
+            , luggage);
 
         linkLuggage.setPreferredSize(new java.awt.Dimension(1024, 768));
 
-        linkTableSplitter.setBorder(javax.swing.BorderFactory.createTitledBorder("Overzichten"));
+        linkTableSplitter.setBorder(javax.swing.BorderFactory.createTitledBorder(BUNDLE.getString("summary")));
         linkTableSplitter.setDividerLocation(600);
 
-        linkCustomerTablePanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Klanten"));
+        linkCustomerTablePanel.setBorder(javax.swing.BorderFactory.createTitledBorder(BUNDLE.getString("customer")));
 
         customerSearchField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -1293,7 +1296,7 @@ public class Employee extends javax.swing.JFrame {
                     .addComponent(customerSearchButton1)
                     .addComponent(cbSearchCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 502, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 566, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1371,7 +1374,7 @@ public class Employee extends javax.swing.JFrame {
                         .addComponent(cbSearchLuggage, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(showHandledLuggage1))
-                    .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 565, Short.MAX_VALUE))
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 570, Short.MAX_VALUE))
                 .addContainerGap())
         );
         linkLuggageTablePanelLayout.setVerticalGroup(
@@ -1384,7 +1387,7 @@ public class Employee extends javax.swing.JFrame {
                     .addComponent(cbSearchLuggage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(showHandledLuggage1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 478, Short.MAX_VALUE)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 539, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1399,15 +1402,13 @@ public class Employee extends javax.swing.JFrame {
                 {null, null, null, null},
                 {null, null, null, null}
             },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
+            BUNDLE.getStringArray("resortTableTitles")
         ));
         jScrollPane5.setViewportView(tblResort1);
 
-        buttonSearchResort1.setText("Zoek");
+        buttonSearchResort1.setText(BUNDLE.getString("search"));
 
-        cbResort1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Alle velden", "Naam", "Adres", "Land", "Stad", "Telefoon", "Email", "Postcode", " ", " " }));
+        cbResort1.setModel(new javax.swing.DefaultComboBoxModel(BUNDLE.getStringArray("resortTableAllFieldsLink")));
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -1423,7 +1424,7 @@ public class Employee extends javax.swing.JFrame {
                         .addComponent(buttonSearchResort1)
                         .addGap(6, 6, 6)
                         .addComponent(cbResort1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 283, Short.MAX_VALUE)))
+                        .addGap(0, 309, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel9Layout.setVerticalGroup(
@@ -1436,7 +1437,7 @@ public class Employee extends javax.swing.JFrame {
                         .addComponent(buttonSearchResort1)
                         .addComponent(tfSearchResort1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 475, Short.MAX_VALUE)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 535, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1458,23 +1459,23 @@ public class Employee extends javax.swing.JFrame {
 
         linkTableSplitter.setLeftComponent(jPanel8);
 
-        linkOptionsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Opties"));
+        linkOptionsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(BUNDLE.getString("options")));
 
-        linkButton.setText("Koppelen");
+        linkButton.setText(BUNDLE.getString("connect"));
         linkButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 linkButtonActionPerformed(evt);
             }
         });
 
-        refreshTables1.setText("Overzichten verversen");
+        refreshTables1.setText(BUNDLE.getString("resetOverview"));
         refreshTables1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 refreshTables1ActionPerformed(evt);
             }
         });
 
-        cancelButton.setText("Annuleren");
+        cancelButton.setText(BUNDLE.getString("cancel"));
         cancelButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cancelButtonActionPerformed(evt);
@@ -1525,22 +1526,22 @@ public class Employee extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        linkTableSplitter.getAccessibleContext().setAccessibleName(BUNDLE.getString("overviews"));
+        linkTableSplitter.getAccessibleContext().setAccessibleName("BUNDLE.getString(\"overviews\")");
 
         overviewPane.addTab(BUNDLE.getString("linkCustomer"), linkLuggage);
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Nieuw Resort"));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(BUNDLE.getString("newResort")));
 
-        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Opties"));
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(BUNDLE.getString("options")));
 
-        buttonUpdateResort.setText("Update Resort");
+        buttonUpdateResort.setText(BUNDLE.getString("updateResort"));
         buttonUpdateResort.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonUpdateResortActionPerformed(evt);
             }
         });
 
-        buttonDeleteResort.setText("Verwijder resort");
+        buttonDeleteResort.setText(BUNDLE.getString("deleteResort"));
         buttonDeleteResort.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonDeleteResortActionPerformed(evt);
@@ -1556,7 +1557,7 @@ public class Employee extends javax.swing.JFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(buttonDeleteResort, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(buttonUpdateResort, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(219, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1568,9 +1569,9 @@ public class Employee extends javax.swing.JFrame {
                 .addContainerGap(104, Short.MAX_VALUE))
         );
 
-        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder("Resort aanmaken"));
+        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(BUNDLE.getString("createResort")));
 
-        btnCreateResort.setText("Voeg toe");
+        btnCreateResort.setText(BUNDLE.getString("add"));
         btnCreateResort.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCreateResortActionPerformed(evt);
@@ -1579,19 +1580,19 @@ public class Employee extends javax.swing.JFrame {
 
         jLabel1.setText("@");
 
-        jLabel8.setText("E-mail ");
+        jLabel8.setText(BUNDLE.getString("email"));
 
-        jLabel6.setText("Telefoon");
+        jLabel6.setText(BUNDLE.getString("phoneNumber"));
 
-        jLabel5.setText("Postcode");
+        jLabel5.setText(BUNDLE.getString("postalCode"));
 
-        jLabel4.setText("Adres");
+        jLabel4.setText(BUNDLE.getString("address"));
 
-        jLabel3.setText("Plaats");
+        jLabel3.setText(BUNDLE.getString("city"));
 
-        jLabel2.setText("Land");
+        jLabel2.setText(BUNDLE.getString("country"));
 
-        lblNaam.setText("Naam");
+        lblNaam.setText(BUNDLE.getString("name"));
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -1606,10 +1607,9 @@ public class Employee extends javax.swing.JFrame {
                             .addComponent(jLabel6)
                             .addComponent(jLabel2)
                             .addComponent(lblNaam)
-                            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel3)
-                                .addComponent(jLabel4))
-                            .addComponent(jLabel8))
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel3))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(tfResortCountry, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -1620,7 +1620,7 @@ public class Employee extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(tfResortEmail2))
+                                .addComponent(tfResortEmail2, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE))
                             .addComponent(tfResortPhone)
                             .addGroup(jPanel6Layout.createSequentialGroup()
                                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1695,7 +1695,7 @@ public class Employee extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel10.setBorder(javax.swing.BorderFactory.createTitledBorder("Verblijfs overzicht"));
+        jPanel10.setBorder(javax.swing.BorderFactory.createTitledBorder(BUNDLE.getString("summaryResort")));
 
         tblResort.setAutoCreateRowSorter(true);
         tblResort.setModel(new javax.swing.table.DefaultTableModel(
@@ -1705,17 +1705,15 @@ public class Employee extends javax.swing.JFrame {
                 {null, null, null, null},
                 {null, null, null, null}
             },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
+            BUNDLE.getStringArray("resortTableAllFields")
         ));
         jScrollPane4.setViewportView(tblResort);
 
-        buttonSearchResort.setText("Zoek");
+        buttonSearchResort.setText(BUNDLE.getString("search"));
 
-        cbResort.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Alle velden", "Naam", "Adres", "Land", "Stad", "Telefoon", "Email", "Postcode", " ", " " }));
+        cbResort.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Alle velden", "Naam", "Adres", "Land", "Stad", "Telefoon", "Email", "Postcode" }));
 
-        buttonRefresh.setText("Overzicht verversen");
+        buttonRefresh.setText(BUNDLE.getString("resetOverview"));
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
@@ -1724,7 +1722,7 @@ public class Employee extends javax.swing.JFrame {
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 927, Short.MAX_VALUE)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 1019, Short.MAX_VALUE)
                     .addGroup(jPanel10Layout.createSequentialGroup()
                         .addComponent(tfSearchResort, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1747,7 +1745,7 @@ public class Employee extends javax.swing.JFrame {
                         .addComponent(buttonSearchResort)
                         .addComponent(tfSearchResort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 573, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 606, Short.MAX_VALUE)
                 .addContainerGap())
         );
 

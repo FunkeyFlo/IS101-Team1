@@ -106,6 +106,17 @@ public class ResourceBundle_nl extends ListResourceBundle {
                 "Achternaam", "Gebruikersgroep", "Account Status" } },
             
             { "userTypes", new String[] { "Medewerker", "Manager", "Beheerder" } },
+            
+            { "countriesComboBox", new String[] { "Nederland", "Turkije", "Australië" } },
+            
+            { "resortTableTitles", new String[] { "Resort ID", "Resort naam",
+                "Adres", "Land", "Stad", "Telefoon", "Email", "Postcode"} },
+            
+            { "resortTableAllFieldsLink", new String [] { "Alle velden", "Naam",
+                "Adres", "Land", "Stad", "Telefoon", "Email", "Postcode" } },
+            
+            { "resortTableAllFields", new String[] { "Resort ID", "Resort naam",
+                "Adres", "Land", "Stad", "Telefoon", "Email", "Postcode"} },
         
         // Toolbar
             { "changePassword", "Wachtwoord wijzigen" },
@@ -188,6 +199,23 @@ public class ResourceBundle_nl extends ListResourceBundle {
             { "found", "Gevonden"},
             { "lost", "Vermist"},
             { "handled", "Afgehandeld"},
+            { "registerCustomer", "Registreren klant"},
+            { "customer", "Klant"},
+            { "extensiveCustomerData", "Uitgebreide klantgegevens" },
+            { "deleteCustomer", "Delete customer" },
+            { "summaryCustomerRegister", "Klantenoverzicht en registratie" },
+            { "registerLuggage", "Baggage registreren"},
+            { "modifyLuggage", "Baggage aanpassen"},
+            { "proofPrint", "Bewijs voor klant printen"},
+            { "deleteLuggage", "Baggage verwijderen"},
+            { "summaryLuggageRegister", "Baggage overzicht en registratie"},
+            { "summary", "Overzicht"},
+            { "connect", "Koppelen"},
+            { "newResort", "Nieuw resort"},
+            { "updateResort", "Resort aanpassen"},
+            { "deleteResort", "Resort verwijderen"},
+            { "createResort", "Resort aanmaken"},
+            { "summaryResort", "Resort overzicht"},
             
             
         // ExtendedCustomer.java
