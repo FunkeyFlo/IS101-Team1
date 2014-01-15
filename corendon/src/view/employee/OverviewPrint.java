@@ -19,12 +19,12 @@ import model.*;
 public class OverviewPrint {
 
     private final QueryManager query = new QueryManager();
-    private final User user = new User();
-    private final Customer customer = new Customer();
-    private final Luggage luggage = new Luggage();
-
+    
     private final String DRAW_LINE = "_____________________________________________________________";
-
+    
+    public OverviewPrint() {
+    }
+    
     /**
      * Creates a pdf document that is used as receipt for the customers luggage.
      *
@@ -32,10 +32,12 @@ public class OverviewPrint {
      */
     public void create(String file) {
 
-        query.getLuggageData(Session.itemsToPrint.get(0).toString(), "luggage_id");
-        query.getCustomerData(Session.storedCustomerId, "customer_id");
-        query.getUserData(Session.storedUsername);
-
+       Luggage luggage = query.getLuggageData(Session.itemsToPrint.get(0).toString(), "luggage_id");
+       Customer customer = query.getCustomerData(Session.storedCustomerId, "customer_id");
+       User user= query.getUserData(Session.storedUsername);
+        
+        
+        
         System.out.println(Session.itemsToPrint);
 
         PDDocument document = null;

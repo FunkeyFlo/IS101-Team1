@@ -83,7 +83,7 @@ public class ResourceBundle_nl extends ListResourceBundle {
                 "Achternaam", "Adres", "Postcode", "Stad", "Land",
                 "Email", "Tel. Thuis", "Tel. Mobiel"} },
             
-            { "customerTableFieldsMin", new String[] { "Klant nummer", "Voornaam",
+            { "customerTableFieldsMin", new String[] { "Klant nummer","Verblijf ID" ,"Voornaam",
                 "Achternaam", "Adres", "Postcode", "Stad", "Land",
                 "Email"} },
             
@@ -110,7 +110,7 @@ public class ResourceBundle_nl extends ListResourceBundle {
             { "countriesComboBox", new String[] { "Nederland", "Turkije", "Australië" } },
             
             { "resortTableTitles", new String[] { "Resort ID", "Resort naam",
-                "Adres", "Land", "Stad", "Telefoon", "Email", "Postcode"} },
+                "Land", "Plaats", "Adres", "Postcode", "Telefoon", "E-mail"} },
             
             { "resortTableAllFieldsLink", new String [] { "Alle velden", "Naam",
                 "Adres", "Land", "Stad", "Telefoon", "Email", "Postcode" } },

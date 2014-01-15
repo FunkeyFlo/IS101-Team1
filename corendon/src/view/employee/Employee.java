@@ -141,7 +141,8 @@ public class Employee extends javax.swing.JFrame {
         modelCustomer1.setRowCount(0); //nodig voor 
         customers = query.searchCustomerList(dbField, searchArg);
         for (Customer customer : customers) {
-            modelCustomer1.addRow(new Object[]{new Integer(customer.getCustomerId()),
+            modelCustomer1.addRow(new Object[]{new Integer(customer.getCustomerId()), (customer.getResortId()== 0) ? BUNDLE.getString("unassigned")
+                : customer.getResortId(),
                 customer.getFirstName(),
                 customer.getLastName(),
                 customer.getAddress(),
@@ -150,7 +151,8 @@ public class Employee extends javax.swing.JFrame {
                 customer.getCountry(),
                 customer.getEmail(),
                 customer.getPhoneHome(),
-                customer.getPhoneMobile()});
+                customer.getPhoneMobile()
+                });
 
             //System.out.println(user.getFirstName());
         }
@@ -182,37 +184,38 @@ public class Employee extends javax.swing.JFrame {
         }
     }
     
-    private void searchResortTable1(int dbfield, String searchArgs)
-    {
+    private void searchResortTable1(int dbfield, String searchArgs) {
         modelResort1.setRowCount(0);
         resorts = query.searchResortList(dbfield, searchArgs);
         for (Resort resort : resorts) {
             modelResort1.addRow(new Object[]{new Integer(resort.getId()),
                 resort.getName(),
-                resort.getAddress(),
-                resort.getCity(),
                 resort.getCountry(),
-                resort.getEmail(),
+                resort.getCity(),
+                resort.getAddress(),
                 resort.getPostalCode(),
-                resort.getPhone()});
+                resort.getPhone(),
+                resort.getEmail()
+
+            });
         }
-    
-    
+
     }
     
-
     private void searchResortTable(int dbField, String searchArgs) {
         modelResort.setRowCount(0);
         resorts = query.searchResortList(dbField, searchArgs);
         for (Resort resort : resorts) {
             modelResort.addRow(new Object[]{new Integer(resort.getId()),
                 resort.getName(),
-                resort.getAddress(),
-                resort.getCity(),
                 resort.getCountry(),
-                resort.getEmail(),
+                resort.getCity(),
+                resort.getAddress(),
                 resort.getPostalCode(),
-                resort.getPhone()});
+                resort.getPhone(),
+                resort.getEmail()
+
+            });
         }
 
     }
@@ -1253,10 +1256,10 @@ public class Employee extends javax.swing.JFrame {
             BUNDLE.getStringArray("customerTableFieldsMin")
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class,java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
+                false,false, false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -1723,7 +1726,7 @@ public class Employee extends javax.swing.JFrame {
                 {null, null, null, null},
                 {null, null, null, null}
             },
-            BUNDLE.getStringArray("resortTableAllFields")
+            BUNDLE.getStringArray("resortTableTitles")
         ));
         jScrollPane4.setViewportView(tblResort);
 
@@ -1886,10 +1889,9 @@ public class Employee extends javax.swing.JFrame {
         boolean totalCorrectInput = errorCheckCreateCustomer();
         if (totalCorrectInput == true) {
             doCreateCustomer();
+        } else {
+            errorPopUp("Vul alle velden volledig in en probeer het nog eens.");
         }
-//        else {
-//            errorPopUp("Vul alle velden volledig in en probeer het nog eens.");
-//        }
     }//GEN-LAST:event_createCustomer1ActionPerformed
 
     private void refreshCustomerTable2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshCustomerTable2ActionPerformed
@@ -2257,6 +2259,7 @@ public class Employee extends javax.swing.JFrame {
     private void btnCreateResortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateResortActionPerformed
 
         Resort resort = new Resort();
+        
 
         String newName = tfResortName.getText().trim();
         String newAddress = tfResortAddress.getText().trim();

@@ -765,6 +765,7 @@ public class ExtendedCustomer extends javax.swing.JFrame {
         for (int i = 0; i < listBagageToPrint.getModel().getSize(); i++) {
             session.addToList((Integer) listBagageToPrint.getModel().getElementAt(i));
         }
+        Main.displaySaveDocument();
     }//GEN-LAST:event_btCreatePdfActionPerformed
 
     private void chbUnlockFieldsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chbUnlockFieldsActionPerformed

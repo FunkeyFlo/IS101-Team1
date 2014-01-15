@@ -1,6 +1,5 @@
 package view.administrator;
 
-import connectivity.DatabaseManager;
 import connectivity.QueryManager;
 import javax.swing.JDialog;
 import java.awt.Frame;
@@ -16,11 +15,10 @@ import model.User;
 
 /**
  *
- * @author Team AwesomeSauce
+ * @author IS101
  */
 public class Administrator extends javax.swing.JFrame {
 
-    private final DatabaseManager db = new DatabaseManager();
     private final User user = new User();
     private final QueryManager query = new QueryManager();
 
@@ -616,8 +614,7 @@ public class Administrator extends javax.swing.JFrame {
         boolean isConfirm = false;
         if (totalCorrectInput == false) {
             errorPopUp(BUNDLE.getString("fillInAllFields"));
-        }
-        if (usernameInUse == true) {
+        } else if (usernameInUse == true) {
             errorPopUp(BUNDLE.getString("usernameInUse"));
         } else {
             isConfirm = createPopUp(BUNDLE.getString("createUserPrompt"));
@@ -753,7 +750,7 @@ public class Administrator extends javax.swing.JFrame {
         boolean isError = false;
         try {
             query.unlockUser(userTable.getValueAt(userTable.getSelectedRow(),
-                    0).toString(),"0");
+                    0).toString(), "0");
         } catch (IndexOutOfBoundsException e) {
             errorPopUp(BUNDLE.getString("selectItemInTable"));
             isError = true;
