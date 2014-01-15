@@ -83,7 +83,7 @@ public class ResourceBundle_nl extends ListResourceBundle {
                 "Achternaam", "Adres", "Postcode", "Stad", "Land",
                 "Email", "Tel. Thuis", "Tel. Mobiel"} },
             
-            { "customerTableFieldsMin", new String[] { "Klant nummer", "Voornaam",
+            { "customerTableFieldsMin", new String[] { "Klant nummer","Verblijf ID" ,"Voornaam",
                 "Achternaam", "Adres", "Postcode", "Stad", "Land",
                 "Email"} },
             

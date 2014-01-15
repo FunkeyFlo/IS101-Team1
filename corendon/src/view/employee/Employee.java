@@ -141,7 +141,8 @@ public class Employee extends javax.swing.JFrame {
         modelCustomer1.setRowCount(0); //nodig voor 
         customers = query.searchCustomerList(dbField, searchArg);
         for (Customer customer : customers) {
-            modelCustomer1.addRow(new Object[]{new Integer(customer.getCustomerId()),
+            modelCustomer1.addRow(new Object[]{new Integer(customer.getCustomerId()), (customer.getResortId()== 0) ? BUNDLE.getString("unassigned")
+                : customer.getResortId(),
                 customer.getFirstName(),
                 customer.getLastName(),
                 customer.getAddress(),
@@ -150,7 +151,8 @@ public class Employee extends javax.swing.JFrame {
                 customer.getCountry(),
                 customer.getEmail(),
                 customer.getPhoneHome(),
-                customer.getPhoneMobile()});
+                customer.getPhoneMobile()
+                });
 
             //System.out.println(user.getFirstName());
         }
@@ -1254,10 +1256,10 @@ public class Employee extends javax.swing.JFrame {
             BUNDLE.getStringArray("customerTableFieldsMin")
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class,java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
+                false,false, false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {

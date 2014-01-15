@@ -466,7 +466,8 @@ public class QueryManager {
                     + "OR `country` LIKE '%" + searchArg + "%'"
                     + "OR `email` LIKE '%" + searchArg + "%'"
                     + "OR `phone_home` LIKE '%" + searchArg + "%'"
-                    + "OR `phone_mobile` LIKE '%" + searchArg + "%'";
+                    + "OR `phone_mobile` LIKE '%" + searchArg + "%'"
+                    + "OR `resort_id` LIKE '%" + searchArg + "%'";
 
         } // for searching customerId
         else if (dbField == 1) {
@@ -498,7 +499,9 @@ public class QueryManager {
         } // phoneMobile
         else if (dbField == 10) {
             sql = sqlSelect + " WHERE `phone_mobile` LIKE '%" + searchArg + "%'";
-        } // Else statement is used to fill the table with all users
+        }else if(dbField == 11){ 
+          sql = sqlSelect + "WHERE `resort_id` LIKE '%" + searchArg + "%'";
+        }// Else statement is used to fill the table with all users
         else {
             sql = sqlSelect;
         }
@@ -508,6 +511,7 @@ public class QueryManager {
             ResultSet result = customer.getDb().doQuery(sql);
             while (result.next()) {
                 customers.add(new Customer(result.getInt("customer_id"),
+                        result.getInt("resort_id"),
                         result.getString("first_name"),
                         result.getString("last_name"),
                         result.getString("address"),
@@ -517,9 +521,11 @@ public class QueryManager {
                         result.getString("email"),
                         result.getString("phone_home"),
                         result.getString("phone_mobile"),
-                        result.getString("date_changed"),
-                        result.getInt("resort_id"),
-                        result.getInt("last_changed_by")));
+                        result.getString("date_changed"),                          
+                        result.getInt("last_changed_by")
+                       
+                ));
+                         
             }
         } catch (SQLException e) {
             System.out.println(customer.getDb().SQL_EXCEPTION + e.getMessage());
