@@ -39,9 +39,11 @@ public class Employee extends javax.swing.JFrame {
 
     public static int customerId;
     public static int luggageId;
+    public static int resortId;
 
     private String customerToLink = null;
     private String luggageToLink = null;
+    private String resortToLink = null;
 
     public boolean isLinked = false;
     public static String customerFullName;
@@ -200,10 +202,10 @@ public class Employee extends javax.swing.JFrame {
     
 
     private void searchResortTable(int dbField, String searchArgs) {
-        modelResort1.setRowCount(0);
+        modelResort.setRowCount(0);
         resorts = query.searchResortList(dbField, searchArgs);
         for (Resort resort : resorts) {
-            modelResort1.addRow(new Object[]{new Integer(resort.getId()),
+            modelResort.addRow(new Object[]{new Integer(resort.getId()),
                 resort.getName(),
                 resort.getAddress(),
                 resort.getCity(),
@@ -512,6 +514,7 @@ public class Employee extends javax.swing.JFrame {
         linkButton = new javax.swing.JButton();
         refreshTables1 = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
+        btnLinkResort = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
@@ -1407,6 +1410,11 @@ public class Employee extends javax.swing.JFrame {
         jScrollPane5.setViewportView(tblResort1);
 
         buttonSearchResort1.setText(BUNDLE.getString("search"));
+        buttonSearchResort1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonSearchResort1ActionPerformed(evt);
+            }
+        });
 
         cbResort1.setModel(new javax.swing.DefaultComboBoxModel(BUNDLE.getStringArray("resortTableAllFieldsLink")));
 
@@ -1482,6 +1490,13 @@ public class Employee extends javax.swing.JFrame {
             }
         });
 
+        btnLinkResort.setText("Verblijf koppelen");
+        btnLinkResort.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLinkResortActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout linkOptionsPanelLayout = new javax.swing.GroupLayout(linkOptionsPanel);
         linkOptionsPanel.setLayout(linkOptionsPanelLayout);
         linkOptionsPanelLayout.setHorizontalGroup(
@@ -1491,7 +1506,9 @@ public class Employee extends javax.swing.JFrame {
                 .addComponent(refreshTables1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(cancelButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(33, 33, 33)
+                .addComponent(btnLinkResort)
+                .addGap(18, 18, 18)
                 .addComponent(linkButton)
                 .addContainerGap())
         );
@@ -1501,7 +1518,8 @@ public class Employee extends javax.swing.JFrame {
                 .addGroup(linkOptionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(linkButton)
                     .addComponent(refreshTables1)
-                    .addComponent(cancelButton))
+                    .addComponent(cancelButton)
+                    .addComponent(btnLinkResort))
                 .addGap(0, 11, Short.MAX_VALUE))
         );
 
@@ -1512,7 +1530,7 @@ public class Employee extends javax.swing.JFrame {
             .addGroup(linkLuggageLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(linkLuggageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(linkTableSplitter)
+                    .addComponent(linkTableSplitter, javax.swing.GroupLayout.DEFAULT_SIZE, 1431, Short.MAX_VALUE)
                     .addComponent(linkOptionsPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -2370,6 +2388,41 @@ public class Employee extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_buttonUpdateResortActionPerformed
 
+    private void btnLinkResortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLinkResortActionPerformed
+        boolean confirmation;
+        isLinked = true;
+        try {
+            customerToLink = customerTable1.getValueAt(customerTable1.getSelectedRow(), 0).toString();
+            resortToLink = tblResort1.getValueAt(tblResort1.getSelectedRow(), 0).toString();
+            String customerFirstName = customerTable1.getValueAt(customerTable1.getSelectedRow(), 1).toString() + " ";
+            String customerLastName = customerTable1.getValueAt(customerTable1.getSelectedRow(), 2).toString();
+            customerFullName = customerFirstName + customerLastName;
+        } catch (IndexOutOfBoundsException e) {
+            JOptionPane.showMessageDialog(ErrorPopUp,
+                    "Maak een selectie in de tabel en probeer het nog eens.");
+            isLinked = false;
+        }
+        boolean isError = false;
+
+        customerId = Integer.parseInt(customerToLink);
+        resortId = Integer.parseInt(resortToLink);
+        String message = "Weet u zeker dat u klant: " + customerFullName + "\n"
+                + "Wilt koppelen aan verblijf: " + resortId;
+
+        confirmation = confirmationPopUp(message);
+        if (confirmation == true) {
+            Luggage luggage = new Luggage();
+            query.linkCustomerIdToResort(customerId, resortId);
+            searchCustomerTable1(cbSearchLuggage.getSelectedIndex(), customerSearchField.getText());
+            searchResortTable(9999, "");
+        }
+    }//GEN-LAST:event_btnLinkResortActionPerformed
+
+    private void buttonSearchResort1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSearchResort1ActionPerformed
+        int searchField = cbResort1.getSelectedIndex();
+        searchResortTable1(searchField, tfSearchResort1.getText().trim());
+    }//GEN-LAST:event_buttonSearchResort1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -2411,6 +2464,7 @@ public class Employee extends javax.swing.JFrame {
     private javax.swing.JButton btDeleteLuggage;
     private javax.swing.JButton btPrintReceipt;
     private javax.swing.JButton btnCreateResort;
+    private javax.swing.JButton btnLinkResort;
     private javax.swing.JButton buttonDeleteResort;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton buttonRefresh;

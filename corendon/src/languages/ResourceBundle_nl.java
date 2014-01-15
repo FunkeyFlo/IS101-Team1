@@ -59,7 +59,7 @@ public class ResourceBundle_nl extends ListResourceBundle {
             { "phoneMobile", "Tel. mobiel" },
             { "postalCode", "Postcode" },
             { "reset", "Reset" },
-            { "resetOverview", "Tabel Resetten" },
+            { "resetOverview", "Overzicht verversen" },
             { "resort", "Verblijf" },
             { "resortTab", "Verblijfs overzicht en registratie" },
             { "search", "Zoeken" },
