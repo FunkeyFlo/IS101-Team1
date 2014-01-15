@@ -144,7 +144,8 @@ public class Administrator extends javax.swing.JFrame {
      */
     private boolean errorCheckCreateUser() {
         boolean isError[] = new boolean[4];
-        boolean totalCorrectInput = true;
+        boolean totalCorrectInput = false;
+        
         String userName = tfUsername.getText();
         String passWord = tfPassword.getText();
         String firstName = tfFirstName.getText();
@@ -153,24 +154,28 @@ public class Administrator extends javax.swing.JFrame {
 
         if (userName.equals(empty)) {
             isError[0] = true;
+            errorPopUp("Vul een gebruikersnaam in.");
         } else {
             isError[0] = false;
         }
 
         if (passWord.equals(empty)) {
             isError[1] = true;
+            errorPopUp("Vul een wachtwoord in.");
         } else {
             isError[1] = false;
         }
 
         if (firstName.equals(empty)) {
             isError[2] = true;
+            errorPopUp("Vul een voornaam in.");
         } else {
             isError[2] = false;
         }
 
         if (lastName.equals(empty)) {
             isError[3] = true;
+            errorPopUp("Vul een achternaam in.");
         } else {
             isError[3] = false;
         }
@@ -609,18 +614,9 @@ public class Administrator extends javax.swing.JFrame {
 
     @SuppressWarnings("empty-statement")
     private void createUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createUserActionPerformed
-        boolean usernameInUse = query.checkUsernameInUse(tfUsername.getText().trim());
         boolean totalCorrectInput = errorCheckCreateUser();
-        boolean isConfirm = false;
-        if (totalCorrectInput == false) {
-            errorPopUp(BUNDLE.getString("fillInAllFields"));
-        } else if (usernameInUse == true) {
-            errorPopUp(BUNDLE.getString("usernameInUse"));
-        } else {
-            isConfirm = createPopUp(BUNDLE.getString("createUserPrompt"));
-            if (isConfirm == true && usernameInUse == false) {
-                doCreateUser();
-            }
+        if (totalCorrectInput == true) {
+            doCreateUser();
         }
 
     }//GEN-LAST:event_createUserActionPerformed
