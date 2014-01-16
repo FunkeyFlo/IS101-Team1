@@ -144,8 +144,8 @@ public class Administrator extends javax.swing.JFrame {
      */
     private boolean errorCheckCreateUser() {
         boolean isError[] = new boolean[4];
-        boolean totalCorrectInput = false;
-        
+        boolean totalCorrectInput = true;
+
         String userName = tfUsername.getText();
         String passWord = tfPassword.getText();
         String firstName = tfFirstName.getText();
@@ -617,7 +617,10 @@ public class Administrator extends javax.swing.JFrame {
         boolean totalCorrectInput = errorCheckCreateUser();
         if (totalCorrectInput == true) {
             doCreateUser();
+        } else {
+            System.out.println("hur");
         }
+
 
     }//GEN-LAST:event_createUserActionPerformed
 
