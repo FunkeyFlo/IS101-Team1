@@ -293,9 +293,9 @@ public class ChangeUser extends javax.swing.JFrame {
             boolean totalCorrectInput = errorCheckCreateUser();
             boolean isConfirm = false;
             if (totalCorrectInput == false) {
-                errorPopUp("Vul a.u.b. alle velden correct in.");
+                errorPopUp(BUNDLE.getString("fillInAllFields"));
             } else {
-                isConfirm = createPopUp("Weet u zeker dat u de gegevens van deze gebruiker wilt aanpassen?");
+                isConfirm = createPopUp(BUNDLE.getString("alterUserPrompt"));
                 if (isConfirm == true) {
                     doChangeUser();
                     dispose();
@@ -314,9 +314,9 @@ public class ChangeUser extends javax.swing.JFrame {
             boolean totalCorrectInput = errorCheckCreateUser();
             boolean isConfirm = false;
             if (totalCorrectInput == false) {
-                errorPopUp("Vul a.u.b. alle velden in voordat u het opnieuw probeert.");
+                errorPopUp(BUNDLE.getString("fillInAllFields"));
             } else {
-                isConfirm = createPopUp("Weet u zeker dat u de gegevens van deze gebruiker wilt aanpassen?");
+                isConfirm = createPopUp(BUNDLE.getString("alterUserPrompt"));
                 if (isConfirm == true) {
                     doChangeUser();
                     dispose();
@@ -335,9 +335,9 @@ public class ChangeUser extends javax.swing.JFrame {
             boolean totalCorrectInput = errorCheckCreateUser();
             boolean isConfirm = false;
             if (totalCorrectInput == false) {
-                errorPopUp("Vul a.u.b. alle velden in voordat u het opnieuw probeert.");
+                errorPopUp(BUNDLE.getString("fillInAllFields"));
             } else {
-                isConfirm = createPopUp("Weet u zeker dat u de gegevens van deze gebruiker wilt aanpassen?");
+                isConfirm = createPopUp(BUNDLE.getString("alterUserPrompt"));
                 if (isConfirm == true) {
                     doChangeUser();
                     dispose();
@@ -356,9 +356,9 @@ public class ChangeUser extends javax.swing.JFrame {
         boolean totalCorrectInput = errorCheckCreateUser();
         boolean isConfirm = false;
         if (totalCorrectInput == false) {
-            errorPopUp("Please fill in all the fields before trying again.");
+            errorPopUp(BUNDLE.getString("fillInAllFields"));
         } else {
-            isConfirm = createPopUp("Weet u zeker dat u deze gebruiker wilt aanmaken?");
+            isConfirm = createPopUp(BUNDLE.getString("createUserPrompt"));
             if (isConfirm == true) {
                 doChangeUser();
                 dispose();

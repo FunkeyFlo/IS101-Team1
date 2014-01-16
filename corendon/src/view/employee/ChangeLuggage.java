@@ -59,7 +59,7 @@ public class ChangeLuggage extends javax.swing.JFrame {
         final JOptionPane createUserPopPane = new JOptionPane(message,
                 JOptionPane.WARNING_MESSAGE,
                 JOptionPane.YES_NO_OPTION);
-        final JDialog dialog = new JDialog((Frame) confirmationPopUp, "Let op!", true);
+        final JDialog dialog = new JDialog((Frame) confirmationPopUp, BUNDLE.getString("attention"), true);
         dialog.setContentPane(createUserPopPane);
         createUserPopPane.addPropertyChangeListener(
                 new PropertyChangeListener() {
@@ -268,20 +268,20 @@ public class ChangeLuggage extends javax.swing.JFrame {
         String location = tfLocation.getText();
 
         if (description.equals("")) {
-            errorPopUp("Vul een omschrijving in en probeer het nog eens.");
+            errorPopUp(BUNDLE.getString("enterDescription"));
             correctInput[0] = false;
         } else if (description.length() > 200) {
-            errorPopUp("Het karakterlimiet voor de omschrijving is overschreden.");
+            errorPopUp(BUNDLE.getString("descriptionTooLong"));
             correctInput[0] = false;
         } else {
             correctInput[0] = true;
         }
 
         if (location.equals("")) {
-            errorPopUp("Vul een locatie in en probeer het nog eens.");
+            errorPopUp(BUNDLE.getString("enterLocation"));
             correctInput[1] = false;
         } else if (location.length() > 50) {
-            errorPopUp("Het karakterlimiet voor de locatie is overschreden.");
+            errorPopUp(BUNDLE.getString("locationTooLong"));
             correctInput[0] = false;
         } else {
             correctInput[1] = true;
@@ -297,8 +297,9 @@ public class ChangeLuggage extends javax.swing.JFrame {
 
         if (totalCorrectInput == true) {
 
-            finalCheck = confirmationPopUp("Nieuwe baggagegegevens:" + "\n" + "Omschrinving: " + description + "\n"
-                    + "Locatie: " + location);
+            finalCheck = confirmationPopUp(BUNDLE.getString("newLuggageData") + ":\n"
+                    + BUNDLE.getString("description") + ":" + description + "\n"
+                    + BUNDLE.getString("location") + ":" + location);
         }
 
         if (finalCheck == true) {

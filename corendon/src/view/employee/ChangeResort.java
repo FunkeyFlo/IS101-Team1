@@ -227,14 +227,95 @@ public class ChangeResort extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-
+        String resortName = tfResortName.getText();
+        String resortAddress = tfResortAddress.getText();
+        String resortCountry = tfResortCountry.getText();
+        String resortPostalCode = tfResortPostalCode.getText();
+        String resortCity = tfResortCity.getText();
+        String resortEmail = tfResortEmail1.getText() + "@" + tfResortEmail2.getText();
+        String resortPhone = tfResortPhone.getText();
+        String[] resortConfirmMsg = BUNDLE.getStringArray("changeResortConfirm");
         boolean finalCheck = false;
-
-        finalCheck = confirmationPopUp("Nieuwe resort gegevens:         " + "   \n"
-                + "Naam: " + tfResortName.getText() + "   \n" + "Adres: " + tfResortAddress.getText() + "   \n"
-                + "Land: " + tfResortCountry.getText() + "  \n" + "Postcode: " + tfResortPostalCode.getText()
-                + "   \n" + "Stad: " + tfResortCity.getText() + "   \n" + "   \n" + "Email: "
-                + tfResortEmail1.getText() + "@" + tfResortEmail2.getText() + "   \n" + "Telefoon: " + tfResortPhone.getText());
+        boolean [] correctInput = new boolean[7];
+        
+        if(resortName.equals("")){
+            errorPopUp(BUNDLE.getString("enterResortName"));
+            correctInput[0] = false;
+        }
+        else if(resortName.length() > 50){
+            errorPopUp(BUNDLE.getString("nameTooLong"));
+            correctInput[0] = false;
+        }
+        else
+            correctInput[0] = true;
+        
+        if(resortAddress.equals("")){
+            errorPopUp(BUNDLE.getString("enterAddress"));
+            correctInput[1] = false;
+        }
+        else if(resortAddress.length() > 75){
+            errorPopUp(BUNDLE.getString("addressTooLong"));
+            correctInput[1] = false;
+        }
+        else
+            correctInput[1] = true;
+        
+        if(resortCountry.equals("")){
+            errorPopUp(BUNDLE.getString("enterCountry"));
+            correctInput[2] = false;
+        }
+        else if(resortCountry.length() > 45){
+            errorPopUp(BUNDLE.getString("countryTooLong"));
+            correctInput[2] = false;
+        }
+        else
+            correctInput[2] = true;
+        
+        if(resortPostalCode.length() > 45){
+            errorPopUp(BUNDLE.getString("postalCodeTooLong"));
+            correctInput[3] = false;
+        }
+        else
+            correctInput[3] = true;
+        
+        if(resortCity.equals("")){
+            errorPopUp(BUNDLE.getString("enterResortCity"));
+            correctInput[4] = false;
+        }
+        else if(resortCity.length() > 45){
+            errorPopUp(BUNDLE.getString("cityTooLong"));
+            correctInput[4] = false;
+        }
+        else
+            correctInput[4] = true;
+        
+        if(resortEmail.length() > 100){
+            errorPopUp(BUNDLE.getString("emailTooLong"));
+            correctInput[5] = false;
+        }
+        else
+            correctInput[5] = true;
+        
+        if(resortPhone.equals("")){
+            errorPopUp(BUNDLE.getString("enterResortPhone"));
+            correctInput[6] = false;
+        }
+        else if(resortPhone.length() > 20){
+            errorPopUp(BUNDLE.getString("phoneTooLong"));
+            correctInput[6] = false;
+        }
+        else
+            correctInput[6] = true;
+        
+        
+        if(correctInput.toString().contains("true")){
+        finalCheck = confirmationPopUp(resortConfirmMsg[0] + "\n"
+                + resortConfirmMsg[1] + resortName + "\n" + resortConfirmMsg[2] 
+                + resortAddress + "\n" + resortConfirmMsg[3] + resortCountry
+                + "\n" + resortConfirmMsg[4] + resortPostalCode + "\n"
+                + resortConfirmMsg[5] + resortCity + "\n" + "\n" 
+                + resortConfirmMsg[6] + resortEmail + "\n" + resortConfirmMsg[7] 
+                + resortPhone);
 
         if (finalCheck == true) {
             query.updateResort(resort.getId(),
@@ -245,8 +326,9 @@ public class ChangeResort extends javax.swing.JFrame {
                     tfResortPhone.getText(),
                     tfResortEmail1.getText() + "@" + tfResortEmail2.getText(),
                     tfResortPostalCode.getText());
-
+        
             dispose();
+        }
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -256,7 +338,7 @@ public class ChangeResort extends javax.swing.JFrame {
                 JOptionPane.WARNING_MESSAGE,
                 JOptionPane.YES_NO_OPTION);
         final JDialog dialog = new JDialog((Frame) confirmationPopUp,
-                "Maak een keuze", true);
+                BUNDLE.getString("pressButton"), true);
         dialog.setContentPane(createUserPopPane);
         createUserPopPane.addPropertyChangeListener(
                 new PropertyChangeListener() {

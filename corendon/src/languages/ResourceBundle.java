@@ -69,6 +69,8 @@ public class ResourceBundle extends ListResourceBundle {
                 "First name:", "Last name:", "Address:", "Postal Code:", "City:", "Country:",
                 "Email:", "Phone home:", "Phone mobile:"} },
             
+            
+            
             { "countriesComboBox", new String[] { "Netherlands", "Turkey", "Australia" } },
             
             { "customerSearchFields", new String[] { "All fields", "Customer ID", "Firstname",
@@ -108,6 +110,9 @@ public class ResourceBundle extends ListResourceBundle {
             
             { "resortTableTitles", new String[] { "Resort ID", "Resort name", 
                 "Address", "Country", "City", "Phone number", "Email", "Postal Code" } },
+            
+            { "changeResortConfirm", new String[] {"New resort data:", "Name:",
+                "Address:", "Country:", "Postal Code:", "City:", "Email:", "Phone number:"} },
             
             { "statuses", new String[] { "Lost", "Found", "Handled" } },
             
@@ -151,6 +156,7 @@ public class ResourceBundle extends ListResourceBundle {
                 "Are you sure you want to create this user account?" },
             { "deleteUserPrompt", 
                 "Are you sure you want to delete this user account?" },
+            { "alterUserPrompt", "Are you sure you want to alter this user?"},
             { "deleteUser", "Delete user" },
             { "editInfo", "Edit user information" },
             { "lockAccount", "Lock account" },
@@ -163,6 +169,7 @@ public class ResourceBundle extends ListResourceBundle {
             { "userOverview", "User overview" },
             { "createUser", "Create user" },
             { "userLogged", "Sorry, You cannot change your own password." },
+            { "passwordMissmatch", "Passwords do not match."},
             
         // Manager.java
             { "allData", "All Data" },
@@ -217,7 +224,11 @@ public class ResourceBundle extends ListResourceBundle {
             { "updateResort", "Update resort"},
             { "deleteResort", "Delete resort"},
             { "createResort", "Create resort"},
-            { "summaryResort", "Resort summary"},                      
+            { "summaryResort", "Resort summary"},
+            { "linkLuggageMsg1", "Are you sure you want to link customer: "},
+            { "linkLuggageMsg2", "To luggage: "},
+            { "linkResortMsg1", "Are you sure you want to link customer: "},
+            { "linkResortMsg2", "To resort: "},
             
         // ExtendedCustomer.java
             { "changeCustomerInfo", "Change customer information" },
@@ -233,15 +244,41 @@ public class ResourceBundle extends ListResourceBundle {
             
         // PopUps used in various classes
             {"enterFirstName", "Enter a first name."},
+            {"enterUserName", "Enter a username."},
+            {"enterPassword", "Enter a password"},
             {"enterLastName", "Enter a last name."},
             {"enterAddress", "Enter an address."},
             {"enterPostalCode", "Enter a postal code."},
             {"enterCity", "Enter a city."},
-            {"enterEmail", "Enter an email."},
+            {"enterEmail", "Enter an email address."},
+            {"enterLegitEmail", "Enter a valid email address."},
             {"enterPhoneHome", "Enter a valid home phonenumber."},
             {"enterPhoneMobile", "Enter a valid mobile phonenumber"},
+            {"enterDescription", "Enter a description."},
+            {"enterLocation", "Enter a location."},
+            {"enterResortName", "Enter a name for the resort."},
+            {"enterCountry", "Enter a country for the resort."},
+            {"enterResortCity", "Enter a city for the resort."},
+            {"enterResortPhone", "Enter a phone number."},
             {"pressButton", "Press a button"},
             {"selectLuggageToAdd", "Select luggage to add to list."},
-            {"luggageAlreadyAdded", "This luggage has already been added to the list."},            
+            {"luggageAlreadyAdded", "This luggage has already been added to the list."},
+            {"attention", "Attention!"},
+            {"descriptionTooLong", "The description is too long."},
+            {"locationTooLong", "Location entry too long."},
+            {"nameTooLong", "Name is too long."},
+            {"addressTooLong", "Address is too long."},
+            {"countryTooLong", "Country entry too long."},
+            {"postalCodeTooLong", "Postal Code entry too long."},
+            {"cityTooLong", "City entry is too long."},
+            {"emailTooLong", "Email address is too long."},
+            {"phoneTooLong", "Phone number is too long."},
+            {"newLuggageData", "New luggage data:"},
+            {"customerIdInputError", "Customer ID entry can only contain numbers."},
+            {"customerDeleteMsg1", "Are you sure you want to delete customer: "},
+            {"customerDeleteMsg2", "?"},
+            {"luggageDeleteMsg1", "Are you sure you want to delete luggage piece: "},
+            {"luggageDeleteMsg2", "?"},
+            {"resortDeleteMsg", "Are you sure you want to delete this resort?"},
     };        
 }

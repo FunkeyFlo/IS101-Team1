@@ -92,7 +92,7 @@ public class Administrator extends javax.swing.JFrame {
         final JOptionPane createUserPopPane = new JOptionPane(message,
                 JOptionPane.WARNING_MESSAGE,
                 JOptionPane.YES_NO_OPTION);
-        final JDialog dialog = new JDialog((Frame) createUserPopup, "Let op!", true);
+        final JDialog dialog = new JDialog((Frame) createUserPopup, BUNDLE.getString("attention"), true);
         dialog.setContentPane(createUserPopPane);
         createUserPopPane.addPropertyChangeListener(
                 new PropertyChangeListener() {
@@ -154,28 +154,28 @@ public class Administrator extends javax.swing.JFrame {
 
         if (userName.equals(empty)) {
             isError[0] = true;
-            errorPopUp("Vul een gebruikersnaam in.");
+            errorPopUp(BUNDLE.getString("enterUserName"));
         } else {
             isError[0] = false;
         }
 
         if (passWord.equals(empty)) {
             isError[1] = true;
-            errorPopUp("Vul een wachtwoord in.");
+            errorPopUp(BUNDLE.getString("enterPassword"));
         } else {
             isError[1] = false;
         }
 
         if (firstName.equals(empty)) {
             isError[2] = true;
-            errorPopUp("Vul een voornaam in.");
+            errorPopUp(BUNDLE.getString("enterFirstName"));
         } else {
             isError[2] = false;
         }
 
         if (lastName.equals(empty)) {
             isError[3] = true;
-            errorPopUp("Vul een achternaam in.");
+            errorPopUp(BUNDLE.getString("enterLastName"));
         } else {
             isError[3] = false;
         }
@@ -669,11 +669,9 @@ public class Administrator extends javax.swing.JFrame {
         if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
             boolean totalCorrectInput = errorCheckCreateUser();
             boolean isConfirm = false;
-            if (totalCorrectInput == false) {
-                errorPopUp(BUNDLE.getString("fillInAllFields"));
-            } else {
+            if (totalCorrectInput) {
                 isConfirm = createPopUp(BUNDLE.getString("createUserPrompt"));
-                if (isConfirm == true) {
+                if (isConfirm) {
                     doCreateUser();
                 }
             }
@@ -684,11 +682,9 @@ public class Administrator extends javax.swing.JFrame {
         if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
             boolean totalCorrectInput = errorCheckCreateUser();
             boolean isConfirm = false;
-            if (totalCorrectInput == false) {
-                errorPopUp(BUNDLE.getString("fillInAllFields"));
-            } else {
+            if (totalCorrectInput) {
                 isConfirm = createPopUp(BUNDLE.getString("createUserPrompt"));
-                if (isConfirm == true) {
+                if (isConfirm) {
                     doCreateUser();
                 }
             }
@@ -700,11 +696,9 @@ public class Administrator extends javax.swing.JFrame {
         if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
             boolean totalCorrectInput = errorCheckCreateUser();
             boolean isConfirm = false;
-            if (totalCorrectInput == false) {
-                errorPopUp(BUNDLE.getString("fillInAllFields"));
-            } else {
+            if (totalCorrectInput) {
                 isConfirm = createPopUp(BUNDLE.getString("createUserPrompt"));
-                if (isConfirm == true) {
+                if (isConfirm) {
                     doCreateUser();
                 }
             }
@@ -715,11 +709,9 @@ public class Administrator extends javax.swing.JFrame {
         if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
             boolean totalCorrectInput = errorCheckCreateUser();
             boolean isConfirm = false;
-            if (totalCorrectInput == false) {
-                errorPopUp(BUNDLE.getString("fillInAllFields"));
-            } else {
+            if (totalCorrectInput) {
                 isConfirm = createPopUp(BUNDLE.getString("createUserPrompt"));
-                if (isConfirm == true) {
+                if (isConfirm) {
                     doCreateUser();
                 }
             }
@@ -731,11 +723,9 @@ public class Administrator extends javax.swing.JFrame {
         if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
             boolean totalCorrectInput = errorCheckCreateUser();
             boolean isConfirm = false;
-            if (totalCorrectInput == false) {
-                errorPopUp(BUNDLE.getString("fillInAllFields"));
-            } else {
+            if (totalCorrectInput) {
                 isConfirm = createPopUp(BUNDLE.getString("createUserPrompt"));
-                if (isConfirm == true) {
+                if (isConfirm) {
                     doCreateUser();
                 }
             }

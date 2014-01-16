@@ -146,7 +146,7 @@ public class ResetPassword extends javax.swing.JFrame {
             warningLabel.setText("");
             dispose();
         } else {
-            warningLabel.setText("Wachtwoorden komen niet overeen");
+            warningLabel.setText(BUNDLE.getString("passwordMismatch"));
         }
     }//GEN-LAST:event_okButtonActionPerformed
 

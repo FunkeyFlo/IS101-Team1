@@ -301,44 +301,44 @@ public class Employee extends javax.swing.JFrame {
 
         if (newFirstName.equals("") || newFirstName.length() > 50) {
             correctInput[0] = false;
-            errorPopUp("Vul een voornaam in.");
+            errorPopUp(BUNDLE.getString("enterFirstName"));
         } else {
             correctInput[0] = true;
         }
 
         if (newLastName.equals("") || newLastName.length() > 50) {
             correctInput[1] = false;
-            errorPopUp("Vul een achternaam in.");
+            errorPopUp(BUNDLE.getString("enterLastName"));
         } else {
             correctInput[1] = true;
         }
 
         if (newAddress.equals(" ") || tfAddress1.getText().equals("") || tfAddress2.getText().equals("")) {
             correctInput[2] = false;
-            errorPopUp("Vul een adres in.");
+            errorPopUp(BUNDLE.getString("enterAddress"));
         } else {
             correctInput[2] = true;
         }
 
         if (newPostalCode.equals("")) {
             correctInput[3] = false;
-            errorPopUp("Vul een postcode in.");
+            errorPopUp(BUNDLE.getString("enterPostalCode"));
         } else {
             correctInput[3] = true;
         }
 
         if (newCity.equals("")) {
             correctInput[4] = false;
-            errorPopUp("Vul een stad in.");
+            errorPopUp(BUNDLE.getString("enterCity"));
         } else {
             correctInput[4] = true;
         }
 
         if (newEmail.length() > 75) {
             correctInput[5] = false;
-            errorPopUp("Het gegeven email is te lang.");
+            errorPopUp(BUNDLE.getString("emailTooLong"));
         } else if (!tfEmail2.getText().contains(".")) {
-            errorPopUp("Het gegeven email bevat geen punt.");
+            errorPopUp(BUNDLE.getString("enterLegitEmail"));
             correctInput[5] = false;
         } else {
             correctInput[5] = true;
@@ -368,7 +368,7 @@ public class Employee extends javax.swing.JFrame {
         final JOptionPane createUserPopPane = new JOptionPane(message,
                 JOptionPane.WARNING_MESSAGE,
                 JOptionPane.YES_NO_OPTION);
-        final JDialog dialog = new JDialog((Frame) confirmationPopUp, "Let op!", true);
+        final JDialog dialog = new JDialog((Frame) confirmationPopUp, BUNDLE.getString("attention"), true);
         dialog.setContentPane(createUserPopPane);
         createUserPopPane.addPropertyChangeListener(
                 new PropertyChangeListener() {
@@ -1889,7 +1889,7 @@ public class Employee extends javax.swing.JFrame {
         if (totalCorrectInput == true) {
             doCreateCustomer();
         } else {
-            errorPopUp("Vul alle velden volledig in en probeer het nog eens.");
+            errorPopUp(BUNDLE.getString("fillInAllFields"));
         }
     }//GEN-LAST:event_createCustomer1ActionPerformed
 
@@ -1910,7 +1910,7 @@ public class Employee extends javax.swing.JFrame {
         try {
             Session.storedLuggageId = luggageTable2.getValueAt(luggageTable2.getSelectedRow(), 0).toString();
         } catch (IndexOutOfBoundsException e) {
-            errorPopUp("Maak een selectie in de tabel en probeer het nog eens.");
+            errorPopUp(BUNDLE.getString("selectItemInTable"));
             isError = true;
         }
         if (isError == false) {
@@ -1929,15 +1929,15 @@ public class Employee extends javax.swing.JFrame {
             customerFullName = customerFirstName + customerLastName;
         } catch (IndexOutOfBoundsException e) {
             JOptionPane.showMessageDialog(ErrorPopUp,
-                    "Maak een selectie in de tabel en probeer het nog eens.");
+                    BUNDLE.getString("selectItemInTable"));
             isLinked = false;
         }
         boolean isError = false;
 
         customerId = Integer.parseInt(customerToLink);
         luggageId = Integer.parseInt(luggageToLink);
-        String message = "Weet u zeker dat u klant: " + customerFullName + "\n"
-                + "Wilt koppelen aan baggagestuk: " + luggageId;
+        String message = BUNDLE.getString("linkLuggageMsg1") + customerFullName + "\n"
+                + BUNDLE.getString("linkLuggageMsg2") + luggageId;
 
         confirmation = confirmationPopUp(message);
         if (confirmation == true) {
@@ -1979,7 +1979,7 @@ public class Employee extends javax.swing.JFrame {
 
         String description = tfDescription.getText().trim();
         if (description.equals("")) {
-            errorPopUp("Voer een omschrijving in en probeer het nog eens.");
+            errorPopUp(BUNDLE.getString("enterDescription"));
             correctInput[0] = false;
         } else {
             correctInput[0] = true;
@@ -1987,7 +1987,7 @@ public class Employee extends javax.swing.JFrame {
 
         String location = tfLocation1.getText().trim();
         if (location.equals("")) {
-            errorPopUp("Voer een locatie in en probeer het nog eens.");
+            errorPopUp(BUNDLE.getString("enterLocation"));
             correctInput[1] = false;
         } else {
             correctInput[1] = true;
@@ -2026,7 +2026,6 @@ public class Employee extends javax.swing.JFrame {
 
     private void customerSearchField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_customerSearchField1KeyPressed
         if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
-            System.out.println("Enter pressed");
             int searchField = cbSearchCustomer1.getSelectedIndex();
             searchCustomerTable2(searchField, customerSearchField1.getText().trim());
         }
@@ -2079,7 +2078,7 @@ public class Employee extends javax.swing.JFrame {
             if (totalCorrectInput == true) {
                 doCreateCustomer();
             } else {
-                errorPopUp("Vul alle velden volledig in en probeer het nog eens.");
+                errorPopUp(BUNDLE.getString("fillInAllFields"));
             }
         }
     }//GEN-LAST:event_tfFirstNameKeyPressed
@@ -2090,7 +2089,7 @@ public class Employee extends javax.swing.JFrame {
             if (totalCorrectInput == true) {
                 doCreateCustomer();
             } else {
-                errorPopUp("Vul alle velden volledig in en probeer het nog eens.");
+                errorPopUp(BUNDLE.getString("fillInAllFields"));
             }
         }
     }//GEN-LAST:event_tfLastNameKeyPressed
@@ -2101,7 +2100,7 @@ public class Employee extends javax.swing.JFrame {
             if (totalCorrectInput == true) {
                 doCreateCustomer();
             } else {
-                errorPopUp("Vul alle velden volledig in en probeer het nog eens.");
+                errorPopUp(BUNDLE.getString("fillInAllFields"));
             }
         }
     }//GEN-LAST:event_tfAddress1KeyPressed
@@ -2112,7 +2111,7 @@ public class Employee extends javax.swing.JFrame {
             if (totalCorrectInput == true) {
                 doCreateCustomer();
             } else {
-                errorPopUp("Vul alle velden volledig in en probeer het nog eens.");
+                errorPopUp(BUNDLE.getString("fillInAllFields"));
             }
         }
     }//GEN-LAST:event_tfAddress2KeyPressed
@@ -2123,7 +2122,7 @@ public class Employee extends javax.swing.JFrame {
             if (totalCorrectInput == true) {
                 doCreateCustomer();
             } else {
-                errorPopUp("Vul alle velden volledig in en probeer het nog eens.");
+                errorPopUp(BUNDLE.getString("fillInAllFields"));
             }
         }
     }//GEN-LAST:event_tfPostalCodeKeyPressed
@@ -2134,7 +2133,7 @@ public class Employee extends javax.swing.JFrame {
             if (totalCorrectInput == true) {
                 doCreateCustomer();
             } else {
-                errorPopUp("Vul alle velden volledig in en probeer het nog eens.");
+                errorPopUp(BUNDLE.getString("fillInAllFields"));
             }
         }
     }//GEN-LAST:event_tfCityKeyPressed
@@ -2145,7 +2144,7 @@ public class Employee extends javax.swing.JFrame {
             if (totalCorrectInput == true) {
                 doCreateCustomer();
             } else {
-                errorPopUp("Vul alle velden volledig in en probeer het nog eens.");
+                errorPopUp(BUNDLE.getString("fillInAllFields"));
             }
         }
     }//GEN-LAST:event_tfEmail1KeyPressed
@@ -2156,7 +2155,7 @@ public class Employee extends javax.swing.JFrame {
             if (totalCorrectInput == true) {
                 doCreateCustomer();
             } else {
-                errorPopUp("Vul alle velden volledig in en probeer het nog eens.");
+                errorPopUp(BUNDLE.getString("fillInallFields"));
             }
         }
     }//GEN-LAST:event_tfEmail2KeyPressed
@@ -2167,7 +2166,7 @@ public class Employee extends javax.swing.JFrame {
             if (totalCorrectInput == true) {
                 doCreateCustomer();
             } else {
-                errorPopUp("Vul alle velden volledig in en probeer het nog eens.");
+                errorPopUp(BUNDLE.getString("fillInAllFields"));
             }
         }
     }//GEN-LAST:event_tfPhoneHomeKeyPressed
@@ -2178,7 +2177,7 @@ public class Employee extends javax.swing.JFrame {
             if (totalCorrectInput == true) {
                 doCreateCustomer();
             } else {
-                errorPopUp("Vul alle velden volledig in en probeer het nog eens.");
+                errorPopUp(BUNDLE.getString("fillInAllFields"));
             }
         }
     }//GEN-LAST:event_tfPhoneMobileKeyPressed
@@ -2192,11 +2191,12 @@ public class Employee extends javax.swing.JFrame {
             String customerLastName = customerTable2.getValueAt(customerTable2.getSelectedRow(), 2).toString();
             customerFullName = customerFirstName + customerLastName;
         } catch (IndexOutOfBoundsException e) {
-            errorPopUp("Maak een selectie in de tabel en probeer het nog eens.");
+            errorPopUp(BUNDLE.getString("selectItemInTable"));
             isError = true;
         }
         if (isError == false) {
-            String message = "Weet u zeker dat u klant: " + customerFullName + " wilt verwijderen?";
+            String message = BUNDLE.getString("customerDeleteMsg1") + customerFullName 
+                    + BUNDLE.getString("customerDeleteMsg2");
             confirmation = confirmationPopUp(message);
             if (confirmation == true) {
                 String customerID = customerTable2.getValueAt(customerTable2.getSelectedRow(), 0).toString();
@@ -2211,7 +2211,7 @@ public class Employee extends javax.swing.JFrame {
         try {
             Session.storedCustomerId = customerTable2.getValueAt(customerTable2.getSelectedRow(), 0).toString();
         } catch (IndexOutOfBoundsException e) {
-            errorPopUp("Maak een selectie in de tabel en probeer het nog eens.");
+            errorPopUp(BUNDLE.getString("selectItemInTable"));
             isError = true;
         }
         if (isError == false) {
@@ -2229,13 +2229,13 @@ public class Employee extends javax.swing.JFrame {
         try {
             String luggageId = luggageTable2.getValueAt(luggageTable2.getSelectedRow(), 0).toString();
         } catch (IndexOutOfBoundsException e) {
-            errorPopUp("Maak een selectie in de tabel en probeer het nog eens.");
+            errorPopUp(BUNDLE.getString("selectItemInTable"));
             isError = true;
         }
         if (isError == false) {
-            String message = "Weet u zeker dat u baggagestuk: "
+            String message = BUNDLE.getString("luggageDeleteMsg1")
                     + luggageTable2.getValueAt(luggageTable2.getSelectedRow(),
-                            0).toString() + " wilt verwijderen?";
+                            0).toString() + BUNDLE.getString("luggageDeleteMsg2");
             confirmation = confirmationPopUp(message);
         }
         if (confirmation == true) {
@@ -2267,55 +2267,55 @@ public class Employee extends javax.swing.JFrame {
         String newPhone = tfResortPhone.getText().trim();
         String newEmail = tfResortEmail1.getText().trim() + "@" + tfResortEmail2.getText().trim();
         String newPostalCode = tfResortPostalCode.getText().trim();
-
+        String[] resortConfirmMsg = BUNDLE.getStringArray("changeResortConfirm");
         boolean correctInput[] = new boolean[7];
         boolean totalCorrectInput = true;
         boolean finalCheck;
 
         if (newName.equals("")) {
-            errorPopUp("Vul een naam in en probeer het nog eens.");
+            errorPopUp(BUNDLE.getString("enterResortName"));
             correctInput[0] = false;
         } else {
             correctInput[0] = true;
         }
 
         if (newAddress.equals("")) {
-            errorPopUp("Vul een adres in en probeer het nog eens.");
+            errorPopUp(BUNDLE.getString("enterAddress"));
             correctInput[1] = false;
         } else {
             correctInput[1] = true;
         }
 
         if (newCountry.equals("")) {
-            errorPopUp("Vul een land in en probeer het nog eens.");
+            errorPopUp(BUNDLE.getString("enterCountry"));
             correctInput[2] = false;
         } else {
             correctInput[2] = true;
         }
 
         if (newCity.equals("")) {
-            errorPopUp("Vul een stad in en probeer het nog eens.");
+            errorPopUp(BUNDLE.getString("enterResortCity"));
             correctInput[3] = false;
         } else {
             correctInput[3] = true;
         }
 
         if (newPhone.equals("")) {
-            errorPopUp("Vul een telefoonnummer in en probeer het nog eens.");
+            errorPopUp(BUNDLE.getString("enterResortPhone"));
             correctInput[4] = false;
         } else {
             correctInput[4] = true;
         }
 
         if (newEmail.equals("")) {
-            errorPopUp("Vul een email in en probeer het nog eens.");
+            errorPopUp(BUNDLE.getString("enterEmail"));
             correctInput[5] = false;
         } else {
             correctInput[5] = true;
         }
 
         if (newPostalCode.equals("")) {
-            errorPopUp("Vul een postcode in en probeer het nog eens.");
+            errorPopUp(BUNDLE.getString("enterPostalCode"));
             correctInput[6] = false;
         } else {
             correctInput[6] = true;
@@ -2332,11 +2332,13 @@ public class Employee extends javax.swing.JFrame {
         }
         System.out.println(totalCorrectInput);
         if (totalCorrectInput == true) {
-            finalCheck = confirmationPopUp("Nieuwe resortgegevens:         " + "   \n"
-                    + "Naam: " + newName + "   \n" + "Adres: " + newAddress + "   \n"
-                    + "Land: " + newCountry + "   \n" + "Stad: " + newCity + "   \n"
-                    + "Telefoonnummmer" + newPhone + "   \n" + "Email: " + newEmail + "   \n"
-                    + "Postcode: " + newPostalCode);
+            finalCheck = confirmationPopUp(resortConfirmMsg[0] + "\n"
+                + resortConfirmMsg[1] + newName + "\n" + resortConfirmMsg[2] 
+                + newAddress + "\n" + resortConfirmMsg[3] + newCountry
+                + "\n" + resortConfirmMsg[4] + newPostalCode + "\n"
+                + resortConfirmMsg[5] + newCity + "\n" + "\n" 
+                + resortConfirmMsg[6] + newEmail + "\n" + resortConfirmMsg[7] 
+                + newPhone);
         } else {
             finalCheck = false;
         }
@@ -2364,11 +2366,11 @@ public class Employee extends javax.swing.JFrame {
         try {
             String resortId = tblResort.getValueAt(tblResort.getSelectedRow(), 0).toString();
         } catch (IndexOutOfBoundsException e) {
-            errorPopUp("Maak een selectie in de tabel en probeer het nog eens.");
+            errorPopUp(BUNDLE.getString("selectItemInTable"));
             isError = true;
         }
         if (isError == false) {
-            String message = "Weet u zeker dat u dit Resort wilt verwijderen";
+            String message = BUNDLE.getString("deleteResortMsg");
             confirmation = confirmationPopUp(message);
         }
         if (confirmation == true) {
@@ -2385,7 +2387,7 @@ public class Employee extends javax.swing.JFrame {
         try {
             Session.storedResortId = tblResort.getValueAt(tblResort.getSelectedRow(), 0).toString();
         } catch (IndexOutOfBoundsException e) {
-            errorPopUp("Maak een selectie in de tabel en probeer het nog eens.");
+            errorPopUp(BUNDLE.getString("selectItemInTable"));
             isError = true;
         }
         if (isError == false) {
@@ -2404,15 +2406,15 @@ public class Employee extends javax.swing.JFrame {
             customerFullName = customerFirstName + customerLastName;
         } catch (IndexOutOfBoundsException e) {
             JOptionPane.showMessageDialog(ErrorPopUp,
-                    "Maak een selectie in de tabel en probeer het nog eens.");
+                    BUNDLE.getString("selectItemInTable"));
             isLinked = false;
         }
         boolean isError = false;
 
         customerId = Integer.parseInt(customerToLink);
         resortId = Integer.parseInt(resortToLink);
-        String message = "Weet u zeker dat u klant: " + customerFullName + "\n"
-                + "Wilt koppelen aan verblijf: " + resortId;
+        String message = BUNDLE.getString("linkResortMsg1") + customerFullName + "\n"
+                + BUNDLE.getString("linkResortMsg2") + resortId;
 
         confirmation = confirmationPopUp(message);
         if (confirmation == true) {
