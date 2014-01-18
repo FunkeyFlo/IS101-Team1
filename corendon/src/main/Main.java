@@ -23,7 +23,7 @@ public class Main {
 
     private JFrame frameLogin;
     public static Session session;
-    private String FUCK_YOU;
+
 
     private Main() {
     }

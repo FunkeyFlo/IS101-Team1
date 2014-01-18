@@ -64,7 +64,7 @@ public class BCrypt {
     // BCrypt parameters
     private static final int GENSALT_DEFAULT_LOG2_ROUNDS = 10;
     private static final int BCRYPT_SALT_LEN = 16;
-    private String FUCK_YOU;
+    
 
     // Blowfish parameters
     private static final int BLOWFISH_NUM_ROUNDS = 16;

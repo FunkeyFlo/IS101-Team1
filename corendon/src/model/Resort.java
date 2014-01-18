@@ -35,12 +35,7 @@ public class Resort {
         this.postalCode = postalCode;
         this.phone = phone;
         this.email = email;
-        
-      
-      
-        
-       
-    }
+        }
 
     public Resort() {
     }
