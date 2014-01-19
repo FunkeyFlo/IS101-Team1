@@ -859,7 +859,6 @@ public class QueryManager {
         int numYears = endYear - beginYear == 0
                 ? 1 : (endYear - beginYear) + 1;
         int numMonths = ((numYears * 12) - beginMonth) - (12 - endMonth) + 1;
-//        System.out.println(numMonths);
         
         String sql = "SELECT CONCAT(YEAR(" + status + "), '-', MONTH(" + status + ")) as yearmonth,"
                 + " COUNT(" + status + ") as count  FROM luggage WHERE";
@@ -869,7 +868,6 @@ public class QueryManager {
         sql += " DATE(" + status + ") > '" + beginYear + "-" + beginMonth + "-1'"
             + " AND DATE(" + status + ") < '" + endYear + "-" + endMonth + "-31'"
             + " GROUP BY YEAR(" + status + "), MONTH(" + status + ");";
-//        System.out.println(sql);
 
         try {
             db.openConnection();
@@ -887,32 +885,25 @@ public class QueryManager {
         int currMonth = beginMonth - 1;
         int currYear = beginYear;
         int currCountNum = 0;
-        int currCountYm = 0;
         List <Integer> count = new ArrayList<>();
-        List <String> yearmonth = new ArrayList<>();
         String ym;
         for (int i = 0; i < numMonths; i++) {
             currYear = currMonth > 11 ? ++currYear : currYear;
             currMonth = currMonth >= 12 ? 1 : ++currMonth;
             
             ym = currYear + "-" + currMonth;
-            System.out.println(ym);
             if(tempYM.size() > 0) {
                 if (ym.equals(tempYM.get(currCountNum))) {
-                    yearmonth.add(ym);
                     count.add(tempCount.get(currCountNum));
                     currCountNum = currCountNum == tempYM.size()-1 ? currCountNum : ++currCountNum;
                 } else {
-                    yearmonth.add(ym);
                     count.add(0);
                 }
             } else {
-                yearmonth.add(ym);
                 count.add(0);
             }
         }
         
-//        return new Object[]{count, yearmonth};
         return count;
     }
     
