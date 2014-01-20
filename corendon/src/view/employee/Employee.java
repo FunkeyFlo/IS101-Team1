@@ -45,6 +45,9 @@ public class Employee extends javax.swing.JFrame {
     private String luggageToLink = null;
     private String resortToLink = null;
 
+    private final String ERROR = "ERROR";
+    private final String CUSTOMER_ID_ONLY_CONTAIN_NUMBERS = "Klant ID kan alleen nummers bevatten!";
+    
     public boolean isLinked = false;
     public static String customerFullName;
 
@@ -279,7 +282,7 @@ public class Employee extends javax.swing.JFrame {
      * @param errorMessage String message displayed on the pop-up.
      */
     private void errorPopUp(String errorMessage) {
-        JOptionPane.showMessageDialog(ErrorPopUp, errorMessage, "Error", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(ErrorPopUp, errorMessage, ERROR, JOptionPane.ERROR_MESSAGE);
     }
 
     /**
@@ -1995,7 +1998,7 @@ public class Employee extends javax.swing.JFrame {
 
         customerId = tfCustomerID1.getText().trim();
         if (!customerId.matches("^[0-9]+$") && !customerId.equals("")) {
-            errorPopUp("Klant ID kan alleen nummers bevatten!");
+            errorPopUp(CUSTOMER_ID_ONLY_CONTAIN_NUMBERS);
             correctInput[2] = false;
         } else {
             correctInput[2] = true;

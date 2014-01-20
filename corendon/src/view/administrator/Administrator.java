@@ -617,8 +617,6 @@ public class Administrator extends javax.swing.JFrame {
         boolean totalCorrectInput = errorCheckCreateUser();
         if (totalCorrectInput == true) {
             doCreateUser();
-        } else {
-            System.out.println("hur");
         }
 
 

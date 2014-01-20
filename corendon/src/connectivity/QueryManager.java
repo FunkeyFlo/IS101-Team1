@@ -20,6 +20,9 @@ public class QueryManager {
     private boolean isLoggedIn = false;
     public final int MAX_INCORRECT_LOGINS = 3;
     public PreparedStatement preparedStatement = null;
+    private final String LOGIN_SUCCES = "Login success";
+    private final String INCORRECT_PASSWORD = "Password is incorrect";
+    private final String NONEXISTANT_USERNAME = "Username doesn't exist";
 
     /**
      * Compares username and password to database entries, denies or grants
@@ -35,12 +38,14 @@ public class QueryManager {
         if (user.getUsername().equals(tfUsername)) {
             if (BCrypt.checkpw(tfPassword, user.getPassword())) {
                 user.setIsLoggedIn(true);
-                return "Login success";
+//                return "Login success";
+                  return LOGIN_SUCCES;
             } else {
-                return "Password is incorrect";
+//                return "Password is incorrect";
+                  return INCORRECT_PASSWORD;
             }
         } else {
-            return "Username doesn't exist";
+            return NONEXISTANT_USERNAME;
         }
     }
 

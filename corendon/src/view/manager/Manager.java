@@ -29,7 +29,6 @@ public class Manager extends javax.swing.JFrame {
     private final QueryManager query = new QueryManager();
     private static final Font X_AXIS_FONT = new Font("Verdana", Font.PLAIN, 8);
 
-    //    private Locale locale = new Locale("nl", "NL");
     private static final ResourceBundle BUNDLE
             = ResourceBundle.getBundle("languages.ResourceBundle"); //, locale
 
@@ -54,10 +53,6 @@ public class Manager extends javax.swing.JFrame {
     private static final String X_AXIS_NAME = BUNDLE.getString("xAxis");
     private static final String Y_AXIS_NAME = BUNDLE.getString("yAxis");
 
-//    private static final int LOST_LUGGAGE_DBFIELD = 6;
-//    private static final int FOUND_LUGGAGE_DBFIELD = 8;
-//    private static final int HANDLED_LUGGAGE_DBFIELD = 10;
-    
     private static final int FIRST_YEAR = 2010;
     private static final String DATE_LOST_COLUMN = "date_lost";
     private static final String DATE_FOUND_COLUMN = "date_found";
@@ -66,7 +61,8 @@ public class Manager extends javax.swing.JFrame {
     //transparant background, gives it the same color as the panel it is in.
     private static final Color TRANS = new Color(0xFF, 0xFF, 0xFF, 0);
 
-    public Manager() {
+    public Manager() 
+    {
         initComponents();
         int CURRENT_YEAR = getCurrentYear();
         //1 = January, 12 = December
@@ -95,23 +91,23 @@ public class Manager extends javax.swing.JFrame {
         foundBaggage = new javax.swing.JPanel();
         handledBaggageTab = new javax.swing.JPanel();
         handledBaggage = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
+        optionPanel = new javax.swing.JPanel();
         errorLabel = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        dateFromPanel = new javax.swing.JPanel();
+        yearFromLabel = new javax.swing.JLabel();
+        monthFromLabel = new javax.swing.JLabel();
         cbMonthFrom = new javax.swing.JComboBox();
         cbYearFrom = new javax.swing.JComboBox();
-        jPanel3 = new javax.swing.JPanel();
+        dateToPanel = new javax.swing.JPanel();
         buttonUpdateAllDataGraph = new javax.swing.JButton();
         cbMonthTo = new javax.swing.JComboBox();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        monthToLabel = new javax.swing.JLabel();
+        yearToLabel = new javax.swing.JLabel();
         cbYearTo = new javax.swing.JComboBox();
         labelError = new javax.swing.JLabel();
-        jPanel5 = new javax.swing.JPanel();
+        statusOptionPanel = new javax.swing.JPanel();
         cbShowAll = new javax.swing.JCheckBox();
-        jLabel6 = new javax.swing.JLabel();
+        chShowAllExtra = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         userMenu = new javax.swing.JMenu();
         changePassword = new javax.swing.JMenuItem();
@@ -211,13 +207,13 @@ public class Manager extends javax.swing.JFrame {
 
         overviewPane.addTab(BUNDLE.getString("handledLuggage"), handledBaggageTab);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(BUNDLE.getString("options")));
+        optionPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(BUNDLE.getString("options")));
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(BUNDLE.getString("from")));
+        dateFromPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(BUNDLE.getString("from")));
 
-        jLabel2.setText(BUNDLE.getString("year"));
+        yearFromLabel.setText(BUNDLE.getString("year"));
 
-        jLabel3.setText(BUNDLE.getString("month"));
+        monthFromLabel.setText(BUNDLE.getString("month"));
 
         cbMonthFrom.setMaximumRowCount(12);
         cbMonthFrom.setModel(new javax.swing.DefaultComboBoxModel(BUNDLE.getStringArray("months")));
@@ -229,35 +225,35 @@ public class Manager extends javax.swing.JFrame {
 
         cbYearFrom.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "2010", "2011", "2012", "2013", "2014" }));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        javax.swing.GroupLayout dateFromPanelLayout = new javax.swing.GroupLayout(dateFromPanel);
+        dateFromPanel.setLayout(dateFromPanelLayout);
+        dateFromPanelLayout.setHorizontalGroup(
+            dateFromPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dateFromPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel2))
+                .addGroup(dateFromPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(monthFromLabel)
+                    .addComponent(yearFromLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(dateFromPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(cbMonthFrom, 0, 101, Short.MAX_VALUE)
                     .addComponent(cbYearFrom, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
+        dateFromPanelLayout.setVerticalGroup(
+            dateFromPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dateFromPanelLayout.createSequentialGroup()
+                .addGroup(dateFromPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(yearFromLabel)
                     .addComponent(cbYearFrom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
+                .addGroup(dateFromPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(monthFromLabel)
                     .addComponent(cbMonthFrom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(BUNDLE.getString("to")));
+        dateToPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(BUNDLE.getString("to")));
 
         buttonUpdateAllDataGraph.setText(BUNDLE.getString("update"));
         buttonUpdateAllDataGraph.addActionListener(new java.awt.event.ActionListener() {
@@ -269,9 +265,9 @@ public class Manager extends javax.swing.JFrame {
         cbMonthTo.setMaximumRowCount(12);
         cbMonthTo.setModel(new javax.swing.DefaultComboBoxModel(BUNDLE.getStringArray("months")));
 
-        jLabel4.setText(BUNDLE.getString("month"));
+        monthToLabel.setText(BUNDLE.getString("month"));
 
-        jLabel5.setText(BUNDLE.getString("year"));
+        yearToLabel.setText(BUNDLE.getString("year"));
 
         cbYearTo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "2010", "2011", "2012", "2013", "2014" }));
         cbYearTo.addActionListener(new java.awt.event.ActionListener() {
@@ -280,46 +276,46 @@ public class Manager extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
+        javax.swing.GroupLayout dateToPanelLayout = new javax.swing.GroupLayout(dateToPanel);
+        dateToPanel.setLayout(dateToPanelLayout);
+        dateToPanelLayout.setHorizontalGroup(
+            dateToPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dateToPanelLayout.createSequentialGroup()
+                .addGroup(dateToPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(dateToPanelLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5))
+                        .addGroup(dateToPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(monthToLabel)
+                            .addComponent(yearToLabel))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(dateToPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(cbMonthTo, 0, 101, Short.MAX_VALUE)
                             .addComponent(cbYearTo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dateToPanelLayout.createSequentialGroup()
                         .addComponent(labelError)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(buttonUpdateAllDataGraph)))
                 .addContainerGap())
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
+        dateToPanelLayout.setVerticalGroup(
+            dateToPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dateToPanelLayout.createSequentialGroup()
+                .addGroup(dateToPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(yearToLabel)
                     .addComponent(cbYearTo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
+                .addGroup(dateToPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(monthToLabel)
                     .addComponent(cbMonthTo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGroup(dateToPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dateToPanelLayout.createSequentialGroup()
                         .addComponent(buttonUpdateAllDataGraph)
                         .addContainerGap())
                     .addComponent(labelError, javax.swing.GroupLayout.Alignment.TRAILING)))
         );
 
-        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(BUNDLE.getString("otherOptions")));
+        statusOptionPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(BUNDLE.getString("otherOptions")));
 
         cbShowAll.setText(BUNDLE.getString("seeAllData1"));
         cbShowAll.addActionListener(new java.awt.event.ActionListener() {
@@ -328,51 +324,51 @@ public class Manager extends javax.swing.JFrame {
             }
         });
 
-        jLabel6.setText(BUNDLE.getString("seeAllData2"));
+        chShowAllExtra.setText(BUNDLE.getString("seeAllData2"));
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout statusOptionPanelLayout = new javax.swing.GroupLayout(statusOptionPanel);
+        statusOptionPanel.setLayout(statusOptionPanelLayout);
+        statusOptionPanelLayout.setHorizontalGroup(
+            statusOptionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(cbShowAll, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel5Layout.createSequentialGroup()
+            .addGroup(statusOptionPanelLayout.createSequentialGroup()
                 .addGap(21, 21, 21)
-                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(chShowAllExtra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
+        statusOptionPanelLayout.setVerticalGroup(
+            statusOptionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(statusOptionPanelLayout.createSequentialGroup()
                 .addComponent(cbShowAll)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel6)
+                .addComponent(chShowAllExtra)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout optionPanelLayout = new javax.swing.GroupLayout(optionPanel);
+        optionPanel.setLayout(optionPanelLayout);
+        optionPanelLayout.setHorizontalGroup(
+            optionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(optionPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(optionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(errorLabel)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(optionPanelLayout.createSequentialGroup()
+                        .addGroup(optionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(dateFromPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(statusOptionPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(dateToPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        optionPanelLayout.setVerticalGroup(
+            optionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, optionPanelLayout.createSequentialGroup()
+                .addGroup(optionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(optionPanelLayout.createSequentialGroup()
+                        .addComponent(dateFromPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(statusOptionPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(dateToPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(errorLabel))
         );
@@ -408,7 +404,7 @@ public class Manager extends javax.swing.JFrame {
             .addComponent(overviewPane)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(optionPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -416,7 +412,7 @@ public class Manager extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(overviewPane)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(optionPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -432,7 +428,8 @@ public class Manager extends javax.swing.JFrame {
      * @param endMonth month in the year where the graph ends
      */
     private void setAllDataGraph(int beginYear, int endYear,
-            int beginMonth, int endMonth, boolean showAll) {
+            int beginMonth, int endMonth, boolean showAll) 
+    {
         DefaultCategoryDataset allDataGraph
                 = new DefaultCategoryDataset();
         allDataGraph.clear();
@@ -493,7 +490,8 @@ public class Manager extends javax.swing.JFrame {
      * @param endMonth month in the year where the graph ends
      */
     private void setLostLuggageGraph(int beginYear, int endYear,
-            int beginMonth, int endMonth, boolean dontShowAll) {
+            int beginMonth, int endMonth, boolean dontShowAll) 
+    {
         DefaultCategoryDataset lostBaggageGraph
                 = new DefaultCategoryDataset();
         lostBaggageGraph.clear();
@@ -545,7 +543,8 @@ public class Manager extends javax.swing.JFrame {
      * @param endMonth the month in the year where the graph ends
      */
     private void setFoundLuggageGraph(int beginYear, int endYear,
-            int beginMonth, int endMonth, boolean dontShowAll) {
+            int beginMonth, int endMonth, boolean dontShowAll) 
+    {
         DefaultCategoryDataset foundBaggageGraph
                 = new DefaultCategoryDataset();
         foundBaggageGraph.clear();
@@ -599,7 +598,8 @@ public class Manager extends javax.swing.JFrame {
      * @param endMonth the month in the year where the graph ends
      */
     private void setHandledLuggageGraph(int beginYear, int endYear,
-            int beginMonth, int endMonth) {
+            int beginMonth, int endMonth) 
+    {
         DefaultCategoryDataset handledBaggageGraph
                 = new DefaultCategoryDataset();
         handledBaggageGraph.clear();
@@ -798,29 +798,29 @@ public class Manager extends javax.swing.JFrame {
     private javax.swing.JCheckBox cbShowAll;
     private javax.swing.JComboBox cbYearFrom;
     private javax.swing.JComboBox cbYearTo;
+    private javax.swing.JLabel chShowAllExtra;
     private javax.swing.JMenuItem changePassword;
+    private javax.swing.JPanel dateFromPanel;
+    private javax.swing.JPanel dateToPanel;
     private javax.swing.JLabel errorLabel;
     private javax.swing.JPanel foundBaggage;
     private javax.swing.JPanel foundBaggageTab;
     private javax.swing.JPanel handledBaggage;
     private javax.swing.JPanel handledBaggageTab;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JLabel labelError;
     private javax.swing.JMenuItem logout;
     private javax.swing.JPanel lostBaggage;
     private javax.swing.JPanel lostBaggageTab;
     private javax.swing.JMenuBar menuBar;
+    private javax.swing.JLabel monthFromLabel;
+    private javax.swing.JLabel monthToLabel;
+    private javax.swing.JPanel optionPanel;
     private javax.swing.JTabbedPane overviewPane;
+    private javax.swing.JPanel statusOptionPanel;
     private javax.swing.JMenu userMenu;
+    private javax.swing.JLabel yearFromLabel;
+    private javax.swing.JLabel yearToLabel;
     // End of variables declaration//GEN-END:variables
 
 }
